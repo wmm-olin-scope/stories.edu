@@ -3,13 +3,16 @@ fs = require 'fs'
 {print} = require 'sys'
 {spawn, exec} = require 'child_process'
 
-buildDir = (dir, watch=no, done=null) ->
-  watch = if watch then '-w ' else ''
-  exec "coffee -c #{watch} -o #{dir} #{dir}", (err, stdout, stderr) ->
+execAndLog = (cmd, done) ->
+  exec cmd, (err, stdout, stderr) ->
     process.stderr.write stderr if stderr?
     print stdout if stdout?
     process.stderr.write err.toString() if err
     done? err
+
+buildDir = (dir, watch=no, done=null) ->
+  watch = if watch then '-w ' else ''
+  execAndLog "coffee -c #{watch} -o #{dir} #{dir}", done
 
 allBuildDirs = ['routes', 'data', 'lib', '.']
 
@@ -29,14 +32,4 @@ for dir in allBuildDirs
       buildDir "#{dir}", yes
 
 task 'server', 'Starts the node server', ->
-  node = spawn 'node', ['app.js']
-  node.stderr.on 'data', (data) ->
-    process.stderr.write data.toString()
-  node.stdout.on 'data', (data) ->
-    print data.toString()
-  node.on 'exit', (code) ->
-    print "server exiting with code #{code}"
-
-task 'test', '', ->
-  exec 'coffee -c test.coffee', (err, stdout, stderr) ->
-    console.log err, stdout, stderr
+  execAndLog 'node app.js'
