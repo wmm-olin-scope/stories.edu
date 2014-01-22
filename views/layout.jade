@@ -1,0 +1,28 @@
+doctype 5
+html
+    head
+        title='redoEdu'
+        link(href='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', rel='stylesheet')
+        link(href='http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
+        link(href='http://fonts.googleapis.com/css?family=Raleway:400,200', rel='stylesheet', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Istok+Web:700', rel='stylesheet', type='text/css')
+        link(href='/stylesheets/bootstrap-ui/jquery-ui-1.10.0.custom.css', rel='stylesheet', type='text/css')
+        link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
+        script!= "var user = " + JSON.stringify(user) + ";"
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+        script(src='/javascripts/jquery-ui-1.9.2.custom.min.js')
+        script(src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.9/d3.min.js')
+        script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js')
+        script(src='/javascripts/users.js')
+        script(src='/javascripts/bootstrap.min.js')
+    body
+        nav.navbar.navbar-fixed-top.navbar-inverse(role='navigation')
+            .navbar-header
+                a.navbar-brand(href='//www.redoedu.com/') redoEdu
+            .navbar-collapse.navbar-ex8-collapse#navbar-right
+                ul.nav.navbar-nav
+                    li
+                        a(href='mailto:contact@redoedu.org') Contact Us
+        include userNav
+
+        block content

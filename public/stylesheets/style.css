@@ -1,0 +1,129 @@
+/* Space out content a bit */
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+  background-image: url('../images/chalkboard.jpg');
+  color: white;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+
+  h1, h2, h3, h4, h5{
+    font-family: 'Istok Web', sans-serif;
+  }
+}
+
+#tweet-widget {
+  text-align: center
+}
+
+/*label, input { display:block; }*/
+
+label {
+  padding-right: 0.5em;
+}
+
+input.text { 
+  margin-bottom:12px; 
+  padding: .4em; 
+}
+
+fieldset { 
+  padding:0; 
+  border:0; 
+  margin-top:25px; 
+}
+
+.form-row {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+.ui-dialog .ui-state-error { padding: .3em; }
+.validate { border: 1px solid transparent; padding: 0.3em; }
+
+#display{
+  border-style:solid;
+  width: 540px;
+  height: 370px;
+  border-width: 10px;
+  padding: 5px;
+}
+
+#progressWrapper{
+  margin-top: 5px;
+}
+
+/*#player{
+  border-style:solid;
+  width: 504px;
+  height: 339px;
+}*/
