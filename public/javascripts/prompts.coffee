@@ -16,9 +16,7 @@ putPrompt = (prompt) ->
         data: {prompt}
     $.ajax(req)
         .fail(-> console.log 'Failed to put!')
-        .done((res) ->
-            console.log res
-            clearEditor())
+        .done((res) -> location.reload true)
 
 $ setup
     

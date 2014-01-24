@@ -7,10 +7,12 @@ block content
 
   .container
     h1 Prompts
-    div(style="width: 100%")
+    #prompts(style="width: 100%")
       for prompt in prompts
-        div(style="width: 100%")
-         != prompt.html
+        .prompt(style="width: 100%")
+          != prompt.html
+        .left-button-row
+          button.btn.btn-sm.btn-danger.delete-prompt(data-prompt-id=''+prompt._id) Delete
         hr
 
     #editor
