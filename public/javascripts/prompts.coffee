@@ -6,8 +6,11 @@ setup = ->
         focus: true
     $('#create').click -> putPrompt $('#editor').code()
     $('#clear').click -> clearEditor()
+    $('.delete-prompt').click -> deletePrompt $(this).attr 'data-prompt-id'
 
 clearEditor = -> $('#editor').code ''
+
+deletePrompt = (id) ->
 
 putPrompt = (prompt) ->
     req = 
