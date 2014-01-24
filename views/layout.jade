@@ -10,11 +10,11 @@ html
         link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
         script!= "var user = " + JSON.stringify(user) + ";"
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-        script(src='/javascripts/jquery-ui-1.9.2.custom.min.js')
+        script(src='/javascripts/lib/jquery-ui-1.9.2.custom.min.js')
         script(src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.9/d3.min.js')
         script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js')
         script(src='/javascripts/users.js')
-        script(src='/javascripts/bootstrap.min.js')
+        script(src='/javascripts/lib/bootstrap.min.js')
     body
         nav.navbar.navbar-fixed-top.navbar-inverse(role='navigation')
             .navbar-header

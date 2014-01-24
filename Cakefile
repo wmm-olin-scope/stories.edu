@@ -14,7 +14,7 @@ buildDir = (dir, watch=no, done=null) ->
   watch = if watch then '-w ' else ''
   execAndLog "coffee -c #{watch} -o #{dir} #{dir}", done
 
-allBuildDirs = ['routes', 'data', 'lib', '.']
+allBuildDirs = ['routes', 'data', 'lib', 'public/javascripts', '.']
 
 task 'build', 'Builds all dirs', ->
   for dir in allBuildDirs
@@ -26,9 +26,9 @@ task 'watch', 'Watches for changes in all dirs, builds', ->
 
 for dir in allBuildDirs
   do (dir) ->
-    task "build:#{dir}", "Build #{dir}", ->
+    task "build:#{dir.replace '/', '_'}", "Build #{dir}", ->
       buildDir "#{dir}", no
-    task "watch:#{dir}", "Watches and builds #{dir}", ->
+    task "watch:#{dir.replace '/', '_'}", "Watches and builds #{dir}", ->
       buildDir "#{dir}", yes
 
 task 'server', 'Starts the node server', ->
