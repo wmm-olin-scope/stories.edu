@@ -1,22 +1,24 @@
 
-$ ->
-    $('a[title]').tooltip {container: 'body'}
 
-    $('.dropdown-menu input')
-        .click(-> false)
-        .change(-> 
-            $(this).parent('.dropdown-menu').siblings('.dropdown-toggle')
-                   .dropdown('toggle')
-            return)
-        .keydown('esc', -> @value = ''; $(this).change(); return)
+setup = ->
+    $('#editor').summernote
+        height: 300   
+        focus: true
+    $('#create').click -> putPrompt $('#editor').code()
+    $('#clear').click -> clearEditor()
 
-    $('[data-role=magic-overlay]').each ->
-        target = $ overlay.data 'target'
-        $(this)
-            .css('opacity', 0)
-            .css('position', 'absolute')
-            .offset(target.offset())
-            .width(target.outerWidth())
-            .height(target.outerHeight())
+clearEditor = -> $('#editor').code ''
 
-    $('#promptEditor').wysiwyg()
+putPrompt = (prompt) ->
+    req = 
+        url: '/prompts/'
+        type: 'PUT'
+        data: {prompt}
+    $.ajax(req)
+        .fail(-> console.log 'Failed to put!')
+        .done((res) ->
+            console.log res
+            clearEditor())
+
+$ setup
+    

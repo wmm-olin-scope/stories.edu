@@ -1,77 +1,20 @@
 extends ../layout
 block content
-    script(src='/javascripts/lib/bootstrap-wysiwyg.js')
-    script(scr='/javascripts/lib/jquery-hotkeys.js', type='text/javascript')
-    script(src='/javascripts/prompts.js')
+  link(href='/stylesheets/summernote.css', rel='stylesheet')
+  link(href='/stylesheets/summernote-bs3.css', rel='stylesheet')
+  script(src='/javascripts/lib/summernote.min.js')
+  script(src='/javascripts/prompts.js')
 
-    .container
-        h1 Prompts
-        ul
-            for prompt in prompts
-                li
-                    p!= prompt.html
-
+  .container
+    h1 Prompts
+    div(style="width: 100%")
+      for prompt in prompts
+        div(style="width: 100%")
+         != prompt.html
         hr
 
-        .btn-toolbar(data-role='editor-toolbar', data-target='#promptEditor')
-            .btn-group
-              .btn-group
-                a.btn.dropdown-toggle(data-toggle='dropdown', title='Font Size')
-                  i.icon-text-height
-                  | &nbsp;
-                  b.caret
-                ul.dropdown-menu
-                  li
-                    a(data-edit='fontSize 5')
-                      font(size='5') Huge
-                  li
-                    a(data-edit='fontSize 3')
-                      font(size='3') Normal
-                  li
-                    a(data-edit='fontSize 1')
-                      font(size='1') Small
-              .btn-group
-                a.btn(data-edit='bold', title='Bold (Ctrl/Cmd+B)')
-                  i.icon-bold
-                a.btn(data-edit='italic', title='Italic (Ctrl/Cmd+I)')
-                  i.icon-italic
-                a.btn(data-edit='strikethrough', title='Strikethrough')
-                  i.icon-strikethrough
-                a.btn(data-edit='underline', title='Underline (Ctrl/Cmd+U)')
-                  i.icon-underline
-              .btn-group
-                a.btn(data-edit='insertunorderedlist', title='Bullet list')
-                  i.icon-list-ul
-                a.btn(data-edit='insertorderedlist', title='Number list')
-                  i.icon-list-ol
-                a.btn(data-edit='outdent', title='Reduce indent (Shift+Tab)')
-                  i.icon-indent-left
-                a.btn(data-edit='indent', title='Indent (Tab)')
-                  i.icon-indent-right
-              .btn-group
-                a.btn(data-edit='justifyleft', title='Align Left (Ctrl/Cmd+L)')
-                  i.icon-align-left
-                a.btn(data-edit='justifycenter', title='Center (Ctrl/Cmd+E)')
-                  i.icon-align-center
-                a.btn(data-edit='justifyright', title='Align Right (Ctrl/Cmd+R)')
-                  i.icon-align-right
-                a.btn(data-edit='justifyfull', title='Justify (Ctrl/Cmd+J)')
-                  i.icon-align-justify
-              .btn-group
-                a.btn.dropdown-toggle(data-toggle='dropdown', title='Hyperlink')
-                  i.icon-link
-                .dropdown-menu.input-append
-                  input.span2(placeholder='URL', type='text', data-edit='createLink')
-                  button.btn(type='button') Add
-                a.btn(data-edit='unlink', title='Remove Hyperlink')
-                  i.icon-cut
-              .btn-group
-                a.btn(data-edit='undo', title='Undo (Ctrl/Cmd+Z)')
-                  i.icon-undo
-                a.btn(data-edit='redo', title='Redo (Ctrl/Cmd+Y)')
-                  i.icon-repeat
-
-        #promptEditor(contenteditable=true) Go ahead
-
-        button(id='Create') Create
+    #editor
+    div(style="float: left; padding-top: 0.5em")
+      button.btn.btn-lg.btn-primary(id='create') Create
+      button.btn.btn-lg.btn-warning(id='clear', style="margin-left: 0.5em") Clear
         
