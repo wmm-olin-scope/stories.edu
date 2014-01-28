@@ -1,15 +1,20 @@
 
 {Prompt} = require '../data/prompts'
-utils = require '../lib/utils'
+{succeed, fail} = utils = require '../lib/utils'
 
 getIndex = (req, res) ->
     Prompt.find {}, (err, prompts) ->
-        return utils.fail res, err if err
+        return fail res, err if err
         res.render 'prompts/index', {prompts}
 
 checkPrompt = utils.checkBody 'prompt', (prompt) ->
     utils.check(prompt).len(1, 1e5)
     prompt
+
+checkPromptId = (req) ->
+    id = req.params.promptId
+    utils.check(id).len(24)
+    id
 
 putPrompt = (req, res) ->
     [check, values] = utils.checkAll req, res,
@@ -17,10 +22,20 @@ putPrompt = (req, res) ->
     return if check
     
     Prompt.create {html: values.prompt}, (err, prompt) ->
-        return utils.fail res, err if err
-        utils.succeed res, prompt
+        return fail res, err if err
+        succeed res, prompt
+
+deletePrompt = (req, res) ->
+    [check, values] = utils.checkAll req, res,
+        promptId: checkPromptId
+    return if check
+
+    Prompt.findByIdAndRemove values.promptId, (err) ->
+        return fail res, err if err
+        succeed res, {}
 
 exports.create = (app) ->
     app.get '/prompts', getIndex
     app.get '/prompts/', getIndex
     app.put '/prompts/', putPrompt
+    app.del '/prompts/:promptId', deletePrompt

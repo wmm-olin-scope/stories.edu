@@ -11,6 +11,9 @@ setup = ->
 clearEditor = -> $('#editor').code ''
 
 deletePrompt = (id) ->
+    $.ajax({url: "/prompts/#{id}", type: 'DELETE'})
+        .fail(-> console.log 'Failed to delete!')
+        .done((res) -> location.reload true)
 
 putPrompt = (prompt) ->
     req = 
