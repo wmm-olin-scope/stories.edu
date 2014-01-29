@@ -15,6 +15,7 @@
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "bcrypt": "~0.7.7",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "mongoose-random": "~0.0.2"
   }
 }
