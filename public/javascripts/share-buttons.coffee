@@ -1,17 +1,21 @@
 
-siteUrl = 'http://www.redoedu.org'
-facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=#{encodeURIComponent siteUrl}"
-twitterShareUrl = "https://twitter.com/share?url=#{encodeURIComponent siteUrl}&via=wmmedu"
+siteUrl = 'http://www.thank-a-teacher.org'
 
-showModal = (iframeUrl) ->
-    $('#share-modal').modal('show')
-    $('#share-modal').on 'shown.bs.modal', ->
-        $('#share-modal-body').html """
-                <iframe width="100%" height=100% url="#{iframeUrl}" frameborder="0">
-                </iframe>
-            """
+setupFacebook = ->
+    $.getScript '//connect.facebook.net/en_UK/all.js', ->
+        FB.init {appId: '1444954685735176'}
 
+    $('#share-facebook').click ->
+        FB.ui
+            method: 'feed',
+            link: siteUrl,
+            caption: 'Thank a teacher!'
+
+setupTwitter = ->
+    $('#share-twitter').attr('href', "https://twitter.com/share?url=#{encodeURIComponent siteUrl}&via=wmmedu")
+                       .attr('target', '_blank')
 
 $ ->
-    $('#share-facebook').click -> window.open facebookShareUrl #showModal facebookShareUrl
-    $('#share-twitter').click -> window.open twitterShareUrl #showModal twitterShareUrl
+    setupFacebook()
+    setupTwitter()
+    

@@ -17,6 +17,8 @@ html
         script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js')
         script(src='/javascripts/share-buttons.js')
     body
+        #fb-root
+
         nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
             .navbar-header
                 button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-collapse')
@@ -33,13 +35,13 @@ html
                     li
                         a(href='/share') Share
 
-                form.navbar-form.navbar-right.form-inline(style='margin-right:10px')
+                .navbar-form.navbar-right.form-inline(style='margin-right:10px')
                     .btn-group
-                        button.btn.btn-sm.btn-twitter#share-twitter
+                        a.btn.btn-sm.btn-twitter#share-twitter
                             i.fa.fa-twitter
                             | &nbsp; Tweet
                         button.btn.btn-sm.btn-facebook#share-facebook
                             i.fa.fa-facebook
                             | &nbsp; Share
-        include share-modal
+        
         block content
