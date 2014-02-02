@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title='stories.edu'
+        title='Thank a teacher!'
 
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
@@ -26,14 +26,13 @@ html
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='#') redoEdu
+                a.navbar-brand(href='#') Say thanks!
 
             #navbar-collapse.collapse.navbar-collapse
                 ul.nav.navbar-nav
-                    li.active
-                        a(href='/popular') Popular
+                    li.divider
                     li
-                        a(href='/share') Share
+                        p#nav-banner.navbar-text <b>12,938</b> teachers and mentors recognized
 
                 .navbar-form.navbar-right.form-inline(style='margin-right:10px')
                     .btn-group
@@ -43,5 +42,5 @@ html
                         button.btn.btn-sm.btn-facebook#share-facebook
                             i.fa.fa-facebook
                             | &nbsp; Share
-        
-        block content
+        .container
+            block content
