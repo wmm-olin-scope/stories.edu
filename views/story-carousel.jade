@@ -1,4 +1,6 @@
 
+script(src='/javascripts/seed-carousel.js')
+
 #story-carousel.row
     .col-sm-6.col-md-3
         a.thumbnail
@@ -12,3 +14,15 @@
     .col-sm-6.col-md-3
         a.thumbnail
             img(src='http://placehold.it/300x200')
+
+#story-modal.modal.bs-modal-lg.fade(role='dialog', tabindex='-1', aria-labelledby='story-modal', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                h4.modal-title#story-modal-title Story
+
+            .modal-body
+                .video-container(style='padding-bottom: 56.25%')
+                    iframe(width="640", height="360", src="", 
+                           frameborder="0", allowfullscreen)

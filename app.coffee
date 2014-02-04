@@ -9,7 +9,7 @@ path = require 'path'
 passport = require 'passport'
 
 app = express()
-app.set 'port', process.env.PORT or 5000
+app.set 'port', process.env.PORT or 5001
 app.set 'views', __dirname + '/views'
 app.set 'view engine', 'jade'
 
