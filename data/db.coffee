@@ -1,31 +1,33 @@
 
 mongoose = require 'mongoose'
+Q = require 'q'
+
 uri = process.env.MONGOLAB_URI or 
       process.env.MONGOHQ_URL or
       'mongodb://localhost/stories'
 
-exports.connect = (done) ->
-    mongoose.connect uri, (err, res) ->
-        if err
-            console.log "Couldn't connect to MongoDB: #{err}"
-        else
-            console.log 'Connected to MongoDB!'
-            done() if done
+exports.connect = -> Q.ninvoke mongoose, 'connect', uri
 
-exports.dropModel = (model, done) ->
-    mongoose.connection.db.dropCollection(model.collection.name, done)
+exports.dropModel = (model) ->
+    deferred = Q.defer()
+    mongoose.connection.db.dropCollection model.collection.name, (err) ->
+        console.warn err if err # swallow errors here
+        deferred.resolve()
+    deferred.promise
 
-exports.batchInsert = (model, docs, done=(->), batchSize=1024) ->
-    return unless docs
+exports.batchInsert = (model, docs, batchSize=1024) ->
+    return Q() unless docs
+
+    console.log docs.length, batchSize
+    console.log (x for x in [1...docs.length] by batchSize)
 
     # make sure that the collection exists
-    model.create docs[0], (err) ->
-        return done err if err
+    exists = Q.ninvoke model, 'create', docs[0]
 
-        doBatch = (index) ->
-            return done() if index >= docs.length
-            end = index + batchSize
-            model.collection.insert docs[index...end], {w: 1}, (err) ->
-                return done err if err
-                doBatch end
-        doBatch 1
+    batches = []
+    for batchStart in [1...docs.length] by batchSize
+        do (batchStart) -> batches.push ->
+            console.log "Batch start #{batchStart}/#{docs.length} for #{model.modelName}"
+            batch = docs[batchStart...(batchStart+batchSize)]
+            Q.ninvoke model.collection, 'insert', batch, {w: 1}
+    batches.reduce ((prom, next) -> prom.then next), exists

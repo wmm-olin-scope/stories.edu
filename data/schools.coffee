@@ -2,6 +2,8 @@
 csv = require 'csv'
 fs = require 'fs'
 mongoose = require 'mongoose'
+Q = require 'q'
+_ = require 'underscore'
 
 notApplicable = '†'
 missing = '–'
@@ -11,7 +13,7 @@ badValues = [notApplicable, missing, lowQuality]
 publicSchoolsCSV = __dirname + '/raw/public-schools.csv'
 privateSchoolsCSV = __dirname + '/raw/private-schools.csv'
 
-publicSchoolFieldMap = 
+publicFields = 
     'School Name': {field: 'name', type: String}
     'State Abbr [Public School] Latest available year': {field: 'state', type: String}
     'County Name [Public School] 2010-11': {field: 'county', type: String}
@@ -31,7 +33,7 @@ publicSchoolFieldMap =
     'Total Students [Public School] 2010-11': {field: 'students', type: Number}
     'Full-Time Equivalent (FTE) Teachers [Public School] 2010-11': {field: 'fteTeachers', type: Number}
 
-privateSchoolFieldMap = 
+privateFields = 
     'Private School Name': {field: 'name', type: String}
     'State Abbr [Private School] Latest available year': {field: 'state', type: String}
     'City [Private School] 2009-10': {field: 'city', type: String}
@@ -44,66 +46,98 @@ privateSchoolFieldMap =
     'Total Students (Ungraded & PK-12) [Private School] 2009-10': {field: 'students', type: Number}
     'Full-Time Equivalent (FTE) Teachers [Private School] 2009-10': {field: 'fteTeachers', type: Number}
 
-generateDB = (done) ->
-    generate PublicSchool, publicSchoolsCSV, publicSchoolFieldMap, (err) ->
-        return console.log err if err
-        generate PrivateSchool, privateSchoolsCSV, privateSchoolFieldMap, done
+generateDB = ->
+    generateSchools(PublicSchool, publicSchoolsCSV, publicFields)
+    .fail((err) -> console.log err)
+    .then(-> generateSchools(PrivateSchool, privateSchoolsCSV, privateFields))
+    #.then(generateStates)
 
-generate = (model, file, map, done) ->
+
+generateSchools = (model, file, fields) ->
+    deferred = Q.defer()
     csv().from.stream(fs.createReadStream(file), {columns: yes})
-         .transform((row) -> parseSchoolRow row, map)
-         .to.array((rows) -> insertSchools model, rows, done)
+         .transform((row) -> parseSchoolRow row, fields)
+         .to.array((rows) -> 
+            insertSchools(model, rows).then deferred.resolve())
          .on('end', (count) -> 
             console.log "Generated #{count} school records!")
-         .on('error', (error) ->
-            console.log error.message)
+         .on('error', (error) -> deferred.reject error)
+    deferred.promise
 
-parseSchoolRow = (row, map) ->
+parseSchoolRow = (row, fields) ->
     parsed = {}
-    for header, info of map
+    for header, info of fields
         value = row[header]
         if value in badValues then value = null
         else if info.type is Number then value = +value
+        else value = value.trim()
         parsed[info.field] = value
     parsed
 
-insertSchools = (model, rows, done) ->
-    console.log "Inserting #{rows.length} schools!"
-    db.batchInsert model, rows, done
+insertSchools = (model, rows) ->
+    console.log "Inserting #{rows.length} #{model.modelName} schools!"
+    db.batchInsert model, rows
 
-makeSchema = (fieldMap) -> new mongoose.Schema do ->
+makeSchoolSchema = (fields) -> new mongoose.Schema do ->
     schema = {}
-    for header, info of fieldMap
+    for header, info of fields
         schema[info.field] = info.type
     schema
 
-exports.publicSchoolSchema = makeSchema publicSchoolFieldMap
-exports.publicSchoolSchema.index
+publicSchoolSchema = makeSchoolSchema publicFields
+publicSchoolSchema.index
     name: 1
     state: 1
     city: 1
     zip: 1
+exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
+                                                     publicSchoolSchema
 
-exports.PublicSchool = PublicSchool = 
-        mongoose.model 'PublicSchool', exports.publicSchoolSchema
-
-exports.privateSchoolSchema = makeSchema privateSchoolFieldMap
-exports.privateSchoolSchema.index
+privateSchoolSchema = makeSchoolSchema privateFields
+privateSchoolSchema.index
     name: 1
     state: 1
     city: 1
     zip: 1
+exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool', 
+                                                       privateSchoolSchema
 
-exports.PrivateSchool = PrivateSchool = 
-        mongoose.model 'PrivateSchool', exports.privateSchoolSchema
+generateStates = ->
+    grouping = PublicSchool.aggregate().group({_id: '$state'})
+    states = Q.ninvoke grouping, 'exec'
+    states.then((states) -> 
+        (findCitiesAndInsert state for state in states).reduce Q.when, Q())
+
+findCitiesAndInsert = (state) ->
+    console.log state, state._id
+    name = state._id
+    getCities = (model) -> 
+        Q.ninvoke model.aggregate()
+                       .group({_id: '$city'})
+                       .match({state: name}),
+                       'exec'
+
+    Q.all([getCities(PublicSchool), getCities(PrivateSchool)])
+    .then((cities) ->
+        console.log cities
+        cities = _.union(cities...)
+        Q.ninvoke State, 'create', {_id: name, cities})
+
+statesSchema = new mongoose.Schema
+    _id: String
+    cities: [String]
+exports.State = State = mongoose.model 'State', statesSchema
+
 
 if require.main is module
     db = require('./db')
-    db.connect ->
-        db.dropModel PublicSchool
-        db.dropModel PrivateSchool
-
-        generateDB (err) ->
-            console.log err if err
-            console.log 'Done!'
-            process.exit()
+    db.connect()
+        .then(-> console.log 'Connected to DB')
+        .then(-> db.dropModel PublicSchool)
+        .then(-> db.dropModel PrivateSchool)
+        .then(-> db.dropModel State)
+        .then(generateDB)
+        #.then(generateStates)
+        .then(-> console.log 'Done!')
+        .catch((err) -> console.log err)
+        .fin(-> process.exit())
