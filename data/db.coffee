@@ -15,19 +15,14 @@ exports.dropModel = (model) ->
         deferred.resolve()
     deferred.promise
 
-exports.batchInsert = (model, docs, batchSize=1024) ->
+exports.batchInsert = (model, docs, batchSize=2048) ->
     return Q() unless docs
 
-    console.log docs.length, batchSize
-    console.log (x for x in [1...docs.length] by batchSize)
-
     # make sure that the collection exists
-    exists = Q.ninvoke model, 'create', docs[0]
-
-    batches = []
+    promise = Q.ninvoke model, 'create', docs[0]
     for batchStart in [1...docs.length] by batchSize
-        do (batchStart) -> batches.push ->
+        do (batchStart) -> promise = promise.then ->
             console.log "Batch start #{batchStart}/#{docs.length} for #{model.modelName}"
             batch = docs[batchStart...(batchStart+batchSize)]
             Q.ninvoke model.collection, 'insert', batch, {w: 1}
-    batches.reduce ((prom, next) -> prom.then next), exists
+    promise

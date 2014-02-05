@@ -10,8 +10,8 @@ missing = '–'
 lowQuality = '‡'
 badValues = [notApplicable, missing, lowQuality]
 
-publicSchoolsCSV = __dirname + '/raw/public-schools.csv'
-privateSchoolsCSV = __dirname + '/raw/private-schools.csv'
+publicCSV = __dirname + '/raw/public-schools.csv'
+privateCSV = __dirname + '/raw/private-schools.csv'
 
 publicFields = 
     'School Name': {field: 'name', type: String}
@@ -47,10 +47,9 @@ privateFields =
     'Full-Time Equivalent (FTE) Teachers [Private School] 2009-10': {field: 'fteTeachers', type: Number}
 
 generateDB = ->
-    generateSchools(PublicSchool, publicSchoolsCSV, publicFields)
-    .fail((err) -> console.log err)
-    .then(-> generateSchools(PrivateSchool, privateSchoolsCSV, privateFields))
-    #.then(generateStates)
+    Q.allSettled([generateSchools(PublicSchool, publicCSV, publicFields),
+                  generateSchools(PrivateSchool, privateCSV, privateFields)])
+    .then generateStates
 
 
 generateSchools = (model, file, fields) ->
@@ -58,7 +57,7 @@ generateSchools = (model, file, fields) ->
     csv().from.stream(fs.createReadStream(file), {columns: yes})
          .transform((row) -> parseSchoolRow row, fields)
          .to.array((rows) -> 
-            insertSchools(model, rows).then deferred.resolve())
+            insertSchools(model, rows).then(-> deferred.resolve()))
          .on('end', (count) -> 
             console.log "Generated #{count} school records!")
          .on('error', (error) -> deferred.reject error)
@@ -104,24 +103,21 @@ exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool',
 
 generateStates = ->
     grouping = PublicSchool.aggregate().group({_id: '$state'})
-    states = Q.ninvoke grouping, 'exec'
-    states.then((states) -> 
-        (findCitiesAndInsert state for state in states).reduce Q.when, Q())
+    Q.ninvoke(grouping, 'exec').then (docs) ->
+        promise = Q()
+        for doc in docs
+            do (doc) -> 
+                promise = promise.then -> findCitiesAndInsert doc._id
+        promise
 
 findCitiesAndInsert = (state) ->
-    console.log state, state._id
-    name = state._id
     getCities = (model) -> 
-        Q.ninvoke model.aggregate()
-                       .group({_id: '$city'})
-                       .match({state: name}),
-                       'exec'
+        Q.ninvoke model.find({state}), 'distinct', 'city'
 
     Q.all([getCities(PublicSchool), getCities(PrivateSchool)])
-    .then((cities) ->
-        console.log cities
+    .then (cities) ->
         cities = _.union(cities...)
-        Q.ninvoke State, 'create', {_id: name, cities})
+        Q.ninvoke State, 'create', {_id: state, cities}
 
 statesSchema = new mongoose.Schema
     _id: String
@@ -132,12 +128,11 @@ exports.State = State = mongoose.model 'State', statesSchema
 if require.main is module
     db = require('./db')
     db.connect()
-        .then(-> console.log 'Connected to DB')
-        .then(-> db.dropModel PublicSchool)
-        .then(-> db.dropModel PrivateSchool)
-        .then(-> db.dropModel State)
-        .then(generateDB)
-        #.then(generateStates)
-        .then(-> console.log 'Done!')
-        .catch((err) -> console.log err)
-        .fin(-> process.exit())
+    .then(-> console.log 'Connected to DB')
+    .then(-> db.dropModel PublicSchool)
+    .then(-> db.dropModel PrivateSchool)
+    .then(-> db.dropModel State)
+    .then(generateDB)
+    .then(-> console.log 'Done!')
+    .catch((err) -> console.log err)
+    .fin(-> process.exit())
