@@ -9,5 +9,5 @@ openVideo = (title, youtubeId) ->
     modal.modal 'show'
 
 $ ->
-    $('#story-carousel').find('a').click ->
+    $('#story-carousel').find('a').css('cursor', 'pointer').click ->
         openVideo 'Some story', 'wX78iKhInsc'
