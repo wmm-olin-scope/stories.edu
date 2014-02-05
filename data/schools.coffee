@@ -102,13 +102,11 @@ exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool',
                                                        privateSchoolSchema
 
 generateStates = ->
-    grouping = PublicSchool.aggregate().group({_id: '$state'})
-    Q.ninvoke(grouping, 'exec').then (docs) ->
-        promise = Q()
-        for doc in docs
-            do (doc) -> 
-                promise = promise.then -> findCitiesAndInsert doc._id
-        promise
+    promise = Q()
+    for state in stateList
+        do (state) -> 
+            promise = promise.then -> findCitiesAndInsert state
+    promise
 
 findCitiesAndInsert = (state) ->
     getCities = (model) -> 
@@ -124,6 +122,18 @@ statesSchema = new mongoose.Schema
     cities: [String]
 exports.State = State = mongoose.model 'State', statesSchema
 
+exports.stateList = stateList = [
+    'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL',
+    'IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE',
+    'NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD',
+    'TN','TX','UT','VT','VA','WA','WV','WI','WY','AS','GU','MP','PR','VI']
+
+
+exports.findBy = (match, fields='_id name state city zip') ->
+    makeQuery = (model) -> 
+        Q.ninvoke model.find(match).select(fields), 'exec'
+    Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])
+    .then((schoolSets) -> Q {public: schoolSets[0], private: schoolSets[1]})
 
 if require.main is module
     db = require('./db')

@@ -1,41 +1,34 @@
 
-{PublicSchool, PrivateSchool} = require '../data/prompts'
+schools = require '../data/schools'
 {succeed, fail} = utils = require '../lib/utils'
+Q = require 'Q'
 
-getIndex = (req, res) ->
-    Prompt.find {}, (err, prompts) ->
-        return fail res, err if err
-        res.render 'prompts/index', {prompts}
+stateHash = {}
+stateHash[state] = true for state in schools.stateList
 
-checkPrompt = utils.checkBody 'prompt', (prompt) ->
-    utils.check(prompt).len(1, 1e5)
-    prompt
+getStates = (req, res) -> succeed res, {states: schools.stateList}
 
-checkPromptId = (req) ->
-    id = req.params.promptId
-    utils.check(id).len(24)
-    id
+getCities = (req, res) ->
+    {state} = req.params
+    return fail res, 'No such state' if state not of stateHash
 
-putPrompt = (req, res) ->
-    [check, values] = utils.checkAll req, res,
-        prompt: checkPrompt
-    return if check
-    
-    Prompt.create {html: values.prompt}, (err, prompt) ->
-        return fail res, err if err
-        succeed res, prompt
+    Q.ninvoke(schools.State, 'findById', state)
+    .then((state) -> succeed res, {cities: state.cities})
+    .catch((err) -> fail res, err)
 
-deletePrompt = (req, res) ->
-    [check, values] = utils.checkAll req, res,
-        promptId: checkPromptId
-    return if check
+findByCity = (req, res) ->
+    {state, city} = req.params
+    return fail res, 'No such state' if state not of stateHash
+    schools.findBy({state, city}).then((schools) -> succeed res, schools)
+    .catch((err) -> fail res, err)
 
-    Prompt.findByIdAndRemove values.promptId, (err) ->
-        return fail res, err if err
-        succeed res, {}
+findByZip = (req, res) ->
+    {zip} = req.params
+    schools.findBy({zip}).then((schools) -> succeed res, schools)
+    .catch((err) -> fail res, err)
 
 exports.create = (app) ->
-    app.get '/prompts', getIndex
-    app.get '/prompts/', getIndex
-    app.put '/prompts/', putPrompt
-    app.del '/prompts/:promptId', deletePrompt
+    app.get '/schools/states', getStates
+    app.get '/schools/cities/:state', getCities
+    app.get '/schools/by-city/:state-:city', findByCity
+    app.get '/schools/by-zip/:zip', findByZip
