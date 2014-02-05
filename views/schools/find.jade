@@ -2,18 +2,26 @@
 #find-by-city.panel.panel-default
     .panel-heading Find by State and City
     .panel-body
-        .input-group
-            .input-group-btn
-                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown') State <span class="caret"></span>
-                ul.dropdown-menu
-                    li
-                        a(href='#') AZ
-                    li
-                        a(href='#') CO
-            input.form-control(type='text', placeholder='City')
+        form(role='form')
+            .form-group
+                .input-group
+                    .input-group-btn
+                        select#state-select.btn.btn-default
+                            option AZ
+                            option CA
+                            option CO
+                    input.form-control(type='text', placeholder='City')
+            input.form-control#find-by-city-school(type='text', placeholder='Select a state and city first...' disabled)
 
 
 #find-by-zip.panel.panel-default
     .panel-heading Find by ZIP Code
     .panel-body
+        form(role='form')
+            .form-group
+                .input-group
+                    .input-group-btn
+                        input.btn.btn-default#zip(type='text', placeholder='ZIP Code')
+                    input.form-control#find-by-zip-school(type='text', placeholder='Select a ZIP code first...' disabled)
+
         
