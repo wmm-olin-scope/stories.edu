@@ -9,9 +9,10 @@ lowQuality = '‡'
 badValues = [notApplicable, missing, lowQuality]
 
 publicSchoolsCSV = __dirname + '/raw/public-schools.csv'
+privateSchoolsCSV = __dirname + '/raw/private-schools.csv'
 
 publicSchoolFieldMap = 
-    'School Name': {field: 'schoolName', type: String}
+    'School Name': {field: 'name', type: String}
     'State Abbr [Public School] Latest available year': {field: 'state', type: String}
     'County Name [Public School] 2010-11': {field: 'county', type: String}
     'Location Address [Public School] 2010-11': {field: 'address', type: String}
@@ -30,36 +31,55 @@ publicSchoolFieldMap =
     'Total Students [Public School] 2010-11': {field: 'students', type: Number}
     'Full-Time Equivalent (FTE) Teachers [Public School] 2010-11': {field: 'fteTeachers', type: Number}
 
+privateSchoolFieldMap = 
+    'Private School Name': {field: 'name', type: String}
+    'State Abbr [Private School] Latest available year': {field: 'state', type: String}
+    'City [Private School] 2009-10': {field: 'city', type: String}
+    'ZIP [Private School] 2009-10': {field: 'zip', type: String}
+    'ZIP4 [Private School] 2009-10': {field: 'zip4', type: String}
+    'Mailing Address [Private School] 2009-10': {field: 'mailingAddress', type: String}
+    'Phone Number [Private School] 2009-10': {field: 'phone', type: String}
+    'School Level [Private School] 2009-10': {field: 'schoolLevel', type: String}
+    'School Type [Private School] 2009-10': {field: 'schoolType', type: String}
+    'Total Students (Ungraded & PK-12) [Private School] 2009-10': {field: 'students', type: Number}
+    'Full-Time Equivalent (FTE) Teachers [Private School] 2009-10': {field: 'fteTeachers', type: Number}
+
 generateDB = (done) ->
-    csv().from.stream(fs.createReadStream(publicSchoolsCSV), {columns: yes})
-         .transform(parsePublicSchoolRow)
-         .to.array((rows) -> insertPublicSchools rows, done)
+    generate PublicSchool, publicSchoolsCSV, publicSchoolFieldMap, (err) ->
+        return console.log err if err
+        generate PrivateSchool, privateSchoolsCSV, privateSchoolFieldMap, done
+
+generate = (model, file, map, done) ->
+    csv().from.stream(fs.createReadStream(file), {columns: yes})
+         .transform((row) -> parseSchoolRow row, map)
+         .to.array((rows) -> insertSchools model, rows, done)
          .on('end', (count) -> 
-            console.log "Generated #{count} public school records!")
+            console.log "Generated #{count} school records!")
          .on('error', (error) ->
             console.log error.message)
 
-parsePublicSchoolRow = (row) ->
+parseSchoolRow = (row, map) ->
     parsed = {}
-    for header, info of publicSchoolFieldMap
+    for header, info of map
         value = row[header]
-        if value is '?' or value in badValues then value = null
+        if value in badValues then value = null
         else if info.type is Number then value = +value
         parsed[info.field] = value
     parsed
 
-insertPublicSchools = (rows, done) ->
-    console.log "Inserting #{rows.length} public schools!"
-    db.batchInsert PublicSchool, rows, done
+insertSchools = (model, rows, done) ->
+    console.log "Inserting #{rows.length} schools!"
+    db.batchInsert model, rows, done
 
-exports.publicSchoolSchema = publicSchoolSchema = new mongoose.Schema do ->
+makeSchema = (fieldMap) -> new mongoose.Schema do ->
     schema = {}
-    for header, info of publicSchoolFieldMap
+    for header, info of fieldMap
         schema[info.field] = info.type
     schema
 
-publicSchoolSchema.index
-    schoolName: 1
+exports.publicSchoolSchema = makeSchema publicSchoolFieldMap
+exports.publicSchoolSchema.index
+    name: 1
     state: 1
     city: 1
     zip: 1
@@ -67,10 +87,22 @@ publicSchoolSchema.index
 exports.PublicSchool = PublicSchool = 
         mongoose.model 'PublicSchool', exports.publicSchoolSchema
 
+exports.privateSchoolSchema = makeSchema privateSchoolFieldMap
+exports.privateSchoolSchema.index
+    name: 1
+    state: 1
+    city: 1
+    zip: 1
+
+exports.PrivateSchool = PrivateSchool = 
+        mongoose.model 'PrivateSchool', exports.privateSchoolSchema
+
 if require.main is module
     db = require('./db')
     db.connect ->
         db.dropModel PublicSchool
+        db.dropModel PrivateSchool
+
         generateDB (err) ->
             console.log err if err
             console.log 'Done!'
