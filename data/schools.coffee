@@ -133,7 +133,7 @@ exports.findBy = (match, fields='_id name state city zip') ->
     makeQuery = (model) -> 
         Q.ninvoke model.find(match).select(fields), 'exec'
     Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])
-    .then((schoolSets) -> Q {public: schoolSets[0], private: schoolSets[1]})
+    .then((schoolSets) -> Q _.flatten schoolSets)
 
 if require.main is module
     db = require('./db')

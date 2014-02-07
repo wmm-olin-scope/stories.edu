@@ -12,19 +12,23 @@ getCities = (req, res) ->
     {state} = req.params
     return fail res, 'No such state' if state not of stateHash
 
+    # no succeed() for bloodhound
     Q.ninvoke(schools.State, 'findById', state)
-    .then((state) -> succeed res, {cities: state.cities})
+    .then((state) -> res.json state.cities)
     .catch((err) -> fail res, err)
 
 findByCity = (req, res) ->
     {state, city} = req.params
     return fail res, 'No such state' if state not of stateHash
-    schools.findBy({state, city}).then((schools) -> succeed res, schools)
+
+    # no succeed() for bloodhound
+    schools.findBy({state, city}).then((schools) -> res.json schools)
     .catch((err) -> fail res, err)
 
 findByZip = (req, res) ->
     {zip} = req.params
-    schools.findBy({zip}).then((schools) -> succeed res, schools)
+    # no succeed() for bloodhound
+    schools.findBy({zip}).then((schools) -> res.json schools) 
     .catch((err) -> fail res, err)
 
 exports.create = (app) ->

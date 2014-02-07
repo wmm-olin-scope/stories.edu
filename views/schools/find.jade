@@ -1,27 +1,29 @@
 
+script(src='/javascripts/lib/typeahead.bundle.min.js')
+script(src='/javascripts/schools/find.js')
+
 #find-by-city.panel.panel-default
     .panel-heading Find by State and City
     .panel-body
-        form(role='form')
+        form.form-horizontal(role='form')
             .form-group
-                .input-group
-                    .input-group-btn
-                        select#state-select.btn.btn-default
-                            option AZ
-                            option CA
-                            option CO
-                    input.form-control(type='text', placeholder='City')
-            input.form-control#find-by-city-school(type='text', placeholder='Select a state and city first...' disabled)
+                .col-sm-1
+                    select#state-select.form-control(name='state')
+                .col-sm-11
+                    input#city-input.form-control(type='text', name='city', placeholder='City', autocomplete='off')
+            .form-group
+                .col-sm-12
+                    input.form-control#find-by-city-school(type='text', name='school', placeholder='Select a state and city first...', disabled, autocomplete='off')
 
 
 #find-by-zip.panel.panel-default
     .panel-heading Find by ZIP Code
     .panel-body
-        form(role='form')
+        form.form-horizontal(role='form')
             .form-group
-                .input-group
-                    .input-group-btn
-                        input.btn.btn-default#zip(type='text', placeholder='ZIP Code')
-                    input.form-control#find-by-zip-school(type='text', placeholder='Select a ZIP code first...' disabled)
+                .col-sm-2
+                    input.form-control#zip(type='text', maxlength='5', name='zip', placeholder='ZIP Code')
+                .col-sm-10
+                    input.form-control#find-by-zip-school(type='text', name='school', placeholder='Select a ZIP code first...', disabled, autocomplete='off')
 
         
