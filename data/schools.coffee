@@ -4,6 +4,7 @@ fs = require 'fs'
 mongoose = require 'mongoose'
 Q = require 'q'
 _ = require 'underscore'
+db = require './db'
 
 notApplicable = '†'
 missing = '–'
@@ -70,6 +71,11 @@ parseSchoolRow = (row, fields) ->
         if value in badValues then value = null
         else if info.type is Number then value = +value
         else value = value.trim()
+
+        # fix zipcodes stripped of leading 0's
+        if info.field is 'zip' and value?.length < 5
+            value = ('0' for x in [0...5-value.length]).join('') + value
+
         parsed[info.field] = value
     parsed
 
@@ -135,14 +141,15 @@ exports.findBy = (match, fields='_id name state city zip') ->
     Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])
     .then((schoolSets) -> Q _.flatten schoolSets)
 
-if require.main is module
-    db = require('./db')
-    db.connect()
-    .then(-> console.log 'Connected to DB')
-    .then(-> db.dropModel PublicSchool)
+exports.setupDatabase = ->
+    Q().then(-> db.dropModel PublicSchool)
     .then(-> db.dropModel PrivateSchool)
     .then(-> db.dropModel State)
     .then(generateDB)
     .then(-> console.log 'Done!')
     .catch((err) -> console.log err)
+
+if require.main is module
+    db.connect()
+    .then(exports.setupDatabase)
     .fin(-> process.exit())

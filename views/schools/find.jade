@@ -7,13 +7,13 @@ script(src='/javascripts/schools/find.js')
     .panel-body
         form.form-horizontal(role='form')
             .form-group
-                .col-sm-1
+                .col-sm-3
                     select#state-select.form-control(name='state')
-                .col-sm-11
-                    input#city-input.form-control(type='text', name='city', placeholder='City', autocomplete='off')
+                .col-sm-9
+                    input#city-input.form-control.twitter-typeahead(type='text', name='city', placeholder='Select a state first...', autocomplete='off', disabled)
             .form-group
                 .col-sm-12
-                    input.form-control#find-by-city-school(type='text', name='school', placeholder='Select a state and city first...', disabled, autocomplete='off')
+                    input.form-control#find-by-city-school.twitter-typeahead(type='text', name='school', placeholder='Select a state and city first...', disabled, autocomplete='off')
 
 
 #find-by-zip.panel.panel-default

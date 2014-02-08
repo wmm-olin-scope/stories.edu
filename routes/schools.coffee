@@ -10,6 +10,7 @@ getStates = (req, res) -> succeed res, {states: schools.stateList}
 
 getCities = (req, res) ->
     {state} = req.params
+    console.log state
     return fail res, 'No such state' if state not of stateHash
 
     # no succeed() for bloodhound
@@ -19,6 +20,7 @@ getCities = (req, res) ->
 
 findByCity = (req, res) ->
     {state, city} = req.params
+    console.log state, city
     return fail res, 'No such state' if state not of stateHash
 
     # no succeed() for bloodhound
@@ -31,8 +33,12 @@ findByZip = (req, res) ->
     schools.findBy({zip}).then((schools) -> res.json schools) 
     .catch((err) -> fail res, err)
 
+setupDatabase = (req, res) ->
+    schools.setupDatabase().then(-> succeed res, {})
+
 exports.create = (app) ->
+    app.get '/schools/setup', setupDatabase
     app.get '/schools/states', getStates
     app.get '/schools/cities/:state', getCities
-    app.get '/schools/by-city/:state-:city', findByCity
+    app.get '/schools/by-city/:state/:city', findByCity
     app.get '/schools/by-zip/:zip', findByZip
