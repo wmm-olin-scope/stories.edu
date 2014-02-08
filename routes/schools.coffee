@@ -1,7 +1,7 @@
 
 schools = require '../data/schools'
 {succeed, fail} = utils = require '../lib/utils'
-Q = require 'Q'
+Q = require 'q'
 
 stateHash = {}
 stateHash[state] = true for state in schools.stateList

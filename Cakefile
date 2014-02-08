@@ -14,7 +14,7 @@ buildDir = (dir, watch=no, done=null) ->
   watch = if watch then '-w ' else ''
   execAndLog "coffee -c #{watch} -o #{dir} #{dir}", done
 
-allBuildDirs = ['routes', 'data', 'lib', 'public/javascripts', '.']
+allBuildDirs = ['routes', 'data', 'lib', 'public/javascripts', 'public/javascripts/schools', '.']
 
 task 'build', 'Builds all dirs', ->
   for dir in allBuildDirs
