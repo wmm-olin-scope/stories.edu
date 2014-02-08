@@ -6,7 +6,7 @@
 
   _ref = utils = require('../lib/utils'), succeed = _ref.succeed, fail = _ref.fail;
 
-  Q = require('Q');
+  Q = require('q');
 
   stateHash = {};
 
