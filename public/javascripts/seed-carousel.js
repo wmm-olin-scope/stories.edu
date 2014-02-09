@@ -21,7 +21,3 @@
   });
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=seed-carousel.map
-*/

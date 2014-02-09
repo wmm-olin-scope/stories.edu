@@ -27,21 +27,26 @@ html
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='#') Say thanks!
+                a.navbar-brand(href='#') 
+                    | Say Thanks!
 
             #navbar-collapse.collapse.navbar-collapse
                 ul.nav.navbar-nav
                     li.divider
                     li
                         p#nav-banner.navbar-text <b>12,938</b> teachers and mentors recognized
-
-                .navbar-form.navbar-right.form-inline(style='margin-right:10px')
-                    .btn-group
-                        a.btn.btn-sm.btn-twitter#share-twitter
-                            i.fa.fa-twitter
-                            | &nbsp; Tweet
-                        button.btn.btn-sm.btn-facebook#share-facebook
-                            i.fa.fa-facebook
-                            | &nbsp; Share
+                ul.nav.navbar-nav.pull-right
+                    li
+                        a(href="") Explore
+                    li
+                        a(href="") About
+                //- .navbar-form.navbar-right.form-inline(style='margin-right:10px')
+                //-     .btn-group
+                //-         a.btn.btn-sm.btn-twitter#share-twitter
+                //-             i.fa.fa-twitter
+                //-             | &nbsp; Tweet
+                //-         button.btn.btn-sm.btn-facebook#share-facebook
+                //-             i.fa.fa-facebook
+                //-             | &nbsp; Share
         .container
             block content

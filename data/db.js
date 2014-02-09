@@ -50,7 +50,3 @@
   };
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=db.map
-*/

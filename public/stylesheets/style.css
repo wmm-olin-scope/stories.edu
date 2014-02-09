@@ -16,3 +16,15 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
     width: 100%;     
     height: 100%; 
 }
+
+.movie-container{
+	margin-bottom: -20px;
+}
+
+#story-carousel{
+	margin-top: 20px;
+}
+
+#prompt-text{
+	font-size: 20px;
+}

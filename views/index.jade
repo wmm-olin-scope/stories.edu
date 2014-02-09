@@ -1,7 +1,12 @@
 extends layout
 
 block content
-    include seed-movie
-    h2 Everyone has been a student. It's your time to say thanks.
+    .row.movie-container
+        .col-md-6.col-md-offset-3
+            include seed-movie
+    center
+        h3
+            strong You are who you are because your teachers cared.
     include story-carousel
-    include schools/find
+    include postcard-prompt
+    //- include schools/find
