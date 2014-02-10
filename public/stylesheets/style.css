@@ -76,3 +76,12 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
 .underline:focus {
     outline: 0px solid transparent;
 }
+
+.stamp-row {
+    text-align: right;
+}
+
+.stamp {
+    width: 100px;
+    margin-right: -15px;
+}
