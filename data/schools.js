@@ -313,7 +313,3 @@
   }
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=schools.map
-*/

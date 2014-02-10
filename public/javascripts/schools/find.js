@@ -256,7 +256,3 @@
   });
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=find.map
-*/

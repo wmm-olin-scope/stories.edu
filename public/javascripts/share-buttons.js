@@ -29,7 +29,3 @@
   });
 
 }).call(this);
-
-/*
-//@ sourceMappingURL=share-buttons.map
-*/
