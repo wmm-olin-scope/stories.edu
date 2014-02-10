@@ -16,3 +16,63 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
     width: 100%;     
     height: 100%; 
 }
+
+.postcard-container {
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    font-size: 2em;
+}
+
+.postcard-container .content {
+    border-right: 1px solid gray;
+    display: inline-block;
+    float: content;
+}
+
+.postcard-container .address {
+    height: 100%;
+}
+
+#spacer {
+    float: left;
+    display: block;
+    width: 0;
+    height: 100%;
+}
+
+.upload {
+    float: left;
+    clear: both;
+    display: block;
+    text-align: center;
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ddd;
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    margin-top: -30px;
+    font-size: 20px;
+    color: black;
+}
+
+.underline {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid black;
+    min-width: 100px !important;
+    background-color: transparent;
+    width: auto;
+}
+
+.underline:active,
+.underline:focus {
+    outline: 0px solid transparent;
+}

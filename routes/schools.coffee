@@ -36,9 +36,13 @@ findByZip = (req, res) ->
 setupDatabase = (req, res) ->
     schools.setupDatabase().then(-> succeed res, {})
 
+postcard = (req, res) ->
+    res.render "postcard", {title: "Postcard"}
+
 exports.create = (app) ->
     app.get '/schools/setup', setupDatabase
     app.get '/schools/states', getStates
     app.get '/schools/cities/:state', getCities
     app.get '/schools/by-city/:state/:city', findByCity
     app.get '/schools/by-zip/:zip', findByZip
+    app.get '/postcard', postcard
