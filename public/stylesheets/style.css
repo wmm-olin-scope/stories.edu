@@ -1,6 +1,26 @@
-body { padding-top: 70px; } /* necessary for fixed-top navbar
+body { 
+    padding-top: 100px; 
+    font-family: 'Open Sans', sans-serif;
+} /* necessary for fixed-top navbar
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
+
+#nav-banner{
+    font-size: 20px
+}
+
+.navbar-header, .navbar-collapse{
+    background-color: #E3F0FA;
+}
+
+.navbar .nav > li {
+    padding-top: 10px;
+}
+
+#social{
+    padding-top: 20px;
+}
+
 .video-container {
     position: relative;  
     padding-top: 30px; 

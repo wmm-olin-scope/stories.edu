@@ -17,7 +17,7 @@
       align_button();
     });
     $('#send_button').click(function() {
-      var anon_request, author_name, author_role, contents, mailto_city_state, mailto_name, mailto_role, mailto_school, message, return_email, return_name, teacher_name, teacher_role;
+      var anon_request, author_name, author_role, contents, mailto_city_state, mailto_name, mailto_role, mailto_school, mailto_street, message, return_email, return_name, teacher_name, teacher_role;
       teacher_name = $('#teacher_name').text();
       teacher_role = $('#teacher_role').text();
       message = $('#freetext').text();
@@ -29,6 +29,7 @@
       mailto_name = $('#mailto_name').text();
       mailto_role = $('#mailto_role').text();
       mailto_school = $('#mailto_school').text();
+      mailto_street = $('#mailto_street').text();
       mailto_city_state = $('#mailto_city_state').text();
       contents = {
         "teacher_name": teacher_name,
@@ -42,6 +43,7 @@
         "mailto_name": mailto_name,
         "mailto_role": mailto_role,
         "mailto_school": mailto_school,
+        "mailto_street": mailto_street,
         "mailto_city_state": mailto_city_state
       };
       console.log(contents);

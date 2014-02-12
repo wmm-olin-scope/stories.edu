@@ -22,11 +22,13 @@ setup = ->
         mailto_name = $('#mailto_name').text()
         mailto_role = $('#mailto_role').text()
         mailto_school = $('#mailto_school').text()
+        mailto_street = $('#mailto_street').text()
         mailto_city_state = $('#mailto_city_state').text()
         contents = {"teacher_name": teacher_name, "teacher_role": teacher_role, "message": message, 
         "author_name": author_name, "author_role": author_role, "anon_request": anon_request, 
         "return_name": return_name, "return_email": return_email, "mailto_name": mailto_name, 
-        "mailto_role": mailto_role, "mailto_school": mailto_school, "mailto_city_state": mailto_city_state}
+        "mailto_role": mailto_role, "mailto_school": mailto_school, 
+        "mailto_street": mailto_street, "mailto_city_state": mailto_city_state}
         console.log(contents)
         return contents
     return
