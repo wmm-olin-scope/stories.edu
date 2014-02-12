@@ -1,4 +1,5 @@
 
+###
 var mongoose = require('mongoose')
   , _ = require('underscore');
   , bcrypt = require('bcryptjs');
@@ -70,3 +71,4 @@ exports.userSchema.methods.createLocalAuth = function(password, cb) {
 };
 
 exports.User = mongoose.model('User', exports.userSchema);
+###
