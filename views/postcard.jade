@@ -1,19 +1,46 @@
 script(src='/javascripts/postcard.js')
 
-.well.postcard-container
-    .col-sm-8.content
-        #spacer
-        .upload
-            img.img-content(src='/images/upload.png')        
-            p.upload-text Upload Video
-        span.text-content 
-            | I want to thank 
-            span.underline(contenteditable) Mr. Myron Blosser
-            |  for being an amazing  
-            span.underline(contenteditable) biology teacher
-            | . Much text wow much text wow much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow Much text wow much text wow much text wow
-    .col-sm-4.address
-        div.stamp-row
-            img.stamp(src='/images/stamp.png')
-        
+.row
+    .col-md-8.col-md-offset-2
+        .well.postcard-container
+            .col-md-7.content
+                #spacer
+                //.upload
+                //    img.img-content(src='/images/upload.png')        
+                //    p.upload-text Upload Video
+                span.text-content 
+                    | I want to thank 
+                    span.underline(contenteditable) Mr. Sharp
+                    |  for being an amazing  
+                    span.underline(contenteditable) math teacher
+                    | . 
+                    br
+                    br
+                    span.underline(contenteditable)#freetext
+                            | I remember a lesson he gave in 10th grade about how we could use the 
+                            | vector math he taught us in math and apply it to engineering. That was
+                            | one of the moments that influenced me to study engineering in college.
+                    br
+                    br
+                    .col-sm-3
+                    .col-sm-9
+                        span#signature
+                            p.pull-right
+                                | Thanks for all your hard work!
+                            p.pull-right
+                                span.underline(contenteditable) Juliana Nazaré
+                            br
+                            p.pull-right
+                                span.underline(contenteditable) In your 2008 pre-calc class
 
+            .col-md-5.address
+                #stamp_div.pull-right
+                    img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
+                #address_well
+                    span.underline.full-width(contenteditable) Mr. Sharp
+                    span.underline.full-width(contenteditable) 10th grade math teacher
+                    span.underline.full-width(contenteditable) South Lakes High School
+                    span.underline.full-width(contenteditable) Reston, VA
+
+
+        

@@ -21,14 +21,15 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
     overflow: auto;
     position: relative;
     width: 100%;
-    min-height: 500px;
-    font-size: 2em;
+    min-height: 400px;
+    font-size: 16px;
 }
 
 .postcard-container .content {
-    border-right: 1px solid gray;
+    border-right: 2px solid #e3e3e3;
     display: inline-block;
     float: content;
+    min-height: 400px;
 }
 
 .postcard-container .address {
@@ -66,10 +67,16 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
 .underline {
     display: inline-block;
     border: none;
-    border-bottom: 1px solid black;
-    min-width: 100px !important;
+    border-bottom: 1px solid #A4A4A4;
+    min-width: 50px !important;
     background-color: transparent;
     width: auto;
+    color: #A4A4A4;
+    max-width: 100%;
+}
+
+#freetext{
+    border-bottom: none;
 }
 
 .underline:active,
@@ -96,4 +103,23 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
 
 #prompt-text{
 	font-size: 20px;
+}
+
+
+#stamp_div{
+    width: 100%;
+    min-height: 130px;
+    margin-right: -25px;
+    margin-top: -10px;
+}
+
+#address_well{
+    min-height: 100px;
+    width: 100%;
+    margin-top: 170px;
+
+}
+
+.full-width{
+    width: 100%;
 }
