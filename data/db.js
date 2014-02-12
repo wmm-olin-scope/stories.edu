@@ -42,6 +42,7 @@ exports.batchInsert = function(model, docs, batchSize) {
       });
     });
   };
+
   for (batchStart = _i = 1, _ref = docs.length; batchSize > 0 ? _i < _ref : _i > _ref; batchStart = _i += batchSize) {
     _fn(batchStart);
   }

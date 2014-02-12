@@ -14,7 +14,7 @@
     "underscore": "~1.5.2",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
-    "bcrypt": "~0.7.7",
+    "bcryptjs": "*",
     "request": "~2.27.0",
     "mongoose-random": "~0.0.2",
     "csv": "~0.3.7",

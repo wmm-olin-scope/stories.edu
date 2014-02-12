@@ -17,4 +17,5 @@ $(function() {
   return $('#story-carousel').find('a').css('cursor', 'pointer').click(function() {
     return openVideo('Some story', 'wX78iKhInsc');
   });
+
 });
