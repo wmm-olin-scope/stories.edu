@@ -13,8 +13,6 @@ exports.postcardSchema = postcardSchema = new mongoose.Schema
     recipient:
         name: utils.makeName()
         email: String
-        phone: String
-        address: utils.makeAddress()
     school:
         public: utils.makeRef 'PublicSchool'
         private: utils.makeRef 'PrivateSchool'

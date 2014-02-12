@@ -1,16 +1,10 @@
 
-{User} = user = require '../data/users'
+{User} = users = require '../data/users'
 {stateList} = require '../data/schools'
 auth = require '../lib/auth'
 {fail, succeed} = utils = require '../lib/utils'
 _ = require 'underscore'
 Q = require 'q'
-
-
-makeNameCheck = (variable) ->
-    utils.checkBody variable, (name) ->
-        utils.check(name).len 1, 32
-        utils.sanitize(name).escape()
 
 checks =
     email: utils.checkBody 'email', (email) ->
@@ -23,9 +17,9 @@ checks =
         .len 6, 32
         password
 
-    lastName: makeNameCheck 'lastName'
-    firstName: makeNameCheck 'firstName'
-    fullName: makeNameCheck 'fullName'
+    lastName: utils.makeNameCheck 'lastName'
+    firstName: utils.makeNameCheck 'firstName'
+    fullName: utils.makeNameCheck 'fullName'
 
     age: utils.checkBody 'age', (age) ->
         utils.check age, 'Please enter a valid age (in years).'
