@@ -62,16 +62,13 @@ checks =
         utils.check zipcode, 'Please enter a valid US ZIP code.'
             .regex /^\d{5}(?:[-\s]\d{4})?$/
 
-    address: utils.address 'address', (address) ->
+    address: utils.checkBody 'address', (address) ->
         address = [address] if _.isString address
         if 1 <= address.length <= 4
             throw {message: 'Address must be 1 to 4 lines long.'}
         _.map address, (line) ->
             utils.check(line).len(1, 128)
             utils.sanitize(line).escape()
-
-emailChecks = _.pick checks, [
-    'email', 'lastName', 'firstName', 'nickname', 'category']
 
 assertHasEmail = (values, res) ->
     if not values.email?
@@ -105,30 +102,29 @@ updateUser = (user, values) ->
     user
 
 makePostUser = (allowExisting, checkRequiredFields) -> (req, res) ->
-    [failed, values] = utils.checkAll req, res, emailChecks
-    return if failed
-
-    return if not checkRequiredFields values, res
+    [failed, values] = utils.checkAll req, res, checks
+    return if failed or not checkRequiredFields values, res
 
     Q.ninvoke User, 'findOne', {email: values.email}
     .then (user) ->
         if user?
             if not allowExisting
-                return Q.reject 'A user already exists with this email.'
+                return Q.reject
+                    message: 'A user already exists with this email.'
         else user = new User()
-        fillUser user, values
+        updateUser user, values
         Q.ninvoke user, 'save'
-    .then (user) ->
+    .then ([user]) ->
         if values.password? then user.createLocalAuth values.password
         else Q user
     .then (user) -> Q.ninvoke req, 'login', user
-    .then (user) -> succeed res, {user}
+    .then -> succeed res, {user: req.user}
     .catch (err) -> fail res, err
     .done()
 
-postEmailUser = makePutUser yes, assertHasEmail
+postEmailUser = makePostUser yes, assertHasEmail
 
-postLocalUser = makePutUser no, (values, res) ->
+postLocalUser = makePostUser no, (values, res) ->
     assertHasEmail(values, res) and assertHasPassword(values, res)
 
 postLocalLogin = (req, res) -> succeed res, {user: req.user}
@@ -137,6 +133,6 @@ putLocalLogout = (req, es) -> succeed res
 
 exports.create = (app) ->
     app.post '/login/local', auth.localLogin, postLocalLogin
-    app.put '/logout', auth.logout, pustLocalLogout
+    app.put '/logout', auth.logout, putLocalLogout
     app.post '/user/email', postEmailUser
     app.post '/user/local', postLocalUser

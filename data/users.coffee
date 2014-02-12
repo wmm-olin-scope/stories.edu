@@ -36,10 +36,13 @@ userSchema.methods.verifyLocalAuth = (password) ->
     if @localAuthHash then Q.ninvoke bcrypt 'compare', @localAuthHash
     else Q.reject 'User does not have local authorization.'
 
-exports.userSchema.methods.createLocalAuth = (password) ->
+userSchema.methods.createLocalAuth = (password) ->
     Q.reject 'User already has a local password' unless @localAuthHash
 
     Q.ninvoke bcrypt 'hash', password, SALT_LENGTH
     .then (hash) => 
         @localAuthHash = hash
         Q.ninvoke this 'save'
+    .then ([user]) -> Q user
+
+exports.User = mongoose.model 'User', userSchema
