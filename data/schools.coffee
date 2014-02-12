@@ -5,6 +5,7 @@ mongoose = require 'mongoose'
 Q = require 'q'
 _ = require 'underscore'
 db = require './db'
+utils = require './utils'
 
 notApplicable = '†'
 missing = '–'
@@ -83,13 +84,16 @@ insertSchools = (model, rows) ->
     console.log "Inserting #{rows.length} #{model.modelName} schools!"
     db.batchInsert model, rows
 
-makeSchoolSchema = (fields) -> new mongoose.Schema do ->
-    schema = {}
+makeSchoolSchema = (fields, schoolType) -> new mongoose.Schema do ->
+    schema =
+        schoolType:
+            type: String
+            default: schoolType
     for header, info of fields
         schema[info.field] = info.type
     schema
 
-publicSchoolSchema = makeSchoolSchema publicFields
+publicSchoolSchema = makeSchoolSchema publicFields, 'public'
 publicSchoolSchema.index
     name: 1
     state: 1
@@ -98,7 +102,7 @@ publicSchoolSchema.index
 exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
                                                      publicSchoolSchema
 
-privateSchoolSchema = makeSchoolSchema privateFields
+privateSchoolSchema = makeSchoolSchema privateFields, 'private'
 privateSchoolSchema.index
     name: 1
     state: 1
@@ -134,7 +138,6 @@ exports.stateList = stateList = [
     'NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD',
     'TN','TX','UT','VT','VA','WA','WV','WI','WY','AS','GU','MP','PR','VI']
 
-
 exports.findBy = (match, fields='_id name state city zip') ->
     makeQuery = (model) -> 
         Q.ninvoke model.find(match).select(fields), 'exec'
@@ -148,6 +151,45 @@ exports.setupDatabase = ->
     .then(generateDB)
     .then(-> console.log 'Done!')
     .catch((err) -> console.log err)
+
+exports.makeGenericSchool = ->
+    public: utils.makeRef 'PublicSchool'
+    private: utils.makeRef 'PrivateSchool'
+    other:
+        name: String
+        address: utils.makeAddress()
+        phone: String
+        email: String
+        schoolType: String
+
+exports.getSchoolFromGeneric = (generic) ->
+    return null unless generic?
+    switch
+        when generic.public then generic.public
+        when generic.private then generic.private
+        when generic.other then generic.other
+        else null
+
+exports.getName = (generic) ->
+    exports.getSchoolFromGeneric(generic)?.name
+
+exports.getAddress = (generic) ->
+    return null unless generic?
+    switch
+        when generic.public
+            school = generic.public
+            lines: [school.name, school.mailingAddress or school.address]
+            zip: school.mailingZip or school.zip
+            city: school.mailingCity or school.city
+            state: school.mailingState or school.state
+        when generic.private
+            school = generic.public
+            lines: [school.name, school.address]
+            zip: school.zip
+            city: school.city
+            state: school.state
+        when generic.other then generic.other.address
+        else null
 
 if require.main is module
     db.connect()

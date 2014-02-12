@@ -1,17 +1,7 @@
 
 mongoose = require 'mongoose'
-_ = require 'underscore'
-Q = require 'q'
+utils = require './utils'
 
-makeRef = (name) ->
-    type: mongoose.Schema.Types.ObjectId
-    ref: name
-
-makeAddress = ->
-    lines: [String]
-    zip: String
-    city: String
-    state: String
 
 exports.postcardSchema = postcardSchema = new mongoose.Schema
     created: Date
@@ -21,23 +11,14 @@ exports.postcardSchema = postcardSchema = new mongoose.Schema
         type: Boolean
         default: false
     recipient:
-        name:
-            full: String
-            first: String
-            last: String
+        name: utils.makeName()
         email: String
         phone: String
-        address: makeAddress()
+        address: utils.makeAddress()
     school:
-        public: makeRef 'PublicSchool'
-        private: makeRef 'PrivateSchool'
-        other:
-            name: String
-            address: makeAddress()
-            phone: String
-            email: String
-            schoolType: String
-    author: makeRef 'User'
+        public: utils.makeRef 'PublicSchool'
+        private: utils.makeRef 'PrivateSchool'
+    author: utils.makeRef 'User'
     views:
         type: Number
         default: 0
@@ -45,13 +26,7 @@ exports.postcardSchema = postcardSchema = new mongoose.Schema
 
 
 postcardSchema.virtual('recipient.name.display').get ->
-    name = @recipient.name
-    switch
-        when not name? then ''
-        when name.full then name.full
-        when name.first and name.last then "#{name.first} #{name.last}"
-        when name.first or name.last then name.first or name.last
-        else ''
+    utils.getDisplayName @recipient.name
 
 postcardSchema.methods.registerView = ->
     @views += 1
