@@ -37,7 +37,7 @@ setupDatabase = (req, res) ->
     schools.setupDatabase().then(-> succeed res, {})
 
 exports.create = (app) ->
-    app.get '/schools/setup', setupDatabase
+    #app.get '/schools/setup', setupDatabase
     app.get '/schools/states', getStates
     app.get '/schools/cities/:state', getCities
     app.get '/schools/by-city/:state/:city', findByCity
