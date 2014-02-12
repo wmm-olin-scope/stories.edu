@@ -22,7 +22,7 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
     position: relative;
     width: 100%;
     min-height: 400px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .postcard-container .content {
@@ -77,6 +77,7 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
 
 #freetext{
     border-bottom: none;
+    min-height: 190px;
 }
 
 .underline:active,
@@ -109,17 +110,49 @@ body { padding-top: 70px; } /* necessary for fixed-top navbar
 #stamp_div{
     width: 100%;
     min-height: 130px;
+    margin: 0px;
+    padding: 0px;
     margin-right: -25px;
     margin-top: -10px;
+    min-width: 80px;
 }
 
 #address_well{
     min-height: 100px;
     width: 100%;
-    margin-top: 170px;
+    margin-top: 50px;
 
 }
 
 .full-width{
-    width: 100%;
+    width: 95%;
+}
+
+#video_button_div{
+    text-align: center
+}
+
+#video_button{
+    font-size:12px;
+    background-image: none;
+    background-color: white;
+    color: black;
+    text-shadow: none;
+    border: 1px solid #A4A4A4;
+}
+
+#checkbox_span{
+    font-size: 14px;
+}
+
+#checkbox_input{
+    vertical-align: middle;
+}
+
+#send_button_div{
+    text-align: center;
+}
+
+#return_address{
+    margin-right: -20px;
 }

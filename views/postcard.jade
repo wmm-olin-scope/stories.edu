@@ -10,9 +10,9 @@ script(src='/javascripts/postcard.js')
                 //    p.upload-text Upload Video
                 span.text-content 
                     | I want to thank 
-                    span.underline(contenteditable) Mr. Sharp
+                    span.underline(contenteditable)#teacher_name Mr. Sharp
                     |  for being an amazing  
-                    span.underline(contenteditable) math teacher
+                    span.underline(contenteditable)#teacher_role math teacher
                     | . 
                     br
                     br
@@ -22,25 +22,48 @@ script(src='/javascripts/postcard.js')
                             | one of the moments that influenced me to study engineering in college.
                     br
                     br
-                    .col-sm-3
-                    .col-sm-9
-                        span#signature
-                            p.pull-right
-                                | Thanks for all your hard work!
-                            p.pull-right
-                                span.underline(contenteditable) Juliana Nazaré
-                            br
-                            p.pull-right
-                                span.underline(contenteditable) In your 2008 pre-calc class
-
+                    .row
+                        .col-md-5
+                            button.btn.btn-default#video_button(type='button')
+                                i.fa.fa-3x.fa-youtube-square 
+                                br
+                                | Include an optional
+                                br
+                                | video message
+                        .col-md-7
+                            span#signature
+                                p.pull-right
+                                    | Thanks for your hard work!
+                                span.underline.pull-right(contenteditable)#author_name Juliana Nazaré
+                                span.underline.pull-right(contenteditable)#author_role In your 2008 pre-calc class
+                    .row
+                        br
+                        .col-md-12     
+                            span.checkbox#checkbox_span 
+                                label
+                                    input#checkbox_input(type='checkbox')
+                                    p Keep my name anonomyous on ThankATeacher.org
             .col-md-5.address
-                #stamp_div.pull-right
-                    img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
-                #address_well
-                    span.underline.full-width(contenteditable) Mr. Sharp
-                    span.underline.full-width(contenteditable) 10th grade math teacher
-                    span.underline.full-width(contenteditable) South Lakes High School
-                    span.underline.full-width(contenteditable) Reston, VA
+                .row
+                    .col-md-9
+                        #return_address(style="font-size: 14px")
+                            span.underline.full-width(contenteditable)#return_name Juliana Nazaré
+                            span.underline.full-width(contenteditable)#return_email jules.nazare@gmail.com
+                    .col-md-3
+                        #stamp_div.pull-right
+                            img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
+                .row
+                    .col-md-12
+                        #address_well
+                            span.underline.full-width(contenteditable)#mailto_name Mr. Sharp
+                            span.underline.full-width(contenteditable)#mailto_role 10th grade math teacher
+                            span.underline.full-width(contenteditable)#mailto_school South Lakes High School
+                            span.underline.full-width(contenteditable)#mailto_city_state Reston, VA
+.row
+    .col-md-12#send_button_div
+        button.btn.btn-success.btn-lg(type='submit' id="send_button") Send Postcard
+        br
+        br
 
 
         
