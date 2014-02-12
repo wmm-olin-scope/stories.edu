@@ -1,4 +1,47 @@
 
+mongoose = require 'mongoose'
+_ = require 'underscore'
+
+
+makeRef = (name) ->
+    type: mongoose.Schema.Types.ObjectId
+    ref: name
+
+makeAddress = ->
+    lines: [String]
+    zip: String
+    city: String
+    state: String
+
+exports.postcardSchema = new mongoose.Schema
+    created: Date
+    message: String
+    youtubeId: String
+    starred: Boolean
+    recipient:
+        name:
+            full: String
+            first: String
+            last: String
+        email: String
+        phone: String
+        address: makeAddress()
+    school:
+        public: makeRef 'PublicSchool'
+        private: makeRef 'PrivateSchool'
+        other:
+            name: String
+            address: makeAddress()
+            phone: String
+            email: String
+    author: makeRef 'User'
+    views:
+        type: Number
+        default: 0
+        index: yes
+
+
+###
 var mongoose = require('mongoose')
   , _ = require('underscore');
 
@@ -71,3 +114,4 @@ exports.storySchema.methods.registerShareView = function(user) {
 }
 
 exports.Story = mongoose.model('Story', exports.storySchema);
+###
