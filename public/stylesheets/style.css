@@ -13,12 +13,30 @@ body {
     background-color: #E3F0FA;
 }
 
+.navbar-default, .navbar-text{
+    color: black !important;
+}
+
 .navbar .nav > li {
     padding-top: 10px;
 }
 
 #social{
     padding-top: 20px;
+}
+
+#saythanks{
+    background-color: #200D69;
+    background-image: none;
+    border: none;
+    text-shadow: none;
+}
+
+#send_button{
+    background-color: #EB7610;
+    background-image: none;
+    border: none;
+    text-shadow: none;
 }
 
 .video-container {
