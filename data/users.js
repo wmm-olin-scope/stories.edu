@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose')
   , _ = require('underscore');
-  //, bcrypt = require('bcrypt');
+  , bcrypt = require('bcryptjs');
 
 exports.userCategories = ["General", "Student", "Parent", "Educator", 
                           "Administrator", "WebAdmin"];
