@@ -4,7 +4,7 @@ utils = require './utils'
 schools = require './schools'
 Q = require 'q'
 
-exports.userCategories = [
+exports.categories = [
     "General", "Student", "Parent", "Educator", "Administrator", "WebAdmin"]
 
 exports.userSchema = userSchema = new mongoose.Schema
@@ -13,7 +13,7 @@ exports.userSchema = userSchema = new mongoose.Schema
     name: utils.makeName()
     category:
         type: String
-        default: exports.userCategories[0]
+        default: exports.categories[0]
     joined: Date
     age: Number
     schools: [schools.makeGenericSchool()]
@@ -21,8 +21,7 @@ exports.userSchema = userSchema = new mongoose.Schema
         coord: 
             lat: Number
             lon: Number
-        state: String
-        city: String
+        address: utils.makeAddress()
 
 userSchema.virtual('name.display').get ->
     utils.getDisplayName @name
