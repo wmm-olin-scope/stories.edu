@@ -10,6 +10,10 @@ setup = ->
     $('.text-content').resize -> 
         align_button()
         return
+    $('#teacher_name').keyup ->
+        console.log $(this).text() 
+        $('#mailto_name').text $(this).text()
+        return
     $('#send_button').click ->
         teacher_name = $('#teacher_name').text()
         teacher_role = $('#teacher_role').text()
