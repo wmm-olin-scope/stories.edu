@@ -2,6 +2,36 @@
 var setup;
 
 setup = function() {
+  var schoolsearch;
+  String.prototype.capitalize = function() {
+    var word;
+    return ((function() {
+      var _i, _len, _ref, _results;
+      _ref = this.split(/\s+/);
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        word = _ref[_i];
+        _results.push(word[0].toUpperCase() + word.slice(1).toLowerCase());
+      }
+      return _results;
+    }).call(this)).join(' ');
+  };
+  schoolsearch = new Bloodhound({
+    datumTokenizer: function(d) {
+      return Bloodhound.tokenizers.whitespace(d.num);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: '/schools/by-name?text=%QUERY',
+      filter: function(schools) {
+        return $.map(schools, function(school) {
+          school.name = school.name.capitalize();
+          return school;
+        });
+      }
+    }
+  });
+  schoolsearch.initialize();
   $('#teacher_name').keyup(function() {
     $('#mailto_name').text($(this).text());
   });
@@ -37,6 +67,15 @@ setup = function() {
     };
     console.log(contents);
     return contents;
+  });
+  $("#mailto_school").typeahead(null, {
+    displayKey: "name",
+    source: schoolsearch.ttAdapter(),
+    minLength: 4
+  });
+  $("#mailto_school").bind("typeahead:selected", function(event, data, dataset) {
+    $('#mailto_street').val(data.mailingAddress.capitalize());
+    $('#mailto_city_state').val(data.city.capitalize() + ", " + data.state + " " + data.zip);
   });
 };
 

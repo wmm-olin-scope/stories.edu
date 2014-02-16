@@ -95,6 +95,7 @@ publicSchoolSchema.index
     state: 1
     city: 1
     zip: 1
+    mailingAddress: 1
 exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
                                                      publicSchoolSchema
 
@@ -104,6 +105,7 @@ privateSchoolSchema.index
     state: 1
     city: 1
     zip: 1
+    mailingAddress: 1
 exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool', 
                                                        privateSchoolSchema
 
@@ -135,7 +137,7 @@ exports.stateList = stateList = [
     'TN','TX','UT','VT','VA','WA','WV','WI','WY','AS','GU','MP','PR','VI']
 
 
-exports.findBy = (match, fields='_id name state city zip') ->
+exports.findBy = (match, fields='_id name state city zip mailingAddress') ->
     makeQuery = (model) -> 
         Q.ninvoke model.find(match).select(fields), 'exec'
     Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])

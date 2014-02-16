@@ -1,4 +1,22 @@
-setup = -> 
+setup = ->
+
+    String::capitalize = ->
+        return (word[0].toUpperCase() + word[1..-1].toLowerCase() for word in this.split /\s+/).join ' ';
+
+    schoolsearch = new Bloodhound(
+        datumTokenizer: (d) ->
+            Bloodhound.tokenizers.whitespace d.num
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        remote:
+            url: '/schools/by-name?text=%QUERY' 
+            filter: (schools) -> 
+                $.map schools, (school) ->
+                    school.name = school.name.capitalize()
+                    return school 
+    )
+
+    schoolsearch.initialize()
+
     $('#teacher_name').keyup ->
         $('#mailto_name').text $(this).text()
         return
@@ -23,8 +41,17 @@ setup = ->
         "mailto_street": mailto_street, "mailto_city_state": mailto_city_state}
         console.log(contents)
         return contents
-    return
 
+    $("#mailto_school").typeahead null,
+        displayKey: "name"
+        source: schoolsearch.ttAdapter()
+        minLength: 4
+
+    $("#mailto_school").bind "typeahead:selected", (event, data, dataset) ->
+        $('#mailto_street').val(data.mailingAddress.capitalize())
+        $('#mailto_city_state').val(data.city.capitalize() + ", " + data.state + " " + data.zip)
+        return
+    return
 $ ->
     setup()
     return
