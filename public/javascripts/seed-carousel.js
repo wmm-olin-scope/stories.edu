@@ -16,7 +16,7 @@
 
   $(function() {
     return $('#story-carousel').find('a').css('cursor', 'pointer').click(function() {
-      return openVideo('Some story', 'wX78iKhInsc');
+      return openVideo('Some story', '5-MZAXKk7Bw');
     });
   });
 
