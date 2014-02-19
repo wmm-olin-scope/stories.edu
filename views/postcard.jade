@@ -6,21 +6,15 @@ script(src='/javascripts/postcard.js')
         .well.postcard-container
             .col-md-7.content
                 #spacer
-                //.upload
-                //    img.img-content(src='/images/upload.png')        
-                //    p.upload-text Upload Video
                 span.text-content 
                     | I want to thank 
-                    span.underline(contenteditable)#teacher_name Mr. Sharp
+                    input(id='#teacher_name' class="editable small" placeholder="Mr. Sharp")
                     |  for being an amazing  
-                    span.underline(contenteditable)#teacher_role math teacher
+                    input(id='#teacher_role' class="editable small" placeholder="math teacher")
                     | . 
                     br
                     br
-                    span.underline(contenteditable)#freetext
-                            | I remember a lesson he gave in 10th grade about how we could use the 
-                            | vector math he taught us in math and apply it to engineering. That was
-                            | one of the moments that influenced me to study engineering in college.
+                    textarea(id='#freetext' placeholder="I remember a lesson he gave in 10th grade about how we could use the vector math he taught us in math and apply it to engineering. That was one of the moments that influenced me to study engineering in college.")
                     br
                     br
                     .row
@@ -35,21 +29,14 @@ script(src='/javascripts/postcard.js')
                             span#signature
                                 p.pull-right
                                     | Thanks for your hard work!
-                                span.underline.pull-right(contenteditable)#author_name Juliana Nazaré
-                                span.underline.pull-right(contenteditable)#author_role In your 2008 pre-calc class
-                    .row
-                        br
-                        .col-md-12     
-                            span.checkbox#checkbox_span 
-                                label
-                                    input#checkbox_input(type='checkbox')
-                                    p Keep my name anonomyous on ThankATeacher.org
+                                input(id='#author_name' class="editable pull-right signature" placeholder="Juliana Nazaré")
+                                input(id='#author_role' class="editable pull-right signature" placeholder="In your 2008 pre-calc class")
             .col-md-5.address
                 .row
                     .col-md-9
                         #return_address(style="font-size: 14px")
-                            span.underline.full-width(contenteditable)#return_name Juliana Nazaré
-                            span.underline.full-width(contenteditable)#return_email jules.nazare@gmail.com
+                            input.underline.full-width(placeholder="Juliana Nazaré")#return_name
+                            input.underline.full-width(placeholder="jules.nazare@gmail.com")#return_email
                     .col-md-3
                         #stamp_div.pull-right
                             img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
