@@ -33,6 +33,10 @@
       }
     });
     schoolsearch.initialize();
+    $('#video_button').click(function() {
+      console.log('click on vid buttn');
+      return $('#video-modal').modal();
+    });
     $('#teacher_name').keyup(function() {
       $('#mailto_name').text($(this).text());
     });

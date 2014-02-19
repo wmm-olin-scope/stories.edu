@@ -1,5 +1,7 @@
 script(src='/javascripts/lib/typeahead.bundle.min.js')
 script(src='/javascripts/postcard.js')
+script(src='/javascripts/video-upload/thirdparty/lscache.js')
+script(src='/javascripts/video-upload/main.js')
 
 .row
     .col-md-8.col-md-offset-2
@@ -25,6 +27,14 @@ script(src='/javascripts/postcard.js')
                                 | Include an optional
                                 br
                                 | video message
+                            #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
+                              .modal-dialog
+                                .modal-content
+                                  .modal-header
+                                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                                  .modal-body
+                                    div
+                                        #webcam-widget
                         .col-md-7
                             span#signature
                                 p.pull-right

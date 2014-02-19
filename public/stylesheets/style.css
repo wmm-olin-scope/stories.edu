@@ -239,3 +239,9 @@ textarea{
 
 input:focus { outline: none; }
 textarea:focus { outline: none; }
+
+
+.modal-dialog {
+    width: 680px;
+    margin: 30px auto;
+}
