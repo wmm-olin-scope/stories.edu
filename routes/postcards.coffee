@@ -79,4 +79,8 @@ postPostCard = (req, res) ->
     .catch (err) -> fail res, err
     .done()
 
+getMakePostCard = (req, res) ->
+    res.render 'postcard/make'
+
 exports.create = (app) ->
+    app.get '/postcard/make', getMakePostCard

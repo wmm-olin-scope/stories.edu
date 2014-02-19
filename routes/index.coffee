@@ -1,7 +1,5 @@
 
-home = (req, res) ->
-    res.render 'index',
-        title: 'What Matters Most'
+home = (req, res) -> res.render 'index'
 
 exports.create = (app) ->
     app.get '/', home
