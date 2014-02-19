@@ -84,7 +84,7 @@ body {
 .envolope-container{
     display: inline-block;
     float: content;
-    min-height: 350px;
+    min-height: 250px;
     min-width: 100%;
 }
 
@@ -215,7 +215,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: white !important; 
+    color: white; 
 }
 
 input{
