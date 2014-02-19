@@ -37,7 +37,12 @@ checks =
             throw "Not a valid school id: #{id}"
         id
 
-updatePostcard = (postcard, values, req) ->
+    postcardId: (req) ->
+        id = req.params.postcardId
+        utils.check(id).len(24)
+        id
+
+updatePostcardValues = (postcard, values, req) ->
     postcard.message = values.message if values.message?
     postcard.created = Date.now() unless postcard.created?
     postcard.youtubeId = values.youtubeId unless postcard.youtubeId?
@@ -55,32 +60,28 @@ updatePostcard = (postcard, values, req) ->
             postcard.school.private = values.schoolId
 
     postcard.author = req.user if req.user?
+    postcard
 
-postPostCard = (req, res) ->
+postPostcard = (req, res) ->
     [failed, values] = utils.checkAll req, res, checks
     return if failed
 
-    # START WORK HERE!
-
-    Q.ninvoke User, 'findOne', {email: values.email}
-    .then (user) ->
-        if user?
-            if not allowExisting
-                return Q.reject
-                    message: 'A user already exists with this email.'
-        else user = new User()
-        updateUser user, values
-        Q.ninvoke user, 'save'
-    .then ([user]) ->
-        if values.password? then user.createLocalAuth values.password
-        else Q user
-    .then (user) -> Q.ninvoke req, 'login', user
-    .then -> succeed res, {user: req.user}
+    postcard = updatePostcardValues new Postcard(), values, req
+    Q.ninvoke postcard, 'save'
+    .then ([postcard]) ->
+        succeed res, {postcard}
     .catch (err) -> fail res, err
     .done()
+
+updatePostcard = (req, res) ->
+    [failed, values] = utils.checkAll req, res, checks
+    return if failed
+    
 
 getMakePostCard = (req, res) ->
     res.render 'postcard/make'
 
 exports.create = (app) ->
-    app.get '/postcard/make', getMakePostCard
+    app.get '/make-postcard', getMakePostCard
+    app.post '/postcards', postPostcard
+    app.post '/postcards/:postcardId', updatePostcard
