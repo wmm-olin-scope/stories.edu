@@ -6,4 +6,5 @@ exports.create = (app) ->
     require('./prompts').create app
     require('./schools').create app
     require('./users').create app
+    require('./postcards').create app
  

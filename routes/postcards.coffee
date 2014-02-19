@@ -19,9 +19,9 @@ checks =
         throw 'Not a valid YouTube url' unless match?
         match[1]
 
-    lastName: makeNameCheck 'recipientLastName'
-    firstName: makeNameCheck 'recipientFirstName'
-    fullName: makeNameCheck 'recipientFullName'
+    lastName: utils.makeNameCheck 'recipientLastName'
+    firstName: utils.makeNameCheck 'recipientFirstName'
+    fullName: utils.makeNameCheck 'recipientFullName'
 
     email: utils.checkBody 'recipientEmail', (email) ->
         utils.check(email).isEmail()
@@ -76,7 +76,8 @@ postPostcard = (req, res) ->
 updatePostcard = (req, res) ->
     [failed, values] = utils.checkAll req, res, checks
     return if failed
-    
+
+
 
 getMakePostCard = (req, res) ->
     res.render 'postcard/make'
