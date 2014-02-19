@@ -1,0 +1,58 @@
+script(src='/javascripts/lib/typeahead.bundle.min.js')
+script(src='/javascripts/postcard.js')
+
+.row
+    .col-md-8.col-md-offset-2
+        .well.postcard-container
+            .col-md-7.content
+                #spacer
+                span.text-content 
+                    | I want to thank 
+                    input(id='#teacher_name' class="editable small" placeholder="Mr. Sharp")
+                    |  for being an amazing  
+                    input(id='#teacher_role' class="editable small" placeholder="math teacher")
+                    | . 
+                    br
+                    br
+                    textarea(id='#freetext' placeholder="I remember a lesson he gave in 10th grade about how we could use the vector math he taught us in math and apply it to engineering. That was one of the moments that influenced me to study engineering in college.")
+                    br
+                    br
+                    .row
+                        .col-md-5
+                            button.btn.btn-default#video_button(type='button')
+                                i.fa.fa-3x.fa-youtube-square 
+                                br
+                                | Include an optional
+                                br
+                                | video message
+                        .col-md-7
+                            span#signature
+                                p.pull-right
+                                    | Thanks for your hard work!
+                                input(id='#author_name' class="editable pull-right signature" placeholder="Juliana Nazaré")
+                                input(id='#author_role' class="editable pull-right signature" placeholder="In your 2008 pre-calc class")
+            .col-md-5.address
+                .row
+                    .col-md-9
+                        #return_address(style="font-size: 14px")
+                            input.underline.full-width(placeholder="Juliana Nazaré")#return_name
+                            input.underline.full-width(placeholder="jules.nazare@gmail.com")#return_email
+                    .col-md-3
+                        #stamp_div.pull-right
+                            img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
+                .row
+                    .col-md-12
+                        #address_well
+                            input.underline.full-width#mailto_name(placeholder='Mr. Sharp')
+                            input.underline.full-width#mailto_role(placeholder='10th grade math teacher')
+                            input.underline.full-width#mailto_school(placeholder='South Lakes High School')
+                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
+                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
+.row
+    .col-md-12#send_button_div
+        button.btn.btn-success.btn-lg(type='submit' id="send_button") Send Postcard
+        br
+        br
+
+
+        
