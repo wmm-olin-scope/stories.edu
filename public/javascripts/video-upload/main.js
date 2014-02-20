@@ -65,6 +65,7 @@
           onUploadSuccess: function(event) {
             console.log("Webcam submission success!");
             console.log(event);
+            $('#youtube_id').val(event.data.videoId);
             return window.VIDRECORDER.close();
           },
           onStateChange: function(event) {

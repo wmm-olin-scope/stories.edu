@@ -77,6 +77,7 @@ webcam =
                 onUploadSuccess: (event) ->
                     console.log("Webcam submission success!")
                     console.log(event)
+                    $('#youtube_id').val(event.data.videoId)
                     window.VIDRECORDER.close()
 
                     # utils.addVideoToPlaylist("Pending", event.data.videoId)

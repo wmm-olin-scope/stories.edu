@@ -42,11 +42,12 @@ setup = ->
         mailto_school = $('#mailto_school').text()
         mailto_street = $('#mailto_street').text()
         mailto_city_state = $('#mailto_city_state').text()
+        youtube_id = $('#youtube_id').val()
         contents = {"teacher_name": teacher_name, "teacher_role": teacher_role, "message": message,
         "author_name": author_name, "author_role": author_role, "anon_request": anon_request,
         "return_name": return_name, "return_email": return_email, "mailto_name": mailto_name,
         "mailto_role": mailto_role, "mailto_school": mailto_school,
-        "mailto_street": mailto_street, "mailto_city_state": mailto_city_state}
+        "mailto_street": mailto_street, "mailto_city_state": mailto_city_state, "youtubeId": youtube_id}
         console.log(contents)
         return contents
 
