@@ -20,6 +20,10 @@ setup = ->
     $('#video_button').click ->
         console.log('click on vid buttn')
         $('#video-modal').modal()
+        if not window.VIDRECORDER?
+            window.VIDRECORDER = {}
+        window.VIDRECORDER.close = () -> $('#video-modal').modal('hide')
+        console.log('attached handler')
 
     $('#teacher_name').keyup ->
         $('#mailto_name').text $(this).text()

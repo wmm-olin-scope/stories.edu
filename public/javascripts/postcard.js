@@ -35,7 +35,14 @@
     schoolsearch.initialize();
     $('#video_button').click(function() {
       console.log('click on vid buttn');
-      return $('#video-modal').modal();
+      $('#video-modal').modal();
+      if (window.VIDRECORDER == null) {
+        window.VIDRECORDER = {};
+      }
+      window.VIDRECORDER.close = function() {
+        return $('#video-modal').modal('hide');
+      };
+      return console.log('attached handler');
     });
     $('#teacher_name').keyup(function() {
       $('#mailto_name').text($(this).text());

@@ -77,6 +77,7 @@ webcam =
                 onUploadSuccess: (event) ->
                     console.log("Webcam submission success!")
                     console.log(event)
+                    window.VIDRECORDER.close()
 
                     # utils.addVideoToPlaylist("Pending", event.data.videoId)
 
@@ -131,12 +132,12 @@ auth =
                     console.log('auth script launched')
                 else
                     console.log('requesting YT login')
-                    gapi.auth.authorize({
-                        client_id: config.OAUTH2_CLIENT_ID
-                        scope: [constants.OAUTH2_SCOPE]
-                        immediate: false}
-                        , auth.onAuthResult
-                    )
+                    # gapi.auth.authorize({
+                    #     client_id: config.OAUTH2_CLIENT_ID
+                    #     scope: [constants.OAUTH2_SCOPE]
+                    #     immediate: false}
+                    #     , auth.onAuthResult
+                    # )
             )
         $.getScript(constants.CLIENT_LIB_URL + constants.CLIENT_LIB_LOAD_CALLBACK)
 
@@ -193,13 +194,7 @@ load = ->
             auth.initAuth()
             webcam.init()
 
-VIDLOADER =
-    config: config
-    constants: constants
-    auth: auth
-
 # @Chase YouTube Example uses lscache. Should we integrate that?
 
 $ ->
-    window.VIDLOADER = VIDLOADER
     load()
