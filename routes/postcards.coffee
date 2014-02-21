@@ -59,17 +59,16 @@ updatePostcardValues = (postcard, values, req) ->
         when 'private'
             postcard.school.private = values.schoolId
 
-    postcard.author = req.user if req.user?
+    postcard.author = req.user if not postcard.author? and req.user?
     postcard
 
 postPostcard = (req, res) ->
-    [failed, values] = utils.checkAll req, res, checks
+    [failed, values] = utils.checkAll req, res, _.omit(checks, 'postcardId')
     return if failed
 
     postcard = updatePostcardValues new Postcard(), values, req
     Q.ninvoke postcard, 'save'
-    .then ([postcard]) ->
-        succeed res, {postcard}
+    .then ([postcard]) -> succeed res, {postcard}
     .catch (err) -> fail res, err
     .done()
 
@@ -77,7 +76,21 @@ updatePostcard = (req, res) ->
     [failed, values] = utils.checkAll req, res, checks
     return if failed
 
+    Q.ninvoke Postcard, 'findById', values.postcardId
+    .then (postcard) ->
+        Q.ninvoke updatePostcardValues(postcard, values, req), 'save'
+    .then ([postcard]) -> succeed res, {postcard}
+    .catch (err) -> fail res, err
+    .done()
 
+getPostcard = (req, res) ->
+    [failed, values] = utils.checkBody req, res, _.pick(checks, 'postcardId')
+    return if failed
+
+    Q.ninvoke Postcard, 'findById', values.postcardId
+    .then (postcard) -> succeed res, {postcard}
+    .catch (err) -> fail res, err
+    .done()
 
 getMakePostCard = (req, res) ->
     res.render 'postcard/make'
@@ -86,3 +99,4 @@ exports.create = (app) ->
     app.get '/make-postcard', getMakePostCard
     app.post '/postcards', postPostcard
     app.post '/postcards/:postcardId', updatePostcard
+    app.get '/postcards/:postcardId', getPostcard
