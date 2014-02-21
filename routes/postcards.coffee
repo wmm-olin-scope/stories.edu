@@ -27,10 +27,10 @@ checks =
         utils.check(email).isEmail()
         email
 
-    schoolType: utils.checkBody 'schoolType', (type) ->
+    schoolType: utils.checkBody 'schoolType', (schoolType) ->
         if schoolType not in ['public', 'private', 'other']
-            throw "Not a valid school type: #{type}."
-        type
+            throw "Not a valid school type: #{schoolType}."
+        schoolType
 
     schoolId: utils.checkBody 'schoolId', (id) ->
         if id.length isnt 24 # mongodb object id string length
