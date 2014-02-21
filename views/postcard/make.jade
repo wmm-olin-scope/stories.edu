@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    .row#postcardrow
+        .col-md-10.col-md-offset-1
+            p#prompt-text.hidden-xs
+                | There has been a lot of negative press about educators. We are here to change that conversation. Send a note to someone (teachers, coaches, mentors, etc.) who impacted your education. We will give you the oppertunity to share your note with them.
+            p#prompt-text.hidden-sm.hidden-md.hidden-lg(style="font-size:14px;")
+                | Send a note to someone (teachers, coaches, mentors, etc.) who impacted your education. We will give you the oppertunity to share your note with them.
+    include postcard
+    .row
+        .col-md-12#send_button_div
+            button.btn.btn-success.btn-lg(type='submit' id="send_button") 
+                strong Send Postcard
+            br
+            br

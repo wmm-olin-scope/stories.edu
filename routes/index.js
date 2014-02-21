@@ -3,16 +3,15 @@
   var home;
 
   home = function(req, res) {
-    return res.render('index', {
-      title: 'What Matters Most'
-    });
+    return res.render('index');
   };
 
   exports.create = function(app) {
     app.get('/', home);
     require('./prompts').create(app);
     require('./schools').create(app);
-    return require('./users').create(app);
+    require('./users').create(app);
+    return require('./postcards').create(app);
   };
 
 }).call(this);

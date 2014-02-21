@@ -36,14 +36,21 @@ html
                     li.divider
                     li
                         p#nav-banner.navbar-text <b>12,938</b> teachers and mentors recognized
-
-                .navbar-form.navbar-right.form-inline(style='margin-right:10px;')
-                    .btn-group#social
-                        a.btn.btn-sm.btn-twitter#share-twitter
-                            i.fa.fa-twitter
-                            | &nbsp; Tweet
-                        button.btn.btn-sm.btn-facebook#share-facebook
-                            i.fa.fa-facebook
-                            | &nbsp; Share
+                ul.nav.navbar-nav.pull-right
+                    li
+                        a(href="" style="margin-top:-5px;")
+                            h5(style="color: black !important") About Us
+                    .navbar-form.navbar-right.form-inline(style='margin-right:10px;')
+                        .btn-group#social
+                            a.btn.btn-sm.btn-twitter#share-twitter
+                                i.fa.fa-twitter
+                                | &nbsp; Tweet
+                            button.btn.btn-sm.btn-facebook#share-facebook
+                                i.fa.fa-facebook
+                                | &nbsp; Share
         .container
             block content
+        nav.navbar.navbar-default.navbar-bottom(role='navigation' style="margin-bottom: -30px")#nav-bottom
+            .container(style="padding-top:15px; text-align: center")
+                p 
+                    strong &copy; 2014 ThankATeacher.org

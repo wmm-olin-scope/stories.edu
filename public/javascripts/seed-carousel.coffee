@@ -10,4 +10,4 @@ openVideo = (title, youtubeId) ->
 
 $ ->
     $('#story-carousel').find('a').css('cursor', 'pointer').click ->
-        openVideo 'Some story', 'wX78iKhInsc'
+        openVideo 'Some story', '5-MZAXKk7Bw'
