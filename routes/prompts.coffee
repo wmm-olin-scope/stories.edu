@@ -16,7 +16,7 @@ checkPromptId = (req) ->
     utils.check(id).len(24)
     id
 
-putPrompt = (req, res) ->
+postPrompt = (req, res) ->
     [check, values] = utils.checkAll req, res,
         prompt: checkPrompt
     return if check
@@ -37,5 +37,5 @@ deletePrompt = (req, res) ->
 exports.create = (app) ->
     app.get '/prompts', getIndex
     app.get '/prompts/', getIndex
-    app.put '/prompts/', putPrompt
+    app.post '/prompts', postPrompt
     app.del '/prompts/:promptId', deletePrompt
