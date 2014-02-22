@@ -39,11 +39,18 @@ body {
     text-shadow: none;
 }
 
-#send_button{
-    background-color: #8dca84;
-    background-image: none;
-    border: none;
-    text-shadow: none;
+.submit-button{
+    background-color: #8dca84 !important;
+    background-image: none !important;
+    border: none !important;
+    text-shadow: none !important;
+}
+
+.close-button{
+    background-color: #cccccc !important;
+    background-image: none !important;
+    border: none !important;
+    text-shadow: none !important;
 }
 
 .video-container {
@@ -253,4 +260,8 @@ textarea:focus { outline: none; }
 
 .text-center {
     text-align: center;
+}
+
+#modal_header {
+    color: black;
 }

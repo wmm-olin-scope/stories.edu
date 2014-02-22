@@ -25,6 +25,10 @@ setup = ->
         $('#return_name').val $(this).val()
         return
 
+    $('#mailto_school').focus ->
+        $('#school_modal').modal('show')
+        return
+
     $('#send_button').click ->
         teacher_name = $('#teacher_name').text()
         teacher_role = $('#teacher_role').text()

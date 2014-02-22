@@ -79,3 +79,24 @@ script(src='/javascripts/postcard.js')
                             input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
                             input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
         
+#school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4.modal-title#modal_header Find your school
+          .modal-body
+            form(role='form')
+              .form-group
+                label(for='city') City
+                input#city.form-control(type='text', placeholder='Harrisonburg')
+              .form-group
+                label(for='state') State
+                input#state.form-control(type='text', placeholder='Virginia')
+              button.btn.btn-success.submit-button(type='submit') Search
+
+          .modal-footer
+            button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal') 
+                strong Close
+            button.btn.btn-success.btn-lg.submit-button(type='submit' id="modal_submit") 
+                strong Submit
