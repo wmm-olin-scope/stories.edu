@@ -18,8 +18,13 @@ setup = ->
     schoolsearch.initialize()
 
     $('#teacher_name').keyup ->
-        $('#mailto_name').text $(this).text()
+        $('#mailto_name').val $(this).val()
         return
+
+    $('#author_name').keyup ->
+        $('#return_name').val $(this).val()
+        return
+
     $('#send_button').click ->
         teacher_name = $('#teacher_name').text()
         teacher_role = $('#teacher_role').text()
