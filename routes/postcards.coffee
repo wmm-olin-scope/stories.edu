@@ -37,6 +37,10 @@ checks =
             throw "Not a valid school id: #{id}"
         id
 
+    starred: utils.checkBody 'starred', (starred) ->
+        throw "Not a boolean: #{starred}" unless starred in ['true', 'false']
+        utils.sanitize(starred).toBoolean(true)
+
     postcardId: (req) ->
         id = req.params.postcardId
         utils.check(id).len(24)
@@ -63,16 +67,17 @@ updatePostcardValues = (postcard, values, req) ->
     postcard
 
 postPostcard = (req, res) ->
-    [failed, values] = utils.checkAll req, res, _.omit(checks, 'postcardId')
+    relevant = _.omit checks, 'postcardId', 'starred'
+    [failed, values] = utils.checkAll req, res, relevant
     return if failed
 
     postcard = updatePostcardValues new Postcard(), values, req
     Q.ninvoke postcard, 'save'
     .then ([postcard]) -> succeed res, {postcard}
-    .catch (err) -> fail res, err
-    .done()
+    .done utils.failOnError(res)...
 
 updatePostcard = (req, res) ->
+    relevant = _.omit checks, 'starred'
     [failed, values] = utils.checkAll req, res, checks
     return if failed
 
@@ -80,23 +85,51 @@ updatePostcard = (req, res) ->
     .then (postcard) ->
         Q.ninvoke updatePostcardValues(postcard, values, req), 'save'
     .then ([postcard]) -> succeed res, {postcard}
-    .catch (err) -> fail res, err
-    .done()
+    .done utils.failOnError(res)...
 
 getPostcard = (req, res) ->
-    [failed, values] = utils.checkBody req, res, _.pick(checks, 'postcardId')
+    relevant = _.pick checks, 'postcardId'
+    [failed, values] = utils.checkBody req, res, relevant
     return if failed
 
     Q.ninvoke Postcard, 'findById', values.postcardId
     .then (postcard) -> succeed res, {postcard}
-    .catch (err) -> fail res, err
-    .done()
+    .done utils.failOnError(res)...
 
 getMakePostCard = (req, res) ->
     res.render 'postcard/make'
 
+starPostcard = (req, res) ->
+    relevant = _.pick checks, 'postcardId', 'starred'
+    [failed, values] = utils.checkBody req, res, relevant
+    return if failed
+
+    Q.ninvoke Postcard, 'findByIdAndUpdate', values.postcardId,
+        starred: values.starred
+    .then (postcard) -> succeed res, {postcard}
+    .done utils.failOnError(res)...
+
+POSTCARD_LIMIT = 100
+
+getPostcards = (req, res) ->
+    limit = utils.sanitize(req.query.limit).toInt() or 10
+    limit = Math.min(POSTCARD_LIMIT, limit)|0
+
+    starred = utils.sanitize(req.query.starred).toBoolean()
+    if starred
+        Postcard.getStarred limit
+        .then (postcards) -> succeed res, {postcards}
+        .done utils.failOnError(res)...
+    else
+        fail res, {message: 'Unsupported query'}
+
+
+
 exports.create = (app) ->
     app.get '/make-postcard', getMakePostCard
+
     app.post '/postcards', postPostcard
+    app.post '/postcards/:postcardId/starred', starPostcard # TODO: auth?
     app.post '/postcards/:postcardId', updatePostcard
     app.get '/postcards/:postcardId', getPostcard
+    app.get '/postcards', getPostcards
