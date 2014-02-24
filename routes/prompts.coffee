@@ -1,6 +1,6 @@
 
 {Prompt} = require '../data/prompts'
-{succeed, fail} = utils = require '../lib/utils'
+{succeed, fail} = utils = require './utils'
 
 getIndex = (req, res) ->
     Prompt.find {}, (err, prompts) ->
