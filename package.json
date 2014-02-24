@@ -21,6 +21,7 @@
     "q": "~1.0.0",
     "browserify": "~3.30",
     "coffeeify": "~0.6",
-    "uglify-js": "~2.4.12"
+    "uglify-js": "~2.4.12",
+    "coffee-script": "1.7.1"
   }
 }

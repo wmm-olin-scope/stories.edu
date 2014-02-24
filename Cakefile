@@ -32,4 +32,4 @@ for dir in allBuildDirs
       buildDir "#{dir}", yes
 
 task 'server', 'Starts the node server', ->
-  execAndLog 'node app.js'
+  execAndLog 'coffee app.coffee --nodejs'
