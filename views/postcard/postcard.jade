@@ -11,9 +11,9 @@ script(src='/javascripts/postcard.js')
                 #spacer
                 span.text-content 
                     | I want to thank 
-                    input(id='teacher_name' class="editable small" placeholder="Ms. Frizzle")
+                    input.text-center(id='teacher_name' class="editable small" placeholder="Ms. Frizzle")
                     |  for being an amazing  
-                    input(id='teacher_role' class="editable small" placeholder="third grade teacher")
+                    input.text-center(id='teacher_role' class="editable small" placeholder="third grade teacher")
                     | . 
                     br
                     br
@@ -21,13 +21,8 @@ script(src='/javascripts/postcard.js')
                     br
                     br
                     .row
-                        .col-md-5.col-sm-5.col-xs-3
-                            button.btn.btn-default.hidden-xs#video_button(type='button')
-                                i.fa.fa-3x.fa-youtube-square 
-                                br
-                                | Include an optional
-                                br
-                                | video message
+                        .col-md-5.col-sm-5.col-xs-3(style="margin-top: -50px; -webkit-transform:rotate(-20deg);")
+                            img(src="../images/stamp.png" height="100px" width="100px")
                         .col-md-7.col-sm-7.col-xs-9.pull-right
                             span#signature
                                 p.pull-right
@@ -84,3 +79,24 @@ script(src='/javascripts/postcard.js')
                             input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
                             input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
         
+#school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4.modal-title#modal_header Find your school
+          .modal-body
+            form(role='form')
+              .form-group
+                label(for='city') City
+                input#city.form-control(type='text', placeholder='Harrisonburg')
+              .form-group
+                label(for='state') State
+                input#state.form-control(type='text', placeholder='Virginia')
+              button.btn.btn-success.submit-button(type='submit') Search
+
+          .modal-footer
+            button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal') 
+                strong Close
+            button.btn.btn-success.btn-lg.submit-button(type='submit' id="modal_submit") 
+                strong Submit

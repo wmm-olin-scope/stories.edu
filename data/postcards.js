@@ -54,5 +54,3 @@
   exports.Postcard = mongoose.model('Postcard', postcardSchema);
 
 }).call(this);
-
-//# sourceMappingURL=postcards.map
