@@ -1,7 +1,7 @@
 
 mongoose = require 'mongoose'
 utils = require './utils'
-
+Q = require 'q'
 
 exports.postcardSchema = postcardSchema = new mongoose.Schema
     created: Date
@@ -28,5 +28,11 @@ postcardSchema.virtual('recipient.name.display').get ->
 
 postcardSchema.methods.registerView = ->
     @views += 1
+
+postcardSchema.statics.getStarred = (limit=4) ->
+    query = @find {starred: yes}
+        .limit limit
+        .sort '-views'
+    Q.ninvoke query, 'exec'
 
 exports.Postcard = mongoose.model 'Postcard', postcardSchema

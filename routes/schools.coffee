@@ -10,36 +10,36 @@ getStates = (req, res) -> succeed res, {states: schools.stateList}
 
 getCities = (req, res) ->
     {state} = req.params
-    console.log state
     return fail res, 'No such state' if state not of stateHash
 
     # no succeed() for bloodhound
     Q.ninvoke(schools.State, 'findById', state)
-    .then((state) -> res.json state.cities)
-    .catch((err) -> fail res, err)
+    .then (state) -> res.json state.cities
+    .done utils.failOnError(res)...
 
 findByCity = (req, res) ->
     {state, city} = req.params
-    console.log state, city
     return fail res, 'No such state' if state not of stateHash
 
     # no succeed() for bloodhound
-    schools.findBy({state, city}).then((schools) -> res.json schools)
-    .catch((err) -> fail res, err)
+    schools.findBy {state, city}
+    .then (schools) -> res.json schools
+    .done utils.failOnError(res)...
 
 findByRegex = (req, res) ->
     {text} = req.query
     name = new RegExp '.*' + text.toUpperCase() + '.*'
-    console.log text
 
-    schools.findBy({name}).then((schools) -> res.json schools)
-    .catch((err) -> fail res, err)
+    schools.findBy {name}
+    .then (schools) -> res.json schools
+    .done utils.failOnError(res)...
 
 findByZip = (req, res) ->
     {zip} = req.params
     # no succeed() for bloodhound
-    schools.findBy({zip}).then((schools) -> res.json schools) 
-    .catch((err) -> fail res, err)
+    schools.findBy {zip}
+    .then (schools) -> res.json schools
+    .done utils.failOnError(res)...
 
 setupDatabase = (req, res) ->
     schools.setupDatabase().then(-> succeed res, {})
