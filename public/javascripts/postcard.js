@@ -33,7 +33,7 @@
       }
     });
     schoolsearch.initialize();
-    $('#video_button').click(function() {
+    $('#video-button-desktop').click(function() {
       console.log('click on vid buttn');
       $('#video-modal').modal();
       if (window.VIDRECORDER == null) {
@@ -45,7 +45,13 @@
       return console.log('attached handler');
     });
     $('#teacher_name').keyup(function() {
-      $('#mailto_name').text($(this).text());
+      $('#mailto_name').val($(this).val());
+    });
+    $('#author_name').keyup(function() {
+      $('#return_name').val($(this).val());
+    });
+    $('#mailto_school').focus(function() {
+      $('#school_modal').modal('show');
     });
     $('#send_button').click(function() {
       var anon_request, author_name, author_role, contents, mailto_city_state, mailto_name, mailto_role, mailto_school, mailto_street, message, return_email, return_name, teacher_name, teacher_role, youtube_id;

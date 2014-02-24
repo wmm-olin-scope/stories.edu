@@ -17,7 +17,7 @@ setup = ->
 
     schoolsearch.initialize()
 
-    $('#video_button').click ->
+    $('#video-button-desktop').click ->
         console.log('click on vid buttn')
         $('#video-modal').modal()
         if not window.VIDRECORDER?
@@ -26,8 +26,17 @@ setup = ->
         console.log('attached handler')
 
     $('#teacher_name').keyup ->
-        $('#mailto_name').text $(this).text()
+        $('#mailto_name').val $(this).val()
         return
+
+    $('#author_name').keyup ->
+        $('#return_name').val $(this).val()
+        return
+
+    $('#mailto_school').focus ->
+        $('#school_modal').modal('show')
+        return
+
     $('#send_button').click ->
         teacher_name = $('#teacher_name').text()
         teacher_role = $('#teacher_role').text()

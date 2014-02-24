@@ -1,17 +1,23 @@
 body { 
     padding-top: 100px; 
     font-family: 'Dosis', sans-serif;
-    background-color: #0083ad;
+    background-color: #016585;
+    color: black;
 } /* necessary for fixed-top navbar
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
 
 #nav-banner{
-    font-size: 25px
+    font-size: 25px;
 }
 
 .navbar-header, .navbar-collapse{
     background-color: #F0F0F0;
+}
+
+#nav-bottom{
+    background-color: #F0F0F0;
+    border-radius: 0px;
 }
 
 .navbar-default, .navbar-text{
@@ -33,11 +39,18 @@ body {
     text-shadow: none;
 }
 
-#send_button{
-    background-color: #8dca84;
-    background-image: none;
-    border: none;
-    text-shadow: none;
+.submit-button{
+    background-color: #8dca84 !important;
+    background-image: none !important;
+    border: none !important;
+    text-shadow: none !important;
+}
+
+.close-button{
+    background-color: #cccccc !important;
+    background-image: none !important;
+    border: none !important;
+    text-shadow: none !important;
 }
 
 .video-container {
@@ -65,14 +78,22 @@ body {
 }
 
 .postcard-container .content {
-    border-right: 2px solid #e3e3e3;
     display: inline-block;
     float: content;
     min-height: 400px;
 }
 
 .postcard-container .address {
+    border-left: 1.5px solid #A4A4A4;
     height: 100%;
+    min-height: 400px;
+}
+
+.envolope-container{
+    display: inline-block;
+    float: content;
+    min-height: 250px;
+    min-width: 100%;
 }
 
 #spacer {
@@ -110,13 +131,12 @@ body {
     min-width: 50px !important;
     background-color: transparent;
     width: auto;
-    color: #A4A4A4;
     max-width: 100%;
 }
 
 #freetext{
     border-bottom: none;
-    min-height: 190px;
+    min-height: 200px;
 }
 
 .underline:active,
@@ -142,7 +162,7 @@ body {
 }
 
 #prompt-text{
-	font-size: 20px;
+	font-size: 18px;
     color: white;
 }
 
@@ -168,11 +188,7 @@ body {
     width: 95%;
 }
 
-#video_button_div{
-    text-align: center
-}
-
-#video_button{
+#video-button-mobile{
     font-size:12px;
     background-image: none;
     background-color: #808284;
@@ -201,8 +217,8 @@ body {
     background-color: #F0F0F0;
 }
 
-h3{
-    color: white !important; 
+h1, h2, h3, h4, h5, h6{
+    color: white; 
 }
 
 input{
@@ -210,7 +226,6 @@ input{
     min-width: 50px !important;
     background-color: transparent;
     width: 100%;
-    color: #A4A4A4;
     max-width: 100%;
 }
 
@@ -219,9 +234,8 @@ textarea{
     min-width: 100%;
     background-color: transparent;
     width: auto;
-    color: #A4A4A4;
     max-width: 100%;
-    min-height: 150px;
+    min-height: 200px;
 }
 
 .editable{
@@ -240,8 +254,15 @@ textarea{
 input:focus { outline: none; }
 textarea:focus { outline: none; }
 
-
 .modal-dialog {
     width: 680px;
     margin: 30px auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#modal_header {
+    color: black;
 }

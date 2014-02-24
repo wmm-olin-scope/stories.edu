@@ -19,25 +19,30 @@ checks =
         throw 'Not a valid YouTube url' unless match?
         match[1]
 
-    lastName: makeNameCheck 'recipientLastName'
-    firstName: makeNameCheck 'recipientFirstName'
-    fullName: makeNameCheck 'recipientFullName'
+    lastName: utils.makeNameCheck 'recipientLastName'
+    firstName: utils.makeNameCheck 'recipientFirstName'
+    fullName: utils.makeNameCheck 'recipientFullName'
 
     email: utils.checkBody 'recipientEmail', (email) ->
         utils.check(email).isEmail()
         email
 
-    schoolType: utils.checkBody 'schoolType', (type) ->
+    schoolType: utils.checkBody 'schoolType', (schoolType) ->
         if schoolType not in ['public', 'private', 'other']
-            throw "Not a valid school type: #{type}."
-        type
+            throw "Not a valid school type: #{schoolType}."
+        schoolType
 
     schoolId: utils.checkBody 'schoolId', (id) ->
         if id.length isnt 24 # mongodb object id string length
             throw "Not a valid school id: #{id}"
         id
 
-updatePostcard = (postcard, values, req) ->
+    postcardId: (req) ->
+        id = req.params.postcardId
+        utils.check(id).len(24)
+        id
+
+updatePostcardValues = (postcard, values, req) ->
     postcard.message = values.message if values.message?
     postcard.created = Date.now() unless postcard.created?
     postcard.youtubeId = values.youtubeId unless postcard.youtubeId?
@@ -54,29 +59,44 @@ updatePostcard = (postcard, values, req) ->
         when 'private'
             postcard.school.private = values.schoolId
 
-    postcard.author = req.user if req.user?
+    postcard.author = req.user if not postcard.author? and req.user?
+    postcard
 
-postPostCard = (req, res) ->
-    [failed, values] = utils.checkAll req, res, checks
+postPostcard = (req, res) ->
+    [failed, values] = utils.checkAll req, res, _.omit(checks, 'postcardId')
     return if failed
 
-    # START WORK HERE!
-
-    Q.ninvoke User, 'findOne', {email: values.email}
-    .then (user) ->
-        if user?
-            if not allowExisting
-                return Q.reject
-                    message: 'A user already exists with this email.'
-        else user = new User()
-        updateUser user, values
-        Q.ninvoke user, 'save'
-    .then ([user]) ->
-        if values.password? then user.createLocalAuth values.password
-        else Q user
-    .then (user) -> Q.ninvoke req, 'login', user
-    .then -> succeed res, {user: req.user}
+    postcard = updatePostcardValues new Postcard(), values, req
+    Q.ninvoke postcard, 'save'
+    .then ([postcard]) -> succeed res, {postcard}
     .catch (err) -> fail res, err
     .done()
 
+updatePostcard = (req, res) ->
+    [failed, values] = utils.checkAll req, res, checks
+    return if failed
+
+    Q.ninvoke Postcard, 'findById', values.postcardId
+    .then (postcard) ->
+        Q.ninvoke updatePostcardValues(postcard, values, req), 'save'
+    .then ([postcard]) -> succeed res, {postcard}
+    .catch (err) -> fail res, err
+    .done()
+
+getPostcard = (req, res) ->
+    [failed, values] = utils.checkBody req, res, _.pick(checks, 'postcardId')
+    return if failed
+
+    Q.ninvoke Postcard, 'findById', values.postcardId
+    .then (postcard) -> succeed res, {postcard}
+    .catch (err) -> fail res, err
+    .done()
+
+getMakePostCard = (req, res) ->
+    res.render 'postcard/make'
+
 exports.create = (app) ->
+    app.get '/make-postcard', getMakePostCard
+    app.post '/postcards', postPostcard
+    app.post '/postcards/:postcardId', updatePostcard
+    app.get '/postcards/:postcardId', getPostcard
