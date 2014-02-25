@@ -85,17 +85,16 @@ script(src='/javascripts/postcard.js')
           .modal-header
             button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
             h4.modal-title#modal_header Find your school
-          .modal-body
-            form(role='form')
-              .form-group
-                label(for='state') State
-                select#state.form-control
-              .form-group
-                label(for='city') City
-                input#city.form-control(type='text')
-              .form-group
-                label(for='city') School
-                input#school.form-control(type='text')
+          .modal-body#school-select
+            .form-group.col-xs-3
+              label(for='state') State
+              select#state.form-control
+            .form-group.col-xs-9
+              label(for='city') City
+              input#city.form-control(type='text')
+            .form-group.col-xs-12
+              label(for='city') School
+              input#school.form-control(type='text')
 
 
 
