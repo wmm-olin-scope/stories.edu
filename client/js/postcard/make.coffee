@@ -147,7 +147,7 @@ setup = ->
             recipientRole: $('#teacher_role').val()
             authorFullName: $('#author_name').val()
             authorRole: $('#author_role').val()
-            authorEmail: $('@return_email').val()
+            authorEmail: $('#return_email').val()
             anonymous: $('#checkbox_input').is ':checked'
             schoolId: g.school?._id
             schoolType: g.school?.schoolType
@@ -156,7 +156,7 @@ setup = ->
         $.post '/postcards', contents
             .done (result) -> console.log result
             .fail (err) -> console.log err
-    
+
     populateStateOption()
     findTransitions.state()
 
