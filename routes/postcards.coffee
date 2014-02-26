@@ -63,11 +63,12 @@ updatePostcardValues = (postcard, values, req) ->
     postcard
 
 postPostcard = (req, res) ->
-    console.log "POSTCARD"
     [failed, values] = utils.checkAll req, res, _.omit(checks, 'postcardId')
     return if failed
 
     postcard = updatePostcardValues new Postcard(), values, req
+    console.log values
+
     Q.ninvoke(Postcard, 'save')
     .then ([postcard]) -> succeed res, {postcard}
     .catch (err) -> fail res, err

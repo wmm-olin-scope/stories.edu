@@ -214,14 +214,7 @@ setup = function() {
       "mailto_city_state": mailto_city_state
     };
     console.log(contents);
-    $.post('/postcards', contents, function(err, data) {
-      console.log("Post request sent");
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(data);
-      }
-    });
+    $.post('/postcards', contents);
   });
   populateStateOption();
   findTransitions.state();

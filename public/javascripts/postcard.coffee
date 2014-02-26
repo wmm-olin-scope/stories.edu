@@ -156,13 +156,7 @@ setup = ->
         "mailto_role": mailto_role, "mailto_school": mailto_school, 
         "mailto_street": mailto_street, "mailto_city_state": mailto_city_state}
         console.log(contents)
-        $.post '/postcards', contents, (err, data) ->
-            console.log "Post request sent"
-            if err
-                console.log(err);
-            else
-                console.log(data);
-            return
+        $.post '/postcards', contents
         return
 
     populateStateOption()
