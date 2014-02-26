@@ -120,7 +120,7 @@ setup = ->
         $('#return_name').val $(this).val()
         return
 
-    $('#mailto_school').focus ->
+    $('#mailto_school, #mailto_city_state, #mailto_street').focus ->
         $('#school_modal').modal('show')
         return
 

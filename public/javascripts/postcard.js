@@ -168,7 +168,7 @@ setup = function() {
   $('#author_name').keyup(function() {
     $('#return_name').val($(this).val());
   });
-  $('#mailto_school').focus(function() {
+  $('#mailto_school, #mailto_city_state, #mailto_street').focus(function() {
     $('#school_modal').modal('show');
   });
   $('#modal_submit').click(function() {
