@@ -19,11 +19,23 @@ checks =
         throw 'Not a valid YouTube url' unless match?
         match[1]
 
-    lastName: utils.makeNameCheck 'recipientLastName'
-    firstName: utils.makeNameCheck 'recipientFirstName'
-    fullName: utils.makeNameCheck 'recipientFullName'
+    recipientLastName: utils.makeNameCheck 'recipientLastName'
+    recipientFirstName: utils.makeNameCheck 'recipientFirstName'
+    recipientFullName: utils.makeNameCheck 'recipientFullName'
+    recipientRole: utils.makeNameCheck 'recipientRole'
+    recipientEmail: utils.checkBody 'recipientEmail', (email) ->
+        utils.check(email).isEmail()
+        email
 
-    email: utils.checkBody 'recipientEmail', (email) ->
+    anonymous: utils.checkBody 'anonymous', (anon) ->
+        throw "Not a boolean: #{anon}" unless anon in ['true', 'false']
+        utils.sanitize(anon).toBoolean(true)
+
+    authorLastName: utils.makeNameCheck 'authorLastName'
+    authorFirstName: utils.makeNameCheck 'authorFirstName'
+    authorFullName: utils.makeNameCheck 'authorFullName'
+    authorRole: utils.makeNameCheck 'authorRole'
+    authorEmail: utils.checkBody 'authorEmail', (email) ->
         utils.check(email).isEmail()
         email
 
@@ -50,12 +62,25 @@ updatePostcardValues = (postcard, values, req) ->
     postcard.message = values.message if values.message?
     postcard.created = Date.now() unless postcard.created?
     postcard.youtubeId = values.youtubeId unless postcard.youtubeId?
+
     postcard.recipient = {} unless postcard.recipient?
     postcard.recipient.name = {} unless postcard.recipient.name?
-    postcard.recipient.name.first = values.firstName if values.firstName?
-    postcard.recipient.name.last = values.lastName if values.lastName?
-    postcard.recipient.name.full = values.fullName if values.fullName?
-    postcard.recipient.email = values.email if values.email?
+    postcard.recipient.name.first = values.recipientFirstName if values.recipientFirstName?
+    postcard.recipient.name.last = values.recipientLastName if values.recipientLastName?
+    postcard.recipient.name.full = values.recipientFullName if values.recipientFullName?
+    postcard.recipient.role = values.recipientRole if values.recipientRole?
+    postcard.recipient.email = values.recipientEmail if values.recipientEmail?
+
+    postcard.anonymous = values.anonymous if values.anonymous?
+
+    postcard.author = {} unless postcard.author?
+    postcard.author.name = {} unless postcard.author.name?
+    postcard.author.name.first = values.authorFirstName if values.authorFirstName?
+    postcard.author.name.last = values.authorLastName if values.authorLastName?
+    postcard.author.name.full = values.authorFullName if values.authorFullName?
+    postcard.author.role = values.authorRole if values.authorRole?
+    postcard.author.email = values.authorEmail if values.authorEmail?
+    postcard.author.user = req.user if not postcard.author.user? and req.user?
 
     switch values.schoolType
         when 'public'
@@ -63,7 +88,6 @@ updatePostcardValues = (postcard, values, req) ->
         when 'private'
             postcard.school.private = values.schoolId
 
-    postcard.author = req.user if not postcard.author? and req.user?
     postcard
 
 postPostcard = (req, res) ->

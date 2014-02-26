@@ -4,7 +4,7 @@ Q = require 'q'
 
 uri = process.env.MONGOLAB_URI or 
       process.env.MONGOHQ_URL or
-      'mongodb://localhost/stories'
+      'mongodb://localhost/thank-a-teacher'
 
 exports.connect = -> Q.ninvoke mongoose, 'connect', uri
 

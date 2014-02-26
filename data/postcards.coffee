@@ -12,11 +12,19 @@ exports.postcardSchema = postcardSchema = new mongoose.Schema
         default: false
     recipient:
         name: utils.makeName()
+        role: String
         email: String
     school:
         public: utils.makeRef 'PublicSchool'
         private: utils.makeRef 'PrivateSchool'
-    author: utils.makeRef 'User'
+    anonymous: 
+        type: Boolean
+        default: false
+    author:
+        user: utils.makeRef 'User'
+        name: utils.makeName()
+        role: String
+        email: String
     views:
         type: Number
         default: 0

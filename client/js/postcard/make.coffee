@@ -120,17 +120,13 @@ setup = ->
         window.VIDRECORDER.close = () -> $('#video-modal').modal('hide')
         console.log('attached handler')
 
-    $('#teacher_name').keyup ->
-        $('#mailto_name').val $(this).val()
-        return
+    linkTextFields = (field1, field2) ->
+        $(field1).keyup -> $(field2).val $(field1).val()
+        $(field2).keyup -> $(field1).val $(field2).val()
 
-    $('#author_name').keyup ->
-        $('#return_name').val $(this).val()
-        return
-
-    $('#author_role').keyup ->
-        $('#mailto_role').val $(this).val()
-        return
+    linkTextFields '#teacher_name', '#mailto_name'
+    linkTextFields '#author_name', '#return_name'
+    linkTextFields '#author_role', '#mailto_role'
 
     $('#mailto_school, #mailto_city_state, #mailto_street').focus ->
         $('#school_modal').modal('show')
@@ -146,22 +142,20 @@ setup = ->
 
     $('#send_button').click ->
         contents =
-            teacherName: $('#teacher_name').text()
-            teacherRole: $('#teacher_role').text()
-            message: $('#freetext').text()
-            authorName: $('#author_name').text()
-            authorRole: $('#author_role').text()
-            anonRequest: $('#checkbox_input').is(':checked')
-            returnName: $('#return_name').text()
-            returnEmail: $('#return_email').text()
-            mailtoName: $('#mailto_name').text()
-            mailtoRole: $('#mailto_role').text()
-            mailtoSchool: $('#mailto_school').text()
-            mailtoStreet: $('#mailto_street').text()
-            mailtoCityState: $('#mailto_city_state').text()
+            message: $('#freetext').val()
+            recipientFullName: $('#teacher_name').val()
+            recipientRole: $('#teacher_role').val()
+            authorFullName: $('#author_name').val()
+            authorRole: $('#author_role').val()
+            authorEmail: $('@return_email').val()
+            anonymous: $('#checkbox_input').is ':checked'
+            schoolId: g.school?._id
+            schoolType: g.school?.schoolType
             youtubeId: $('#youtube_id').val()
         console.log(contents)
         $.post '/postcards', contents
+            .done (result) -> console.log result
+            .fail (err) -> console.log err
 
     populateStateOption()
     findTransitions.state()

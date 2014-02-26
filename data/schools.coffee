@@ -140,7 +140,8 @@ exports.stateList = stateList = [
     'NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD',
     'TN','TX','UT','VT','VA','WA','WV','WI','WY','AS','GU','MP','PR','VI']
 
-exports.findBy = (match, fields='_id name state city zip mailingAddress') ->
+findByFields = '_id name state city zip mailingAddress schoolType'
+exports.findBy = (match, fields=findByFields) ->
     makeQuery = (model) -> 
         Q.ninvoke model.find(match).select(fields), 'exec'
     Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])
