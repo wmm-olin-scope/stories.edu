@@ -161,7 +161,7 @@ setup = ->
             mailtoCityState: $('#mailto_city_state').text()
             youtubeId: $('#youtube_id').val()
         console.log(contents)
-        $.post '/postcards', contents
+        #$.post '/postcards', contents
 
     populateStateOption()
     findTransitions.state()
