@@ -11,4 +11,4 @@ openVideo = (title, youtubeId) ->
 exports.setup = ->
     $('#story-carousel').find 'a'
         .css 'cursor', 'pointer'
-        .click -> openVideo 'Some story', '5-MZAXKk7Bw'
+        .click -> openVideo 'Some story', $(this).attr('data-youtube-id')

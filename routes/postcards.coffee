@@ -96,9 +96,8 @@ postPostcard = (req, res) ->
     return if failed
 
     postcard = updatePostcardValues new Postcard(), values, req
-    console.log values
 
-    Q.ninvoke(Postcard, 'save')
+    Q.ninvoke(postcard, 'save')
     .then ([postcard]) -> succeed res, {postcard}
     .done utils.failOnError(res)...
 

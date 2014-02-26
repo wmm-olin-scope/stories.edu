@@ -12,7 +12,7 @@ exports.fail = function(res, error) {
 exports.failOnError = function(res) {
     return [
         function() {}, // onFulfilled
-        function(err) { exports.fail(res, err); }
+        function(err) { console.log(err); exports.fail(res, err); }
     ];
 };
 
