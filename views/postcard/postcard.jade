@@ -1,20 +1,22 @@
 script(src='/javascripts/lib/typeahead.bundle.min.js')
 script(src='/javascripts/postcard.js')
+script(src='/javascripts/video-upload/thirdparty/lscache.js')
+script(src='/javascripts/video-upload/main.js')
 
 .row
     .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
         .hidden-sm.hidden-md.hidden-lg
-            h5 
+            h5
                 strong 1. Write a note...
         .well.postcard-container
             .col-md-7.col-sm-7.col-xs-12.content
                 #spacer
-                span.text-content 
-                    | I want to thank 
+                span.text-content
+                    | I want to thank
                     input.text-center(id='teacher_name' class="editable small" placeholder="Ms. Frizzle")
-                    |  for being an amazing  
+                    |  for being an amazing
                     input.text-center(id='teacher_role' class="editable small" placeholder="third grade teacher")
-                    | . 
+                    | .
                     br
                     br
                     textarea(id='freetext' placeholder="I learned more in my third grade class than in any other class in elementary school. Ms. Frizzle's unconventional approach -- giving us hands on experience with the material -- helped cement what she was trying to teach in my mind. I never had to study for a test in her class, I was learning through fun experiences.")
@@ -22,7 +24,26 @@ script(src='/javascripts/postcard.js')
                     br
                     .row
                         .col-md-5.col-sm-5.col-xs-3(style="margin-top: -50px; -webkit-transform:rotate(-20deg);")
-                            img(src="../images/stamp.png" height="100px" width="100px")
+                            #video-button-desktop(type='button')
+                                img(src="../images/stamp.png" height="100px" width="100px")
+                        #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
+                          .modal-dialog
+                            .modal-content
+                              .modal-header
+                                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                              .modal-body
+                                div
+                                    #webcam-widget
+
+            input(id='youtube_id' type='hidden')
+            #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                  .modal-body
+                    div
+                        #webcam-widget
                         .col-md-7.col-sm-7.col-xs-9.pull-right
                             span#signature
                                 p.pull-right
@@ -51,8 +72,8 @@ script(src='/javascripts/postcard.js')
         h5
             strong 2. Include an optional video message...
         center
-            button.btn.btn-default#video_button(type='button')
-                i.fa.fa-3x.fa-youtube-square 
+            button.btn.btn-default#video-button-mobile(type='button')
+                i.fa.fa-3x.fa-youtube-square
                 br
                 | Include an optional video message
         br
@@ -78,7 +99,7 @@ script(src='/javascripts/postcard.js')
                             input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School')
                             input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
                             input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
-        
+
 #school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog
         .modal-content
@@ -96,7 +117,7 @@ script(src='/javascripts/postcard.js')
               button.btn.btn-success.submit-button(type='submit') Search
 
           .modal-footer
-            button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal') 
+            button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal')
                 strong Close
-            button.btn.btn-success.btn-lg.submit-button(type='submit' id="modal_submit") 
+            button.btn.btn-success.btn-lg.submit-button(type='submit' id="modal_submit")
                 strong Submit
