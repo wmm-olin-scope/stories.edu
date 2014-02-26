@@ -21,31 +21,29 @@
                     .row
                         .col-md-5.col-sm-5.col-xs-3(style="margin-top: -50px; -webkit-transform:rotate(-20deg);")
                             #video-button-desktop(type='button')
-                                img(src="../images/video_stamp.png" height="130px" width="130px")
+                                img(src="../images/video_stamp.png" height="130px" width="130px" id="video_stamp")
                         #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
                           .modal-dialog
                             .modal-content
-                              .modal-header
-                                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
                               .modal-body
                                 div
                                     #webcam-widget
-
-            input(id='youtube_id' type='hidden')
-            #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
-              .modal-dialog
-                .modal-content
-                  .modal-header
-                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                  .modal-body
-                    div
-                        #webcam-widget
                         .col-md-7.col-sm-7.col-xs-9.pull-right
                             span#signature
                                 p.pull-right
                                     | Thanks for your hard work!
                                 input(id='author_name' class="editable pull-right signature" placeholder="Arnold Perlstein")
                                 input(id='author_role' class="editable pull-right signature" placeholder="In your 2008 Third Grade Class")
+
+            input(id='youtube_id' type='hidden')
+            #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
+              .modal-dialog
+                .modal-content
+                //  .modal-header
+                //    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                  .modal-body
+                    div
+                        #webcam-widget
             .col-md-5.col-sm-5.address.col-xs-5.hidden-xs
                 .row
                     .col-md-9.col-sm-9.col-xs-5
@@ -54,7 +52,7 @@
                             input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com")#return_email
                     .col-md-3.col-sm-3.col-xs-3.hidden-xs
                         #stamp_div.pull-right
-                            img.img-thumbnail.pull-right(src='http://placehold.it/80x100')
+                            img.pull-right(src='/images/teacher_stamp_good.png' height="100px" width="80px")
                 .row
                     .col-md-12.col-sm-12.col-xs-12
                         #address_well
@@ -118,5 +116,5 @@
           .modal-footer
             button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal')
                 strong Close
-            button.btn.btn-success.btn-lg.submit-button(type='submit', id="modal_submit", data_dismiss='modal') 
+            button.btn.btn-success.btn-lg.submit-button(id="modal_submit", data_dismiss='modal') 
                 strong Submit

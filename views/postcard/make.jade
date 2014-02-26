@@ -12,7 +12,8 @@ block content
     include postcard
     .row
         .col-md-12#send_button_div
-            button.btn.btn-success.btn-lg.submit-button(type='submit' id="send_button") 
+            button.btn.btn-success.btn-lg.submit-button(id="send_button", data-toggle="modal", data-target="#finished-modal") 
                 strong Send Postcard
             br
             br
+    include ../finished-modal

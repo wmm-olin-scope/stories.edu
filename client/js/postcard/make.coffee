@@ -156,7 +156,7 @@ setup = ->
         $.post '/postcards', contents
             .done (result) -> console.log result
             .fail (err) -> console.log err
-
+    
     populateStateOption()
     findTransitions.state()
 
