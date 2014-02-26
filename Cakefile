@@ -2,10 +2,11 @@ fs = require 'fs'
 
 {print} = require 'sys'
 {spawn, exec} = require 'child_process'
+uglify = require 'uglify-js'
+browserify = require 'browserify'
+coffeeify = require 'coffeeify'
 
-binDir = './node_modules/.bin'
-publicJS = 'public/javascripts'
-uglifyjs = "#{binDir}/uglifyjs"
+publicJs = 'public/javascripts'
 
 execAndLog = (cmd, done) ->
   exec cmd, (err, stdout, stderr) ->
@@ -14,38 +15,46 @@ execAndLog = (cmd, done) ->
     process.stderr.write err.toString() if err
     done? err
 
-buildDir = (dir, watch=no, done=null) ->
-  watch = if watch then '-w ' else ''
-  execAndLog "coffee -c #{watch} -o #{dir} #{dir}", done
+allBuilds = []
 
-allBuildDirs = ['routes', 'data', 'lib', 'public/javascripts', 'public/javascripts/schools', '.']
+vendorDir = 'client/js/vendor'
+vendorLibs = [# dependency order
+  'jquery', 'bootstrap', 'underscore', 'typeahead.bundle', 'summernote'
+]
 
-task 'build', 'Builds all dirs', ->
-  for dir in allBuildDirs
-    buildDir dir, no
+buildVendorLibs = ->
+  result = uglify.minify ("#{vendorDir}/#{lib}.js" for lib in vendorLibs),
+    outSourceMap: '/javascripts/vendor.js.map'
+  fs.writeFileSync "#{publicJs}/vendor.js", result.code
+  fs.writeFileSync "#{publicJs}/vendor.js.map", result.map
 
-task 'watch', 'Watches for changes in all dirs, builds', ->
-  for dir in allBuildDirs
-    buildDir dir, yes
-
-for dir in allBuildDirs
-  do (dir) ->
-    task "build:#{dir.replace '/', '_'}", "Build #{dir}", ->
-      buildDir "#{dir}", no
-    task "watch:#{dir.replace '/', '_'}", "Watches and builds #{dir}", ->
-      buildDir "#{dir}", yes
+allBuilds.push buildVendorLibs
+task 'build:vendor', 'Bundle vendor js libraries', buildVendorLibs
 
 
-bundleVendorLibs = ->
-  console.log "#{uglifyjs} client/js/vendor/*.js -c -e
-              -o #{publicJS}/vendor.js 
-              --source-map #{publicJS}/vendor.map 
-              --source-map-url /javascripts/vendor.map"
-  execAndLog "#{uglifyjs} client/js/vendor/*.js -c -e
-              -o #{publicJS}/vendor.js 
-              --source-map #{publicJS}/vendor.map 
-              --source-map-url /javascripts/vendor.map"
-task 'build:vendor', 'Bundle vendor js libraries', bundleVendorLibs
+buildClientModule = (name, rootFile, debug=yes) -> 
+  buildFunc = ->
+    b = browserify
+      entries: ["./client/js/#{rootFile}"]
+      extensions: ['.coffee']
+    b.transform coffeeify
+
+    output = fs.createWriteStream "#{publicJs}/#{name}.js"
+    b.bundle({debug}).pipe(output)
+
+  allBuilds.push buildFunc
+  return buildFunc
+
+task 'build:home', 'Build the home page js', 
+  buildClientModule 'home', 'home/index.coffee'
+task 'build:make-postcard', 'Build the make postcard page js', 
+  buildClientModule 'make-postcard', 'postcard/make.coffee'
+task 'build:prompts', 'Build the prompts page js', 
+  buildClientModule 'prompts', 'prompts/index.coffee'
+
+
+task 'build', 'Build all the things', -> 
+  build() for build in allBuilds
 
 task 'server', 'Starts the node server', ->
   execAndLog 'coffee app.coffee --nodejs'

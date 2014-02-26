@@ -12,10 +12,13 @@ setupFacebook = ->
             caption: 'Thank a teacher!'
 
 setupTwitter = ->
-    $('#share-twitter').attr('href', "https://twitter.com/share?url=#{encodeURIComponent siteUrl}&via=wmmedu")
-                       .attr('target', '_blank')
+    encoded = encodeURIComponent siteUrl
+    twitterUrl = "https://twitter.com/share?url=#{encoded}&via=wmmedu"
+    $('#share-twitter')
+        .attr 'href', twitterUrl
+        .attr 'target', '_blank'
 
-$ ->
+exports.setup = ->
     setupFacebook()
     setupTwitter()
     
