@@ -3,7 +3,7 @@ require('./data/db').connect()
 
 express = require 'express'
 routes = require './routes'
-auth = require './lib/auth'
+auth = require './routes/auth'
 http = require 'http'
 path = require 'path'
 passport = require 'passport'

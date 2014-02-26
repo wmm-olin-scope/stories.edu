@@ -8,6 +8,7 @@ openVideo = (title, youtubeId) ->
     modal.find('iframe').attr 'src', youtubeIdToUrl(youtubeId)
     modal.modal 'show'
 
-$ ->
-    $('#story-carousel').find('a').css('cursor', 'pointer').click ->
-        openVideo 'Some story', '5-MZAXKk7Bw'
+exports.setup = ->
+    $('#story-carousel').find 'a'
+        .css 'cursor', 'pointer'
+        .click -> openVideo 'Some story', '5-MZAXKk7Bw'

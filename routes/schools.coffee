@@ -1,6 +1,6 @@
 
 schools = require '../data/schools'
-{succeed, fail} = utils = require '../lib/utils'
+{succeed, fail} = utils = require './utils'
 Q = require 'q'
 
 stateHash = {}

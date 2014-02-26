@@ -2,8 +2,8 @@
 {Postcard} = require '../data/postcards'
 {User} = require '../data/users'
 {stateList} = require '../data/schools'
-auth = require '../lib/auth'
-{fail, succeed} = utils = require '../lib/utils'
+auth = require './auth'
+{fail, succeed} = utils = require './utils'
 _ = require 'underscore'
 Q = require 'q'
 

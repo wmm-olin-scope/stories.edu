@@ -186,7 +186,7 @@ does_meet_requirements = ->
         return true
 
 
-load = ->
+exports.setup = ->
     if not config.OAUTH2_CLIENT_ID or not config.DEVELOPER_KEY
         console.log("NOT CONFIGURED!")
     else
@@ -194,8 +194,3 @@ load = ->
         if does_meet_requirements
             auth.initAuth()
             webcam.init()
-
-# @Chase YouTube Example uses lscache. Should we integrate that?
-
-$ ->
-    load()
