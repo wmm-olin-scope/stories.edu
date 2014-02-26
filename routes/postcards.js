@@ -99,12 +99,13 @@ updatePostcardValues = function(postcard, values, req) {
 
 postPostcard = function(req, res) {
   var failed, postcard, values, _ref1;
+  console.log("POSTCARD");
   _ref1 = utils.checkAll(req, res, _.omit(checks, 'postcardId')), failed = _ref1[0], values = _ref1[1];
   if (failed) {
     return;
   }
   postcard = updatePostcardValues(new Postcard(), values, req);
-  return Q.ninvoke(postcard, 'save'.then(function(_arg) {
+  return Q.ninvoke(Postcard, 'save').then(function(_arg) {
     var postcard;
     postcard = _arg[0];
     return succeed(res, {
@@ -112,7 +113,7 @@ postPostcard = function(req, res) {
     }["catch"](function(err) {
       return fail(res, err.done());
     }));
-  }));
+  });
 };
 
 updatePostcard = function(req, res) {
@@ -121,7 +122,7 @@ updatePostcard = function(req, res) {
   if (failed) {
     return;
   }
-  return Q.ninvoke(Postcard, 'findById', values.postcardId.then(function(postcard) {
+  return Q.ninvoke(Postcard, 'findById', values.postcardId).then(function(postcard) {
     return Q.ninvoke(updatePostcardValues(postcard, values, req), 'save');
   }).then(function(_arg) {
     var postcard;
@@ -131,7 +132,7 @@ updatePostcard = function(req, res) {
     }["catch"](function(err) {
       return fail(res, err.done());
     }));
-  }));
+  });
 };
 
 getPostcard = function(req, res) {

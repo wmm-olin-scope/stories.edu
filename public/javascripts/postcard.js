@@ -168,6 +168,9 @@ setup = function() {
   $('#author_name').keyup(function() {
     $('#return_name').val($(this).val());
   });
+  $('#author_role').keyup(function() {
+    $('#mailto_role').val($(this).val());
+  });
   $('#mailto_school, #mailto_city_state, #mailto_street').focus(function() {
     $('#school_modal').modal('show');
   });
@@ -211,7 +214,14 @@ setup = function() {
       "mailto_city_state": mailto_city_state
     };
     console.log(contents);
-    return contents;
+    $.post('/postcards', contents, function(err, data) {
+      console.log("Post request sent");
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
   });
   populateStateOption();
   findTransitions.state();

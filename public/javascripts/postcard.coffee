@@ -120,6 +120,10 @@ setup = ->
         $('#return_name').val $(this).val()
         return
 
+    $('#author_role').keyup ->
+        $('#mailto_role').val $(this).val()
+        return
+
     $('#mailto_school, #mailto_city_state, #mailto_street').focus ->
         $('#school_modal').modal('show')
         return
@@ -152,7 +156,14 @@ setup = ->
         "mailto_role": mailto_role, "mailto_school": mailto_school, 
         "mailto_street": mailto_street, "mailto_city_state": mailto_city_state}
         console.log(contents)
-        return contents
+        $.post '/postcards', contents, (err, data) ->
+            console.log "Post request sent"
+            if err
+                console.log(err);
+            else
+                console.log(data);
+            return
+        return
 
     populateStateOption()
     findTransitions.state()
