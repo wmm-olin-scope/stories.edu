@@ -37,6 +37,7 @@ body {
     background-image: none;
     border: none;
     text-shadow: none;
+    color: white;
 }
 
 .submit-button{
@@ -264,4 +265,23 @@ textarea:focus { outline: none; }
 
 #modal_header {
     color: black;
+}
+
+#share{
+    background-color: #8dca84;
+    background-image: none;
+    border: none;
+    text-shadow: none;
+    color: white;
+}
+
+.modal-content{
+    background-color: #016585;
+}
+
+#share-text{
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    border-radius: 5px;
 }
