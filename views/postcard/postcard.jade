@@ -9,19 +9,24 @@
                 #spacer
                 span.text-content
                     | I want to thank
-                    input.text-center(id='teacher_name' class="editable small" placeholder="Ms. Frizzle")
+                    input.text-center(id='teacher_name' class="editable small" placeholder="Ms. Frizzle" required='true')
                     |  for being an amazing
-                    input.text-center(id='teacher_role' class="editable small" placeholder="third grade teacher")
+                    input.text-center(id='teacher_role' class="editable small" placeholder="third grade teacher" required='true')
                     | .
                     br
                     br
-                    textarea(id='freetext' placeholder="I learned more in my third grade class than in any other class in elementary school. Ms. Frizzle's unconventional approach -- giving us hands on experience with the material -- helped cement what she was trying to teach in my mind. I never had to study for a test in her class, I was learning through fun experiences.")
+                    textarea(id='freetext' required='true' placeholder="I learned more in my third grade class than in any other class in elementary school. Ms. Frizzle's unconventional approach -- giving us hands on experience with the material -- helped cement what she was trying to teach in my mind. I never had to study for a test in her class, I was learning through fun experiences.")
                     br
                     br
                     .row
-                        .col-md-5.col-sm-5.col-xs-3(style="margin-top: -50px; -webkit-transform:rotate(-20deg);")
-                            #video-button-desktop(type='button')
-                                img(src="../images/video_stamp.png" height="130px" width="130px" id="video_stamp")
+                        .col-md-5.col-sm-5.col-xs-3
+                            button.btn.btn-warning#video-button-desktop(type='button')
+                                strong
+                                    | Include a video
+                                br
+                                strong
+                                    | response
+                                //img(src="../images/video_stamp.png" height="130px" width="130px" id="video_stamp")
                         #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
                           .modal-dialog
                             .modal-content
@@ -32,8 +37,8 @@
                             span#signature
                                 p.pull-right
                                     | Thanks for your hard work!
-                                input(id='author_name' class="editable pull-right signature" placeholder="Arnold Perlstein")
-                                input(id='author_role' class="editable pull-right signature" placeholder="In your 2008 Third Grade Class")
+                                input(id='author_name' required='true' class="editable pull-right signature" placeholder="Arnold Perlstein")
+                                input(id='author_role' required='true' class="editable pull-right signature" placeholder="In your 2008 Third Grade Class")
 
             input(id='youtube_id' type='hidden')
             #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
@@ -48,19 +53,19 @@
                 .row
                     .col-md-9.col-sm-9.col-xs-5
                         #return_address(style="font-size: 14px")
-                            input.underline.full-width(placeholder="Arnold Perlstein")#return_name
-                            input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com")#return_email
+                            input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
+                            input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
                     .col-md-3.col-sm-3.col-xs-3.hidden-xs
                         #stamp_div.pull-right
                             img.pull-right(src='/images/teacher_stamp_good.png' height="100px" width="80px")
                 .row
                     .col-md-12.col-sm-12.col-xs-12
                         #address_well
-                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle')
-                            input.underline.full-width#mailto_role(placeholder='2008 Third Grade Class')
-                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School')
-                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
-                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
+                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
+                            input.underline.full-width#mailto_role(placeholder='2008 Third Grade Class' required='true')
+                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
+                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
+                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
 .row.hidden-sm.hidden-md.hidden-lg
     .col-xs-12
         h5
@@ -81,18 +86,18 @@
                 .row
                     .col-xs-9
                         #return_address(style="font-size: 14px")
-                            input.underline.full-width(placeholder="Arnold Perlstein")#return_name
+                            input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
                             br
-                            input.underline.full-width(placeholder="Arnold@gmail.com")#return_email
+                            input.underline.full-width(placeholder="Arnold@gmail.com" required='true')#return_email
                     .col-xs-3
                         img.pull-right(src='http://placehold.it/40x60' style="margin-right: -25px; margin-top: -10px;")
                 .row
                     .col-md-12.col-sm-12.col-xs-10.col-xs-offset-1(style="padding-top: 70px; padding-bottom: 20px")
-                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle')
-                            input.underline.full-width#mailto_role(placeholder='2008 Third Grade Class')
-                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School')
-                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.')
-                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191')
+                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
+                            input.underline.full-width#mailto_role(placeholder='2008 Third Grade Class' required='true')
+                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
+                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
+                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
 
 #school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog
