@@ -33,6 +33,17 @@
       }
     });
     schoolsearch.initialize();
+    $('#video-button-desktop').click(function() {
+      console.log('click on vid buttn');
+      $('#video-modal').modal();
+      if (window.VIDRECORDER == null) {
+        window.VIDRECORDER = {};
+      }
+      window.VIDRECORDER.close = function() {
+        return $('#video-modal').modal('hide');
+      };
+      return console.log('attached handler');
+    });
     $('#teacher_name').keyup(function() {
       $('#mailto_name').val($(this).val());
     });
@@ -43,7 +54,7 @@
       $('#school_modal').modal('show');
     });
     $('#send_button').click(function() {
-      var anon_request, author_name, author_role, contents, mailto_city_state, mailto_name, mailto_role, mailto_school, mailto_street, message, return_email, return_name, teacher_name, teacher_role;
+      var anon_request, author_name, author_role, contents, mailto_city_state, mailto_name, mailto_role, mailto_school, mailto_street, message, return_email, return_name, teacher_name, teacher_role, youtube_id;
       teacher_name = $('#teacher_name').text();
       teacher_role = $('#teacher_role').text();
       message = $('#freetext').text();
@@ -57,6 +68,7 @@
       mailto_school = $('#mailto_school').text();
       mailto_street = $('#mailto_street').text();
       mailto_city_state = $('#mailto_city_state').text();
+      youtube_id = $('#youtube_id').val();
       contents = {
         "teacher_name": teacher_name,
         "teacher_role": teacher_role,
@@ -70,7 +82,8 @@
         "mailto_role": mailto_role,
         "mailto_school": mailto_school,
         "mailto_street": mailto_street,
-        "mailto_city_state": mailto_city_state
+        "mailto_city_state": mailto_city_state,
+        "youtubeId": youtube_id
       };
       console.log(contents);
       return contents;

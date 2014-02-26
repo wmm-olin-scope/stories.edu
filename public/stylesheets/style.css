@@ -189,11 +189,7 @@ body {
     width: 95%;
 }
 
-#video_button_div{
-    text-align: center
-}
-
-#video_button{
+#video-button-mobile{
     font-size:12px;
     background-image: none;
     background-color: #808284;
@@ -259,6 +255,11 @@ textarea{
 input:focus { outline: none; }
 textarea:focus { outline: none; }
 
+.modal-dialog {
+    width: 680px;
+    margin: 30px auto;
+}
+
 .text-center {
     text-align: center;
 }
@@ -266,6 +267,7 @@ textarea:focus { outline: none; }
 #modal_header {
     color: black;
 }
+<<<<<<< HEAD
 
 #share{
     background-color: #8dca84;
@@ -285,3 +287,5 @@ textarea:focus { outline: none; }
     padding-bottom: 50px;
     border-radius: 5px;
 }
+=======
+>>>>>>> e1ec6c95eca06e1dabcf6cb8bb4aabcfe9d0dcdd

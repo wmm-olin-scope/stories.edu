@@ -23,59 +23,49 @@
   };
 
   getCities = function(req, res) {
+    var _ref2;
     state = req.params.state;
-    console.log(state);
     if (!(state in stateHash)) {
       return fail(res, 'No such state');
     }
-    return Q.ninvoke(schools.State, 'findById', state).then(function(state) {
+    return (_ref2 = Q.ninvoke(schools.State, 'findById', state).then(function(state) {
       return res.json(state.cities);
-    })["catch"](function(err) {
-      return fail(res, err);
-    });
+    })).done.apply(_ref2, utils.failOnError(res));
   };
 
   findByCity = function(req, res) {
-    var city, _ref2;
+    var city, _ref2, _ref3;
     _ref2 = req.params, state = _ref2.state, city = _ref2.city;
-    console.log(state, city);
     if (!(state in stateHash)) {
       return fail(res, 'No such state');
     }
-    return schools.findBy({
+    return (_ref3 = schools.findBy({
       state: state,
       city: city
     }).then(function(schools) {
       return res.json(schools);
-    })["catch"](function(err) {
-      return fail(res, err);
-    });
+    })).done.apply(_ref3, utils.failOnError(res));
   };
 
   findByRegex = function(req, res) {
-    var name, text;
+    var name, text, _ref2;
     text = req.query.text;
     name = new RegExp('.*' + text.toUpperCase() + '.*');
-    console.log(text);
-    return schools.findBy({
+    return (_ref2 = schools.findBy({
       name: name
     }).then(function(schools) {
       return res.json(schools);
-    })["catch"](function(err) {
-      return fail(res, err);
-    });
+    })).done.apply(_ref2, utils.failOnError(res));
   };
 
   findByZip = function(req, res) {
-    var zip;
+    var zip, _ref2;
     zip = req.params.zip;
-    return schools.findBy({
+    return (_ref2 = schools.findBy({
       zip: zip
     }).then(function(schools) {
       return res.json(schools);
-    })["catch"](function(err) {
-      return fail(res, err);
-    });
+    })).done.apply(_ref2, utils.failOnError(res));
   };
 
   setupDatabase = function(req, res) {
