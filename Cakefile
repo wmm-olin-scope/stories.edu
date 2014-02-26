@@ -53,6 +53,8 @@ task 'build:make-postcard', 'Build the make postcard page js',
 task 'build:prompts', 'Build the prompts page js', 
   buildClientModule 'prompts', 'prompts/index.coffee'
 
+task 'data', 'Rebuild the database', ->
+  execAndLog 'coffee data/schools.coffee'
 
 task 'build', 'Build all the things', -> 
   build() for build in allBuilds

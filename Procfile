@@ -1,1 +1,1 @@
-web: node_modules/.bin/cake build server
+web: node_modules/.bin/cake build data server
