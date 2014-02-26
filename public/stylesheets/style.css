@@ -270,7 +270,6 @@ textarea:focus { outline: none; }
 #modal_header {
     color: black;
 }
-<<<<<<< HEAD
 
 #share{
     background-color: #8dca84;
@@ -290,5 +289,7 @@ textarea:focus { outline: none; }
     padding-bottom: 50px;
     border-radius: 5px;
 }
-=======
->>>>>>> e1ec6c95eca06e1dabcf6cb8bb4aabcfe9d0dcdd
+
+#school-select {
+    height: 175px;
+}
