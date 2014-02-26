@@ -293,3 +293,12 @@ textarea:focus { outline: none; }
 #school-select {
     height: 175px;
 }
+
+.modal-content{
+    background-color: #FFFFFF;
+}
+
+#video_stamp{
+    cursor: pointer; 
+    cursor: hand;
+}
