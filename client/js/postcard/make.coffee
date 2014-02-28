@@ -126,7 +126,6 @@ setup = ->
 
     linkTextFields '#teacher_name', '#mailto_name'
     linkTextFields '#author_name', '#return_name'
-    linkTextFields '#author_role', '#mailto_role'
 
     $('#mailto_school, #mailto_city_state, #mailto_street').focus ->
         $('#school_modal').modal('show')
