@@ -71,8 +71,8 @@ body {
     padding-top: 30px; 
     height: 0; 
     overflow: hidden; 
-    min-height: 313px;
-    min-width: 555px;
+    min-height: 282px;
+    min-width: 500px;
     vertical-align: middle;
 }   
 
@@ -375,4 +375,8 @@ textarea:focus { outline: none; }
 
 #fadedtext{
     color: #737373;
+}
+
+#frontdisplay p{
+    font-size: 16px;
 }
