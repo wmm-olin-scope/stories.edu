@@ -151,6 +151,8 @@ getPostcards = (req, res) ->
         .done utils.failOnError(res)...
 
 
+getBlank = (req, res) ->
+    res.render 'postcard/template'
 
 exports.create = (app) ->
     app.get '/make-postcard', getMakePostCard
@@ -160,3 +162,4 @@ exports.create = (app) ->
     app.post '/postcards/:postcardId', updatePostcard
     app.get '/postcards/:postcardId', getPostcard
     app.get '/postcards', getPostcards
+    app.get '/template', getBlank
