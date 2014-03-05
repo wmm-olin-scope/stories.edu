@@ -146,7 +146,9 @@ getPostcards = (req, res) ->
         .then (postcards) -> succeed res, {postcards}
         .done utils.failOnError(res)...
     else
-        fail res, {message: 'Unsupported query'}
+        Q.ninvoke Postcard, 'find', {}
+        .then (postcards) -> succeed res, {postcards}
+        .done utils.failOnError(res)...
 
 
 
