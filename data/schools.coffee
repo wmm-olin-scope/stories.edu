@@ -94,22 +94,16 @@ makeSchoolSchema = (fields, schoolType) -> new mongoose.Schema do ->
     schema
 
 publicSchoolSchema = makeSchoolSchema publicFields, 'public'
-publicSchoolSchema.index
-    name: 1
-    state: 1
-    city: 1
-    zip: 1
-    mailingAddress: 1
+publicSchoolSchema.index {state: 1, city: 1}
+publicSchoolSchema.index {zip: 1}
+
 exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
                                                      publicSchoolSchema
 
 privateSchoolSchema = makeSchoolSchema privateFields, 'private'
-privateSchoolSchema.index
-    name: 1
-    state: 1
-    city: 1
-    zip: 1
-    mailingAddress: 1
+publicSchoolSchema.index {state: 1, city: 1}
+publicSchoolSchema.index {zip: 1}
+
 exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool', 
                                                        privateSchoolSchema
 
