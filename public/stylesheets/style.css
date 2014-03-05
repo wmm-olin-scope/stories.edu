@@ -1,7 +1,6 @@
 body { 
     padding-top: 100px; 
     font-family: 'Dosis', sans-serif;
-    background-color: #016585;
     color: black;
 } /* necessary for fixed-top navbar
 
@@ -33,14 +32,13 @@ body {
 }
 
 #saythanks{
-    background-color: #8dca84;
     background-image: none;
     border: none;
     text-shadow: none;
     color: white;
-    height: 80px;
-    /*width: 300px;*/
-    font-size: 35px;
+    background-color: #F37533;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 #video-button-desktop{
@@ -73,6 +71,9 @@ body {
     padding-top: 30px; 
     height: 0; 
     overflow: hidden; 
+    min-height: 313px;
+    min-width: 555px;
+    vertical-align: middle;
 }   
 .video-container iframe, 
 .video-container object, 
@@ -172,10 +173,6 @@ body {
 	margin-bottom: -20px;
 }
 
-#story-carousel{
-	margin-top: 20px;
-}
-
 #prompt-text{
 	font-size: 18px;
     color: white;
@@ -230,10 +227,6 @@ body {
 
 .postcard-container{
     background-color: #F0F0F0;
-}
-
-h1, h2, h3, h4, h5, h6{
-    color: white; 
 }
 
 input{
@@ -312,4 +305,59 @@ textarea:focus { outline: none; }
 #video_stamp{
     cursor: pointer; 
     cursor: hand;
+}
+
+#frontdisplay{
+    padding: 30px;
+    background-color: #016585;
+    margin-bottom: 20px;
+    min-height: 350px;
+    color: white;
+}
+
+
+
+#displaysharebutton{
+    background-image: none;
+    border: none;
+    text-shadow: none;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #8DCA84;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.thumbnail{
+    background-color:#003445;
+    padding: 2px;
+    border-radius: 0px;
+    border: 0px;
+}
+
+#tagline{
+    color: white;
+}
+
+.panel-heading{
+    background-color:#003445!important;
+    border-radius: 0px;
+    border: 0px;
+}
+
+.panel-heading h3{
+    color: white;
+}
+
+.panel-body{
+    background-color:   #B2DAE6;
+    border-radius: 0px;
+}
+
+.panel{
+    border-radius: 0px;
+    border: 0px;
 }
