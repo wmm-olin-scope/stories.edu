@@ -1,7 +1,8 @@
 body { 
-    padding-top: 100px; 
+    padding-top: 100px;
+    padding-bottom: 100px;
     font-family: 'Dosis', sans-serif;
-    background-color: #016585;
+    background-color: #FFFFFF;
     color: black;
 } /* necessary for fixed-top navbar
 
@@ -229,11 +230,11 @@ body {
 }
 
 .postcard-container{
-    background-color: #F0F0F0;
+    background-color: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: white; 
+    color: black; 
 }
 
 input{
@@ -312,4 +313,8 @@ textarea:focus { outline: none; }
 #video_stamp{
     cursor: pointer; 
     cursor: hand;
+}
+
+#make-postcard.jumbotron {
+    background-color: #FFFFFF; 
 }

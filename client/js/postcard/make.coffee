@@ -162,5 +162,4 @@ setup = ->
 
 $ ->
     require('../share-buttons').setup()
-    require('./video-upload').setup()
-    setup()
+    #setup()
