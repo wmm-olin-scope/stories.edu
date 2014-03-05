@@ -20,11 +20,21 @@ br
 #story-modal.modal.bs-modal-lg.fade(role='dialog', tabindex='-1', aria-labelledby='story-modal', aria-hidden='true')
     .modal-dialog
         .modal-content
-            .modal-header
-                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                h4.modal-title#story-modal-title Story
+            //.modal-header
+            //    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
 
             .modal-body
-                .video-container(style='padding-bottom: 56.25%')
-                    iframe(width="640", height="340", src="", 
-                           frameborder="0", allowfullscreen)
+                .row
+                    .col-md-8
+                        .video-container.video-container-small(style='padding-bottom: 56.25%')
+                            iframe(width="540", height="240", src="", 
+                                   frameborder="0", allowfullscreen)
+                    .col-md-4
+                        h3 
+                            strong First, Last Name
+                        h6
+                            strong School Attended
+                        h6#fadedtext
+                            strong City, State
+                        br
+                        p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet consectetur diam, eu blandit sapien. Nam id turpis vel sapien ultricies rutrum nec eget nulla." 

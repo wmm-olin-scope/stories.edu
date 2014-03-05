@@ -75,6 +75,17 @@ body {
     min-width: 555px;
     vertical-align: middle;
 }   
+
+.video-container-small {
+    position: relative;  
+    padding-top: 30px; 
+    height: 0; 
+    overflow: hidden; 
+    min-width: 400px;
+    min-height: 225px;
+    vertical-align: middle;
+}   
+
 .video-container iframe, 
 .video-container object, 
 .video-container embed { 
@@ -360,4 +371,8 @@ textarea:focus { outline: none; }
 .panel{
     border-radius: 0px;
     border: 0px;
+}
+
+#fadedtext{
+    color: #737373;
 }
