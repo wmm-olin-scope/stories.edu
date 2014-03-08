@@ -3,6 +3,7 @@ body {
     font-family: 'Dosis', sans-serif;
     background-color: #016585;
     color: black;
+    min-width: 780px !important;
 } /* necessary for fixed-top navbar
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */

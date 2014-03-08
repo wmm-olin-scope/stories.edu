@@ -1,11 +1,8 @@
 
 .row
     .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
-        .hidden-sm.hidden-md.hidden-lg
-            h5
-                strong 1. Write a note...
         .well.postcard-container
-            .col-md-7.col-sm-7.col-xs-12.content
+            .col-xs-7.content
                 #spacer
                 span.text-content
                     | I want to thank
@@ -19,20 +16,6 @@
                     br
                     br
                     .row
-                        .col-md-5.col-sm-5.col-xs-3
-                            button.btn.btn-warning#video-button-desktop(type='button')
-                                strong
-                                    | Include a video
-                                br
-                                strong
-                                    | response
-                                //img(src="../images/video_stamp.png" height="130px" width="130px" id="video_stamp")
-                        #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
-                          .modal-dialog
-                            .modal-content
-                              .modal-body
-                                div
-                                    #webcam-widget
                         .col-md-7.col-sm-7.col-xs-9.pull-right
                             span#signature
                                 p.pull-right
@@ -49,49 +32,18 @@
                   .modal-body
                     div
                         #webcam-widget
-            .col-md-5.col-sm-5.address.col-xs-5.hidden-xs
+            .col-xs-5.address
                 .row
-                    .col-md-9.col-sm-9.col-xs-5
+                    .col-md-9.col-sm-9.col-xs-9
                         #return_address(style="font-size: 14px")
                             input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
                             input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
-                    .col-md-3.col-sm-3.col-xs-3.hidden-xs
+                    .col-md-3.col-sm-3.col-xs-3
                         #stamp_div.pull-right
                             img.pull-right(src='/images/teacher_stamp_good.png' height="100px" width="80px")
                 .row
                     .col-md-12.col-sm-12.col-xs-12
                         #address_well
-                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
-                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
-                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
-                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
-.row.hidden-sm.hidden-md.hidden-lg
-    .col-xs-12
-        h5
-            strong 2. Include an optional video message...
-        center
-            button.btn.btn-default#video-button-mobile(type='button')
-                i.fa.fa-3x.fa-youtube-square
-                br
-                | Include an optional video message
-        br
-
-.row.hidden-sm.hidden-md.hidden-lg
-    .col-xs-12
-        h5
-            strong 3. Address the note...
-        .well.envolope-container
-            .col-xs-12.content
-                .row
-                    .col-xs-9
-                        #return_address(style="font-size: 14px")
-                            input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
-                            br
-                            input.underline.full-width(placeholder="Arnold@gmail.com" required='true')#return_email
-                    .col-xs-3
-                        img.pull-right(src='http://placehold.it/40x60' style="margin-right: -25px; margin-top: -10px;")
-                .row
-                    .col-md-12.col-sm-12.col-xs-10.col-xs-offset-1(style="padding-top: 70px; padding-bottom: 20px")
                             input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
                             input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
                             input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
