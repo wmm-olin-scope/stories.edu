@@ -1,32 +1,40 @@
-.row
-    center
-        br
-        a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
-            strong Send A Note To Your Teacher
-        br
-        br
-#story-carousel.row
-    .col-sm-6.col-md-3
-        a.thumbnail(data-youtube-id='uoMVAe7FB1A')
-            img(src='http://img.youtube.com/vi/uoMVAe7FB1A/0.jpg' height="200" width="300")
-    .col-sm-6.col-md-3
-        a.thumbnail(data-youtube-id='11KSX1bqYRc')
-            img(src='http://img.youtube.com/vi/11KSX1bqYRc/0.jpg' height="200" width="300")
-    .col-sm-6.col-md-3
-        a.thumbnail(data-youtube-id='sLDWH77fLm0')
-            img(src='http://img.youtube.com/vi/sLDWH77fLm0/0.jpg' height="200" width="300")
-    .col-sm-6.col-md-3
-        a.thumbnail(data-youtube-id='OYVWnlrJcjM')
-            img(src='http://img.youtube.com/vi/OYVWnlrJcjM/0.jpg' height="200" width="300")
+br
+.panel.panel-default#story-carousel
+    .panel-heading
+        h3.panel-title
+            strong More cool videos to share
+    .panel-body 
+        .col-sm-6.col-md-3
+            a.thumbnail(data-youtube-id='uoMVAe7FB1A')
+                img(src='/images/aarti_video_thumbnail.png' height="200" width="300")
+        .col-sm-6.col-md-3
+            a.thumbnail(data-youtube-id='11KSX1bqYRc')
+                img(src='/images/john_geddes_video_thumbnail.png' height="200" width="300")
+        .col-sm-6.col-md-3
+            a.thumbnail(data-youtube-id='sLDWH77fLm0')
+                img(src='/images/debbie_video_thumbnail.png' height="200" width="300")
+        .col-sm-6.col-md-3
+            a.thumbnail(data-youtube-id='OYVWnlrJcjM')
+                img(src='/images/john_paton_video_thumbnail.png' height="200" width="300")
 
 #story-modal.modal.bs-modal-lg.fade(role='dialog', tabindex='-1', aria-labelledby='story-modal', aria-hidden='true')
     .modal-dialog
         .modal-content
-            .modal-header
-                button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-                h4.modal-title#story-modal-title Story
+            //.modal-header
+            //    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
 
             .modal-body
-                .video-container(style='padding-bottom: 56.25%')
-                    iframe(width="640", height="360", src="", 
-                           frameborder="0", allowfullscreen)
+                .row
+                    .col-md-8
+                        .video-container.video-container-small(style='padding-bottom: 56.25%')
+                            iframe(width="540", height="240", src="", 
+                                   frameborder="0", allowfullscreen)
+                    .col-md-4
+                        h3 
+                            strong First, Last Name
+                        h6
+                            strong School Attended
+                        h6#fadedtext
+                            strong City, State
+                        br
+                        p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet consectetur diam, eu blandit sapien. Nam id turpis vel sapien ultricies rutrum nec eget nulla." 
