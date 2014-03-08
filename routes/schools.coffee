@@ -14,8 +14,7 @@ getCities = (req, res) ->
 
     # no succeed() for bloodhound
     Q.ninvoke(schools.State, 'findById', state)
-    .then (state) -> 
-        res.json state.cities
+    .then (state) -> res.json state.cities
     .done utils.failOnError(res)...
 
 findByCity = (req, res) ->
@@ -23,19 +22,8 @@ findByCity = (req, res) ->
     return fail res, 'No such state' if state not of stateHash
 
     # no succeed() for bloodhound
-    schools.findBy({state, city})
-    .then (schools) ->
-        res.json schools
-    .done utils.failOnError(res)...
-
-findByState = (req, res) ->
-    {state} = req.params
-    return fail res, 'No such state' if state not of stateHash
-
-    # no succeed() for bloodhound
-    schools.findBy({state})
-    .then (schools) ->
-        res.json schools
+    schools.findBy {state, city}
+    .then (schools) -> res.json schools
     .done utils.failOnError(res)...
 
 findByRegex = (req, res) ->
@@ -43,16 +31,14 @@ findByRegex = (req, res) ->
     name = new RegExp '.*' + text.toUpperCase() + '.*'
 
     schools.findBy {name}
-    .then (schools) ->
-        res.json schools
+    .then (schools) -> res.json schools
     .done utils.failOnError(res)...
 
 findByZip = (req, res) ->
     {zip} = req.params
     # no succeed() for bloodhound
     schools.findBy {zip}
-    .then (schools) ->
-        res.json schools
+    .then (schools) -> res.json schools
     .done utils.failOnError(res)...
 
 setupDatabase = (req, res) ->
@@ -66,6 +52,5 @@ exports.create = (app) ->
     app.get '/schools/states', getStates
     app.get '/schools/cities/:state', getCities
     app.get '/schools/by-city/:state/:city', findByCity
-    app.get '/schools/by-state/:state', findByState
     app.get '/schools/by-zip/:zip', findByZip
     app.get '/schools/by-name', findByRegex
