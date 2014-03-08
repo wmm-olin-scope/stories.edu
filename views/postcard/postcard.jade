@@ -1,4 +1,9 @@
 
+style.
+    body {
+        min-width: 768px !important;
+    }
+
 .row
     .col-md-8.col-md-offset-2.col-sm-12.col-xs-12
         .well.postcard-container
@@ -16,7 +21,7 @@
                     br
                     br
                     .row
-                        .col-md-7.col-sm-7.col-xs-9.pull-right
+                        .col-xs-7.pull-right
                             span#signature
                                 p.pull-right
                                     | Thank you for your hard work,
@@ -34,15 +39,15 @@
                         #webcam-widget
             .col-xs-5.address
                 .row
-                    .col-md-9.col-sm-9.col-xs-9
+                    .col-xs-9
                         #return_address(style="font-size: 14px")
                             input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
                             input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
-                    .col-md-3.col-sm-3.col-xs-3
+                    .col-xs-3
                         #stamp_div.pull-right
                             img.pull-right(src='/images/teacher_stamp_good.png' height="100px" width="80px")
                 .row
-                    .col-md-12.col-sm-12.col-xs-12
+                    .col-xs-12
                         #address_well
                             input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
                             input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
