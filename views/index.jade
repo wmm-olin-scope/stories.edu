@@ -4,9 +4,25 @@ block content
     script(src='/javascripts/home.js')
 
     .row.movie-container
-        .col-md-6.col-md-offset-3
-            include seed-movie
-    center
-        h3
-            strong You are who you are because your teachers cared.
+        .col-md-10.col-md-offset-1#frontdisplay
+            .col-md-5
+                include seed-movie
+                br
+                a.btn-default(role="button")#displaysharebutton
+                    i.fa.fa-facebook &nbsp;&nbsp;
+                    | Share on Facebook
+                a.btn-default(role="button")#displaysharebutton
+                    i.fa.fa-twitter &nbsp;&nbsp;
+                    | Share on Twitter
+            .col-md-5.col-md-offset-2
+                h3#tagline
+                    strong We have all been students.
+                p Let's take the time to thank the people who helped us become who we are today.
+                br
+                h4#tagline 
+                    strong Join the 12,938 others who have thanked their teachers.
+                br
+                br
+                a.btn-warning.btn-lg(role="button" href="/make-postcard")#saythanks
+                    strong Send A Note To Your Teacher
     include story-carousel

@@ -1,7 +1,6 @@
 body { 
     padding-top: 100px; 
     font-family: 'Dosis', sans-serif;
-    background-color: #016585;
     color: black;
 } /* necessary for fixed-top navbar
 
@@ -33,14 +32,13 @@ body {
 }
 
 #saythanks{
-    background-color: #8dca84;
     background-image: none;
     border: none;
     text-shadow: none;
     color: white;
-    height: 80px;
-    /*width: 300px;*/
-    font-size: 35px;
+    background-color: #F37533;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 #video-button-desktop{
@@ -73,7 +71,21 @@ body {
     padding-top: 30px; 
     height: 0; 
     overflow: hidden; 
+    min-height: 282px;
+    min-width: 500px;
+    vertical-align: middle;
 }   
+
+.video-container-small {
+    position: relative;  
+    padding-top: 30px; 
+    height: 0; 
+    overflow: hidden; 
+    min-width: 400px;
+    min-height: 225px;
+    vertical-align: middle;
+}   
+
 .video-container iframe, 
 .video-container object, 
 .video-container embed { 
@@ -172,10 +184,6 @@ body {
 	margin-bottom: -20px;
 }
 
-#story-carousel{
-	margin-top: 20px;
-}
-
 #prompt-text{
 	font-size: 18px;
     color: white;
@@ -230,10 +238,6 @@ body {
 
 .postcard-container{
     background-color: #F0F0F0;
-}
-
-h1, h2, h3, h4, h5, h6{
-    color: white; 
 }
 
 input{
@@ -312,4 +316,95 @@ textarea:focus { outline: none; }
 #video_stamp{
     cursor: pointer; 
     cursor: hand;
+}
+
+#frontdisplay{
+    padding: 30px;
+    background-color: #016585;
+    margin-bottom: 20px;
+    min-height: 350px;
+    color: white;
+}
+
+
+
+#displaysharebutton{
+    background-image: none;
+    border: none;
+    text-shadow: none;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #8DCA84;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.thumbnail{
+    background-color:#003445;
+    padding: 2px;
+    border-radius: 0px;
+    border: 0px;
+}
+
+#tagline{
+    color: white;
+}
+
+.panel-heading{
+    background-color:#003445!important;
+    border-radius: 0px;
+    border: 0px;
+}
+
+.panel-heading h3{
+    color: white;
+}
+
+.panel-body{
+    background-color:   #B2DAE6;
+    border-radius: 0px;
+}
+
+.panel{
+    border-radius: 0px;
+    border: 0px;
+}
+
+#fadedtext{
+    color: #737373;
+}
+
+#frontdisplay p{
+    font-size: 16px;
+}
+
+#envolope{
+    min-width: 543px;
+    min-height: 393px;
+    background-image: url("../images/card_w_video.png");
+    background-size: 543px 393px;
+    background-repeat:no-repeat;
+    padding: 20px;
+}
+
+.handwriting{
+    /*font-family: 'Shadows Into Light', cursive;*/
+    font-size: 20px;
+    line-height: 110%;
+}
+
+#to_address{
+    margin-top: 80px;
+}
+
+#letter{
+    min-width: 543px;
+    min-height: 393px;
+    background-image: url("../images/note.png");
+    background-size: 543px 393px;
+    background-repeat:no-repeat;
+    padding: 20px;
 }
