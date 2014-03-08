@@ -6,14 +6,15 @@ block content
     .row.movie-container
         .col-md-10.col-md-offset-1#frontdisplay
             .col-md-5
-                include seed-movie
-                br
-                a.btn-default(role="button")#displaysharebutton
-                    i.fa.fa-facebook &nbsp;&nbsp;
-                    | Share on Facebook
-                a.btn-default(role="button")#displaysharebutton
-                    i.fa.fa-twitter &nbsp;&nbsp;
-                    | Share on Twitter
+                .row
+                    include seed-movie
+                    br
+                    a.btn.share-twitter.displaysharebutton(role="button")
+                        i.fa.fa-twitter &nbsp;&nbsp;
+                        | Share on Twitter
+                    a.btn.share-facebook.displaysharebutton(role="button")
+                        i.fa.fa-facebook &nbsp;&nbsp;
+                        | Share on Facebook
             .col-md-5.col-md-offset-2
                 h3#tagline
                     strong We have all been students.
