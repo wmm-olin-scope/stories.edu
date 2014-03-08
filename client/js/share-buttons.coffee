@@ -18,7 +18,14 @@ setupTwitter = ->
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
 
+setupGooglePlus = ->
+    encoded = encodeURIComponent siteUrl
+    googlePlusUrl = "https://plus.google.com/share?url=#{encoded}"
+    $('.share-google-plus')
+        .attr 'href', googlePlusUrl
+
 exports.setup = ->
     setupFacebook()
     setupTwitter()
+    setupGooglePlus()
     
