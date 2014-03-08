@@ -5,7 +5,7 @@ setupFacebook = ->
     $.getScript '//connect.facebook.net/en_UK/all.js', ->
         FB.init {appId: '1444954685735176'}
 
-    $('#share-facebook').click ->
+    $('.share-facebook').click ->
         FB.ui
             method: 'feed',
             link: siteUrl,
@@ -14,7 +14,7 @@ setupFacebook = ->
 setupTwitter = ->
     encoded = encodeURIComponent siteUrl
     twitterUrl = "https://twitter.com/share?url=#{encoded}&via=wmmedu"
-    $('#share-twitter')
+    $('.share-twitter')
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
 
