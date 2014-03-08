@@ -380,31 +380,3 @@ textarea:focus { outline: none; }
 #frontdisplay p{
     font-size: 16px;
 }
-
-#envolope{
-    min-width: 543px;
-    min-height: 393px;
-    background-image: url("../images/card_w_video.png");
-    background-size: 543px 393px;
-    background-repeat:no-repeat;
-    padding: 20px;
-}
-
-.handwriting{
-    /*font-family: 'Shadows Into Light', cursive;*/
-    font-size: 20px;
-    line-height: 110%;
-}
-
-#to_address{
-    margin-top: 80px;
-}
-
-#letter{
-    min-width: 543px;
-    min-height: 393px;
-    background-image: url("../images/note.png");
-    background-size: 543px 393px;
-    background-repeat:no-repeat;
-    padding: 20px;
-}

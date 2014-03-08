@@ -37,7 +37,7 @@ setup = ->
             doStateSelection()
         city: (state) ->
             enableInput getCityInput(), 'City'
-            enableInput getSchoolInput(), 'School'
+            disableInput getSchoolInput(), 'Select a city first...'
             doCitySelection state
         school: (state, city) ->
             enableInput getSchoolInput(), 'School'
@@ -63,24 +63,19 @@ setup = ->
             prefetch:
                 url: url
                 filter: filter
-                ttl: 0 # TODbloO: when in production set to longer
+                ttl: 0 # TODO: when in production set to longer
         hound.initialize()
         hound
 
-    getCityHound = (state) -> 
-        makeHound
-            url: "/schools/cities/#{state}"
-            filter: (cities) -> 
-                {name: city, display: capitalize city} for city in cities
-            accessor: (city) -> city.name
+    getCityHound = (state) -> makeHound
+        url: "/schools/cities/#{state}"
+        filter: (cities) -> 
+            {name: city, display: capitalize city} for city in cities
+        accessor: (city) -> city.name
 
     doCitySelection = (state) ->
         hound = getCityHound state
         input = getCityInput()
-
-        input.focusout ->
-            if input.val() == ""
-                findTransitions.school state, false
 
         input.typeahead 'destroy'
         input.typeahead null,
@@ -93,19 +88,13 @@ setup = ->
         input.on 'typeahead:selected', (obj, city) -> 
             findTransitions.school state, city
 
-
-    getSchoolHound = (state, city) -> 
-        if city
-            url = "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
-        else
-            url = "/schools/by-state/#{state}"
-        makeHound
-            url: url
-            filter: (schools) ->
-                for school in schools
-                    school.display = capitalize school.name
-                schools
-            accessor: (school) -> school.name
+    getSchoolHound = (state, city) -> makeHound
+        url: "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
+        filter: (schools) ->
+            for school in schools
+                school.display = capitalize school.name
+            schools
+        accessor: (school) -> school.name
 
     doSchoolSelection = (state, city) ->
         hound = getSchoolHound state, city
@@ -124,6 +113,7 @@ setup = ->
             console.log g.school
 
     $('#video-button-desktop').click ->
+        console.log('click on vid buttn')
         $('#video-modal').modal()
         if not window.VIDRECORDER?
             window.VIDRECORDER = {}
@@ -136,6 +126,7 @@ setup = ->
 
     linkTextFields '#teacher_name', '#mailto_name'
     linkTextFields '#author_name', '#return_name'
+    linkTextFields '#author_role', '#mailto_role'
 
     $('#mailto_school, #mailto_city_state, #mailto_street').focus ->
         $('#school_modal').modal('show')
