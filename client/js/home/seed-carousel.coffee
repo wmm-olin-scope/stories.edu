@@ -1,6 +1,6 @@
 
 youtubeIdToUrl = (id) ->
-    "//www.youtube.com/embed/#{id}?autoplay=1&showinfo=0&modestbranding=1&controls=1&rel=0"
+    "//www.youtube.com/embed/#{id}?autoplay=1&showinfo=0&modestbranding=1&controls=1&rel=0&wmode=transparent"
 
 openVideo = (title, youtubeId) ->
     modal = $ '#story-modal'
