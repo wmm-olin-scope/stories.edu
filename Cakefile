@@ -20,7 +20,7 @@ allBuilds = []
 vendorDir = 'client/js/vendor'
 vendorLibs = [# dependency order
   'jquery', 'bootstrap', 'underscore', 'typeahead.bundle', 'summernote',
-  'bootstrap-switch.min', 'lscache'
+  'bootstrap-switch.min', 'lscache', 'jquery.transit'
 ]
 
 buildVendorLibs = ->
@@ -58,6 +58,8 @@ task 'data', 'Rebuild the database', ->
 
 task 'build', 'Build all the things', -> 
   build() for build in allBuilds
+
+task 'sbuild', '', buildClientModule 'make-postcard', 'postcard/make.coffee'
 
 task 'server', 'Starts the node server', ->
   execAndLog 'coffee app.coffee --nodejs'
