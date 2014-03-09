@@ -282,6 +282,12 @@ textarea:focus { outline: none; }
     text-align: center;
 }
 
+.share {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: black;
+    color: black;
+}
+
 #modal_header {
     color: black;
 }
