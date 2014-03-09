@@ -332,7 +332,9 @@ textarea:focus { outline: none; }
     color: white;
 }
 
-
+.share {
+    min-width: 65px;
+}
 
 .displaysharebutton{
     background-image: none;
@@ -347,6 +349,14 @@ textarea:focus { outline: none; }
     font-weight: bold;
     margin-right: 15px;
     cursor: pointer;
+    text-align: center;
+    min-width: 90px;
+}
+
+#share-buttons {
+    margin-right: auto;
+    margin-left: auto;
+    border: 2px solid black;
 }
 
 .thumbnail{
@@ -360,8 +370,9 @@ textarea:focus { outline: none; }
     color: white;
 }
 
+
 .panel-heading{
-    background-color:#003445!important;
+    background-color: #016585 !important;
     border-radius: 0px;
     border: 0px;
 }
@@ -371,7 +382,7 @@ textarea:focus { outline: none; }
 }
 
 .panel-body{
-    background-color:   #B2DAE6;
+    background-color: #F0F0F0;
     border-radius: 0px;
 }
 

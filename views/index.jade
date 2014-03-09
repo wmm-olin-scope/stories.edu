@@ -9,15 +9,16 @@ block content
                 .row
                     include seed-movie
                     br
-                    a.btn.share-twitter.displaysharebutton(role="button")
-                        i.fa.fa-twitter &nbsp;&nbsp;
-                        | Tweet
-                    a.btn.share-facebook.displaysharebutton(role="button")
-                        i.fa.fa-facebook &nbsp;&nbsp;
-                        | Post
-                    a.btn.share-google-plus.displaysharebutton(role="button")
-                        i.fa.fa-google-plus &nbsp;&nbsp;
-                        | Share
+                    div.share-buttons
+                        a.btn.share-twitter.displaysharebutton(role="button")
+                            i.fa.fa-twitter &nbsp;&nbsp;
+                            | Tweet
+                        a.btn.share-facebook.displaysharebutton(role="button")
+                            i.fa.fa-facebook &nbsp;&nbsp;
+                            | Post
+                        a.btn.share-google-plus.displaysharebutton(role="button")
+                            i.fa.fa-google-plus &nbsp;&nbsp;
+                            | Share
             .col-md-5.col-md-offset-2
                 h3#tagline
                     strong We have all been students.
