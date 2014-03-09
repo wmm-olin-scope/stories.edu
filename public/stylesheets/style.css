@@ -408,3 +408,67 @@ textarea:focus { outline: none; }
 #make-postcard.jumbotron {
     background-color: #FFFFFF; 
 }
+
+.answer.form-control {
+    font-size: 1.3em;
+    height: 1.5em;
+}
+
+.question-form {
+    font-size: 1.9em;
+}
+
+.btn-next {
+    font-size: 0.85em;
+    font-weight: bold;
+    background-image: none;
+}
+
+#progress {
+    height: 2em;
+}
+#progress > .progress-bar {
+    background-color: #F37533;
+}
+
+#progress-label {
+    font-size: 1.5em;
+    line-height: 1.6em;
+    font-weight: bold;
+}
+
+#story-panel {
+    background-color: #016585;
+    padding: 30px;
+    color: white;
+    min-height: 400px;
+}
+
+.question-label {
+    float: right;
+    vertical-align: middle;
+}
+
+.row-center-vert {
+    display:table;
+}
+
+.col-center-vert {
+    display:table-cell;
+    vertical-align:middle;
+    float:none;
+}
+
+#question-container {
+
+}
+
+#question-wrapper {
+    position: relative;
+}
+
+.question-text {
+    margin: 1em;
+    color: white;
+    font-size: 1.9em;
+}
