@@ -24,8 +24,15 @@ setupGooglePlus = ->
     $('.share-google-plus')
         .attr 'href', googlePlusUrl
 
+setupEmail = ->
+    encoded = encodeURIComponent siteUrl
+    emailUrl = "mailto:?Subject=Thank%20a%20teacher%21%20&Body=#{encoded}"
+    $('.share-email')
+        .attr 'href', emailUrl
+
 exports.setup = ->
     setupFacebook()
     setupTwitter()
     setupGooglePlus()
+    setupEmail()
     

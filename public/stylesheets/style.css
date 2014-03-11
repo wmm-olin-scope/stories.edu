@@ -432,6 +432,10 @@ textarea:focus { outline: none; }
     background-color: #F37533;
 }
 
+.green:hover {
+    background-color: #8DCA84;
+}
+
 #progress-label {
     font-size: 1.5em;
     line-height: 1.6em;
