@@ -1,6 +1,8 @@
 
 setup = ->
-    g = {}
+    g = {
+        lastFocus: 0
+    }
 
     capitalize = (s) ->
         (word[0].toUpperCase() + word[1...].toLowerCase() for word in s.split /\s+/).join ' '
@@ -78,10 +80,6 @@ setup = ->
         hound = getCityHound state
         input = getCityInput()
 
-        input.focusout ->
-            if input.val() == ""
-                findTransitions.school state, false
-
         input.typeahead 'destroy'
         input.typeahead null,
             name: 'cities'
@@ -95,7 +93,7 @@ setup = ->
 
 
     getSchoolHound = (state, city) -> 
-        if city
+        if city.display != ""
             url = "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
         else
             url = "/schools/by-state/#{state}"
@@ -129,6 +127,15 @@ setup = ->
             window.VIDRECORDER = {}
         window.VIDRECORDER.close = () -> $('#video-modal').modal('hide')
         console.log('attached handler')
+
+    getSchoolInput().focus (e) ->
+        if (e.timeStamp - g.lastFocus) > 100
+            g.lastFocus = e.timeStamp
+            city_name = getCityInput().val()
+            city = {name: city_name.toUpperCase(), display: city_name}
+            doSchoolSelection getStateSelect().val(), city
+        else
+            g.lastFocus = e.timeStamp
 
     linkTextFields = (field1, field2) ->
         $(field1).keyup -> $(field2).val $(field1).val()
