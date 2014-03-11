@@ -93,7 +93,7 @@ setup = ->
 
 
     getSchoolHound = (state, city) -> 
-        if (city != null) && (city != undefined)
+        if city.display != ""
             url = "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
         else
             url = "/schools/by-state/#{state}"
