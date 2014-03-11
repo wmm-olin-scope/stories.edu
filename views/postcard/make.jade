@@ -3,17 +3,44 @@ extends ../layout
 block content
     script(src='/javascripts/make-postcard.js')
     
-    .row#postcardrow
-        .col-xs-10.col-xs-offset-1
-            p#prompt-text.hidden-xs
-                | There has been a lot of negative talk about educators. We are here to change that conversation. Record a message to someone (a teacher, mentor, or coach, etc.) who had an impact on your life. Then, help us send your note to them!
-            p#prompt-text.hidden-xs(style="font-size:14px;")
-                | Send a note to someone (teachers, coaches, mentors, etc.) who impacted your education. We will give you the oppertunity to share your note with them.
-    include postcard
-    .row
-        .col-md-12#send_button_div
-            button.btn.btn-success.btn-lg.submit-button(id="send_button", data-toggle="modal", data-target="#finished-modal") 
-                strong Send Postcard
-            br
-            br
-    include ../finished-modal
+    #make-postcard
+        .container
+            h2#prompt Help us send a note to a teacher, coach, or mentor!
+            #story-panel
+                .progress#progress
+                    .progress-bar(role='progressbar', aria-valuenow=25, aria-valuemin=0, aria-valuemax=100, style='width: 25%')
+                        span#progress-label Step 1 of 4
+                br
+                #question-container
+                    #question-wrapper
+                        #who-question-form
+                            .row.row-center-vert.question-form
+                                .col-sm-4.col-sm-offset-1.col-center-vert
+                                    .question-label(style='float:right')
+                                        label.text-right(for='answer') Who do you want to thank?
+                                .col-sm-4.col-center-vert
+                                    input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
+                                .col-sm-2.col-center-vert
+                                    button.btn.btn-success.btn-next Next
+                            br
+                            .row
+                                p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
+
+                        #when-question-form.row.row-center-vert.question-form(style="display:none;")
+                            //.row
+                                p.question-text Tell us a little more about them.
+                            //br
+                            .row.row-center-vert.question-form
+                                .col-sm-4.col-sm-offset-1.col-center-vert
+                                    .question-label(style='float:right')
+                                        label.text-right(for='where') Where did they work?
+                                .col-sm-4.col-center-vert
+                                    input.answer.form-control(type='text', placeholder='Where', maxlength=32)
+                            .row.row-center-vert.question-form
+                                .col-sm-4.col-sm-offset-1.col-center-vert
+                                    .question-label(style='float:right')
+                                        label.text-right(for='when') And when?
+                                .col-sm-4.col-center-vert
+                                    input.answer.form-control(type='text', placeholder='1999', maxlength=32)
+                                .col-sm-2.col-center-vert
+                                    button.btn.btn-success.btn-next Next
