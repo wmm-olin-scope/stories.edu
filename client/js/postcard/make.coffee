@@ -26,7 +26,28 @@ makeSimpleInputQuestion = (div, dataField)->
             else disableButton next
         next.click ->
             if input.val()
-                data[dataField] = input.text()
+                data[dataField] = input.val()
+                onNext()
+
+makePostcardReviewQuestion = ->
+    div = $ '#review-form'
+    div: div
+    run: (data, onNext) ->
+        next = $ 'button.btn-next', div
+        email = $ '#email'
+
+        console.log data
+        console.log $('#who', div)
+        console.log $('#what', div)
+        $('#who', div).text data.who
+        $('#what', div).text data.what
+
+        email.keyup ->
+            if email.val() then enableButton next
+            else disableButton next
+        next.click ->
+            if email.val()
+                data.email = email.text()
                 onNext()
 
  # TODO: on resize
@@ -102,7 +123,7 @@ setup = ->
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSimpleInputQuestion $('#when-question-form'), 'when'
         makeSimpleInputQuestion $('#what-question-form'), 'what'
-        makeSimpleInputQuestion $('#review-form'), 'postcard'
+        makePostcardReviewQuestion()
         makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
     serveQuestions questions, {}, (data) ->

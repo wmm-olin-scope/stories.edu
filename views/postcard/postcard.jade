@@ -11,35 +11,19 @@ style.
                 #spacer
                 span.text-content.black-text
                     | Dear
-                    input.text-center(id='teacher_name' placeholder="Ms. Frizzle,")
+                    label#who.text-center Name
                     br
                     br
-                    textarea(id='freetext' required='true' placeholder="I learned more in my third grade class than in any other class in elementary school! Ms. Frizzle’s unconventional approach – giving us hands-on experience with the material – meant that I never had to study for a test. I was a little reluctant to go on most of our field trips, but I always ended up having a great time. And I still remember tons of science facts to this day, like what salt crystals look like, because she made them all so relevant to our lives!")
+                    p#what Story here
                     br
                     br
-                    .row
-                        .col-xs-7.pull-right
-                            span#signature
-                                p.pull-right
-                                    | Thank you for your hard work,
-                                input(id='author_name' required='true' class="editable pull-right signature" placeholder="Arnold Perlstein")
-                                input(id='author_role' required='true' class="editable pull-right signature" placeholder="3rd grade in 2008")
 
-            input(id='youtube_id' type='hidden')
-            #video-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='video-modal_label', aria-hidden='true')
-              .modal-dialog
-                .modal-content
-                //  .modal-header
-                //    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                  .modal-body
-                    div
-                        #webcam-widget
             .col-xs-5.address
                 .row
                     .col-xs-9
                         #return_address(style="font-size: 14px")
-                            input.full-width(placeholder="Arnold Perlstein" required='true')#return_name
-                            input.answer.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
+                            input.full-width(placeholder="Arnold Perlstein" required='true')
+                            input#email.answer.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')
                     .col-xs-3
                         #stamp_div.pull-right
                             img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
@@ -50,31 +34,3 @@ style.
                             input.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
                             input.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
                             input.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
-.row
-    .col-md-2.col-md-offset-5
-        button.btn.btn-next.button-green Send Note
-
-#school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
-    .modal-dialog
-        .modal-content
-          .modal-header
-            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-            h4.modal-title#modal_header Find your school
-          .modal-body#school-select
-            .form-group.col-xs-3
-              label(for='state') State
-              select#state.form-control
-            .form-group.col-xs-9
-              label(for='city') City
-              input#city.form-control(type='text')
-            .form-group.col-xs-12
-              label(for='city') School
-              input#school.form-control(type='text')
-
-
-
-          .modal-footer
-            button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal')
-                strong Close
-            button.btn.btn-success.btn-lg.submit-button(id="modal_submit", data_dismiss='modal') 
-                strong Submit

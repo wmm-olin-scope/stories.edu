@@ -43,8 +43,7 @@ block content
                                 button.btn.btn-next.button-green Next
                     
                     #what-question-form(style="display:none;")
-                        center
-                            p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
+                        p.question-text(style='margin-left:0;') Now say a bit about what happened. Describe the scene and why it stands out to you.
                         .row.question-form
                             .col-sm-12
                                 textarea#answer.answer.form-control(rows=4, placeholder="", maxlength=1000)
@@ -52,11 +51,16 @@ block content
                         .row.question-form
                             .col-sm-2.col-sm-offset-10
                                 div(style='float:right')
-                                    button.btn.btn-success.btn-next Next
+                                    button.btn.btn-next.button-green Next
                         
                     #review-form(style="display:none;")
                         p.question-text Review your note and enter a return address so we can keep you in the loop.
                         include postcard
+                        .row.question-form
+                            .col-sm-12
+                                center
+                                    button.btn.btn-next.button-green Next
+
                     #sharing-form.row.row-center-vert.question-form(style="display:none;")
                         .row.row-center-vert.question-form.padded
                             .question-label
