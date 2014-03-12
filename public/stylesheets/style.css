@@ -376,6 +376,27 @@ textarea:focus { outline: none; }
     background-color: #7DBA74 !important;
 }
 
+.button-orange{
+    background-image: none;
+    border: none;
+    text-shadow: none;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F37533;
+    font-weight: bold;
+    margin-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 90px;
+}
+
+.button-orange:hover{
+    background-color: #CC622B !important;
+}
+
 #share-buttons {
     margin-right: auto;
     margin-left: auto;
@@ -441,6 +462,12 @@ textarea:focus { outline: none; }
     background-image: none;
 }
 
+.btn-find {
+    font-size: 0.85em;
+    font-weight: bold;
+    background-image: none;
+}
+
 #progress {
     height: 2em;
 }
@@ -480,7 +507,7 @@ textarea:focus { outline: none; }
 }
 
 .col-center-vert {
-    display:table-cell;
+    display: inline-block;
     vertical-align:middle;
     float:none;
 }

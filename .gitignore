@@ -18,3 +18,4 @@ npm-debug.log
 node_modules
 public/javascripts/vendor.js
 public/javascripts/prompts.js
+public/javascripts/vendor.js
