@@ -44,3 +44,26 @@ block content
                                     input.answer.form-control(type='text', placeholder='1999', maxlength=32)
                                 .col-sm-2.col-center-vert
                                     button.btn.btn-next.button-green Next
+                        #review-form.row.row-center-vert.question-form(style="display:none;")
+                            include postcard
+                        #sharing-form.row.row-center-vert.question-form(style="display:none;")
+                            .row.row-center-vert.question-form.padded
+                                .question-label
+                                    label.text-center.medium-font Thank you for submitting your note. We have received it and will share it with an administrator at your school.
+                            hr
+                            .row.row-center-vert.question-form.padded.full-width-center
+                                .text-center.medium-font Share 'Thank a Teacher' With Others
+                                .share-buttons.full-width-center
+                                    a.btn.share-twitter.button-green(role="button")
+                                        i.fa.fa-twitter &nbsp;&nbsp;
+                                        | Tweet
+                                    a.btn.share-facebook.button-green(role="button")
+                                        i.fa.fa-facebook &nbsp;&nbsp;
+                                        | Post
+                                    a.btn.share-google-plus.button-green(role="button")
+                                        i.fa.fa-google-plus &nbsp;&nbsp;
+                                        | Share
+                                    a.btn.share-email.button-green(role="button")
+                                        i.fa.fa-envelope &nbsp;&nbsp;
+                                        | Email
+

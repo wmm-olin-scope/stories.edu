@@ -102,6 +102,8 @@ setup = ->
     questions = [
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSimpleInputQuestion $('#when-question-form'), 'when'
+        makeSimpleInputQuestion $('#review-form'), 'postcard'
+        makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
     serveQuestions questions, {}, (data) ->
         console.log data
@@ -137,7 +139,7 @@ oldSetup = ->
     disableInput = (input, placeholder) ->
         input.typeahead 'destroy'
         input.attr('disabled', yes).val('').attr('placeholder', placeholder)
-        
+
     findTransitions =
         state: ->
             getStateSelect().val ''
