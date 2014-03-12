@@ -13,7 +13,7 @@ setupFacebook = ->
 
 setupTwitter = ->
     encoded = encodeURIComponent siteUrl
-    twitterUrl = "https://twitter.com/share?url=#{encoded}&via=wmmedu"
+    twitterUrl = "https://twitter.com/share?url=#{encoded}&via=thankamentor"
     $('.share-twitter')
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
