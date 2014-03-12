@@ -19,6 +19,8 @@ body {
 #nav-bottom{
     background-color: #F0F0F0;
     border-radius: 0px;
+    background-image: none;
+    text-shadow: none;
 }
 
 .navbar-default, .navbar-text{
@@ -297,9 +299,11 @@ textarea:focus { outline: none; }
 }
 
 .share {
-    background-color: rgba(255, 255, 255, 0);
-    border-color: black;
-    color: black;
+    background-color: #8DCA84;
+    /*border-color: black;*/
+    border: none;
+    color: white;
+    text-shadow: none;
 }
 
 #modal_header {
@@ -471,7 +475,7 @@ textarea:focus { outline: none; }
 }
 
 .row-center-vert {
-    display:table;
+    /*display:table;*/
 }
 
 .col-center-vert {

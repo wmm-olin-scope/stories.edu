@@ -7,9 +7,9 @@
  */
 
 .btn-facebook {
-  color: #ffffff;
-  background-color: #133783;
-  border-color: #133783;
+  color: #ffffff !important;
+  background-color: #133783 !important;
+  border-color: #133783 !important;
 }
 
 .btn-facebook:hover,
@@ -48,9 +48,9 @@ fieldset[disabled] .btn-facebook.active {
 }
 
 .btn-twitter {
-  color: #ffffff;
-  background-color: #016585;
-  border-color: #016585;
+  color: #ffffff !important;
+  background-color: #016585 !important;
+  border-color: #016585 !important;
 }
 
 .btn-twitter:hover,
@@ -212,9 +212,9 @@ fieldset[disabled] .btn-linkedin.active {
 }
 
 .btn-google-plus {
-  color: #ffffff;
-  background-color: #dd4b39;
-  border-color: #c53727;
+  color: #ffffff !important;
+  background-color: #dd4b39 !important;
+  border-color: #c53727 !important;
 }
 
 .btn-google-plus:hover,

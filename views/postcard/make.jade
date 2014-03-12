@@ -23,25 +23,22 @@ block content
                                 .col-sm-2.col-center-vert
                                     button.btn.btn-next.button-green Next
                             br
-                            .row
-                                p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
+                            p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
 
-                        #when-question-form.row.row-center-vert.question-form(style="display:none;")
-                            //.row
-                                p.question-text Tell us a little more about them.
-                            //br
+                        #when-question-form(style="display:none;")
+                            p.question-text Tell us a little more about them.
                             .row.row-center-vert.question-form
-                                .col-sm-4.col-sm-offset-1.col-center-vert
-                                    .question-label(style='float:right')
+                                .col-sm-6.col-sm-offset-1.col-center-vert
+                                    .question-label(style='font-size: .6em')
                                         label.text-right(for='where') Where did they work?
-                                .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='Where', maxlength=32)
+                                .col-sm-5.col-center-vert
+                                    input.answer.form-control(type='text', placeholder='Where', maxlength=32, style="font-size: .6em; height: 50px;")
                             .row.row-center-vert.question-form
-                                .col-sm-4.col-sm-offset-1.col-center-vert
-                                    .question-label(style='float:right')
+                                .col-sm-6.col-sm-offset-1.col-center-vert
+                                    .question-label(style='font-size: .6em')
                                         label.text-right(for='when') And when?
                                 .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='1999', maxlength=32)
+                                    input.answer.form-control(type='text', placeholder='1999', maxlength=32, style="font-size: .6em; height: 50px;")
                                 .col-sm-2.col-center-vert
                                     button.btn.btn-next.button-green Next
                         #review-form.row.row-center-vert.question-form(style="display:none;")
@@ -67,3 +64,15 @@ block content
                                         i.fa.fa-envelope &nbsp;&nbsp;
                                         | Email
 
+                        #what-question-form(style="display:none;")
+                            p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
+                            .row.row-center-vert.question-form
+                                .col-sm-4.col-sm-offset-1.col-center-vert
+                                    .question-label(style='float:right')
+                                        label.text-right(for='answer') Who do you want to thank?
+                                .col-sm-4.col-center-vert
+                                    input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
+                                .col-sm-2.col-center-vert
+                                    button.btn.btn-success.btn-next Next
+                            br
+                            p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
