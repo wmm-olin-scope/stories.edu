@@ -172,6 +172,10 @@ body {
     min-height: 150px;
 }
 
+.black-text{
+    color: black;
+}
+
 .underline:active,
 .underline:focus {
     outline: 0px solid transparent;
@@ -453,12 +457,17 @@ textarea:focus { outline: none; }
     background-color: #016585;
     padding: 30px;
     color: white;
-    min-height: 400px;
+    min-height: 525px;
 }
 
 .question-label {
     float: right;
     vertical-align: middle;
+}
+
+.padded {
+    padding-right: 50px; 
+    padding-left: 50px;
 }
 
 .row-center-vert {
@@ -469,6 +478,17 @@ textarea:focus { outline: none; }
     display:table-cell;
     vertical-align:middle;
     float:none;
+}
+
+.full-width-center {
+    width: 100%;
+    text-align: center;
+    margin-right: 0px auto;
+    margin-left: 0px auto;
+}
+
+.medium-font {
+    font-size: 30px !important;
 }
 
 #question-container {
