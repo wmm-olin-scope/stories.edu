@@ -90,6 +90,7 @@ transitionIn = (div) ->
         opacity: 0
         x: transitionOffset
         clip: makeClip 0, -transitionOffset
+    div.width $('#question-container').width()
     div.transition 
         x: 0
         clip: makeClip 0, 0

@@ -4,89 +4,79 @@ block content
     script(src='/javascripts/make-postcard.js')
     
     #make-postcard
-        .container
-            h2#prompt Help us send a note to a teacher, coach, or mentor!
-            #story-panel
-                .progress#progress
-                    .progress-bar(role='progressbar', aria-valuenow=25, aria-valuemin=0, aria-valuemax=100, style='width: 25%')
-                        span#progress-label Step 1 of 4
-                br
-                #question-container
-                    #question-wrapper
-                        #who-question-form
-                            .row.row-center-vert.question-form
-                                .col-sm-4.col-sm-offset-1.col-center-vert
-                                    .question-label(style='float:right')
-                                        label.text-right(for='answer') Who do you want to thank?
-                                .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
-                                .col-sm-2.col-center-vert
-                                    button.btn.btn-next.button-green Next
-                            br
-                            p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
+        h2#prompt Help us send a note to a teacher, coach, or mentor!
+        #story-panel
+            .progress#progress
+                .progress-bar(role='progressbar', aria-valuenow=25, aria-valuemin=0, aria-valuemax=100, style='width: 25%')
+                    span#progress-label Step 1 of 4
+            br
+            #question-container
+                #question-wrapper
+                    #who-question-form
+                        .row.row-center-vert.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right(for='answer') Who do you want to thank?
+                            .col-sm-4.col-center-vert
+                                input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
+                            .col-sm-2.col-center-vert
+                                button.btn.btn-next.button-green Next
+                        br
+                        p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
 
-                        #when-question-form(style="display:none;")
-                            p.question-text Tell us a little more about them.
-                            .row.row-center-vert.question-form
-                                .col-sm-6.col-sm-offset-1.col-center-vert
-                                    .question-label(style='font-size: .6em')
-                                        label.text-right(for='where') Where did they work?
-                                .col-sm-5.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='Where', maxlength=32, style="font-size: .6em; height: 50px;")
-                            .row.row-center-vert.question-form
-                                .col-sm-6.col-sm-offset-1.col-center-vert
-                                    .question-label(style='font-size: .6em')
-                                        label.text-right(for='when') And when?
-                                .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='1999', maxlength=32, style="font-size: .6em; height: 50px;")
-                                .col-sm-2.col-center-vert
-                                    button.btn.btn-next.button-green Next
-                        #review-form.row.row-center-vert.question-form(style="display:none;")
-                            include postcard
-                        #sharing-form.row.row-center-vert.question-form(style="display:none;")
-                            .row.row-center-vert.question-form.padded
-                                .question-label
-                                    label.text-center.medium-font Thank you for submitting your note. We have received it and will share it with an administrator at your school.
-                            hr
-                            .row.row-center-vert.question-form.padded.full-width-center
-                                .text-center.medium-font Share 'Thank a Teacher' With Others
-                                .share-buttons.full-width-center
-                                    a.btn.share-twitter.button-green(role="button")
-                                        i.fa.fa-twitter &nbsp;&nbsp;
-                                        | Tweet
-                                    a.btn.share-facebook.button-green(role="button")
-                                        i.fa.fa-facebook &nbsp;&nbsp;
-                                        | Post
-                                    a.btn.share-google-plus.button-green(role="button")
-                                        i.fa.fa-google-plus &nbsp;&nbsp;
-                                        | Share
-                                    a.btn.share-email.button-green(role="button")
-                                        i.fa.fa-envelope &nbsp;&nbsp;
-                                        | Email
+                    #when-question-form(style="display:none;")
+                        p.question-text Tell us a little more about them.
+                        .row.row-center-vert.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right Where did they work?
+                            .col-sm-2.col-center-vert
+                                button.btn.btn-find.button-orange Find School
+                        br
+                        .row.row-center-vert.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right(for='answer') And when?
+                            .col-sm-4.col-center-vert
+                                input.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
+                            .col-sm-2.col-center-vert
+                                button.btn.btn-next.button-green Next
+                        
+                        
+                    #review-form.row.row-center-vert.question-form(style="display:none;")
+                        p.question-text Review your note and enter a return address so we can keep you in the loop.
+                        include postcard
+                    #sharing-form.row.row-center-vert.question-form(style="display:none;")
+                        .row.row-center-vert.question-form.padded
+                            .question-label
+                                label.text-center.medium-font Thank you for submitting your note. We have received it and will share it with an administrator at your school.
+                        hr
+                        .row.row-center-vert.question-form.padded.full-width-center
+                            .text-center.medium-font Share 'Thank a Teacher' With Others
+                            .share-buttons.full-width-center
+                                a.btn.share-twitter.button-green(role="button")
+                                    i.fa.fa-twitter &nbsp;&nbsp;
+                                    | Tweet
+                                a.btn.share-facebook.button-green(role="button")
+                                    i.fa.fa-facebook &nbsp;&nbsp;
+                                    | Post
+                                a.btn.share-google-plus.button-green(role="button")
+                                    i.fa.fa-google-plus &nbsp;&nbsp;
+                                    | Share
+                                a.btn.share-email.button-green(role="button")
+                                    i.fa.fa-envelope &nbsp;&nbsp;
+                                    | Email
 
-                        #what-question-form(style="display:none;")
-                            p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
-                            .row.row-center-vert.question-form
-                                .col-sm-4.col-sm-offset-1.col-center-vert
-                                    .question-label(style='float:right')
-                                        label.text-right(for='answer') Who do you want to thank?
-                                .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
-                                .col-sm-2.col-center-vert
-                                    button.btn.btn-success.btn-next Next
-                            br
-                            p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
-
-                        #what-question-form(style="display:none;")
-                            p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
-                            .row.row-center-vert.question-form
-                                .col-sm-4.col-sm-offset-1.col-center-vert
-                                    .question-label(style='float:right')
-                                        label.text-right(for='answer') Who do you want to thank?
-                                .col-sm-4.col-center-vert
-                                    input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
-                                .col-sm-2.col-center-vert
-                                    button.btn.btn-success.btn-next Next
-                            br
-                            p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
+                    #what-question-form(style="display:none;")
+                        p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
+                        .row.row-center-vert.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right(for='answer') Who do you want to thank?
+                            .col-sm-4.col-center-vert
+                                input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
+                            .col-sm-2.col-center-vert
+                                button.btn.btn-success.btn-next Next
+                        br
+                        p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
 
