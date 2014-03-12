@@ -12,7 +12,7 @@ disableInput = (input, placeholder) ->
 makeSimpleInputQuestion = (div, dataField)->
     div: $ div
     run: (data, onNext) ->
-        input = $ 'input.answer', div
+        input = $ '#answer', div
         next = $ 'button.btn-next', div
 
         if data[dataField]
@@ -101,6 +101,7 @@ setup = ->
     questions = [
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSimpleInputQuestion $('#when-question-form'), 'when'
+        makeSimpleInputQuestion $('#what-question-form'), 'what'
         makeSimpleInputQuestion $('#review-form'), 'postcard'
         makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
