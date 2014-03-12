@@ -26,7 +26,7 @@ setupGooglePlus = ->
 
 setupEmail = ->
     encoded = encodeURIComponent siteUrl
-    emailUrl = "mailto:?Subject=Thank%20a%20teacher%21%20&Body=#{encoded}"
+    emailUrl = "mailto:hello@thankateacher.org?Subject=Thank%20a%20teacher%21%20"
     $('.share-email')
         .attr 'href', emailUrl
 
