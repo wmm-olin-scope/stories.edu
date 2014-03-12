@@ -8,6 +8,8 @@ lib-cov
 *.map
 *.js
 
+public/javascripts/*.js
+
 pids
 logs
 results
