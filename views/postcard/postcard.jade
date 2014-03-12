@@ -10,11 +10,8 @@ style.
             .col-xs-7.content
                 #spacer
                 span.text-content.black-text
-                    | I want to thank
-                    input.text-center(id='teacher_name' class="editable small" placeholder="Ms. Frizzle" required='true')
-                    |  for making a difference in my life in
-                    input.text-center(id='teacher_role' class="editable small" placeholder="third grade" required='true')
-                    | .
+                    | Dear
+                    input.text-center(id='teacher_name' placeholder="Ms. Frizzle,")
                     br
                     br
                     textarea(id='freetext' required='true' placeholder="I learned more in my third grade class than in any other class in elementary school! Ms. Frizzle’s unconventional approach – giving us hands-on experience with the material – meant that I never had to study for a test. I was a little reluctant to go on most of our field trips, but I always ended up having a great time. And I still remember tons of science facts to this day, like what salt crystals look like, because she made them all so relevant to our lives!")
@@ -41,18 +38,18 @@ style.
                 .row
                     .col-xs-9
                         #return_address(style="font-size: 14px")
-                            input.underline.full-width(placeholder="Arnold Perlstein" required='true')#return_name
-                            input.underline.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
+                            input.full-width(placeholder="Arnold Perlstein" required='true')#return_name
+                            input.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
                     .col-xs-3
                         #stamp_div.pull-right
-                            img.pull-right(src='/images/teacher_stamp_good.png' height="100px" width="80px")
+                            img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
                 .row
                     .col-xs-12
                         #address_well
-                            input.underline.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
-                            input.underline.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
-                            input.underline.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
-                            input.underline.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
+                            input.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
+                            input.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
+                            input.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
+                            input.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
 
 #school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog

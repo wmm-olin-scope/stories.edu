@@ -259,10 +259,10 @@ h1, h2, h3, h4, h5, h6{
 
 input{
     border: none;
-    min-width: 50px !important;
+    /*min-width: 50px !important;*/
     background-color: transparent;
-    width: 100%;
-    max-width: 100%;
+    /*width: 100%;*/
+    /*max-width: 100%;*/
 }
 
 textarea{
@@ -271,15 +271,15 @@ textarea{
     background-color: transparent;
     width: auto;
     max-width: 100%;
-    min-height: 200px;
+    min-height: 200px !important;
 }
 
 .editable{
-    border-bottom: 1px solid #A4A4A4;
+    /*border-bottom: 1px solid #A4A4A4;*/
 }
 
 .small{
-    width: 120px;
+    width: auto;
     font-size: 14px;
 }
 
@@ -296,7 +296,8 @@ textarea:focus { outline: none; }
 }
 
 .text-center {
-    text-align: center;
+    text-align: left;
+    padding: 10px;
 }
 
 .share {
