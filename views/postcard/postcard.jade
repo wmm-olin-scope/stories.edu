@@ -39,7 +39,7 @@ style.
                     .col-xs-9
                         #return_address(style="font-size: 14px")
                             input.full-width(placeholder="Arnold Perlstein" required='true')#return_name
-                            input.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
+                            input.answer.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')#return_email
                     .col-xs-3
                         #stamp_div.pull-right
                             img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
@@ -50,6 +50,9 @@ style.
                             input.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
                             input.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
                             input.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
+.row
+    .col-md-2.col-md-offset-5
+        button.btn.btn-next.button-green Send
 
 #school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog
