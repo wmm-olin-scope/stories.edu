@@ -18,7 +18,7 @@ block content
                                 .question-label(style='float:right')
                                     label.text-right(for='answer') Who do you want to thank?
                             .col-sm-4.col-center-vert
-                                input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
+                                input#answer.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
                             .col-sm-2.col-center-vert
                                 button.btn.btn-next.button-green Next
                         br
@@ -38,14 +38,29 @@ block content
                                 .question-label(style='float:right')
                                     label.text-right(for='answer') And when?
                             .col-sm-4.col-center-vert
-                                input.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
+                                input#answer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
                             .col-sm-2.col-center-vert
                                 button.btn.btn-next.button-green Next
+                    
+                    #what-question-form(style="display:none;")
+                        p.question-text(style='margin-left:0;') Now say a bit about what happened. Describe the scene and why it stands out to you.
+                        .row.question-form
+                            .col-sm-12
+                                textarea#answer.answer.form-control(rows=4, placeholder="", maxlength=1000)
+                        br
+                        .row.question-form
+                            .col-sm-2.col-sm-offset-10
+                                div(style='float:right')
+                                    button.btn.btn-next.button-green Next
                         
-                        
-                    #review-form.row.row-center-vert.question-form(style="display:none;")
+                    #review-form(style="display:none;")
                         p.question-text Review your note and enter a return address so we can keep you in the loop.
                         include postcard
+                        .row.question-form
+                            .col-sm-12
+                                center
+                                    button.btn.btn-next.button-green Next
+
                     #sharing-form.row.row-center-vert.question-form(style="display:none;")
                         .row.row-center-vert.question-form.padded
                             .question-label
@@ -67,16 +82,5 @@ block content
                                     i.fa.fa-envelope &nbsp;&nbsp;
                                     | Email
 
-                    #what-question-form(style="display:none;")
-                        p.question-text Now say a bit about what happened. Describe the scene and why it stands out to you.
-                        .row.row-center-vert.question-form
-                            .col-sm-4.col-sm-offset-1.col-center-vert
-                                .question-label(style='float:right')
-                                    label.text-right(for='answer') Who do you want to thank?
-                            .col-sm-4.col-center-vert
-                                input.answer.form-control(type='text', placeholder='Mrs. Smith', maxlength=32)
-                            .col-sm-2.col-center-vert
-                                button.btn.btn-success.btn-next Next
-                        br
-                        p.question-text We'll ask you to describe a scene or moment in your life that stands out as a significant interaction with them.
+                    
 

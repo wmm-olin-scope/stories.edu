@@ -489,7 +489,7 @@ textarea:focus { outline: none; }
     background-color: #016585;
     padding: 30px;
     color: white;
-    min-height: 600px;
+    min-height: 700px;
 }
 
 .question-label {
