@@ -44,20 +44,63 @@ block content
                                     input#answer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
                                 .col-sm-2.col-center-vert
                                     button.btn.btn-next.button-green Next
-                        
-                        #what-question-form.slide-panel(style='display: none;')
-                            p.question-text(style='margin-left:0;') Now say a bit about what happened. Describe the scene and why it stands out to you.
-                            .row.question-form
-                                .col-sm-12
-                                    textarea#answer.answer.form-control(rows=4, placeholder="", maxlength=1000)
-                            br
-                            .row.question-form
-                                .col-sm-2.col-sm-offset-10
-                                    div(style='float:right')
-                                        button.btn.btn-next.button-green Next
-               
-            #review-panel.slide-panel(style='display: none;')
-                include postcard
 
+                    #what-question-form.slide-panel(style='display: none;')
+                        p.question-text(style='margin-left:0;') Now say a bit about what happened. Describe the scene and why it stands out to you.
+                        .row.question-form
+                            .col-sm-12
+                                textarea#answer.answer.form-control(rows=4, placeholder="", maxlength=1000)
+                        br
+                        .row.question-form
+                            .col-sm-2.col-sm-offset-10
+                                div(style='float:right')
+                                    button.btn.btn-next.button-green Next
                     
 
+                    #return-question-form(style='display:none;')
+                        p.question-text(style='margin-left:0;') Enter your information so we can keep you in the loop.
+                        .row.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right Name
+                            .col-sm-4.col-center-vert
+                                input#answer.answer.form-control(type='text', placeholder='', maxlength=50, name='name')
+                        br
+                        .row.question-form
+                            .col-sm-4.col-sm-offset-1.col-center-vert
+                                .question-label(style='float:right')
+                                    label.text-right Email Address
+                            .col-sm-4.col-center-vert
+                                input#answer.answer.form-control(type='text', placeholder='', maxlength=100, name='email')
+                            .col-sm-2.col-center-vert
+                                button.btn.btn-next.button-green Next
+                        
+                    #review-form(style="display:none;")
+                        p.question-text Review your note.
+                        include postcard
+                        .row.question-form
+                            .col-sm-12
+                                center
+                                    button.btn.btn-next.button-green Next
+
+                    #sharing-form.row.row-center-vert.question-form(style="display:none;")
+                        .row.row-center-vert.question-form.padded
+                            .question-label
+                                label.text-center.medium-font Thank you for submitting your note. We have received it and will share it with an administrator at your school.
+                        hr
+                        .row.row-center-vert.question-form.padded.full-width-center
+                            .text-center.medium-font Share 'Thank a Teacher' With Others
+                            .share-buttons.full-width-center
+                                a.btn.share-twitter.button-green(role="button")
+                                    i.fa.fa-twitter &nbsp;&nbsp;
+                                    | Tweet
+                                a.btn.share-facebook.button-green(role="button")
+                                    i.fa.fa-facebook &nbsp;&nbsp;
+                                    | Post
+                                a.btn.share-google-plus.button-green(role="button")
+                                    i.fa.fa-google-plus &nbsp;&nbsp;
+                                    | Share
+                                a.btn.share-email.button-green(role="button")
+                                    i.fa.fa-envelope &nbsp;&nbsp;
+                                    | Email
+                                    
