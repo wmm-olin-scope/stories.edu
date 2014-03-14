@@ -301,10 +301,15 @@ textarea:focus { outline: none; }
 
 .share {
     background-color: #8DCA84;
-    /*border-color: black;*/
     border: none;
     color: white;
     text-shadow: none;
+    margin: 0 !important;
+}
+
+.share:hover {
+    border: none !important;
+    margin: 0 !important;
 }
 
 #modal_header {
@@ -481,10 +486,13 @@ textarea:focus { outline: none; }
     font-weight: bold;
 }
 
-#story-panel {
+.blue-panel {
     background-color: #016585;
     padding: 30px;
     color: white;
+}
+
+#questions-panel {
     min-height: 625px;
 }
 
@@ -534,4 +542,12 @@ textarea:focus { outline: none; }
 .slide-panel {
     position: absolute;
     width: 100%;
+}
+
+#review-notice {
+    font-size: 1.6em;
+}
+
+#postcard-share {
+    min-height: 150px;
 }

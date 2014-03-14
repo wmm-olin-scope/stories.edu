@@ -141,12 +141,16 @@ transitionIn = (div, widthDiv='#question-container') ->
         duration: transitionDuration
 
 reviewPostcard = (data) ->
-    transitionOut $ '#story-panel'
+    transitionOut $ '#prompt-container'
     transitionIn $ '#review-panel'
 
-    div = $ '#review-form'
+    div = $ '#review-panel'
     $('#who', div).text data.who
     $('#what', div).text data.what
+
+    $('#done').click ->
+        window.open '/', '_self'
+
 
 setup = ->
     questions = [
