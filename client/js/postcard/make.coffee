@@ -57,22 +57,6 @@ makeSimpleInputQuestion = (div, dataField) ->
                 mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
                 onNext()
 
-makePostcardReviewQuestion = ->
-    div = $ '#review-form'
-    div: div
-    run: (data, onNext) ->
-        next = $ 'button.btn-next', div
-        email = $ '#email'
-
-        console.log data
-        enableButton next
-        $('#who', div).text data.who
-        $('#what', div).text data.what
-        $('#name', div).text data.name
-        $('#email', div).text data.email
-
-        next.click ->
-            onNext()
 
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
@@ -147,6 +131,8 @@ reviewPostcard = (data) ->
     div = $ '#review-panel'
     $('#who', div).text data.who
     $('#what', div).text data.what
+    $('#name', div).text data.name
+    $('#email', div).text data.email
 
     $('#done').click ->
         window.open '/', '_self'
@@ -158,8 +144,6 @@ setup = ->
         makeSimpleInputQuestion $('#when-question-form'), 'when'
         makeSimpleInputQuestion $('#what-question-form'), 'what'
         makeMultiInputQuestion $('#return-question-form'), ['name', 'email']
-        makePostcardReviewQuestion()
-        makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
     serveQuestions questions, {}, (data) ->
         console.log data
