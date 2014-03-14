@@ -2,14 +2,11 @@
 siteUrl = 'http://www.thank-a-teacher.org'
 
 setupFacebook = ->
-    $.getScript '//connect.facebook.net/en_UK/all.js', ->
-        FB.init {appId: '1444954685735176'}
-
-    $('.share-facebook').click ->
-        FB.ui
-            method: 'feed',
-            link: siteUrl,
-            caption: 'Thank a teacher!'
+    encoded = encodeURIComponent siteUrl
+    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{encoded}"
+    $('.share-facebook')
+        .attr 'href', facebookUrl
+        .attr 'target', '_blank'
 
 setupTwitter = ->
     encoded = encodeURIComponent siteUrl
@@ -23,6 +20,7 @@ setupGooglePlus = ->
     googlePlusUrl = "https://plus.google.com/share?url=#{encoded}"
     $('.share-google-plus')
         .attr 'href', googlePlusUrl
+        .attr 'target', '_blank'
 
 setupEmail = ->
     encoded = encodeURIComponent siteUrl
