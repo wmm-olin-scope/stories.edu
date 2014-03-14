@@ -8,8 +8,35 @@ disableInput = (input, placeholder) ->
     input.typeahead 'destroy'
     input.attr('disabled', yes).val('').attr('placeholder', placeholder)
 
+makeMultiInputQuestion = (div, dataFields) ->
+    div: $ div
+    run: (data, onNext) ->
+        inputs = $ '.answer', div
+        next = $ 'button.btn-next', div
 
-makeSimpleInputQuestion = (div, dataField)->
+        enableButton next
+        for dataField in dataFields
+            if data[dataField]
+                $("[name='#{dataField}']").val data[dataField]
+            else 
+                disableButton next
+
+        hasVal = (key) -> $(key).val()
+
+        inputs.keyup ->
+            emptyInputs = inputs.filter(() -> $(this).val() == "" )
+            if emptyInputs.length then disableButton next
+            else enableButton next
+
+        next.click ->
+            if ! (isButtonDisabled next) 
+                for dataField in dataFields
+                    data[dataField] = $("[name='#{dataField}']").val()
+                console.log data
+                onNext()
+
+
+makeSimpleInputQuestion = (div, dataField) ->
     div: $ div
     run: (data, onNext) ->
         input = $ '#answer', div
@@ -38,18 +65,14 @@ makePostcardReviewQuestion = ->
         email = $ '#email'
 
         console.log data
-        console.log $('#who', div)
-        console.log $('#what', div)
+        enableButton next
         $('#who', div).text data.who
         $('#what', div).text data.what
+        $('#name', div).text data.name
+        $('#email', div).text data.email
 
-        email.keyup ->
-            if email.val() then enableButton next
-            else disableButton next
         next.click ->
-            if email.val()
-                data.email = email.text()
-                onNext()
+            onNext()
 
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
@@ -58,8 +81,6 @@ makeClip = (left=0, rightDelta=0) ->
 
 setupQuestionDivs = (divs) ->
     for div, i in divs
-        div.css 'position', 'absolute'
-
         if i > 0 then div.css
             display: 'none'
             x: transitionOffset
@@ -106,29 +127,39 @@ transitionOut = (div) ->
         duration: transitionDuration
         complete: -> div.css 'display', 'none'
 
-transitionIn = (div) ->
+transitionIn = (div, widthDiv='#question-container') ->
     div.css 
         display: ''
         opacity: 0
         x: transitionOffset
         clip: makeClip 0, -transitionOffset
-    div.width $('#question-container').width()
+    div.width $(widthDiv).width()
     div.transition 
         x: 0
         clip: makeClip 0, 0
         opacity: 1
         duration: transitionDuration
 
+reviewPostcard = (data) ->
+    transitionOut $ '#story-panel'
+    transitionIn $ '#review-panel'
+
+    div = $ '#review-form'
+    $('#who', div).text data.who
+    $('#what', div).text data.what
+
 setup = ->
     questions = [
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSimpleInputQuestion $('#when-question-form'), 'when'
         makeSimpleInputQuestion $('#what-question-form'), 'what'
+        makeMultiInputQuestion $('#return-question-form'), ['name', 'email']
         makePostcardReviewQuestion()
         makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
     serveQuestions questions, {}, (data) ->
         console.log data
+        reviewPostcard data
 
 oldSetup = ->
     g = {
