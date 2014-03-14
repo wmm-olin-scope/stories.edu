@@ -8,8 +8,35 @@ disableInput = (input, placeholder) ->
     input.typeahead 'destroy'
     input.attr('disabled', yes).val('').attr('placeholder', placeholder)
 
+makeMultiInputQuestion = (div, dataFields) ->
+    div: $ div
+    run: (data, onNext) ->
+        inputs = $ '.answer', div
+        next = $ 'button.btn-next', div
 
-makeSimpleInputQuestion = (div, dataField)->
+        enableButton next
+        for dataField in dataFields
+            if data[dataField]
+                $("[name='#{dataField}']").val data[dataField]
+            else 
+                disableButton next
+
+        hasVal = (key) -> $(key).val()
+
+        inputs.keyup ->
+            emptyInputs = inputs.filter(() -> $(this).val() == "" )
+            if emptyInputs.length then disableButton next
+            else enableButton next
+
+        next.click ->
+            if ! (isButtonDisabled next) 
+                for dataField in dataFields
+                    data[dataField] = $("[name='#{dataField}']").val()
+                console.log data
+                onNext()
+
+
+makeSimpleInputQuestion = (div, dataField) ->
     div: $ div
     run: (data, onNext) ->
         input = $ '#answer', div
@@ -28,6 +55,23 @@ makeSimpleInputQuestion = (div, dataField)->
             if input.val()
                 data[dataField] = input.val()
                 onNext()
+
+makePostcardReviewQuestion = ->
+    div = $ '#review-form'
+    div: div
+    run: (data, onNext) ->
+        next = $ 'button.btn-next', div
+        email = $ '#email'
+
+        console.log data
+        enableButton next
+        $('#who', div).text data.who
+        $('#what', div).text data.what
+        $('#name', div).text data.name
+        $('#email', div).text data.email
+
+        next.click ->
+            onNext()
 
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
@@ -108,6 +152,9 @@ setup = ->
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSimpleInputQuestion $('#when-question-form'), 'when'
         makeSimpleInputQuestion $('#what-question-form'), 'what'
+        makeMultiInputQuestion $('#return-question-form'), ['name', 'email']
+        makePostcardReviewQuestion()
+        makeSimpleInputQuestion $('#sharing-form'), 'share'
     ]
     serveQuestions questions, {}, (data) ->
         console.log data

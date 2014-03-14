@@ -485,7 +485,7 @@ textarea:focus { outline: none; }
     background-color: #016585;
     padding: 30px;
     color: white;
-    min-height: 700px;
+    min-height: 625px;
 }
 
 .question-label {
