@@ -443,10 +443,6 @@ textarea:focus { outline: none; }
     font-size: 16px;
 }
 
-#make-postcard.jumbotron {
-    background-color: #FFFFFF; 
-}
-
 .answer.form-control {
     font-size: 1.3em;
     height: 1.5em;
@@ -523,17 +519,19 @@ textarea:focus { outline: none; }
     font-size: 30px !important;
 }
 
-#question-container {
-
-}
-
-#question-wrapper {
-    position: relative;
-}
-
 .question-text {
     margin-left: 1em;
     margin-right: 1em;
     color: white;
     font-size: 1.9em;
+}
+
+.slide-wrapper {
+    position: relative;
+    clip: rect(0px, 1200px, 1000px, 0px);
+}
+
+.slide-panel {
+    position: absolute;
+    width: 100%;
 }
