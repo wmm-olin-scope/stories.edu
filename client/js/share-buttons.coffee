@@ -6,7 +6,7 @@ videoUrl = "http://youtu.be/rArJOGicnHU"
 
 setupFacebook = ->
     encoded = encodeURIComponent siteUrl
-    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{encoded}"
+    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{videoUrl}"
     $('.share-facebook')
         .attr 'href', facebookUrl
         .attr 'target', '_blank'
