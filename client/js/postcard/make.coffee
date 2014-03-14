@@ -27,6 +27,7 @@ makeSimpleInputQuestion = (div, dataField)->
         next.click ->
             if input.val()
                 data[dataField] = input.val()
+                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
                 onNext()
 
 makePostcardReviewQuestion = ->

@@ -10,13 +10,18 @@ setupFacebook = ->
     $('.share-facebook')
         .attr 'href', facebookUrl
         .attr 'target', '_blank'
+    $('.share-facebook').click ->
+            mixpanel.track 'User shared on Facebook'
 
 setupTwitter = ->
+    
     encoded = encodeURIComponent siteUrl
     twitterUrl = "https://twitter.com/share?url=#{encoded}&text=#{message}&via=thankamentor"
     $('.share-twitter')
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
+    $('.share-twitter').click ->
+        mixpanel.track 'User shared website on Twitter'
 
 setupTwitterVideo = ->
     encoded = encodeURIComponent videoUrl
@@ -24,6 +29,8 @@ setupTwitterVideo = ->
     $('.share-twitter-video')
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
+    $('.share-twitter-video').click ->
+        mixpanel.track 'User shared video on Twitter'
 
 setupGooglePlus = ->
     encoded = encodeURIComponent videoUrl
@@ -32,12 +39,20 @@ setupGooglePlus = ->
     $('.share-google-plus')
         .attr 'href', googlePlusUrl
         .attr 'target', '_blank'
+    $('.share-google-plus').click ->
+        mixpanel.track 'User shared on Google Plus'
 
 setupEmail = ->
     encoded = encodeURIComponent siteUrl
     emailUrl = "mailto:?Subject=Thank%20a%20teacher%21%20&Body=#{longer_message+'. Check out the 1 minute video here: '+videoUrl}"
     $('.share-email')
         .attr 'href', emailUrl
+    $('.share-email').click ->
+        mixpanel.track 'User shared on Email'
+
+setupMakePostcardClick = ->
+    $('#saythanks').click ->
+        mixpanel.track 'User clicked on initial postcard button'
 
 exports.setup = ->
     setupFacebook()
@@ -45,4 +60,5 @@ exports.setup = ->
     setupTwitterVideo()
     setupGooglePlus()
     setupEmail()
+    setupMakePostcardClick()
     
