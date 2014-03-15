@@ -9,27 +9,32 @@ style.
         .col-xs-7.content
             #spacer
             span.text-content.black-text
-                | Dear
-                label#who.text-center Name
+                span(style='padding-right: 0.3em;') Dear 
+                span#who 
                 br
                 br
-                p#what Story here
+                p#what
                 br
                 br
+                .row
+                    .col-xs-7.pull-right
+                        span#signature
+                            p.pull-right Thank you for your hard work,
+                            #name.pull-right.signature 
 
         .col-xs-5.address
             .row
                 .col-xs-9
                     #return_address(style="font-size: 14px").black-text
-                        div#name.full-width(placeholder="Arnold Perlstein" required='true')
-                        div#email.answer.full-width(placeholder="Arnold.Perlstein@gmail.com" required='true')
+                        #name.full-width
+                        #email.answer.full-width
                 .col-xs-3
                     #stamp_div.pull-right
                         img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
             .row
                 .col-xs-12
-                    #address_well
-                        input.full-width#mailto_name(placeholder='Ms. Frizzle' required='true')
-                        input.full-width#mailto_school(placeholder='Walkerville Elementary School' required='true')
-                        input.full-width#mailto_street(placeholder='11400 South Lakes Dr.' required='true')
-                        input.full-width#mailto_city_state(placeholder='Reston, VA 20191' required='true')
+                    .address-well
+                        #addressee Teacher
+                        #schoolName Walkerville Elementary School
+                        #schoolAddress 11400 South Lakes Dr.
+                        #schoolCityStateZip Reston, VA 20191

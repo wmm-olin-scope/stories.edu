@@ -104,12 +104,13 @@ body {
     height: 100%; 
 }
 
-.postcard-container {
+.well.postcard-container {
     overflow: auto;
     position: relative;
     width: 100%;
     min-height: 350px;
-    font-size: 14px;
+    font-size: 1.2em;
+    background-color: #F0F0F0;
 }
 
 .postcard-container .content {
@@ -212,7 +213,7 @@ body {
     min-width: 80px;
 }
 
-#address_well{
+.address-well {
     min-height: 100px;
     width: 100%;
     margin-top: 50px;
@@ -246,10 +247,6 @@ body {
 
 #return_address{
     margin-right: -20px;
-}
-
-.postcard-container{
-    background-color: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6{
