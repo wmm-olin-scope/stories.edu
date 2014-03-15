@@ -34,7 +34,7 @@ block content
                                         .question-label(style='float:right')
                                             label.text-right Where did they work?
                                     .col-sm-2.col-center-vert
-                                        button.btn.btn-find.button-orange Find School
+                                        button.btn.btn-find.button-orange#find-school Find School
                                 br
                                 .row.row-center-vert.question-form
                                     .col-sm-4.col-sm-offset-1.col-center-vert
@@ -44,7 +44,7 @@ block content
                                         input#answer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
                                     .col-sm-2.col-center-vert
                                         button.btn.btn-next.button-green Next
-                            
+
                             #what-question-form.slide-panel(style='display: none;')
                                 p.question-text(style='margin-left:0;') Now say a bit about what happened. Describe the scene and why it stands out to you.
                                 .row.question-form
@@ -106,5 +106,27 @@ block content
                                         i.fa.fa-envelope
                                         | &nbsp; Email
 
-                    
+    #school_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title#modal_header Find your school
+              .modal-body#school-select
+                .form-group.col-xs-3
+                  label(for='state') State
+                  select#state.form-control
+                .form-group.col-xs-9
+                  label(for='city') City
+                  input#city.form-control(type='text')
+                .form-group.col-xs-12
+                  label(for='city') School
+                  input#school.form-control(type='text')
 
+
+
+              .modal-footer
+                button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal')
+                    strong Close
+                button.btn.btn-success.btn-lg.submit-button(id="modal_submit", data_dismiss='modal') 
+                    strong Submit

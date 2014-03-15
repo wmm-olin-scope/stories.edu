@@ -2,11 +2,20 @@ disableButton = (button) -> $(button).attr 'disabled', 'disabled'
 enableButton = (button) -> $(button).removeAttr 'disabled'
 isButtonDisabled = (button) -> $(button).attr 'disabled'
 
+g = {}
+
 enableInput = (input, placeholder) -> 
     input.attr('disabled', no).val('').attr('placeholder', placeholder)
 disableInput = (input, placeholder) ->
     input.typeahead 'destroy'
     input.attr('disabled', yes).val('').attr('placeholder', placeholder)
+
+capitalize = (s) ->
+    (word[0].toUpperCase() + word[1...].toLowerCase() for word in s.split /\s+/).join ' '
+
+getStateSelect = -> $ '#state'
+getCityInput = -> $ '#city'
+getSchoolInput = -> $ '#school'
 
 makeMultiInputQuestion = (div, dataFields) ->
     div: $ div
@@ -32,7 +41,6 @@ makeMultiInputQuestion = (div, dataFields) ->
             if ! (isButtonDisabled next) 
                 for dataField in dataFields
                     data[dataField] = $("[name='#{dataField}']").val()
-                console.log data
                 onNext()
 
 
@@ -57,6 +65,32 @@ makeSimpleInputQuestion = (div, dataField) ->
                 mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
                 onNext()
 
+makeSchoolInputQuestion = (div, dataField) ->
+    div: $ div
+    run: (data, onNext) ->
+        input = $ '#answer', div
+        next = $ 'button.btn-next', div
+
+        if data[dataField]
+            input.val data[dataField]
+            if g.valid
+                enableButton next
+            else
+                disableButton next
+        else
+            disableButton next
+
+        input.keyup ->
+            if input.val() && g.valid then enableButton next
+            else disableButton next
+        next.click ->
+            if input.val() && g.valid
+                data[dataField] = input.val()
+                data['mailto_school'] = capitalize g.school.name
+                data['mailto_street'] = capitalize g.school.mailingAddress
+                data['mailto_city_state'] = "#{capitalize g.school.city}, #{g.school.state} #{g.school.zip}"
+                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+                onNext()
 
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
@@ -134,6 +168,9 @@ reviewPostcard = (data) ->
     $('#name', div).text data.name
     $('#email', div).text data.email
     $('#addressee', div).text data.who
+    $('#schoolName', div).text data.mailto_school
+    $('#schoolAddress', div).text data.mailto_street
+    $('#schoolCityStateZip', div).text data.mailto_city_state
 
     $('#done').click ->
         window.open '/', '_self'
@@ -146,10 +183,116 @@ sendPostcard = (data) ->
         authorEmail: data.email
     .fail (err) -> console.log err
 
+populateStateOption = ->
+    select = getStateSelect()
+    select.empty()
+    select.append "<option value=\"\">State</option>"
+    for state in stateList
+        select.append "<option value=\"#{state}\">#{state}</option>"
+    return
+
+stateList = [
+    'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL',
+    'IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE',
+    'NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD',
+    'TN','TX','UT','VT','VA','WA','WV','WI','WY','AS','GU','MP','PR','VI']
+
+findTransitions =
+    state: ->
+        getStateSelect().val ''
+        disableInput getCityInput(), 'Select a state first...'
+        disableInput getSchoolInput(), 'Select a state first...'
+        doStateSelection()
+    city: (state) ->
+        enableInput getCityInput(), 'City'
+        enableInput getSchoolInput(), 'School'
+        doCitySelection state
+    school: (state, city) ->
+        enableInput getSchoolInput(), 'School'
+        doSchoolSelection state, city
+
+doStateSelection = ->
+    oldState = null
+    getStateSelect().off 'change'
+    getStateSelect().change ->
+        state = getStateSelect().val()
+        if state is ''
+            findTransitions.state()
+        else if state isnt oldState
+            findTransitions.city state
+        oldState = state
+
+makeHound = (options) ->
+    {url, filter, accessor} = options
+    hound = new Bloodhound
+        datumTokenizer: (d) -> 
+            Bloodhound.tokenizers.whitespace accessor d
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+        prefetch:
+            url: url
+            filter: filter
+            ttl: 0 # TODbloO: when in production set to longer
+    hound.initialize()
+    hound
+
+getCityHound = (state) -> 
+    makeHound
+        url: "/schools/cities/#{state}"
+        filter: (cities) -> 
+            {name: city, display: capitalize city} for city in cities
+        accessor: (city) -> city.name
+
+doCitySelection = (state) ->
+    hound = getCityHound state
+    input = getCityInput()
+
+    input.typeahead 'destroy'
+    input.typeahead null,
+        name: 'cities'
+        displayKey: 'display'
+        source: hound.ttAdapter()
+    input.focus()
+
+    input.off 'typeahead:selected'
+    input.on 'typeahead:selected', (obj, city) -> 
+        findTransitions.school state, city
+
+
+getSchoolHound = (state, city) -> 
+    if city.display != ""
+        url = "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
+    else
+        url = "/schools/by-state/#{state}"
+    makeHound
+        url: url
+        filter: (schools) ->
+            for school in schools
+                school.display = capitalize school.name
+            schools
+        accessor: (school) -> school.name
+
+doSchoolSelection = (state, city) ->
+    hound = getSchoolHound state, city
+    input = getSchoolInput()
+
+
+    input.typeahead 'destroy'
+    input.typeahead null,
+        name: 'schools'
+        displayKey: 'display'
+        source: hound.ttAdapter()
+
+    input.addClass 'active-focus'
+    input.trigger 'focus'
+
+    input.off 'typeahead:selected'
+    input.on 'typeahead:selected', (obj, school) -> 
+        g.school = school
+
 setup = ->
     questions = [
         makeSimpleInputQuestion $('#who-question-form'), 'who'
-        makeSimpleInputQuestion $('#when-question-form'), 'when'
+        makeSchoolInputQuestion $('#when-question-form'), 'when'
         makeSimpleInputQuestion $('#what-question-form'), 'what'
         makeMultiInputQuestion $('#return-question-form'), ['name', 'email']
     ]
@@ -157,7 +300,33 @@ setup = ->
         sendPostcard data
         reviewPostcard data
 
+    populateStateOption()
+    findTransitions.state()
 
+    $("#find-school").click ->
+        $('#school_modal').modal('show')
+
+    $('#modal_submit').click ->
+        $('#school_modal').modal('hide')
+        input = $('#answer', $('#when-question-form'))
+        next = $('button.btn-next', $('#when-question-form'))
+        if g.school
+            g.valid = true
+            if input.val()
+                enableButton next
+        else 
+            g.valid = false
+            disableButton next
+
+    getSchoolInput().focus ->
+        if !($(this).hasClass 'active-focus')
+            city_name = getCityInput().val()
+            city = {name: city_name.toUpperCase(), display: city_name}
+            doSchoolSelection getStateSelect().val(), city
+        $(this).addClass('active-focus')
+
+    getSchoolInput().blur ->
+        $(this).removeClass "active-focus"
 
 $ ->
     require('../share-buttons').setup()
