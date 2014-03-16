@@ -75,39 +75,52 @@ makeSimpleInputQuestion = (div, dataField) ->
         input.keydown (event) ->
             send() if event.which is 13 # enter
 
-            
-
 makeSchoolInputQuestion = (div, dataField) ->
     div: $ div
     run: (data, onNext) ->
-        input = $ '#answer', div
+        whenInput = $ '#whenAnswer', div
         next = $ 'button.btn-next', div
 
-        if data[dataField]
-            input.val data[dataField]
-            if g.valid
-                enableButton next
-            else
-                disableButton next
-        else
-            disableButton next
-
-        input.keyup ->
-            if input.val() && g.valid then enableButton next
+        checkInputs = ->
+            valid = getSchoolInput().val() and whenInput.val()
+            if valid then enableButton next
             else disableButton next
+            valid
+
+        getSchoolInput().keyup checkInputs
+        getSchoolInput().change checkInputs
+        whenInput.keyup checkInputs
+        checkInputs()
+
         next.click ->
-            if input.val() && g.valid
-                data[dataField] = input.val()
-                data['mailto_school'] = capitalize g.school.name
-                data['mailto_street'] = capitalize g.school.mailingAddress
-                data['mailto_city_state'] = "#{capitalize g.school.city}, #{g.school.state} #{g.school.zip}"
+            return unless checkInputs()
+
+            data[dataField] = whenInput.val()
+
+            if g.school
                 data.school = g.school
-                ga 'send', 'event', 'button', 'click', 'postcard', dataField
-                onNext()
+                data.schoolName = capitalize g.school.name
+                data.street = capitalize g.school.mailingAddress
+                data.city = capitalize g.school.city
+                data.state = g.school.state
+                data.zip = g.school.zip
+            else
+                data.schoolName = getSchoolInput().val()
+                data.city = getCityInput().val()
+                data.state = getStateSelect().val()
+                data.zip = ''
+                data.street = ''
+
+            getSchoolInput().typeahead 'destroy'
+            getCityInput().typeahead 'destroy'
+
+            ga 'send', 'event', 'button', 'click', 'postcard', dataField
+            setTimeout onNext, 1
 
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
     wrapper = $ '#question-wrapper'
+    console.log wrapper.width(), rightDelta
     "rect(0px,#{wrapper.width()+rightDelta}px,2000px,#{left}px)"
 
 setupQuestionDivs = (divs) ->
@@ -156,7 +169,11 @@ transitionOut = (div) ->
         opacity: 0
         clip: makeClip transitionOffset
         duration: transitionDuration
-        complete: -> div.css 'display', 'none'
+        complete: -> 
+            div.css 'display', 'none'
+            $('body').scrollLeft 0
+
+    setTimeout (-> $('body').scrollLeft 0), 1
 
 transitionIn = (div, widthDiv='#question-container') ->
     div.css 
@@ -181,20 +198,26 @@ reviewPostcard = (data) ->
     $('#name', div).text data.name
     $('#email', div).text data.email
     $('#addressee', div).text data.who
-    $('#schoolName', div).text data.mailto_school
-    $('#schoolAddress', div).text data.mailto_street
-    $('#schoolCityStateZip', div).text data.mailto_city_state
+    $('#schoolName', div).text data.schoolName
+    $('#schoolAddress', div).text data.street
+    $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
     $('#done').click ->
         ga 'send', 'event', 'button', 'click', 'postcard', 'done'
         window.open '/', '_self'
 
 sendPostcard = (data) ->
-    $.post '/postcards',
+    postcard = 
         message: data.what
         recipientFullName: data.who
         authorFullName: data.name
         authorEmail: data.email
+
+    if data.school?
+        postcard.schoolId = data.school._id
+        postcard.schoolType = data.school.schoolType
+
+    $.post '/postcards', postcard
     .fail (err) -> console.log err
 
 populateStateOption = ->
@@ -267,9 +290,10 @@ doCitySelection = (state) ->
         source: hound.ttAdapter()
     input.focus()
 
-    input.off 'typeahead:selected'
-    input.on 'typeahead:selected', (obj, city) -> 
-        findTransitions.school state, city
+    for event in ['typeahead:selected', 'typeahead:autocompleted']
+        input.off event
+        input.on event, (obj, city) -> 
+            findTransitions.school state, city
 
 
 getSchoolHound = (state, city) -> 
@@ -299,9 +323,10 @@ doSchoolSelection = (state, city) ->
     input.addClass 'active-focus'
     input.trigger 'focus'
 
-    input.off 'typeahead:selected'
-    input.on 'typeahead:selected', (obj, school) -> 
-        g.school = school
+    for event in ['typeahead:selected', 'typeahead:autocompleted']
+        input.off event
+        input.on event, (obj, city) -> 
+            g.school = school
 
 setup = ->
     questions = [
@@ -316,23 +341,6 @@ setup = ->
 
     populateStateOption()
     findTransitions.state()
-
-    $("#find-school").click ->
-        ga 'send', 'event', 'button', 'click', 'postcard', 'find-school'
-        $('#school_modal').modal('show')
-
-    $('#modal_submit').click ->
-        ga 'send', 'event', 'button', 'click', 'postcard', 'find-school-submit'
-        $('#school_modal').modal('hide')
-        input = $('#answer', $('#when-question-form'))
-        next = $('button.btn-next', $('#when-question-form'))
-        if g.school
-            g.valid = true
-            if input.val()
-                enableButton next
-        else 
-            g.valid = false
-            disableButton next
 
     getSchoolInput().focus ->
         if !($(this).hasClass 'active-focus')

@@ -37,11 +37,11 @@ block content
                                 .row.row-center-vert.question-form
                                     .col-sm-2.col-sm-offset-1.col-center-vert
                                         select#state.answer.form-control
-                                    .col-sm-8.col-center-vert
+                                    .col-sm-8.col-center-vert.typeahead-in-blue
                                         input#city.answer.form-control(type='text')
                                 br
                                 .row.question-form
-                                    .col-sm-10.col-sm-offset-1
+                                    .col-sm-10.col-sm-offset-1.typeahead-in-blue
                                         input#school.answer.form-control(type='text')                                   
 
                                 br
@@ -56,7 +56,7 @@ block content
                                         p.question-text(style='margin-left:0;') If you don't recall exactly when, just give us an estimate.
                                 .row.question-form.row-center-vert
                                     .col-sm-4.col-sm-offset-1.col-center-vert
-                                        input#answer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
+                                        input#whenAnswer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
                                     .col-sm-2.col-center-vert
                                         button.btn.btn-next.button-green Next
                                 
@@ -121,28 +121,3 @@ block content
                                     a.btn.btn-lg.share-email.share
                                         i.fa.fa-envelope
                                         | &nbsp; Email
-
-    #school_modal.modal(tabindex='-1', role='dialog', aria-hidden='true')
-        .modal-dialog
-            .modal-content
-              .modal-header
-                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                h4.modal-title#modal_header Find your school
-              .modal-body#school-select
-                .form-group.col-xs-3
-                  label(for='state') State
-                  select#state.form-control
-                .form-group.col-xs-9
-                  label(for='city') City
-                  input#city.form-control(type='text')
-                .form-group.col-xs-12
-                  label(for='city') School
-                  input#school.form-control(type='text')
-
-
-
-              .modal-footer
-                button.btn.btn-default.btn-lg.close-button(type='button', data-dismiss='modal')
-                    strong Close
-                button.btn.btn-success.btn-lg.submit-button(id="modal_submit", data_dismiss='modal') 
-                    strong Submit

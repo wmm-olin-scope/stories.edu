@@ -556,3 +556,13 @@ textarea:focus { outline: none; }
 #postcard-share {
     min-height: 150px;
 }
+
+select#state {
+    font-size: 1em;
+    height: 1.6em;
+    padding-top: 2px;
+}
+
+.typeahead-in-blue {
+    color: #666;
+}
