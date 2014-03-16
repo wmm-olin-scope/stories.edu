@@ -5,13 +5,13 @@ longer_message = "We've all been students. Let's take 5 min to thank a teacher w
 videoUrl = "http://youtu.be/rArJOGicnHU"
 
 setupFacebook = ->
-    encoded = encodeURIComponent siteUrl
-    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{videoUrl}"
+    encoded = encodeURIComponent videoUrl
+    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{encoded}"
     $('.share-facebook')
         .attr 'href', facebookUrl
         .attr 'target', '_blank'
     $('.share-facebook').click ->
-            mixpanel.track 'User shared on Facebook'
+            ga 'send', 'social', 'facebook', 'share', #{encoded}
 
 setupTwitter = ->
     
@@ -21,7 +21,7 @@ setupTwitter = ->
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
     $('.share-twitter').click ->
-        mixpanel.track 'User shared website on Twitter'
+        ga 'send', 'social', 'twitter', 'share', #{encoded}
 
 setupTwitterVideo = ->
     encoded = encodeURIComponent videoUrl
@@ -30,7 +30,7 @@ setupTwitterVideo = ->
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
     $('.share-twitter-video').click ->
-        mixpanel.track 'User shared video on Twitter'
+        ga 'send', 'social', 'twitter', 'share', #{encoded}
 
 setupGooglePlus = ->
     encoded = encodeURIComponent videoUrl
@@ -40,7 +40,7 @@ setupGooglePlus = ->
         .attr 'href', googlePlusUrl
         .attr 'target', '_blank'
     $('.share-google-plus').click ->
-        mixpanel.track 'User shared on Google Plus'
+        ga 'send', 'social', 'googleplus', 'share', #{encoded}
 
 setupEmail = ->
     encoded = encodeURIComponent siteUrl
@@ -48,11 +48,11 @@ setupEmail = ->
     $('.share-email')
         .attr 'href', emailUrl
     $('.share-email').click ->
-        mixpanel.track 'User shared on Email'
+        ga 'send', 'event', 'button', 'click', 'share', 'email'
 
 setupMakePostcardClick = ->
     $('#saythanks').click ->
-        mixpanel.track 'User clicked on initial postcard button'
+        ga 'send', 'event', 'button', 'click', 'postcard', 'init'
 
 exports.setup = ->
     setupFacebook()

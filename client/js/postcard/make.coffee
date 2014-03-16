@@ -41,6 +41,7 @@ makeMultiInputQuestion = (div, dataFields) ->
             if ! (isButtonDisabled next) 
                 for dataField in dataFields
                     data[dataField] = $("[name='#{dataField}']").val()
+                ga 'send', 'event', 'button', 'click', 'postcard', 'user-info'
                 onNext()
 
 
@@ -62,7 +63,7 @@ makeSimpleInputQuestion = (div, dataField) ->
         next.click ->
             if input.val()
                 data[dataField] = input.val()
-                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+                ga 'send', 'event', 'button', 'click', 'postcard', dataField
                 onNext()
 
 makeSchoolInputQuestion = (div, dataField) ->
@@ -89,7 +90,7 @@ makeSchoolInputQuestion = (div, dataField) ->
                 data['mailto_school'] = capitalize g.school.name
                 data['mailto_street'] = capitalize g.school.mailingAddress
                 data['mailto_city_state'] = "#{capitalize g.school.city}, #{g.school.state} #{g.school.zip}"
-                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+                ga 'send', 'event', 'button', 'click', 'postcard', dataField
                 onNext()
 
  # TODO: on resize
@@ -173,6 +174,7 @@ reviewPostcard = (data) ->
     $('#schoolCityStateZip', div).text data.mailto_city_state
 
     $('#done').click ->
+        ga 'send', 'event', 'button', 'click', 'postcard', 'done'
         window.open '/', '_self'
 
 sendPostcard = (data) ->
@@ -304,9 +306,11 @@ setup = ->
     findTransitions.state()
 
     $("#find-school").click ->
+        ga 'send', 'event', 'button', 'click', 'postcard', 'find-school'
         $('#school_modal').modal('show')
 
     $('#modal_submit').click ->
+        ga 'send', 'event', 'button', 'click', 'postcard', 'find-school-submit'
         $('#school_modal').modal('hide')
         input = $('#answer', $('#when-question-form'))
         next = $('button.btn-next', $('#when-question-form'))

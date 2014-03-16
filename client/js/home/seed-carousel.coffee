@@ -17,7 +17,7 @@ exports.setup = ->
     $('#story-carousel').find 'a'
         .css 'cursor', 'pointer'
         .click -> 
-            mixpanel.track 'User watched the carosel video: ' + $(this).attr('data-youtube-id')
+            ga 'send', 'event', 'video', 'click', 'carousel', $(this).attr('data-youtube-id')
             openVideo 'Some story', $(this).attr('data-youtube-id')
 
     $('#story-modal').on 'hide.bs.modal', (e) ->
