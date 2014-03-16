@@ -5,8 +5,10 @@ fs = require 'fs'
 uglify = require 'uglify-js'
 browserify = require 'browserify'
 coffeeify = require 'coffeeify'
+CleanCss = require 'clean-css'
 
 publicJs = 'public/javascripts'
+publicCss = 'public/stylesheets'
 
 execAndLog = (cmd, done) ->
   exec cmd, (err, stdout, stderr) ->
@@ -20,7 +22,7 @@ allBuilds = []
 vendorDir = 'client/js/vendor'
 vendorLibs = [# dependency order
   'jquery', 'bootstrap', 'underscore', 'typeahead.bundle', 'summernote',
-  'bootstrap-switch.min', 'lscache', 'jquery.transit'
+  'bootstrap-switch.min', 'lscache', 'jquery.transit', 'mixpanel', 'ga'
 ]
 
 buildVendorLibs = ->
@@ -32,6 +34,33 @@ buildVendorLibs = ->
 allBuilds.push buildVendorLibs
 task 'build:vendor', 'Bundle vendor js libraries', buildVendorLibs
 
+
+vendorCssDir = 'client/css/vendor'
+vendorCss = ['bootstrap.min', 'bootstrap-spacelab.min', 'font-awesome.min', 
+             'dosis-font', 'bootstrap-switch.min', 'social-buttons-3', 
+             'typeahead']
+
+buildVendorCss = ->
+  joinedCss = ''
+  for file in vendorCss
+    joinedCss += fs.readFileSync("#{vendorCssDir}/#{file}.css") + '\n'
+
+  minimizer = new CleanCss
+    keepSpecialComments: 0
+  minimized = minimizer.minify joinedCss
+  fs.writeFileSync "#{publicCss}/vendor.css", minimized
+
+allBuilds.push buildLocalCss
+task 'build:vendor-css', 'Bundle vendor css', buildVendorCss
+
+buildLocalCss = ->
+  minimizer = new CleanCss
+    keepSpecialComments: 0
+  minimized = minimizer.minify fs.readFileSync('client/css/style.css')
+  fs.writeFileSync "#{publicCss}/style.css", minimized
+
+allBuilds.push buildLocalCss
+task 'build:local-css', 'Bundle local css', buildLocalCss
 
 buildClientModule = (name, rootFile, debug=yes) -> 
   buildFunc = ->
