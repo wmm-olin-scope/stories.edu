@@ -11,6 +11,7 @@ disableInput = (input, placeholder) ->
     input.attr('disabled', yes).val('').attr('placeholder', placeholder)
 
 capitalize = (s) ->
+    return null unless s?
     (word[0].toUpperCase() + word[1...].toLowerCase() for word in s.split /\s+/).join ' '
 
 getStateSelect = -> $ '#state'
@@ -82,7 +83,7 @@ makeSchoolInputQuestion = (div, dataField) ->
         next = $ 'button.btn-next', div
 
         checkInputs = ->
-            valid = getSchoolInput().val() and whenInput.val()
+            valid = (g.school or getSchoolInput().val()) and whenInput.val()
             if valid then enableButton next
             else disableButton next
             valid
@@ -97,7 +98,7 @@ makeSchoolInputQuestion = (div, dataField) ->
 
             data[dataField] = whenInput.val()
 
-            if g.school
+            if g.school?
                 data.school = g.school
                 data.schoolName = capitalize g.school.name
                 data.street = capitalize g.school.mailingAddress
@@ -120,7 +121,6 @@ makeSchoolInputQuestion = (div, dataField) ->
  # TODO: on resize
 makeClip = (left=0, rightDelta=0) -> 
     wrapper = $ '#question-wrapper'
-    console.log wrapper.width(), rightDelta
     "rect(0px,#{wrapper.width()+rightDelta}px,2000px,#{left}px)"
 
 setupQuestionDivs = (divs) ->
@@ -325,7 +325,7 @@ doSchoolSelection = (state, city) ->
 
     for event in ['typeahead:selected', 'typeahead:autocompleted']
         input.off event
-        input.on event, (obj, city) -> 
+        input.on event, (obj, school) -> 
             g.school = school
 
 setup = ->

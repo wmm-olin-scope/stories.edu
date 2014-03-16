@@ -36,7 +36,7 @@ checks =
     authorFullName: utils.makeNameCheck 'authorFullName'
     authorRole: utils.makeNameCheck 'authorRole'
     authorEmail: utils.checkBody 'authorEmail', (email) ->
-        utils.check(email).isEmail()
+        #utils.check(email).isEmail()
         email
 
     schoolType: utils.checkBody 'schoolType', (schoolType) ->
