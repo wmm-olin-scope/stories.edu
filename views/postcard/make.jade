@@ -29,22 +29,37 @@ block content
 
                             #when-question-form.slide-panel(style='display: none;')
                                 p.question-text Tell us a little more about them.
+
+                                .row.question-form
+                                    .col-sm-10.col-sm-offset-1
+                                        .question-label(style='float:left;')
+                                            label Where did they work?
                                 .row.row-center-vert.question-form
-                                    .col-sm-4.col-sm-offset-1.col-center-vert
-                                        .question-label(style='float:right')
-                                            label.text-right Where did they work?
-                                    .col-sm-2.col-center-vert
-                                        button.btn.btn-find.button-orange#find-school Find School
+                                    .col-sm-2.col-sm-offset-1.col-center-vert
+                                        select#state.answer.form-control
+                                    .col-sm-8.col-center-vert
+                                        input#city.answer.form-control(type='text')
                                 br
-                                .row.row-center-vert.question-form
+                                .row.question-form
+                                    .col-sm-10.col-sm-offset-1
+                                        input#school.answer.form-control(type='text')                                   
+
+                                br
+                                br
+
+                                .row.question-form
+                                    .col-sm-10.col-sm-offset-1
+                                        .question-label(style='float:left;')
+                                            label And when did you interact with them?
+                                .row
+                                    .col-sm-10.col-sm-offset-1
+                                        p.question-text(style='margin-left:0;') If you don't recall exactly when, just give us an estimate.
+                                .row.question-form.row-center-vert
                                     .col-sm-4.col-sm-offset-1.col-center-vert
-                                        .question-label(style='float:right')
-                                            label.text-right(for='answer') And when did you interact with them?
-                                    .col-sm-4.col-center-vert
                                         input#answer.answer.form-control(type='text', placeholder='May 1999', maxlength=32)
                                     .col-sm-2.col-center-vert
                                         button.btn.btn-next.button-green Next
-                                p.question-text If you don't recall exactly when, just give us an estimate.
+                                
 
                             #what-question-form.slide-panel(style='display: none;')
                                 p.question-text(style='margin-left:0;') Now tell us a bit about the impact they had on you. Is an experience or interaction that stands out to you? Keep in mind that you are addressing them in your note.
