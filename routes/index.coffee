@@ -3,6 +3,7 @@ home = (req, res) -> res.render 'index'
 
 exports.create = (app) ->
     app.get '/', home
+    app.get '/privacy', (req, res) -> res.render 'privacy'
     require('./prompts').create app
     require('./schools').create app
     require('./users').create app
