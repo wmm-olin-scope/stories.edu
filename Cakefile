@@ -50,7 +50,7 @@ buildVendorCss = ->
   minimized = minimizer.minify joinedCss
   fs.writeFileSync "#{publicCss}/vendor.css", minimized
 
-allBuilds.push buildLocalCss
+allBuilds.push buildVendorCss
 task 'build:vendor-css', 'Bundle vendor css', buildVendorCss
 
 buildLocalCss = ->
