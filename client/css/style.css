@@ -8,6 +8,8 @@ body {
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
 
+h2, h3 { font-family: 'Dosis', sans-serif; }
+
 #top-navbar {
     background-color: #F0F0F0;
     min-height: 70px;
