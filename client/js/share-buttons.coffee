@@ -47,6 +47,7 @@ setupEmail = ->
     emailUrl = "mailto:?Subject=Thank%20a%20teacher%21%20&Body=#{longer_message+'. Check out the 1 minute video here: '+videoUrl}"
     $('.share-email')
         .attr 'href', emailUrl
+        .attr 'target', '_blank'
     $('.share-email').click ->
         ga 'send', 'event', 'button', 'click', 'share', 'email'
 
