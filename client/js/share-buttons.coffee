@@ -2,7 +2,7 @@
 siteUrl = 'http://www.thank-a-teacher.org'
 message = "We've all been students. Let's take 5 min to thank a teacher who helped us become who we are today."
 longer_message = "We've all been students. Let's take 5 min to thank a teacher who helped us become who we are today via http://thank-a-teacher.org"
-videoUrl = "http://youtu.be/rArJOGicnHU"
+videoUrl = "http://youtu.be/_C4eLoqXzxg"
 
 setupFacebook = ->
     encoded = encodeURIComponent videoUrl
