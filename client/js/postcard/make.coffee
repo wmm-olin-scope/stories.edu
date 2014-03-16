@@ -23,6 +23,8 @@ makeMultiInputQuestion = (div, dataFields) ->
         inputs = $ '.answer', div
         next = $ 'button.btn-next', div
 
+        inputs.first().focus()
+
         enableButton next
         for dataField in dataFields
             if data[dataField]
@@ -51,6 +53,8 @@ makeSimpleInputQuestion = (div, dataField) ->
         input = $ '#answer', div
         next = $ 'button.btn-next', div
 
+        input.focus()
+
         if data[dataField]
             input.val data[dataField]
             enableButton next
@@ -60,11 +64,18 @@ makeSimpleInputQuestion = (div, dataField) ->
         input.keyup ->
             if input.val() then enableButton next
             else disableButton next
-        next.click ->
+
+        send = ->
             if input.val()
                 data[dataField] = input.val()
                 ga 'send', 'event', 'button', 'click', 'postcard', dataField
                 onNext()
+
+        next.click send
+        input.keydown (event) ->
+            send() if event.which is 13 # enter
+
+            
 
 makeSchoolInputQuestion = (div, dataField) ->
     div: $ div
@@ -90,6 +101,7 @@ makeSchoolInputQuestion = (div, dataField) ->
                 data['mailto_school'] = capitalize g.school.name
                 data['mailto_street'] = capitalize g.school.mailingAddress
                 data['mailto_city_state'] = "#{capitalize g.school.city}, #{g.school.state} #{g.school.zip}"
+                data.school = g.school
                 ga 'send', 'event', 'button', 'click', 'postcard', dataField
                 onNext()
 

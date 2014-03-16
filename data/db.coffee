@@ -6,7 +6,9 @@ uri = process.env.MONGOLAB_URI or
       process.env.MONGOHQ_URL or
       'mongodb://localhost/thank-a-teacher'
 
-exports.connect = -> Q.ninvoke mongoose, 'connect', uri
+exports.connect = -> 
+    console.log uri
+    Q.ninvoke mongoose, 'connect', uri
 
 exports.dropModel = (model) ->
     deferred = Q.defer()
