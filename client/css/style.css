@@ -8,12 +8,18 @@ body {
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
 
+#top-navbar {
+    background-color: #F0F0F0;
+    min-height: 70px;
+}
+
 #nav-banner{
     font-size: 25px;
 }
 
 .navbar-header, .navbar-collapse{
     background-color: #F0F0F0;
+    min-height: 70px;
 }
 
 #nav-bottom{
