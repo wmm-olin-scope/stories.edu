@@ -11,7 +11,7 @@ setupFacebook = ->
         .attr 'href', facebookUrl
         .attr 'target', '_blank'
     $('.share-facebook').click ->
-            ga 'send', 'social', 'facebook', 'share', #{encoded}
+            mixpanel.track 'User shared on Facebook'
 
 setupTwitter = ->
     
@@ -21,7 +21,7 @@ setupTwitter = ->
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
     $('.share-twitter').click ->
-        ga 'send', 'social', 'twitter', 'share', #{encoded}
+        mixpanel.track 'User shared website on Twitter'
 
 setupTwitterVideo = ->
     encoded = encodeURIComponent videoUrl
@@ -30,7 +30,7 @@ setupTwitterVideo = ->
         .attr 'href', twitterUrl
         .attr 'target', '_blank'
     $('.share-twitter-video').click ->
-        ga 'send', 'social', 'twitter', 'share', #{encoded}
+        mixpanel.track 'User shared video on Twitter'
 
 setupGooglePlus = ->
     encoded = encodeURIComponent videoUrl
@@ -40,7 +40,7 @@ setupGooglePlus = ->
         .attr 'href', googlePlusUrl
         .attr 'target', '_blank'
     $('.share-google-plus').click ->
-        ga 'send', 'social', 'googleplus', 'share', #{encoded}
+        mixpanel.track 'User shared on Google Plus'
 
 setupEmail = ->
     encoded = encodeURIComponent siteUrl
@@ -49,11 +49,11 @@ setupEmail = ->
         .attr 'href', emailUrl
         .attr 'target', '_blank'
     $('.share-email').click ->
-        ga 'send', 'event', 'button', 'click', 'share', 'email'
+        mixpanel.track 'User shared on Email'
 
 setupMakePostcardClick = ->
     $('#saythanks').click ->
-        ga 'send', 'event', 'button', 'click', 'postcard', 'init'
+        mixpanel.track 'User clicked on initial postcard button'
 
 exports.setup = ->
     setupFacebook()

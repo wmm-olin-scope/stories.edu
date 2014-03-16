@@ -44,7 +44,7 @@ makeMultiInputQuestion = (div, dataFields) ->
             if ! (isButtonDisabled next) 
                 for dataField in dataFields
                     data[dataField] = $("[name='#{dataField}']").val()
-                ga 'send', 'event', 'button', 'click', 'postcard', 'user-info'
+                mixpanel.track "User entered personal information"
                 onNext()
 
 
@@ -69,7 +69,7 @@ makeSimpleInputQuestion = (div, dataField) ->
         send = ->
             if input.val()
                 data[dataField] = input.val()
-                ga 'send', 'event', 'button', 'click', 'postcard', dataField
+                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
                 onNext()
 
         next.click send
@@ -115,7 +115,7 @@ makeSchoolInputQuestion = (div, dataField) ->
             getSchoolInput().typeahead 'destroy'
             getCityInput().typeahead 'destroy'
 
-            ga 'send', 'event', 'button', 'click', 'postcard', dataField
+            mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
             setTimeout onNext, 1
 
  # TODO: on resize
@@ -203,7 +203,7 @@ reviewPostcard = (data) ->
     $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
     $('#done').click ->
-        ga 'send', 'event', 'button', 'click', 'postcard', 'done'
+        mixpanel.track "User saved the postcard"
         window.open '/', '_self'
 
 sendPostcard = (data) ->
