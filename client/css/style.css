@@ -1,4 +1,4 @@
-body { 
+body {
     padding-top: 100px;
     padding-bottom: 100px;
     font-family: 'Dosis', sans-serif;
@@ -37,10 +37,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
 
 .navbar .nav > li {
     padding-top: 10px;
-}
-
-#social{
-    padding-top: 20px;
 }
 
 #saythanks{
@@ -83,33 +79,33 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
 }
 
 .video-container {
-    position: relative;  
-    padding-top: 30px; 
-    height: 0; 
-    overflow: hidden; 
+    position: relative;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
     min-height: 282px;
     min-width: 500px;
     vertical-align: middle;
-}   
+}
 
 .video-container-small {
-    position: relative;  
-    padding-top: 30px; 
-    height: 0; 
-    overflow: hidden; 
+    position: relative;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
     min-width: 400px;
     min-height: 225px;
     vertical-align: middle;
-}   
+}
 
-.video-container iframe, 
-.video-container object, 
-.video-container embed { 
-    position: absolute;     
-    top: 0;     
-    left: 0;     
-    width: 100%;     
-    height: 100%; 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .well.postcard-container {
@@ -201,10 +197,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     margin-right: -15px;
 }
 
-.movie-container{
-	margin-bottom: -20px;
-}
-
 #prompt-text{
 	font-size: 18px;
     color: white;
@@ -258,7 +250,7 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: black; 
+    color: black;
 }
 
 input{
@@ -349,14 +341,13 @@ textarea:focus { outline: none; }
 }
 
 #video_stamp{
-    cursor: pointer; 
+    cursor: pointer;
     cursor: hand;
 }
 
 #frontdisplay{
     padding: 30px;
     background-color: #016585;
-    margin-bottom: 20px;
     min-height: 350px;
     color: white;
 }
@@ -507,7 +498,7 @@ textarea:focus { outline: none; }
 }
 
 .padded {
-    padding-right: 50px; 
+    padding-right: 50px;
     padding-left: 50px;
 }
 
@@ -565,4 +556,20 @@ select#state {
 
 .typeahead-in-blue {
     color: #666;
+}
+
+.share-footer {
+    background-color: #F0F0F0;
+    padding: 1em;
+}
+
+.share-footer .control-label {
+    padding-right: 1em;
+    font-size: 1.5em;
+}
+
+.btn-share {
+    padding: 8px 15px;
+    font-size: 18px;
+    line-height: normal;
 }
