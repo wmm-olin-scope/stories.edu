@@ -567,3 +567,9 @@ select#state {
     padding-right: 1em;
     font-size: 1.5em;
 }
+
+.btn-share {
+    padding: 8px 15px;
+    font-size: 18px;
+    line-height: normal;
+}
