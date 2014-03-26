@@ -42,9 +42,19 @@ makeMultiInputQuestion = (div, dataFields) ->
 
         next.click ->
             if ! (isButtonDisabled next) 
+                tracking = {}
                 for dataField in dataFields
                     data[dataField] = $("[name='#{dataField}']").val()
-                mixpanel.track "User entered personal information"
+                    tracking[dataField] = data[dataField]
+                    # TODO: mixpanel integration needs testing
+                    if dataField is 'email'
+                        mixpanel.people.set
+                          $email: data[dataField]
+                        mixpanel.alias(data[dataField])
+                    if dataField is 'name' 
+                        mixpanel.people.set
+                          $name: data[dataField]
+                mixpanel.track 'input', tracking
                 onNext()
 
 
@@ -69,7 +79,8 @@ makeSimpleInputQuestion = (div, dataField) ->
         send = ->
             if input.val()
                 data[dataField] = input.val()
-                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+                mixpanel.track 'input',
+                  dataField: data[dataField]
                 onNext()
 
         next.click send
@@ -115,7 +126,8 @@ makeSchoolInputQuestion = (div, dataField) ->
             getSchoolInput().typeahead 'destroy'
             getCityInput().typeahead 'destroy'
 
-            mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+            mixpanel.track 'input',
+              dataField: data[dataField]
             setTimeout onNext, 1
 
  # TODO: on resize
@@ -203,7 +215,9 @@ reviewPostcard = (data) ->
     $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
     $('#done').click ->
-        mixpanel.track "User saved the postcard"
+        mixpanel.track 'click',
+          action: 'done'
+        mixpanel.identify(data.email)
         window.open '/', '_self'
 
 sendPostcard = (data) ->
