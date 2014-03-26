@@ -9,20 +9,6 @@ block content
             .col-lg-6
                 .row
                     include seed-movie
-                    br
-                    .share-buttons
-                        a.btn.share-twitter-video.button-green(role="button")
-                            i.fa.fa-twitter &nbsp;&nbsp;
-                            | Tweet
-                        a.btn.share-facebook.button-green(role="button")
-                            i.fa.fa-facebook &nbsp;&nbsp;
-                            | Post
-                        a.btn.share-google-plus.button-green(role="button")
-                            i.fa.fa-google-plus &nbsp;&nbsp;
-                            | Share
-                        a.btn.share-email.button-green(role="button")
-                            i.fa.fa-envelope &nbsp;&nbsp;
-                            | Email
             .col-lg-5.col-lg-offset-1
                 h2#tagline
                     strong We have all been students.
@@ -30,4 +16,21 @@ block content
                 br
                 a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
                     strong Send A Note To Your Teacher
+        .col-lg-10.col-lg-offset-1.share-footer
+            form.form-inline(role="form")
+                .form-group
+                    label.control-label Spread the Word
+                    .btn-group#social
+                        a.btn.btn-lg.btn-twitter.share-twitter.share
+                            i.fa.fa-twitter
+                            | &nbsp; Tweet
+                        a.btn.btn-lg.btn-facebook.share-facebook.share
+                            i.fa.fa-facebook
+                            | &nbsp; Post
+                        a.btn.btn-lg.btn-google-plus.share-google-plus.share
+                            i.fa.fa-google-plus
+                            | &nbsp; Share
+                        a.btn.btn-lg.share-email.share
+                            i.fa.fa-envelope
+                            | &nbsp; Email
     include story-carousel
