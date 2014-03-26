@@ -4,6 +4,7 @@ body {
     font-family: 'Dosis', sans-serif;
     background-color: #FFFFFF;
     color: black;
+    min-width: 768px !important;
 } /* necessary for fixed-top navbar
 
 /* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */

@@ -189,10 +189,10 @@ transitionIn = (div, widthDiv='#question-container') ->
         duration: transitionDuration
 
 reviewPostcard = (data) ->
+    div = $ '#pre-send-panel'
     transitionOut $ '#prompt-container'
-    transitionIn $ '#review-panel'
+    transitionIn div
 
-    div = $ '#review-panel'
     $('#who', div).text data.who
     $('#what', div).text data.what
     $('#name', div).text data.name
@@ -202,9 +202,9 @@ reviewPostcard = (data) ->
     $('#schoolAddress', div).text data.street
     $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
-    $('#done').click ->
-        mixpanel.track "User saved the postcard"
-        window.open '/', '_self'
+    #$('#done').click ->
+    #    mixpanel.track "User saved the postcard"
+    #    window.open '/', '_self'
 
 sendPostcard = (data) ->
     postcard = 
@@ -328,7 +328,24 @@ doSchoolSelection = (state, city) ->
         input.on event, (obj, school) -> 
             g.school = school
 
+debugCheck = ->
+    hash = window.location.hash[1...]
+    if hash is '__debug__'
+        reviewPostcard
+            who: 'Mr. Smith'
+            what: 'Now, this is the story all about how. My life got flipped-turned upside down. And I\'d like to take a minute. Just sit right there. I\'ll tell you how I became the prince of a town called Bel Air.'
+            name: 'Jake G.'
+            email: 'jake@example.org'
+            schoolName: 'Happy High School'
+            street: '123 Sesame St.'
+            state: 'MA'
+            zip: '01234'
+            city: 'Needham'
+        return true
+
 setup = ->
+    return if debugCheck()
+
     questions = [
         makeSimpleInputQuestion $('#who-question-form'), 'who'
         makeSchoolInputQuestion $('#when-question-form'), 'when'
@@ -351,6 +368,8 @@ setup = ->
 
     getSchoolInput().blur ->
         $(this).removeClass "active-focus"
+
+
 
 $ ->
     require('../share-buttons').setup()
