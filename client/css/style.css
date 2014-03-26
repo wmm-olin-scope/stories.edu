@@ -4,9 +4,7 @@ body {
     font-family: 'Dosis', sans-serif;
     background-color: #FFFFFF;
     color: black;
-} /* necessary for fixed-top navbar
-
-/* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
+} /* necessary for fixed-top navbar */
 
 h2, h3 { font-family: 'Dosis', sans-serif; }
 
@@ -78,34 +76,18 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     text-shadow: none !important;
 }
 
+/* Video container adapted from http://css-tricks.com/rundown-of-handling-flexible-media/ */
 .video-container {
-    position: relative;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-    min-height: 282px;
-    min-width: 500px;
-    vertical-align: middle;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
 }
 
-.video-container-small {
-    position: relative;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-    min-width: 400px;
-    min-height: 225px;
-    vertical-align: middle;
-}
-
-.video-container iframe,
-.video-container object,
-.video-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .well.postcard-container {
