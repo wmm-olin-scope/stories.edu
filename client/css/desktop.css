@@ -1,1 +1,10 @@
-/* Only for Large Devices + widths (600px+ in width) */
+/* Only for Large Devices + widths (768px+ in width) */
+
+.tt-header {
+    margin-bottom: 20px; /* From Bootstrap */
+}
+
+/* For testing */
+/*body {
+    background-color: red;
+}*/
