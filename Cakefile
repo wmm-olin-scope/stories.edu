@@ -36,8 +36,8 @@ task 'build:vendor', 'Bundle vendor js libraries', buildVendorLibs
 
 
 vendorCssDir = 'client/css/vendor'
-vendorCss = ['bootstrap.min', 'bootstrap-spacelab.min', 'font-awesome.min', 
-             'dosis-font', 'bootstrap-switch.min', 'social-buttons-3', 
+vendorCss = ['bootstrap.min', 'bootstrap-spacelab.min', 'font-awesome.min',
+             'dosis-font', 'bootstrap-switch.min', 'social-buttons-3',
              'typeahead']
 
 buildVendorCss = ->
@@ -56,13 +56,16 @@ task 'build:vendor-css', 'Bundle vendor css', buildVendorCss
 buildLocalCss = ->
   minimizer = new CleanCss
     keepSpecialComments: 0
-  minimized = minimizer.minify fs.readFileSync('client/css/style.css')
-  fs.writeFileSync "#{publicCss}/style.css", minimized
+  minimized = minimizer.minify fs.readFileSync('client/css/main.css')
+  fs.writeFileSync "#{publicCss}/main.css", minimized
+
+  minimized = minimizer.minify fs.readFileSync('client/css/desktop.css')
+  fs.writeFileSync "#{publicCss}/desktop.css", minimized
 
 allBuilds.push buildLocalCss
 task 'build:local-css', 'Bundle local css', buildLocalCss
 
-buildClientModule = (name, rootFile, debug=yes) -> 
+buildClientModule = (name, rootFile, debug=yes) ->
   buildFunc = ->
     b = browserify
       entries: ["./client/js/#{rootFile}"]
@@ -75,17 +78,17 @@ buildClientModule = (name, rootFile, debug=yes) ->
   allBuilds.push buildFunc
   return buildFunc
 
-task 'build:home', 'Build the home page js', 
+task 'build:home', 'Build the home page js',
   buildClientModule 'home', 'home/index.coffee'
-task 'build:make-postcard', 'Build the make postcard page js', 
+task 'build:make-postcard', 'Build the make postcard page js',
   buildClientModule 'make-postcard', 'postcard/make.coffee'
-task 'build:prompts', 'Build the prompts page js', 
+task 'build:prompts', 'Build the prompts page js',
   buildClientModule 'prompts', 'prompts/index.coffee'
 
 task 'data', 'Rebuild the database', ->
   execAndLog 'coffee data/schools.coffee'
 
-task 'build', 'Build all the things', -> 
+task 'build', 'Build all the things', ->
   build() for build in allBuilds
 
 task 'sbuild', '', buildClientModule 'make-postcard', 'postcard/make.coffee'
