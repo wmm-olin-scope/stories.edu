@@ -1,40 +1,23 @@
 body {
-    padding-top: 100px;
     padding-bottom: 100px;
     font-family: 'Dosis', sans-serif;
     background-color: #FFFFFF;
-    color: black;
-} /* necessary for fixed-top navbar */
+    color: #333;
+}
 
 h2, h3 { font-family: 'Dosis', sans-serif; }
 
 #top-navbar {
+    background-image: none;
     background-color: #F0F0F0;
     min-height: 70px;
 }
 
-#nav-banner{
-    font-size: 25px;
-}
-
-.navbar-header, .navbar-collapse{
-    background-color: #F0F0F0;
-    min-height: 70px;
-}
-
-#nav-bottom{
+#nav-bottom {
     background-color: #F0F0F0;
     border-radius: 0px;
     background-image: none;
     text-shadow: none;
-}
-
-.navbar-default, .navbar-text{
-    color: black !important;
-}
-
-.navbar .nav > li {
-    padding-top: 10px;
 }
 
 #saythanks{
