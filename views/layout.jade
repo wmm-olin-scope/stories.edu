@@ -47,15 +47,18 @@ html
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-                ga('create', 'UA-48981443-1', 'thank-a-teacher.org');
-                ga('send', 'pageview');
             } else {
                 var track = function(serviceName) {
-                    debug.log(serviceName + " Track Event: " + arguments.join(", "));
+                    return function () {
+                        var args = Array.prototype.slice.call(arguments);
+                        console.log(serviceName + " Track Event: " + args.join(", "));
+                    }
                 }
-                window.mixpanel = { track: track };
-                window.ga = track;
+                window.mixpanel = { track: track('Mixpanel') };
+                window.ga = track('GA');
             }
+            ga('create', 'UA-48981443-1', 'thank-a-teacher.org');
+            ga('send', 'pageview');
     body
         #fb-root
 
