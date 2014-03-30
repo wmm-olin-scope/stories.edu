@@ -119,9 +119,8 @@ makeSchoolInputQuestion = (div, dataField) ->
             setTimeout onNext, 1
 
  # TODO: on resize
-makeClip = (left=0, rightDelta=0) -> 
-    wrapper = $ '#question-wrapper'
-    "rect(0px,#{wrapper.width()+rightDelta}px,2000px,#{left}px)"
+makeClip = (left=0, rightDelta=0, wrapper='#question-wrapper') -> 
+    "rect(0px,#{$(wrapper).width()+rightDelta}px,2000px,#{left}px)"
 
 setupQuestionDivs = (divs) ->
     for div, i in divs
@@ -145,6 +144,7 @@ serveQuestions = (questions, data, done) ->
             transitionIn questions[index].div
             questions[index].run data, serveNext
         else
+            transitionOut $ '#prompt-container'
             done data
 
     updateProgress index, questions.length
@@ -180,7 +180,7 @@ transitionIn = (div, widthDiv='#question-container') ->
         display: ''
         opacity: 0
         x: transitionOffset
-        clip: makeClip 0, -transitionOffset
+        clip: makeClip 0, -transitionOffset, widthDiv
     div.width $(widthDiv).width()
     div.transition 
         x: 0
@@ -190,7 +190,6 @@ transitionIn = (div, widthDiv='#question-container') ->
 
 reviewPostcard = (data) ->
     div = $ '#pre-send-panel'
-    transitionOut $ '#prompt-container'
     transitionIn div
 
     $('#who', div).text data.who
@@ -202,9 +201,11 @@ reviewPostcard = (data) ->
     $('#schoolAddress', div).text data.street
     $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
-    #$('#done').click ->
-    #    mixpanel.track "User saved the postcard"
-    #    window.open '/', '_self'
+    $('#send').click ->
+        mixpanel.track "User sent the postcard"
+        sendPostcard data
+        transitionOut div
+        displayThankYou data
 
 sendPostcard = (data) ->
     postcard = 
@@ -219,6 +220,15 @@ sendPostcard = (data) ->
 
     $.post '/postcards', postcard
     .fail (err) -> console.log err
+
+displayThankYou = (data) ->
+    div = $ '#thank-you-panel'
+    console.log 
+    transitionIn div, $('#pre-send-panel')
+
+    $('#send').click ->
+        mixpanel.track "User clicked done"
+        window.open '/', '_self'
 
 populateStateOption = ->
     select = getStateSelect()
@@ -331,6 +341,7 @@ doSchoolSelection = (state, city) ->
 debugCheck = ->
     hash = window.location.hash[1...]
     if hash is '__debug__'
+        transitionOut $ '#prompt-container'
         reviewPostcard
             who: 'Mr. Smith'
             what: 'Now, this is the story all about how. My life got flipped-turned upside down. And I\'d like to take a minute. Just sit right there. I\'ll tell you how I became the prince of a town called Bel Air.'
@@ -352,9 +363,7 @@ setup = ->
         makeSimpleInputQuestion $('#what-question-form'), 'what'
         makeMultiInputQuestion $('#return-question-form'), ['name', 'email']
     ]
-    serveQuestions questions, {}, (data) ->
-        sendPostcard data
-        reviewPostcard data
+    serveQuestions questions, {}, reviewPostcard
 
     populateStateOption()
     findTransitions.state()

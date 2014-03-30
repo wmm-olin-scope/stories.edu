@@ -1,8 +1,5 @@
 #review-notice.row.blue-panel
-    .row.row-center-vert
-        .col-sm-10.col-center-vert
-            span Review your note
-        .col-sm-1.col-center-vert
+    .row: span Review your note
             
 br
 .row.row-center-vert
@@ -18,11 +15,8 @@ br
                     p#what
                     br
                     br
-                    .row
-                        .col-xs-7.pull-right
-                            span#signature
-                                p.pull-right Thank you for your hard work,
-                                #name.pull-right.signature 
+                    .row: .col-xs-7.pull-right: p.pull-right Thank you for your hard work,
+                    .row: .col-xs-7.pull-right: #name.pull-right.signature 
 
             .col-xs-5.address
                 .row
@@ -41,4 +35,5 @@ br
                             #schoolAddress 11400 South Lakes Dr.
                             #schoolCityStateZip Reston, VA 20191
     .col-md-2.col-xs-1.col-center-vert
-        button#send.btn.btn-lg.button-orange Send
+        center
+            button#send.btn.btn-lg.button-orange Send!
