@@ -4,15 +4,15 @@ block content
     .container
         script(src='/javascripts/home.js')
 
-    .row.movie-container
-        .col-lg-10.col-lg-offset-1#frontdisplay
+    .row.central-container
+        .col-lg-10.col-lg-offset-1.central-container__main
             .col-lg-6
                 .row
                     include seed-movie
             .col-lg-5.col-lg-offset-1
-                h2#tagline
+                h2.central-container__tagline
                     strong We have all been students.
-                h3#tagline Let's take the time to thank the people who helped us become who we are today.
+                p.central-container__cta Let's take the time to thank the people who helped us become who we are today.
                 br
                 a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
                     strong Send A Note To Your Teacher

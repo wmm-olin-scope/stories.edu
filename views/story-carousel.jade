@@ -1,5 +1,5 @@
 br
-.panel.panel-default#story-carousel
+.panel.panel-default.js-story-carousel
     .panel-heading
         h3.panel-title
             strong Explore stories others have told
@@ -17,8 +17,10 @@ br
             a.thumbnail(data-youtube-id='SXvKxiiq1UI')
                 img(src='/images/toby_video_thumb.png' height="200" width="300")
 
-#story-modal.modal.bs-modal-lg.fade(role='dialog', tabindex='-1', aria-labelledby='story-modal', aria-hidden='true')
-    .modal-dialog
+//- XXX This used to have aria-labelledby='story-modal', but there is no label (title) for the modal, so not needed?
+//- See http://getbootstrap.com/javascript/#modals 'Make modals accessible'
+.js-story-modal.modal.bs-modal-lg.fade(role='dialog', tabindex='-1', aria-hidden='true')
+    .modal-dialog.modal-lg
         .modal-content
             .modal-header
                 button.close(type='button', data-dismiss='modal', style='margin-top:-10px') &times;
@@ -28,12 +30,3 @@ br
                     .col-md-12
                         .video-container.video-container-small
                             iframe(src="", frameborder="0", allowfullscreen)
-                   //- .col-md-4
-                   //-     h3
-                   //-         strong First, Last Name
-                   //-     h6
-                   //-         strong School Attended
-                   //-     h6#fadedtext
-                   //-         strong City, State
-                   //-     br
-                   //-     p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet consectetur diam, eu blandit sapien. Nam id turpis vel sapien ultricies rutrum nec eget nulla." 
