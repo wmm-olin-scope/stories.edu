@@ -1,7 +1,6 @@
 /* Mobile first (override large devices with desktop.css) */
 
 body {
-    padding-bottom: 100px;
     font-family: 'Dosis', sans-serif;
     background-color: #FFFFFF;
     color: #333;
@@ -10,18 +9,83 @@ body {
 h2, h3 { font-family: 'Dosis', sans-serif; }
 
 .tt-header {
-    background-image: none;
     background-color: #F0F0F0;
+    background-image: none;
     min-height: 70px;
     margin-bottom: 0;
 }
 
-#nav-bottom {
+.tt-container {
+    padding-bottom: 100px;
+}
+
+.col-lg-5 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.central-container {}
+
+.central-container__main {
+    min-height: 22em;
+    padding: 30px;
+    color: white;
+    background-color: #016585;
+}
+
+.central-container__tagline {
+    font-size:24px;
+    color: white; /* Overriding Bootstrap */
+}
+
+.central-container__cta {
+    font-size:18px;
+}
+
+.share-footer {
+    background-color: #F0F0F0;
+    padding: 1em;
+}
+
+.share-footer .control-label {
+    padding-right: 1em;
+    font-size: 1.5em;
+}
+
+.btn-share {
+    padding: 8px 7px;
+    font-size: 17px;
+    line-height: normal;
+}
+
+.tt-footer {
+    /* Push the footer to the bottom */
+    bottom: auto;
+    position: static;
+
     background-color: #F0F0F0;
     border-radius: 0px;
     background-image: none;
     text-shadow: none;
 }
+
+.tt-modal {
+    background-color: #016585;
+}
+
+/*.modal-dialog {
+    width: 680px;
+    margin: 30px auto;
+}
+
+#modal_header {
+    color: black;
+}
+
+.modal-content{
+    background-color: #FFFFFF;
+}*/
+
 
 #saythanks{
     background-image: none;
@@ -37,17 +101,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     background-color: #E36523;
 }
 
-#video-button-desktop{
-    /*background-color: #8dca84;*/
-    background-image: none;
-    border: none;
-    text-shadow: none;
-    color: white;
-    /*height: 80px;*/
-    /*width: 300px;*/
-    /*font-size: 35px;*/
-}
-
 .submit-button{
     background-color: #8dca84 !important;
     background-image: none !important;
@@ -60,20 +113,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     background-image: none !important;
     border: none !important;
     text-shadow: none !important;
-}
-
-/* Video container adapted from http://css-tricks.com/rundown-of-handling-flexible-media/ */
-.video-container {
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 */
-  position: relative;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .well.postcard-container {
@@ -254,11 +293,6 @@ textarea{
 input:focus { outline: none; }
 textarea:focus { outline: none; }
 
-.modal-dialog {
-    width: 680px;
-    margin: 30px auto;
-}
-
 .text-center {
     text-align: left;
     padding: 10px;
@@ -277,20 +311,12 @@ textarea:focus { outline: none; }
     margin: 0 !important;
 }
 
-#modal_header {
-    color: black;
-}
-
 #share{
     background-color: #8dca84;
     background-image: none;
     border: none;
     text-shadow: none;
     color: white;
-}
-
-.modal-content{
-    background-color: #016585;
 }
 
 #share-text{
@@ -304,20 +330,9 @@ textarea:focus { outline: none; }
     height: 175px;
 }
 
-.modal-content{
-    background-color: #FFFFFF;
-}
-
 #video_stamp{
     cursor: pointer;
     cursor: hand;
-}
-
-#frontdisplay{
-    padding: 30px;
-    background-color: #016585;
-    min-height: 350px;
-    color: white;
 }
 
 .share {
@@ -379,11 +394,6 @@ textarea:focus { outline: none; }
     border: 0px;
 }
 
-#tagline{
-    color: white;
-}
-
-
 .panel-heading{
     background-color: #016585 !important;
     border-radius: 0px;
@@ -406,10 +416,6 @@ textarea:focus { outline: none; }
 
 #fadedtext{
     color: #737373;
-}
-
-#frontdisplay p{
-    font-size: 16px;
 }
 
 .answer.form-control {
@@ -504,7 +510,7 @@ textarea:focus { outline: none; }
 }
 
 .slide-panel {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
 }
 
@@ -526,18 +532,17 @@ select#state {
     color: #666;
 }
 
-.share-footer {
-    background-color: #F0F0F0;
-    padding: 1em;
+/* Video container adapted from http://css-tricks.com/rundown-of-handling-flexible-media/ */
+.video-container {
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
 }
 
-.share-footer .control-label {
-    padding-right: 1em;
-    font-size: 1.5em;
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
 }
-
-.btn-share {
-    padding: 8px 15px;
-    font-size: 18px;
-    line-height: normal;
-}
+/* End Video Container */
