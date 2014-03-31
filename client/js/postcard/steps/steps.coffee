@@ -73,7 +73,9 @@ class exports.StepGroup extends exports.Step
         super args...
         @steps = []
 
-    addStep: (step) -> @steps.push step
+    add: (step) -> 
+        @steps.push step
+        return this
 
     setup: ->
         super()
@@ -108,7 +110,7 @@ class exports.TextInputStep extends exports.Step
     _run: (data, onDone) ->
         @inputs[0].focus()
         @fillInputs data
-         
+
         @checkInputs()
         $ @inputs
             .keyup => @checkInputs
@@ -127,16 +129,17 @@ class exports.TextInputStep extends exports.Step
         utils.setButtonEnabled @next, _.every @inputs, (input) ->
             input.val()? and input.val().trim().length > 0
 
+    extractData: ->
+        data = {}
+        for input, index in @inputsMap
+            data[@fields[index]] = input.val()
+        data
+
     tryNext: (data, onDone) ->
         return unless utils.isButtonEnabled @next
-
-        tracking = {}
-        for input, index in @inputsMap
-            field = @fields[index]
-            data[field] = tracking[field] = input.val()
-        mixpanel.track 'input', tracking
-
+        newData = @extractData()
+        mixpanel.track 'input', newData
+        _.extend data, newData
         onDone()
-
                 
 

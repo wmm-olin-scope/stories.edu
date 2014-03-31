@@ -16,3 +16,8 @@ exports.setInputEnabled = (input, enabled=yes, placeholder='') ->
             .attr 'disabled', yes
             .val ''
             .attr 'placeholder', placeholder
+
+exports.capitalize = (s) ->
+    return null unless s?
+    (w[0].toUpperCase() + w[1...].toLowerCase() for w in s.split /\s+/)
+    .join ' '
