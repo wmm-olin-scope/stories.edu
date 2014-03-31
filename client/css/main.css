@@ -510,7 +510,7 @@ textarea:focus { outline: none; }
 }
 
 .slide-panel {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
 }
 
