@@ -4,7 +4,7 @@ isButtonDisabled = (button) -> $(button).attr 'disabled'
 
 g = {}
 
-enableInput = (input, placeholder) -> 
+enableInput = (input, placeholder) ->
     input.attr('disabled', no).val('').attr('placeholder', placeholder)
 disableInput = (input, placeholder) ->
     input.typeahead 'destroy'
@@ -30,7 +30,7 @@ makeMultiInputQuestion = (div, dataFields) ->
         for dataField in dataFields
             if data[dataField]
                 $("[name='#{dataField}']").val data[dataField]
-            else 
+            else
                 disableButton next
 
         hasVal = (key) -> $(key).val()
@@ -42,9 +42,19 @@ makeMultiInputQuestion = (div, dataFields) ->
 
         next.click ->
             if ! (isButtonDisabled next) 
+                tracking = {}
                 for dataField in dataFields
                     data[dataField] = $("[name='#{dataField}']").val()
-                mixpanel.track "User entered personal information"
+                    tracking[dataField] = data[dataField]
+                    # TODO: mixpanel integration needs testing
+                    if dataField is 'email'
+                        mixpanel.people.set
+                          $email: data[dataField]
+                        mixpanel.alias(data[dataField])
+                    if dataField is 'name' 
+                        mixpanel.people.set
+                          $name: data[dataField]
+                mixpanel.track 'input', tracking
                 onNext()
 
 
@@ -69,7 +79,8 @@ makeSimpleInputQuestion = (div, dataField) ->
         send = ->
             if input.val()
                 data[dataField] = input.val()
-                mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+                mixpanel.track 'input',
+                  dataField: data[dataField]
                 onNext()
 
         next.click send
@@ -93,7 +104,7 @@ makeSchoolInputQuestion = (div, dataField) ->
         whenInput.keyup checkInputs
         checkInputs()
 
-        next.click ->
+        send = ->
             return unless checkInputs()
 
             data[dataField] = whenInput.val()
@@ -115,11 +126,17 @@ makeSchoolInputQuestion = (div, dataField) ->
             getSchoolInput().typeahead 'destroy'
             getCityInput().typeahead 'destroy'
 
-            mixpanel.track "User clicked on button: "+ dataField.toUpperCase()
+            mixpanel.track 'input',
+              dataField: data[dataField]
             setTimeout onNext, 1
 
+        next.click send
+        whenInput.keydown (event) ->
+            send() if event.which is 13 # enter
+
+
  # TODO: on resize
-makeClip = (left=0, rightDelta=0) -> 
+makeClip = (left=0, rightDelta=0) ->
     wrapper = $ '#question-wrapper'
     "rect(0px,#{wrapper.width()+rightDelta}px,2000px,#{left}px)"
 
@@ -169,20 +186,20 @@ transitionOut = (div) ->
         opacity: 0
         clip: makeClip transitionOffset
         duration: transitionDuration
-        complete: -> 
+        complete: ->
             div.css 'display', 'none'
             $('body').scrollLeft 0
 
     setTimeout (-> $('body').scrollLeft 0), 1
 
 transitionIn = (div, widthDiv='#question-container') ->
-    div.css 
+    div.css
         display: ''
         opacity: 0
         x: transitionOffset
         clip: makeClip 0, -transitionOffset
     div.width $(widthDiv).width()
-    div.transition 
+    div.transition
         x: 0
         clip: makeClip 0, 0
         opacity: 1
@@ -203,11 +220,13 @@ reviewPostcard = (data) ->
     $('#schoolCityStateZip', div).text "#{data.city}, #{data.state} #{data.zip}"
 
     $('#done').click ->
-        mixpanel.track "User saved the postcard"
+        mixpanel.track 'click',
+          action: 'done'
+        mixpanel.identify(data.email)
         window.open '/', '_self'
 
 sendPostcard = (data) ->
-    postcard = 
+    postcard =
         message: data.what
         recipientFullName: data.who
         authorFullName: data.name
@@ -262,7 +281,7 @@ doStateSelection = ->
 makeHound = (options) ->
     {url, filter, accessor} = options
     hound = new Bloodhound
-        datumTokenizer: (d) -> 
+        datumTokenizer: (d) ->
             Bloodhound.tokenizers.whitespace accessor d
         queryTokenizer: Bloodhound.tokenizers.whitespace
         prefetch:
@@ -272,10 +291,10 @@ makeHound = (options) ->
     hound.initialize()
     hound
 
-getCityHound = (state) -> 
+getCityHound = (state) ->
     makeHound
         url: "/schools/cities/#{state}"
-        filter: (cities) -> 
+        filter: (cities) ->
             {name: city, display: capitalize city} for city in cities
         accessor: (city) -> city.name
 
@@ -292,11 +311,11 @@ doCitySelection = (state) ->
 
     for event in ['typeahead:selected', 'typeahead:autocompleted']
         input.off event
-        input.on event, (obj, city) -> 
+        input.on event, (obj, city) ->
             findTransitions.school state, city
 
 
-getSchoolHound = (state, city) -> 
+getSchoolHound = (state, city) ->
     if city.display != ""
         url = "/schools/by-city/#{state}/#{encodeURIComponent city.name}"
     else
@@ -325,7 +344,7 @@ doSchoolSelection = (state, city) ->
 
     for event in ['typeahead:selected', 'typeahead:autocompleted']
         input.off event
-        input.on event, (obj, school) -> 
+        input.on event, (obj, school) ->
             g.school = school
 
 setup = ->
