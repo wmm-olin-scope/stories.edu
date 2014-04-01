@@ -498,7 +498,7 @@ textarea:focus { outline: none; }
     color: white;
 }
 
-#questions-panel {
+#input-panel {
     min-height: 625px;
 }
 
@@ -550,7 +550,7 @@ textarea:focus { outline: none; }
     width: 100%;
 }
 
-#review-notice {
+.notice {
     font-size: 1.6em;
 }
 

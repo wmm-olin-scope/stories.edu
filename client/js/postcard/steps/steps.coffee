@@ -1,8 +1,8 @@
 
 utils = require './utils'
 
-transitionOffset = 2000
-transitionDuration = 600
+exports.transitionOffset = transitionOffset = 2000
+exports.transitionDuration = transitionDuration = 600
 
 getWidth = (div) -> div.parent().width()
 
@@ -50,12 +50,12 @@ placeOnscreen = (div) ->
         clip: makeClip 0, getWidth div
 
 class exports.Step
-    constructor: (@name, container) ->
-        @container = $ container
+    constructor: (@name, @container) ->
         @isFirst = yes
         @isLast = yes
 
     setup: ->
+        @container = $ @container
         if @isFirst then placeOnscreen @container
         else placeOffscreen @container
 
@@ -84,19 +84,25 @@ class exports.StepGroup extends exports.Step
             console.warn "Group #{@name} contains no steps."
             return
 
-        for step in steps
+        for step in @steps
             step.isFirst = no
             step.isLast = no
         @steps[0].isFirst = yes
         @steps[@steps.length-1].isLast = yes
+        step.setup() for step in @steps
 
-    _run: (data, onDone) ->
-        runStep = (index) =>
-            if index >= @steps.length 
-                onDone()
-            else
-                @steps[index].run data, -> runStep index+1
-        runStep 0 
+        @stepIndex = 0
+        
+
+    runChild: (data, onDone) ->
+        if @stepIndex >= @steps.length 
+            onDone()
+        else
+            @steps[@stepIndex].run data, =>
+                @stepIndex++
+                runChild data, onDone
+
+    _run: (data, onDone) -> @runChild data, onDone
 
 class exports.TextInputStep extends exports.Step
     constructor: (name, container, @fields=[]) ->
@@ -108,6 +114,7 @@ class exports.TextInputStep extends exports.Step
         @inputs = $ "[name='#{field}']", @container for field in @fields
 
     _run: (data, onDone) ->
+        console.log {name: @name, data, inputs: @inputs, container: @container}
         @inputs[0].focus()
         @fillInputs data
 
@@ -117,7 +124,7 @@ class exports.TextInputStep extends exports.Step
             .change => @checkInputs
 
         @next.click => @tryNext data, onDone
-        @inputs[@inputs.length-1].keydown (event) =>
+        $(@inputs[@inputs.length-1]).keydown (event) =>
             @tryNext data, onDone if event.which is 13 # enter
 
     fillInputs: (data) ->
@@ -127,7 +134,7 @@ class exports.TextInputStep extends exports.Step
 
     checkInputs: ->
         utils.setButtonEnabled @next, _.every @inputs, (input) ->
-            input.val()? and input.val().trim().length > 0
+            $(input).val()?.trim().length > 0
 
     extractData: ->
         data = {}
@@ -138,7 +145,7 @@ class exports.TextInputStep extends exports.Step
     tryNext: (data, onDone) ->
         return unless utils.isButtonEnabled @next
         newData = @extractData()
-        mixpanel.track 'input', newData
+        mixpanel.track "input:postcard:#{@name}", newData
         _.extend data, newData
         onDone()
                 

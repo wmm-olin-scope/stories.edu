@@ -1,0 +1,17 @@
+#input.slide-panel
+    h2 Help us send a note to a teacher, coach, or mentor!
+
+    #input-panel.blue-panel
+        .progress#progress
+            .progress-bar(role='progressbar', aria-valuenow=0, aria-valuemin=0, aria-valuemax=100, style='width: 0%')
+                span#progress-label 
+        br
+        .slide-wrapper
+            #who-panel.slide-panel
+                include prompts/who
+            #where-panel.slide-panel(style='display: none')
+                include prompts/where
+            #what-panel.slide-panel(style='display: none')
+                include prompts/what
+            #author-panel.slide-panel(style='display: none')
+                include prompts/author
