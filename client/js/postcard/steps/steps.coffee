@@ -100,7 +100,7 @@ class exports.StepGroup extends exports.Step
         else
             @steps[@stepIndex].run data, =>
                 @stepIndex++
-                runChild data, onDone
+                @runChild data, onDone
 
     _run: (data, onDone) -> @runChild data, onDone
 
@@ -119,9 +119,12 @@ class exports.TextInputStep extends exports.Step
         @fillInputs data
 
         @checkInputs()
+        @setupEvents data, onDone
+
+    setupEvents: (data, onDone) ->
         $ @inputs
-            .keyup => @checkInputs
-            .change => @checkInputs
+            .keyup => @checkInputs()
+            .change => @checkInputs()
 
         @next.click => @tryNext data, onDone
         $(@inputs[@inputs.length-1]).keydown (event) =>
@@ -138,8 +141,8 @@ class exports.TextInputStep extends exports.Step
 
     extractData: ->
         data = {}
-        for input, index in @inputsMap
-            data[@fields[index]] = input.val()
+        for input, index in @inputs
+            data[@fields[index]] = $(input).val()
         data
 
     tryNext: (data, onDone) ->

@@ -8,10 +8,10 @@ step.setup = ->
 
     step.stateSelect = $ "[name='state']", step.container
     step.cityInput = $ "[name='city']", step.container
-    step.schoolNameInput = $ "[name='schoolName']", step.container
+    step.schoolNameInput = $ "[name='school-name']", step.container
 
     populateStateOption()
-    fixSchoolFocus()
+    #fixSchoolFocus()
 
     step.stateSelect.off 'change'
 
@@ -56,9 +56,10 @@ step.fillInputs = (data) ->
         step.cityInput.val data.city
         step.schoolNameInput.val data.schoolName
 
-    $ [step.stateSelect, step.cityInput, step.schoolNameInput]
-        .keyup -> step.checkInputs()
-        .change -> step.checkInputs()
+    for input in [step.stateSelect, step.cityInput, step.schoolNameInput]
+        $(input)
+            .keyup -> step.checkInputs()
+            .change -> step.checkInputs()
 
 step.checkInputs = ->
     whenGood = TextInputStep::checkInputs.call step
@@ -70,11 +71,13 @@ step.checkInputs = ->
 oldState = {} # unique obj
 checkState = ->
     state = step.stateSelect.val()
-    return if oldState is state
+    ok = state?.length > 0
+    return ok if oldState is state
     oldState = state
 
-    invalidateCityAutocomplete()
-    invalidateSchoolAutocomplete()
+    if state
+        invalidateCityAutocomplete()
+        invalidateSchoolAutocomplete()
 
     if state
         setInputEnabled step.cityInput, yes, 'City'
@@ -83,6 +86,8 @@ checkState = ->
     else
         setInputEnabled step.cityInput, no, 'Select a state first...'
         setInputEnabled step.schoolNameInput, no, 'Select a state first...'
+
+    return ok
 
 makeHound = (options) ->
     {url, filter, accessor} = options
@@ -114,36 +119,51 @@ autocomplete = (input, hound, name, onSelect) ->
 oldCity = {}
 checkCity = ->
     city = step.cityInput.val()
-    return if city is oldCity
-    oldCity = city
-    invalidateCityAutocomplete()
+    ok = city?.length > 0
+    if city isnt oldCity
+        oldCity = city
+        invalidateSchoolAutocomplete()
+    return ok
 
 invalidateCityAutocomplete = ->
     step.school = null
 
+    state = step.stateSelect.val()
+    if not state
+        step.cityInput.typeahead 'destroy'
+        return
+
     hound = makeHound
-        url: "/schools/cities/#{state.toUpperCase()}"
+        url: "/schools/cities/#{step.stateSelect.val().toUpperCase()}"
         filter: (cities) -> 
             {name: city, display: capitalize city} for city in cities
         accessor: (city) -> city.name
 
     autocomplete step.cityInput, hound, 'cities', ({name: city}) ->
+        oldCity = step.cityInput.val()
         invalidateSchoolAutocomplete()
-        schoolNameInput.focus()
+        step.schoolNameInput.focus()
 
 oldSchoolName = {}
 checkSchool = ->
     schoolName = step.schoolNameInput.val()
-    return if schoolName is oldSchoolName
-    oldSchoolName = schoolName
-    invalidateSchoolAutocomplete()
+    ok = schoolName?.length > 0
+    if schoolName isnt oldSchoolName
+        oldSchoolName = schoolName
+    return ok
 
 invalidateSchoolAutocomplete = ->
     step.school = null
 
+    state = step.stateSelect.val()
     city = step.cityInput.val()
+    if not state or not city
+        step.schoolNameInput.typeahead 'destroy'
+        return
+
+    city = encodeURIComponent city.toUpperCase()
     url = 
-        if city then "/schools/by-city/#{state}/#{encodeURIComponent city}"
+        if city then "/schools/by-city/#{state}/#{city}"
         else "/schools/by-state/#{state}"
 
     hound = makeHound
@@ -153,7 +173,7 @@ invalidateSchoolAutocomplete = ->
                 school.display = capitalize school.name
             schools
         accessor: (school) -> school.name
-
+    
     autocomplete step.schoolNameInput, hound, 'schools', (school) ->
         step.school = school
         step.cityInput.val capitalize school.city
