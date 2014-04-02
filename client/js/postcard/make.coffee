@@ -13,6 +13,10 @@ run = ->
         console.log {data}
 
 $ ->
+    History.Adapter.bind window, 'statechange', ->
+        State = History.getState()
+        console.log {State}
+    
     console.log 'starting postcard'
     run()
     console.log 'running'

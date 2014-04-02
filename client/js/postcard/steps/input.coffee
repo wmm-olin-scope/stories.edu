@@ -9,10 +9,10 @@ authorStep = new TextInputStep 'author', '#author-panel',
                                ['authorName', 'authorEmail']
 authorStep.run = (data, onDone) ->
     TextInputStep::run.call this, data, ->
-        mixpanel.people.set 
-            $email: data.authorEmail
-            $name: data.authorName
-        mixpanel.alias data.authorEmail
+        #mixpanel.people.set 
+        #    $email: data.authorEmail
+        #    $name: data.authorName
+        #mixpanel.alias data.authorEmail
         onDone()
 
 exports.step = step = new StepGroup 'input', '#input'

@@ -111,7 +111,7 @@ class exports.TextInputStep extends exports.Step
     setup: ->
         super()
         @next = $ 'button.btn-next', @container
-        @inputs = $ "[name='#{field}']", @container for field in @fields
+        @inputs = ($ "[name='#{field}']", @container for field in @fields)
 
     _run: (data, onDone) ->
         console.log {name: @name, data, inputs: @inputs, container: @container}
@@ -122,9 +122,9 @@ class exports.TextInputStep extends exports.Step
         @setupEvents data, onDone
 
     setupEvents: (data, onDone) ->
-        $ @inputs
-            .keyup => @checkInputs()
-            .change => @checkInputs()
+        for input in @inputs
+            input.keyup => @checkInputs()
+                 .change => @checkInputs()
 
         @next.click => @tryNext data, onDone
         $(@inputs[@inputs.length-1]).keydown (event) =>

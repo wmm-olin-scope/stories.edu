@@ -510,7 +510,7 @@ textarea:focus { outline: none; }
 }
 
 .slide-panel {
-    /*position: absolute;*/
+    position: absolute;
     width: 100%;
 }
 
@@ -522,7 +522,7 @@ textarea:focus { outline: none; }
     min-height: 150px;
 }
 
-select#state {
+select.answer {
     font-size: 1em;
     height: 1.6em;
     padding-top: 2px;
