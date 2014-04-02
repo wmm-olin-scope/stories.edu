@@ -21,15 +21,14 @@ exports.step = step = new StepGroup 'input', '#input'
     .add whatStep
     .add authorStep
 
-step.runChild = (data, onDone) ->
-    StepGroup::runChild.call step, data, onDone
+exports.step.setup = ->
+    StepGroup::setup.call step
+    setProgress 0, step.steps.length
 
-    index = step.stepIndex
+setProgress = (index) ->
     length = step.steps.length
     progress = (index+1)/length*100
 
-    bar = 
-    
     $ '#progress-label'
         .text "Step #{index+1} of #{length}"
     $ '#progress .progress-bar'
@@ -37,3 +36,7 @@ step.runChild = (data, onDone) ->
         .transition
             width: "#{progress}%"
             duration: transitionDuration
+
+step.onChildSwitch = (previous, next) ->
+    StepGroup::onChildSwitch.call step, previous, next
+    setProgress step.steps.indexOf next
