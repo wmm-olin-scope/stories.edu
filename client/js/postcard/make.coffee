@@ -1,15 +1,15 @@
 
-{StepGroup} = require './steps/steps'
+{StepManager} = require './steps/steps'
 
-flow = new StepGroup 'postcard', '#make-postcard'
+manager = new StepManager()
     #.add require('./steps/info').step
     .add require('./steps/input').step
     .add require('./steps/review').step
 
 run = ->
-    flow.setup()
+    manager.setup()
     data = {}
-    flow.run data, ->
+    manager.start data, ->
         console.log {data}
 
 $ ->

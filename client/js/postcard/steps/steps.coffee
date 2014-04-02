@@ -38,12 +38,14 @@ makeClip = (left, width) ->
     "rect(0px,#{width}px,2000px,#{left}px)"
 
 placeOffscreen = (div) ->
+    console.log 'placing offscreen', {div}
     div.css
         display: 'none'
         x: transitionOffset
         clip: makeClip 0, getWidth(div)-transitionOffset
 
 placeOnscreen = (div) ->
+    console.log 'placing onscreen', {div}
     div.css
         display: ''
         x: 0
@@ -56,26 +58,46 @@ class exports.Step
 
     setup: ->
         @container = $ @container
-        if @isFirst then placeOnscreen @container
-        else placeOffscreen @container
 
     run: (data, onDone) ->
-        History.pushState _.clone(data), name, @getPath()
-        transitionIn @container unless @isFirst
 
-        @_run data, =>
-            transitionOut @container unless @isLast
-            onDone()
-
-    _run: (data, onDone) -> throw 'Implement me'
+    isDataComplete: (data) -> yes
 
     getPath: ->
         parts = []
-        step = this
-        while step
-            parts.push step.name
-            step = step.parent
+        @iterateUp (step) -> parts.push step.name
         "?step=#{parts.reverse().join '/'}"
+
+    iterateUp: (onStep) ->
+        @parent?.iterateUp(onStep) unless onStep(this) is yes
+
+    iterateDown: (onStep) ->
+        steps = []
+        @iterateUp (step) -> steps.push step
+        for step in steps.reverse()
+            if onStep(step) is yes then break
+
+    getRoot: ->
+        root = this
+        @iterateUp (step) -> root = step
+        root
+
+    nearestAncestor: (other) ->
+        ancestor = null
+        @iterateUp (parent) ->
+            other.iterateUp (otherParent) ->
+                if parent is otherParent
+                    ancestor = parent
+                    return yes
+            return ancestor isnt null
+        ancestor
+
+    penultimateAncestor: (ancestor) ->
+        previous = null
+        @iterateUp (step) ->
+            return yes if step is ancestor
+            previous = step
+        previous
 
 
 class exports.StepGroup extends exports.Step
@@ -103,31 +125,8 @@ class exports.StepGroup extends exports.Step
         step.setup() for step in @steps
 
         @stepIndex = 0
-        
-    runChild: (data, onDone) ->
-        if @stepIndex >= @steps.length 
-            onDone()
-        else
-            @steps[@stepIndex].run data, =>
-                @stepIndex++
-                @runChild data, onDone
 
-    _run: (data, onDone) -> @runChild data, onDone
-
-    gotoPath: (path) ->
-        parts = path[path.indexOf('=')+1...].split '/'
-        console.log {parts}
-        throw 'Cannot match state' if parts.shift() isnt @name
-        @_goto parts
-
-    _goto: (pathParts) ->
-        if parts
-            next = parts.shift()
-            for step, i in @steps
-                if step.name is next
-                    @stepIndex = i
-                    step._goto parts
-                
+    onChildSwitch: (previous, next) ->
 
 
 class exports.TextInputStep extends exports.Step
@@ -139,8 +138,8 @@ class exports.TextInputStep extends exports.Step
         @next = $ 'button.btn-next', @container
         @inputs = ($ "[name='#{field}']", @container for field in @fields)
 
-    _run: (data, onDone) ->
-        console.log {name: @name, data, inputs: @inputs, container: @container}
+    run: (data, onDone) ->
+        console.log 'Text', {name: @name, data, inputs: @inputs, container: @container}
         @inputs[0].focus()
         @fillInputs data
 
@@ -164,6 +163,9 @@ class exports.TextInputStep extends exports.Step
     checkInputs: ->
         utils.setButtonEnabled @next, _.every @inputs, (input) ->
             $(input).val()?.trim().length > 0
+
+    isDataComplete: (data) -> 
+        _.every @fields, (field) -> data[field]?.length > 0
 
     extractData: ->
         data = {}
@@ -196,15 +198,62 @@ class exports.StepManager
                 @leaves.push step
         addChild root
 
-    start: (data, onDone) ->
+        return this
 
-    loadPath: (data, onDone) ->
+    setup: ->
+        console.log 'Setting up.'
+        setupStep = (step) ->
+            step.setup()
+            if step.steps?
+                setupStep step for step in step.steps
+        setupStep root for root in @trees
+        console.log 'Done setting up.'
 
-    switchTo: (leaf) ->
+    start: (data, onDone) -> 
+        @runLeaf @leaves[0], data, onDone
+
+    goto: (path, data, onDone) ->
+        for leaf in @leaves
+            if leaf.getPath() is path or not leaf.isDataComplete data
+                return runLeaf leaf, data, onDone
+        #TODO: handle this?
+        console.log "Unknown path: #{path}"
+        runLeaf @leaves[0], data, onDone
+
+    runLeaf: (leaf, data, onDone) ->
+        console.log 'Running leaf', {leaf}
+        @switchTo leaf, data, =>
+            index = 1 + @leaves.indexOf @currentLeaf
+            return onDone data if index >= @leaves.length
+            @runLeaf @leaves[index], data, onDone
+        console.log 'Leaf running'
+
+    switchTo: (leaf, data, onNext) ->
         if @currentLeaf
-            leaf
+            ancestor = @currentLeaf.nearestAncestor leaf
+
+            if ancestor
+                currentBranch = @currentLeaf.penultimateAncestor ancestor
+                nextBranch = leaf.penultimateAncestor ancestor
+            else
+                currentBranch = @currentLeaf.getRoot()
+                nextBranch = leaf.getRoot()
+
+            transitionOut currentBranch.container
+
+            leaf.iterateUp (step) ->
+                placeOnscreen step.container
+                step.parent is nextBranch
+            placeOffscreen nextBranch.container
+            transitionIn nextBranch.container
+
+            ancestor?.onChildSwitch? currentBranch, nextBranch
+            leaf.run data, onNext
         else
-            console.log 'abc'
+            leaf.iterateDown (step) ->
+                placeOnscreen step.container
+            leaf.run data, onNext
 
-
-
+        History.pushState _.clone(data), 'Make a Postcard', leaf.getPath()
+        @currentLeaf = leaf
+            
