@@ -71,7 +71,7 @@ html
                 }
                 window.mixpanel = { track: track('Mixpanel')
                                   , alias: blankfun('Mixpanel', 'alias')
-                                  , people: { set: blankfun('Mixpanel', 'set') }
+                                  , people: { set: blankfun('Mixpanel', 'people.set') }
                                   , identify: blankfun('Mixpanel', 'identify')
                                   };
                 window.ga = track('GA');
