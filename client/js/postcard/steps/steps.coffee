@@ -50,7 +50,7 @@ placeOnscreen = (div) ->
         clip: makeClip 0, getWidth div
 
 class exports.Step
-    constructor: (@name, @container) ->
+    constructor: (@name, @container, @parent=null) ->
         @isFirst = yes
         @isLast = yes
 
@@ -60,12 +60,22 @@ class exports.Step
         else placeOffscreen @container
 
     run: (data, onDone) ->
+        History.pushState _.clone(data), name, @getPath()
         transitionIn @container unless @isFirst
+
         @_run data, =>
             transitionOut @container unless @isLast
             onDone()
 
     _run: (data, onDone) -> throw 'Implement me'
+
+    getPath: ->
+        parts = []
+        step = this
+        while step
+            parts.push step.name
+            step = step.parent
+        "?step=#{parts.reverse().join '/'}"
 
 
 class exports.StepGroup extends exports.Step
@@ -75,6 +85,7 @@ class exports.StepGroup extends exports.Step
 
     add: (step) -> 
         @steps.push step
+        step.parent = this
         return this
 
     setup: ->
@@ -93,7 +104,6 @@ class exports.StepGroup extends exports.Step
 
         @stepIndex = 0
         
-
     runChild: (data, onDone) ->
         if @stepIndex >= @steps.length 
             onDone()
@@ -103,6 +113,22 @@ class exports.StepGroup extends exports.Step
                 @runChild data, onDone
 
     _run: (data, onDone) -> @runChild data, onDone
+
+    gotoPath: (path) ->
+        parts = path[path.indexOf('=')+1...].split '/'
+        console.log {parts}
+        throw 'Cannot match state' if parts.shift() isnt @name
+        @_goto parts
+
+    _goto: (pathParts) ->
+        if parts
+            next = parts.shift()
+            for step, i in @steps
+                if step.name is next
+                    @stepIndex = i
+                    step._goto parts
+                
+
 
 class exports.TextInputStep extends exports.Step
     constructor: (name, container, @fields=[]) ->
@@ -151,5 +177,34 @@ class exports.TextInputStep extends exports.Step
         mixpanel.track "input:postcard:#{@name}", newData
         _.extend data, newData
         onDone()
-                
+
+class exports.StepManager
+    constructor: ->
+        @trees = []
+        @leaves = []
+        @pathMapping = {}
+        @currentLeaf = null
+
+    add: (root) ->
+        @trees.push root
+
+        addChild = (step) =>
+            @pathMapping[step.getPath()] = step
+            if step.steps?
+                addChild child for child in step.steps
+            else
+                @leaves.push step
+        addChild root
+
+    start: (data, onDone) ->
+
+    loadPath: (data, onDone) ->
+
+    switchTo: (leaf) ->
+        if @currentLeaf
+            leaf
+        else
+            console.log 'abc'
+
+
 
