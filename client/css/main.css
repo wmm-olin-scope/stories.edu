@@ -82,6 +82,15 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     overflow: hidden;
 }
 
+.tt-postcard-creator__strip {
+    width: 200%;
+}
+
+.tt-postcard-creator__slide {
+    float: left;
+    width: 50%;
+}
+
 .tt-create-panel__container {
     background-color: #016585;
     padding: 30px;
@@ -90,7 +99,7 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     width: 100%;
 }
 
-.tt-create-panel__overflow {
+.tt-create-panel__stencil {
     overflow: hidden;
 }
 

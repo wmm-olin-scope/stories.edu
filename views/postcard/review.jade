@@ -1,41 +1,39 @@
-#review
-    row.blue-panel.notice
-        .row: span Review your note
+row.notice
+    .row: span Review your note
 
-    br
-    .row.row-center-vert
-        .col-md-10.col-xs-12.col-center-vert
-            .well.postcard-container
-                .col-xs-7.content
-                    #spacer
-                    span.text-content.black-text
-                        span(style='padding-right: 0.3em;') Dear
-                        span#who
-                        br
-                        br
-                        p#what
-                        br
-                        br
-                        .row: .col-xs-7.pull-right: p.pull-right Thank you for your hard work,
-                        .row: .col-xs-7.pull-right: #name.pull-right.signature
+br
+.row.row-center-vert
+    .col-md-10.col-xs-12.col-center-vert
+        .well.postcard-container
+            .col-xs-7.content
+                #spacer
+                span.text-content.black-text
+                    span(style='padding-right: 0.3em;') Dear
+                    span#who
+                    br
+                    br
+                    p#what
+                    br
+                    br
+                    .row: .col-xs-7.pull-right: p.pull-right Thank you for your hard work,
+                    .row: .col-xs-7.pull-right: #name.pull-right.signature
 
-                .col-xs-5.address
-                    .row
-                        .col-xs-9
-                            #return_address(style="font-size: 14px").black-text
-                                #name.full-width
-                                #email.answer.full-width
-                        .col-xs-3
-                            #stamp_div.pull-right
-                                img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
-                    .row
-                        .col-xs-12
-                            .address-well
-                                #addressee Teacher
-                                #schoolName Walkerville Elementary School
-                                #schoolAddress 11400 South Lakes Dr.
-                                #schoolCityStateZip Reston, VA 20191
-        .col-md-2.col-xs-1.col-center-vert
-            center
-                button#send.btn.btn-lg.button-orange Send!
-
+            .col-xs-5.address
+                .row
+                    .col-xs-9
+                        #return_address(style="font-size: 14px").black-text
+                            #name.full-width
+                            #email.answer.full-width
+                    .col-xs-3
+                        #stamp_div.pull-right
+                            img.pull-right.img-thumbnail(src='/images/square-logo.png' height="100px" width="80px" style="background-color: #133783")
+                .row
+                    .col-xs-12
+                        .address-well
+                            #addressee Teacher
+                            #schoolName Walkerville Elementary School
+                            #schoolAddress 11400 South Lakes Dr.
+                            #schoolCityStateZip Reston, VA 20191
+    .col-md-2.col-xs-1.col-center-vert
+        center
+            button#send.btn.btn-lg.button-orange Send!
