@@ -52,10 +52,28 @@ html
                 var track = function(serviceName) {
                     return function () {
                         var args = Array.prototype.slice.call(arguments);
-                        console.log(serviceName + " Track Event: " + args.join(", "));
+                        var stringifiedArgs = [];
+                        for (var i = 0; i < args.length; i++) {
+                            stringifiedArgs.push(JSON.stringify(args[i]));
+                        }
+                        console.log(serviceName + " Track Event: " + stringifiedArgs.join(", "));
                     }
                 }
-                window.mixpanel = { track: track('Mixpanel') };
+                var blankfun = function(serviceName, name) {
+                    return function () {
+                        var args = Array.prototype.slice.call(arguments);
+                        var stringifiedArgs = [];
+                        for (var i = 0; i < args.length; i++) {
+                            stringifiedArgs.push(JSON.stringify(args[i]));
+                        }
+                        console.log(serviceName + " " + name + "(" + stringifiedArgs.join(", ")+")");
+                    }
+                }
+                window.mixpanel = { track: track('Mixpanel')
+                                  , alias: blankfun('Mixpanel', 'alias')
+                                  , people: { set: blankfun('Mixpanel', 'set') }
+                                  , identify: blankfun('Mixpanel', 'identify')
+                                  };
                 window.ga = track('GA');
             }
             ga('create', 'UA-48981443-1', 'thank-a-teacher.org');
