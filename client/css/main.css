@@ -24,6 +24,7 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     padding-right: 0;
 }
 
+/* Main Page Styles */
 .central-container {}
 
 .central-container__main {
@@ -41,7 +42,9 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
 .central-container__cta {
     font-size:18px;
 }
+/* End Main Page Styles */
 
+/* Sharing Footer Styles */
 .share-footer {
     background-color: #F0F0F0;
     padding: 1em;
@@ -57,6 +60,7 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     font-size: 17px;
     line-height: normal;
 }
+/* End Sharing Footer Styles */
 
 .tt-footer {
     /* Push the footer to the bottom */
@@ -73,19 +77,47 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     background-color: #016585;
 }
 
-/*.modal-dialog {
-    width: 680px;
-    margin: 30px auto;
+
+.tt-postcard-creator {
+    overflow: hidden;
 }
 
-#modal_header {
-    color: black;
+.tt-create-panel__container {
+    background-color: #016585;
+    padding: 30px;
+    color: white;
+    height: 44em;
+    width: 100%;
 }
 
-.modal-content{
-    background-color: #FFFFFF;
-}*/
+.tt-create-panel__overflow {
+    overflow: hidden;
+}
 
+.tt-create-panel__strip {
+    width: 400%;
+}
+
+.tt-create-panel__slide {
+    float: left;
+    width: 25%;
+}
+
+#input-panel {
+    /*min-height: 625px;*/
+}
+
+.slide-wrapper {
+    /*position: relative;*/
+    /*clip: rect(0px, 1200px, 1000px, 0px);*/
+    /*overflow: hidden;*/
+}
+
+.slide-panel {
+    float: left;
+    /*position: absolute;*/
+    width: 100%;
+}
 
 #saythanks{
     background-image: none;
@@ -456,16 +488,6 @@ textarea:focus { outline: none; }
     font-weight: bold;
 }
 
-.blue-panel {
-    background-color: #016585;
-    padding: 30px;
-    color: white;
-}
-
-#input-panel {
-    min-height: 625px;
-}
-
 .question-label {
     float: right;
     vertical-align: middle;
@@ -504,16 +526,6 @@ textarea:focus { outline: none; }
     font-size: 1.9em;
 }
 
-.slide-wrapper {
-    position: relative;
-    clip: rect(0px, 1200px, 1000px, 0px);
-}
-
-.slide-panel {
-    position: absolute;
-    width: 100%;
-}
-
 .notice {
     font-size: 1.6em;
 }
@@ -533,6 +545,7 @@ select.answer {
 }
 
 /* Video container adapted from http://css-tricks.com/rundown-of-handling-flexible-media/ */
+/* This makes the YouTube videos responsive while maintaining aspect ratio */
 .video-container {
   height: 0;
   padding-bottom: 56.25%; /* 16:9 */

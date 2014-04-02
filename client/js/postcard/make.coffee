@@ -1,7 +1,7 @@
 
 {StepGroup} = require './steps/steps'
 
-flow = new StepGroup 'postcard', '#make-postcard'
+flow = new StepGroup 'postcard', '.js-tt-postcard-creator'
     #.add require('./steps/info').step
     .add require('./steps/input').step
     .add require('./steps/review').step
@@ -16,7 +16,7 @@ $ ->
     History.Adapter.bind window, 'statechange', ->
         State = History.getState()
         console.log {State}
-    
+
     console.log 'starting postcard'
     run()
     console.log 'running'

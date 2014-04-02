@@ -1,7 +1,7 @@
 
 utils = require './utils'
 
-exports.transitionOffset = transitionOffset = 2000
+exports.transitionOffset = transitionOffset = '100%' # 2000
 exports.transitionDuration = transitionDuration = 600
 
 getWidth = (div) -> div.parent().width()
@@ -10,7 +10,7 @@ transitionOut = (div) ->
     div.transition
         x: -transitionOffset
         opacity: 0
-        clip: makeClip transitionOffset, getWidth div
+        #clip: makeClip transitionOffset, getWidth div
         duration: transitionDuration
         complete: -> 
             div.css 'display', 'none'
@@ -19,35 +19,35 @@ transitionOut = (div) ->
     setTimeout (-> $('body').scrollLeft 0), 1
 
 transitionIn = (div) ->
-    width = getWidth div
-    div.width width
+    #width = getWidth div
+    # div.width width
 
     div.css 
         display: ''
-        opacity: 0
-        x: transitionOffset
-        clip: makeClip 0, width-transitionOffset
+        # opacity: 0
+        # x: transitionOffset
+        #clip: makeClip 0, width-transitionOffset
     
     div.transition 
-        x: 0
-        clip: makeClip 0, width
-        opacity: 1
+        # x: 0
+        #clip: makeClip 0, width
+        # opacity: 1
         duration: transitionDuration
 
-makeClip = (left, width) -> 
-    "rect(0px,#{width}px,2000px,#{left}px)"
+#makeClip = (left, width) -> 
+#    "rect(0px,#{width}px,2000px,#{left}px)"
 
 placeOffscreen = (div) ->
     div.css
-        display: 'none'
+        # display: 'none'
         x: transitionOffset
-        clip: makeClip 0, getWidth(div)-transitionOffset
+        #clip: makeClip 0, getWidth(div)-transitionOffset
 
 placeOnscreen = (div) ->
     div.css
         display: ''
         x: 0
-        clip: makeClip 0, getWidth div
+        #clip: makeClip 0, getWidth div
 
 class exports.Step
     constructor: (@name, @container, @parent=null) ->
