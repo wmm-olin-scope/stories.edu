@@ -1,5 +1,5 @@
 
-home = (req, res) -> res.render 'index'
+home = (req, res) -> res.render 'postcard/interactive-postcard'
 
 exports.create = (app) ->
     app.get '/', home

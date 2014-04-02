@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+	link(rel='stylesheet', href='/stylesheets/postcard.css')
+	.row
+		.header.col-md-10.col-md-offset-1
+			h2 
+				strong Help us send a note to a teacher, coach, or mentor!
+			.col-md-4
+				img.icon(src="/images/icon_writing.png" width="50px")
+				| Fill out a postcard
+			.col-md-4
+				img.icon(src="/images/icon_mail.png" width="50px")
+				| We email it to your school
+			.col-md-4
+				img.icon(src="/images/icon_reading.png" width="50px")
+				| Your teacher reads it
+	.row.spacer
+	.container
+		.row
+			.col-md-6.col-md-offset-3.alert.alert-info.postcard-instructions
+				p Click text below to edit
+		.row
+			.postcard-horizontal.col-md-6.col-md-offset-3
+				| &nbsp;
+		.row
+			.postcard-vertical.col-md-1.col-md-offset-3
+				| &nbsp;
+			.postcard-interior.col-md-6
+				.message.col-md-7
+					textarea.transparent.message-editor
+						| Dear Mr. Sade,
+						| You pushed me harder than anyone else and always let the class know when they didn't live up to your expectations. But you were honest, fair, and used every hour of your time to help us grow and improve. You didn't just teach, you mentored. You didn't just make us better students, you made us better people.
+					textarea.transparent.signature-editor
+						| Thanks for your hard work,
+						| Brett Rowley
+						| Brett.Rowley@outlook.com
+				.address.col-md-5
+					.row
+						.col-md-12
+							img.pull-right.stamp(src="/images/stamp.png")
+					.row
+						.col-md-12.addresstext
+							textarea.transparent.teachername
+								| Mr. Sade
+							button.btn.btn-link.button-school
+								| Sonoran Science Academy - Tuscon
+							textarea.transparent
+								| 2325 W. Sunset Rd.
+								| Tucson, AZ 85741
+			.postcard-vertical.col-md-1
+				| &nbsp;
+		.row
+			.postcard-horizontal.col-md-6.col-md-offset-3
+				| &nbsp;
+		.row
+			.col-md-2.col-md-offset-5.button-line
+				button.btn.button-orange
+					| Send
+
