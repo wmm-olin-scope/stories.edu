@@ -1,8 +1,9 @@
 
-{TextInputStep} = require './steps'
+{TextInputStep, transitionDuration} = require './steps'
 {setInputEnabled, capitalize} = require './utils'
 
 exports.step = step = new TextInputStep 'where', '#where-panel', ['when']
+
 step.setup = ->
     TextInputStep::setup.call step
 
@@ -14,6 +15,14 @@ step.setup = ->
     #fixSchoolFocus()
 
     step.stateSelect.off 'change'
+
+step.isDataComplete = (data) ->
+    return no unless TextInputStep::isDataComplete.call step, data
+    data.school or (data.state and data.city and data.schoolName)
+
+step.run = (data, onDone) ->
+    TextInputStep::run.call step, data, onDone
+    setTimeout (-> step.stateSelect.focus()), transitionDuration
 
 stateList = [
     'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL',
@@ -47,9 +56,9 @@ step.fillInputs = (data) ->
 
     if data.school?
         step.school = data.school
-        step.stateSelect.val data.school.state
-        step.cityInput.val data.school.city
-        step.schoolNameInput.val data.school.name
+        step.stateSelect.val capitalize data.school.state
+        step.cityInput.val capitalize data.school.city
+        step.schoolNameInput.val capitalize data.school.name
     else
         step.school = null
         step.stateSelect.val data.state

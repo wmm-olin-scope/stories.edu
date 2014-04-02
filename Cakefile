@@ -21,7 +21,7 @@ allBuilds = []
 
 vendorDir = 'client/js/vendor'
 vendorLibs = [# dependency order
-  'jquery', 'bootstrap', 'underscore', 'typeahead.bundle', 'summernote',
+  'jquery', 'bootstrap', 'underscore', 'typeahead.bundle', 'amplify',
   'bootstrap-switch.min', 'lscache', 'jquery.transit', 'history'
 ]
 
