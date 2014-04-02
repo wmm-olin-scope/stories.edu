@@ -8,15 +8,15 @@ getWidth = (div) -> div.parent().width()
 
 transitionOut = (div) ->
     div.transition
-        x: -transitionOffset
+        # x: -transitionOffset
         opacity: 0
         #clip: makeClip transitionOffset, getWidth div
         duration: transitionDuration
         complete: -> 
             div.css 'display', 'none'
-            $('body').scrollLeft 0
+            # $('body').scrollLeft 0
 
-    setTimeout (-> $('body').scrollLeft 0), 1
+    # setTimeout (-> $('body').scrollLeft 0), 1
 
 transitionIn = (div) ->
     #width = getWidth div
@@ -40,13 +40,13 @@ transitionIn = (div) ->
 placeOffscreen = (div) ->
     div.css
         # display: 'none'
-        x: transitionOffset
+        # x: transitionOffset
         #clip: makeClip 0, getWidth(div)-transitionOffset
 
 placeOnscreen = (div) ->
     div.css
         display: ''
-        x: 0
+        # x: 0
         #clip: makeClip 0, getWidth div
 
 class exports.Step
@@ -56,8 +56,8 @@ class exports.Step
 
     setup: ->
         @container = $ @container
-        if @isFirst then placeOnscreen @container
-        else placeOffscreen @container
+        # if @isFirst then placeOnscreen @container
+        # else placeOffscreen @container
 
     run: (data, onDone) ->
         History.pushState _.clone(data), name, @getPath()
