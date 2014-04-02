@@ -103,22 +103,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     width: 25%;
 }
 
-#input-panel {
-    /*min-height: 625px;*/
-}
-
-.slide-wrapper {
-    /*position: relative;*/
-    /*clip: rect(0px, 1200px, 1000px, 0px);*/
-    /*overflow: hidden;*/
-}
-
-.slide-panel {
-    float: left;
-    /*position: absolute;*/
-    width: 100%;
-}
-
 #saythanks{
     background-image: none;
     border: none;
