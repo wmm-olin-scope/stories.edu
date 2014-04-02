@@ -4,30 +4,33 @@ block content
     .container
         script(src='/javascripts/home.js')
 
-    .row.movie-container
-        .col-lg-10.col-lg-offset-1#frontdisplay
+    .row.central-container
+        .col-lg-10.col-lg-offset-1.central-container__main
             .col-lg-6
                 .row
                     include seed-movie
-                    br
-                    .share-buttons
-                        a.btn.share-twitter-video.button-green(role="button")
-                            i.fa.fa-twitter &nbsp;&nbsp;
-                            | Tweet
-                        a.btn.share-facebook.button-green(role="button")
-                            i.fa.fa-facebook &nbsp;&nbsp;
-                            | Post
-                        a.btn.share-google-plus.button-green(role="button")
-                            i.fa.fa-google-plus &nbsp;&nbsp;
-                            | Share
-                        a.btn.share-email.button-green(role="button")
-                            i.fa.fa-envelope &nbsp;&nbsp;
-                            | Email
             .col-lg-5.col-lg-offset-1
-                h2#tagline
+                h2.central-container__tagline
                     strong We have all been students.
-                h3#tagline Let's take the time to thank the people who helped us become who we are today.
+                p.central-container__cta Let's take the time to thank the people who helped us become who we are today.
                 br
                 a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
                     strong Send A Note To Your Teacher
+        .col-lg-10.col-lg-offset-1.share-footer
+            form.form-inline(role="form")
+                .form-group
+                    label.control-label Spread the Word
+                    .btn-group#social
+                        a.btn.btn-share.btn-twitter.share-twitter.share
+                            i.fa.fa-twitter
+                            | &nbsp; Tweet
+                        a.btn.btn-share.btn-facebook.share-facebook.share
+                            i.fa.fa-facebook
+                            | &nbsp; Post
+                        a.btn.btn-share.btn-google-plus.share-google-plus.share
+                            i.fa.fa-google-plus
+                            | &nbsp; Share
+                        a.btn.btn-share.share-email.share
+                            i.fa.fa-envelope
+                            | &nbsp; Email
     include story-carousel

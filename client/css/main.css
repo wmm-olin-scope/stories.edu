@@ -1,48 +1,91 @@
-body { 
-    padding-top: 100px;
-    padding-bottom: 100px;
+/* Mobile first (override large devices with desktop.css) */
+
+body {
     font-family: 'Dosis', sans-serif;
     background-color: #FFFFFF;
-    color: black;
-    min-width: 768px !important;
-} /* necessary for fixed-top navbar
-
-/* Video Container from http://cyberdesigncraft.com/responsive-video-embed/ */
+    color: #333;
+}
 
 h2, h3 { font-family: 'Dosis', sans-serif; }
 
-#top-navbar {
+.tt-header {
     background-color: #F0F0F0;
+    background-image: none;
     min-height: 70px;
+    margin-bottom: 0;
 }
 
-#nav-banner{
-    font-size: 25px;
+.tt-container {
+    padding-bottom: 100px;
 }
 
-.navbar-header, .navbar-collapse{
+.col-lg-5 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.central-container {}
+
+.central-container__main {
+    min-height: 22em;
+    padding: 30px;
+    color: white;
+    background-color: #016585;
+}
+
+.central-container__tagline {
+    font-size:24px;
+    color: white; /* Overriding Bootstrap */
+}
+
+.central-container__cta {
+    font-size:18px;
+}
+
+.share-footer {
     background-color: #F0F0F0;
-    min-height: 70px;
+    padding: 1em;
 }
 
-#nav-bottom{
+.share-footer .control-label {
+    padding-right: 1em;
+    font-size: 1.5em;
+}
+
+.btn-share {
+    padding: 8px 7px;
+    font-size: 17px;
+    line-height: normal;
+}
+
+.tt-footer {
+    /* Push the footer to the bottom */
+    bottom: auto;
+    position: static;
+
     background-color: #F0F0F0;
     border-radius: 0px;
     background-image: none;
     text-shadow: none;
 }
 
-.navbar-default, .navbar-text{
-    color: black !important;
+.tt-modal {
+    background-color: #016585;
 }
 
-.navbar .nav > li {
-    padding-top: 10px;
+/*.modal-dialog {
+    width: 680px;
+    margin: 30px auto;
 }
 
-#social{
-    padding-top: 20px;
+#modal_header {
+    color: black;
 }
+
+.modal-content{
+    background-color: #FFFFFF;
+}*/
+
 
 #saythanks{
     background-image: none;
@@ -58,17 +101,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     background-color: #E36523;
 }
 
-#video-button-desktop{
-    /*background-color: #8dca84;*/
-    background-image: none;
-    border: none;
-    text-shadow: none;
-    color: white;
-    /*height: 80px;*/
-    /*width: 300px;*/
-    /*font-size: 35px;*/
-}
-
 .submit-button{
     background-color: #8dca84 !important;
     background-image: none !important;
@@ -81,36 +113,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     background-image: none !important;
     border: none !important;
     text-shadow: none !important;
-}
-
-.video-container {
-    position: relative;  
-    padding-top: 30px; 
-    height: 0; 
-    overflow: hidden; 
-    min-height: 282px;
-    min-width: 500px;
-    vertical-align: middle;
-}   
-
-.video-container-small {
-    position: relative;  
-    padding-top: 30px; 
-    height: 0; 
-    overflow: hidden; 
-    min-width: 400px;
-    min-height: 225px;
-    vertical-align: middle;
-}   
-
-.video-container iframe, 
-.video-container object, 
-.video-container embed { 
-    position: absolute;     
-    top: 0;     
-    left: 0;     
-    width: 100%;     
-    height: 100%; 
 }
 
 .well.postcard-container {
@@ -202,10 +204,6 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
     margin-right: -15px;
 }
 
-.movie-container{
-	margin-bottom: -20px;
-}
-
 #prompt-text{
 	font-size: 18px;
     color: white;
@@ -259,7 +257,7 @@ h2, h3 { font-family: 'Dosis', sans-serif; }
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: black; 
+    color: black;
 }
 
 input{
@@ -295,11 +293,6 @@ textarea{
 input:focus { outline: none; }
 textarea:focus { outline: none; }
 
-.modal-dialog {
-    width: 680px;
-    margin: 30px auto;
-}
-
 .text-center {
     text-align: left;
     padding: 10px;
@@ -318,20 +311,12 @@ textarea:focus { outline: none; }
     margin: 0 !important;
 }
 
-#modal_header {
-    color: black;
-}
-
 #share{
     background-color: #8dca84;
     background-image: none;
     border: none;
     text-shadow: none;
     color: white;
-}
-
-.modal-content{
-    background-color: #016585;
 }
 
 #share-text{
@@ -345,21 +330,9 @@ textarea:focus { outline: none; }
     height: 175px;
 }
 
-.modal-content{
-    background-color: #FFFFFF;
-}
-
 #video_stamp{
-    cursor: pointer; 
+    cursor: pointer;
     cursor: hand;
-}
-
-#frontdisplay{
-    padding: 30px;
-    background-color: #016585;
-    margin-bottom: 20px;
-    min-height: 350px;
-    color: white;
 }
 
 .share {
@@ -421,11 +394,6 @@ textarea:focus { outline: none; }
     border: 0px;
 }
 
-#tagline{
-    color: white;
-}
-
-
 .panel-heading{
     background-color: #016585 !important;
     border-radius: 0px;
@@ -448,10 +416,6 @@ textarea:focus { outline: none; }
 
 #fadedtext{
     color: #737373;
-}
-
-#frontdisplay p{
-    font-size: 16px;
 }
 
 .answer.form-control {
@@ -508,7 +472,7 @@ textarea:focus { outline: none; }
 }
 
 .padded {
-    padding-right: 50px; 
+    padding-right: 50px;
     padding-left: 50px;
 }
 
@@ -546,7 +510,7 @@ textarea:focus { outline: none; }
 }
 
 .slide-panel {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
 }
 
@@ -567,3 +531,18 @@ select#state {
 .typeahead-in-blue {
     color: #666;
 }
+
+/* Video container adapted from http://css-tricks.com/rundown-of-handling-flexible-media/ */
+.video-container {
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+/* End Video Container */
