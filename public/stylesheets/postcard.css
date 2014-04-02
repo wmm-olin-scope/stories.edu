@@ -1,0 +1,117 @@
+.header{
+	background-color: #016585;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 15px;
+	padding: 5px;
+}
+
+.header > h2 {
+	color: #FFFFFF;
+}
+
+.icon{
+	margin: 5px;
+}
+
+.spacer{
+	padding: 10px;
+}
+
+.postcard-horizontal{
+	background-image:url('../images/stripe_horiz_pattern.png');
+	background-size: 100px 10px;
+	background-repeat:repeat-x;
+	height: 10px;
+	padding: 0px;
+}
+
+.postcard-vertical{
+	background-image:url('../images/stripe_vert_pattern.png');
+	background-size: 10px 100px ;
+	background-repeat:repeat-y;
+	width: 10px;
+	height: 300px;
+	padding: 0px;
+}
+
+.postcard-interior{
+	padding: 0px;
+	background-color: #F1F1F2;
+	width: 48.3%;
+	height: 300px;
+	padding: 10px;
+}
+
+.smalltext{
+	font-size: 12px;
+}
+
+.signature{
+	text-align: right;
+}
+
+.address{
+	border-left: 1px solid #000000;
+	height: 100%;
+}
+
+.addresstext{
+	padding: 10px;
+	padding-top: 60px;
+}
+
+.button-line{
+	text-align: center;
+	padding: 15px;
+}
+
+.button-orange{
+	background-color: #F37533;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: none;
+}
+
+.stamp{
+	margin-right: -13px;
+}
+
+.postcard-instructions{
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.transparent{
+	-webkit-appearance:none;
+	border: none;
+	background-color: none;
+	border-style: none;
+    border-color: Transparent;
+    overflow: auto;
+    outline: none;
+}
+
+.message-editor{
+	min-height: 200px !important;
+}
+
+.signature-editor{
+	min-height: 80px !important;
+	text-align: right;
+}
+
+.teachername{
+	min-height: 0px !important;
+	margin-bottom: -25px;
+}
+
+.button-school{
+	text-decoration: none;
+	text-shadow: none;
+	margin-left: -10px;
+	margin-top: -10px;
+	margin-bottom: -8px;
+}
