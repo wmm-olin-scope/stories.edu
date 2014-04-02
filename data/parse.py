@@ -65,16 +65,45 @@ def mapping(dfs, field_name, normalizer):
     for state in dfs:
         for i in range(len(dfs[state].values)):
             try:
-                phone = normalizer(dfs[state][field_name].values[i])
-                d[phone].add((dfs[state]['school'].values[i], i))
+                field = normalizer(dfs[state][field_name].values[i])
+                d[field].add((dfs[state]['school'].values[i], i))
             except KeyError:
                 # no zip code
                 pass
     return d
+
+def augment_school(school):
+    global i, x, n
+    i += 1
+
+    try:
+        zipcode = normalize_zip(school['zip'])
+        options = [str(r[0]) for r in by_zip[zipcode]]
+        match = process.extractOne(school['name'], options)
+        if match and match[1] >= 85:
+            x += 1
+            print x, i, n, float(x)/i
+            # insert information into db
+            return
+
+        phone = normalize_phone(school['phone'])
+        options = [str(r[0]) for r in by_phone[zipcode]]
+        match = process.extractOne(school['name'], options)
+        if match and match[1] >= 85:
+            x += 1
+            print x, i, n, float(x)/i
+            # insert information into db
+            return
+
+    except UnicodeDecodeError as e:
+        print e
+    except KeyError as e:
+        print e 
         
 if __name__ == "__main__":
 
     dfs = load()
+    print sum([len(dfs[state].values) for state in dfs])
     by_zip = mapping(dfs, 'zip', normalize_zip) 
     by_phone = mapping(dfs, 'phone', normalize_phone)
     db = MongoClient()['thank-a-teacher']
@@ -85,29 +114,4 @@ if __name__ == "__main__":
     n = db.publicschools.count()
 
     for school in db.publicschools.find():
-
-        i += 1
-
-        try:
-            zipcode = normalize_zip(school['zip'])
-            options = [str(r[0]) for r in by_zip[zipcode]]
-            match = process.extractOne(school['name'], options)
-            if match and match[1] >= 85:
-                x += 1
-                print x, i, n, float(x)/i
-                # insert information into db
-                continue
-
-            phone = normalize_phone(school['phone'])
-            options = [str(r[0]) for r in by_phone[zipcode]]
-            match = process.extractOne(school['name'], options)
-            if match and match[1] >= 85:
-                x += 1
-                print x, i, n, float(x)/i
-                # insert information into db
-                continue
-
-        except UnicodeDecodeError as e:
-            print e
-        except KeyError as e:
-            print e 
+        augment_school(school)
