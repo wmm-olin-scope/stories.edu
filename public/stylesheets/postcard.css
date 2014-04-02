@@ -35,10 +35,16 @@
 	padding: 0px;
 }
 
+.postcard-right{
+	margin-left: -8px;
+}
+
+.postcard-left{
+}
+
 .postcard-interior{
-	padding: 0px;
 	background-color: #F1F1F2;
-	width: 48.3%;
+	width: 49%;
 	height: 300px;
 	padding: 10px;
 }
@@ -59,6 +65,7 @@
 .addresstext{
 	padding: 10px;
 	padding-top: 60px;
+	padding-right: 20px;
 }
 
 .button-line{
