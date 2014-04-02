@@ -4,6 +4,8 @@ utils = require './utils'
 exports.transitionOffset = transitionOffset = 2000
 exports.transitionDuration = transitionDuration = 600
 
+exports.storageKey = storageKey = 'steps-data'
+
 getWidth = (div) -> div.parent().width()
 
 transitionOut = (div) ->
@@ -38,14 +40,12 @@ makeClip = (left, width) ->
     "rect(0px,#{width}px,2000px,#{left}px)"
 
 placeOffscreen = (div) ->
-    console.log 'placing offscreen', {div}
     div.css
         display: 'none'
         x: transitionOffset
         clip: makeClip 0, getWidth(div)-transitionOffset
 
 placeOnscreen = (div) ->
-    console.log 'placing onscreen', {div}
     div.css
         display: ''
         x: 0
@@ -66,7 +66,7 @@ class exports.Step
     getPath: ->
         parts = []
         @iterateUp (step) -> parts.push step.name
-        "?step=#{parts.reverse().join '/'}"
+        parts.reverse().join '-'
 
     iterateUp: (onStep) ->
         @parent?.iterateUp(onStep) unless onStep(this) is yes
@@ -139,7 +139,6 @@ class exports.TextInputStep extends exports.Step
         @inputs = ($ "[name='#{field}']", @container for field in @fields)
 
     run: (data, onDone) ->
-        console.log 'Text', {name: @name, data, inputs: @inputs, container: @container}
         @inputs[0].focus()
         @fillInputs data
 
@@ -201,42 +200,87 @@ class exports.StepManager
         return this
 
     setup: ->
-        console.log 'Setting up.'
         setupStep = (step) ->
             step.setup()
             if step.steps?
                 setupStep step for step in step.steps
         setupStep root for root in @trees
-        console.log 'Done setting up.'
 
-    start: (data, onDone) -> 
-        @runLeaf @leaves[0], data, onDone
+    start: (onDone) ->
+        #data = amplify.store(storageKey) or {}
+        data = {}
 
-    goto: (path, data, onDone) ->
+        handleState = =>
+            state = History.getState()
+
+            currentIndex = History.getCurrentIndex()
+            external = state.data._index isnt (currentIndex - 1)
+
+            console.log 'state changed', {url: History.getState().url, external}
+
+            if external
+                if state then @goToState state, data, onDone
+                else @runLeaf @leaves[0], data, onDone
+
+        History.Adapter.bind window, 'statechange', handleState
+        handleState()
+
+    goToState: (state, data, onDone) ->
+        missed = => 
+            console.log('missed.')
+            @runLeaf @leaves[0], data, onDone
+            @pushState()
+        return missed() unless state?.url
+
+        match = /step=([a-zA-Z0-9\-]*)/.exec state.url
+        return missed() unless match
+        path = match[1]
+        console.log {path, name: @currentLeaf?.name}
+        return if path is @currentLeaf?.getPath()
+
         for leaf in @leaves
-            if leaf.getPath() is path or not leaf.isDataComplete data
-                return runLeaf leaf, data, onDone
-        #TODO: handle this?
-        console.log "Unknown path: #{path}"
-        runLeaf @leaves[0], data, onDone
+            if leaf.getPath() is path
+                return @runLeaf leaf, data, onDone
+            else if not leaf.isDataComplete data
+                @runLeaf leaf, data, onDone
+                return @pushState()
+                
+        missed()
+
+    pushState: (leaf=@currentLeaf) ->
+        historyData = {_index: History.getCurrentIndex()}
+        console.log 'pushing state', leaf.getPath()
+        History.pushState historyData, 'Make a Postcard', 
+                          "?step=#{leaf.getPath()}"
 
     runLeaf: (leaf, data, onDone) ->
-        console.log 'Running leaf', {leaf}
+        console.log 'Running leaf', {name: leaf.name, leaf}
+        amplify.store storageKey, data
+
         @switchTo leaf, data, =>
-            index = 1 + @leaves.indexOf @currentLeaf
-            return onDone data if index >= @leaves.length
-            @runLeaf @leaves[index], data, onDone
-        console.log 'Leaf running'
+            console.log "Leaf #{leaf.name} finished."
+            index = 1 + @leaves.indexOf leaf
+            if index >= @leaves.length
+                amplify.store storageKey, {}
+                onDone data
+            else
+                console.log "Running #{@leaves[index].name} now."
+                @runLeaf @leaves[index], data, onDone
+                @pushState()
 
     switchTo: (leaf, data, onNext) ->
-        if @currentLeaf
-            ancestor = @currentLeaf.nearestAncestor leaf
+        return if leaf is @currentLeaf
+        console.log 'switching from ', @currentLeaf?.name, 'to', leaf?.name
+        oldLeaf = @currentLeaf
+        @currentLeaf = leaf
+        if oldLeaf
+            ancestor = oldLeaf.nearestAncestor leaf
 
             if ancestor
-                currentBranch = @currentLeaf.penultimateAncestor ancestor
+                currentBranch = oldLeaf.penultimateAncestor ancestor
                 nextBranch = leaf.penultimateAncestor ancestor
             else
-                currentBranch = @currentLeaf.getRoot()
+                currentBranch = oldLeaf.getRoot()
                 nextBranch = leaf.getRoot()
 
             transitionOut currentBranch.container
@@ -254,6 +298,4 @@ class exports.StepManager
                 placeOnscreen step.container
             leaf.run data, onNext
 
-        History.pushState _.clone(data), 'Make a Postcard', leaf.getPath()
-        @currentLeaf = leaf
             
