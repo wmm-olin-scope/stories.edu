@@ -83,7 +83,6 @@ class exports.StepGroup extends exports.Step
             step.isLast = no
         @steps[0].isFirst = yes
         @steps[@steps.length-1].isLast = yes
-
         step.setup() for step in @steps
 
         @stepIndex = 0
@@ -214,7 +213,7 @@ class exports.StepManager
     pushState: (leaf=@currentLeaf) ->
         historyData = {_index: History.getCurrentIndex()}
         console.log 'pushing state', leaf.getPath()
-        History.pushState historyData, 'Make a Postcard',
+        History.pushState historyData, 'Make a Postcard', 
                           "?step=#{leaf.getPath()}"
 
     runLeaf: (leaf, data, onDone) ->
@@ -256,4 +255,4 @@ class exports.StepManager
                                       # to make the focus() element visible
         else
             #leaf.iterateDown (step) ->
-            leaf.run data, onNext
+            leaf.run data, onNext            
