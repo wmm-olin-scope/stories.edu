@@ -83,6 +83,7 @@ class exports.StepGroup extends exports.Step
             step.isLast = no
         @steps[0].isFirst = yes
         @steps[@steps.length-1].isLast = yes
+
         step.setup() for step in @steps
 
         @stepIndex = 0
@@ -149,7 +150,7 @@ class exports.StepManager
 
     add: (root) ->
         @trees.push root
-
+        root.displayIndex = @trees.length - 1
         addChild = (step) =>
             @pathMapping[step.getPath()] = step
             if step.steps?
