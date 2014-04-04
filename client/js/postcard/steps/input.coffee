@@ -1,8 +1,6 @@
 
 {TextInputStep, StepGroup, transitionDuration} = require './steps'
 
-whoStep = new TextInputStep 'who', '#who-panel', ['who']
-
 whatStep = new TextInputStep 'what', '#what-panel', ['what']
 
 authorStep = new TextInputStep 'author', '#author-panel',
@@ -16,7 +14,6 @@ authorStep.run = (data, onDone) ->
         onDone()
 
 exports.step = step = new StepGroup 'input', '#input'
-    .add whoStep
     .add require('./where').step
     .add whatStep
     .add authorStep

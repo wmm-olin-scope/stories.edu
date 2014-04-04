@@ -2,7 +2,7 @@
 {TextInputStep, transitionDuration} = require './steps'
 {setInputEnabled, capitalize} = require './utils'
 
-exports.step = step = new TextInputStep 'where', '#where-panel', ['when']
+exports.step = step = new TextInputStep 'where', '#where-panel', ['who']
 
 step.setup = ->
     TextInputStep::setup.call step
@@ -22,7 +22,7 @@ step.isDataComplete = (data) ->
 
 step.determineFocus = ->
     inputs = [step.stateSelect, step.cityInput, step.schoolNameInput]
-    for input in inputs.concat step.inputs
+    for input in step.inputs.concat inputs
         if not input.val()
             input.focus()
             return
@@ -75,11 +75,11 @@ step.fillInputs = (data) ->
             .change -> step.checkInputs()
 
 step.checkInputs = (data) ->
-    whenGood = TextInputStep::checkInputs.call step, data
+    whoGood = TextInputStep::checkInputs.call step, data
     stateGood = checkState data
     cityGood = checkCity data
     schoolGood = checkSchool data
-    return _.every [whenGood, stateGood, cityGood, schoolGood]
+    return _.every [whoGood, stateGood, cityGood, schoolGood]
 
 oldState = {} # unique obj
 checkState = ->

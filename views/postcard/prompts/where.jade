@@ -1,8 +1,20 @@
-p.question-text Tell us a little more about them.
+br
+.row.question-form
+    .col-sm-10.col-sm-offset-1
+        .question-label(style='float:left;')
+            label Who do you want to thank?
+br
+.row.question-form
+    .col-sm-10.col-sm-offset-1
+        input.answer.form-control(type='text', name='who', placeholder='Mrs. Smith', maxlength=32)
+br
+br
+
 .row.question-form
     .col-sm-10.col-sm-offset-1
         .question-label(style='float:left;')
             label Where did they work?
+br
 .row.row-center-vert.question-form
     .col-sm-2.col-sm-offset-1.col-center-vert
         select.answer.form-control(name='state')
@@ -10,21 +22,7 @@ p.question-text Tell us a little more about them.
         input.answer.form-control(type='text', name='city')
 br
 .row.question-form
-    .col-sm-10.col-sm-offset-1.typeahead-in-blue
+    .col-sm-8.col-sm-offset-1.col-center-vert.typeahead-in-blue
         input.answer.form-control(type='text', name='school-name')
-
-br
-br
-
-.row.question-form
-    .col-sm-10.col-sm-offset-1
-        .question-label(style='float:left;')
-            label And when did you interact with them?
-.row
-    .col-sm-10.col-sm-offset-1
-        p.question-text(style='margin-left:0;') If you don't recall exactly when, just give us an estimate.
-.row.question-form.row-center-vert
-    .col-sm-4.col-sm-offset-1.col-center-vert
-        input.answer.form-control(type='text', name='when', placeholder='May 1999', maxlength=32)
     .col-sm-2.col-center-vert
-        button.btn.btn-next.button-green Next
+        button.text-right.btn.btn-next.button-green Next
