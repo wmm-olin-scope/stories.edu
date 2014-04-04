@@ -8,8 +8,7 @@ transitionIn = (div, index, cb) ->
     parent = div.parent()
     parent.transition
         'margin-left': "-#{(index)*100}%"
-        complete: ->
-            cb()
+        complete: cb
         duration: transitionDuration
 
 class exports.Step
@@ -249,9 +248,11 @@ class exports.StepManager
 
             transitionIn nextBranch.container, nextBranch.displayIndex, ->
                 ancestor?.onChildSwitch? currentBranch, nextBranch
-                leaf.run data, onNext # Warning: if this happens before transitionIn completes,
-                                      # the browser will move the DOM in an unpredictable way
-                                      # to make the focus() element visible
+                ### 
+                Warning: if this happens before transitionIn completes,
+                the browser will move the DOM in an unpredictable way
+                to make the focus() element visible
+                ###
+                leaf.run data, onNext 
         else
-            #leaf.iterateDown (step) ->
             leaf.run data, onNext            
