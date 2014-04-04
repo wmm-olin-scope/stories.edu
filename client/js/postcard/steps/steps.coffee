@@ -247,8 +247,6 @@ class exports.StepManager
                 currentBranch = oldLeaf.getRoot()
                 nextBranch = leaf.getRoot()
 
-            leaf.iterateUp (step) ->
-                step.parent is nextBranch
             transitionIn nextBranch.container, nextBranch.displayIndex, ->
                 ancestor?.onChildSwitch? currentBranch, nextBranch
                 leaf.run data, onNext # Warning: if this happens before transitionIn completes,
