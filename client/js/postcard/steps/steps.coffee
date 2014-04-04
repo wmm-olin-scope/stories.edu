@@ -149,7 +149,7 @@ class exports.StepManager
 
     add: (root) ->
         @trees.push root
-        root.displayIndex = @trees.length - 1
+        
         addChild = (step) =>
             @pathMapping[step.getPath()] = step
             if step.steps?
@@ -168,6 +168,7 @@ class exports.StepManager
                     setupStep step
                     step.displayIndex = i
         setupStep root for root in @trees
+        root.displayIndex = i for root, i in @trees
 
     start: (onDone) ->
         #data = amplify.store(storageKey) or {}
