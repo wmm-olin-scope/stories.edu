@@ -20,9 +20,13 @@ step.isDataComplete = (data) ->
     return no unless TextInputStep::isDataComplete.call step, data
     data.school or (data.state and data.city and data.schoolName)
 
-step.run = (data, onDone) ->
-    TextInputStep::run.call step, data, onDone
-    setTimeout (-> step.stateSelect.focus()), transitionDuration
+step.determineFocus = ->
+    inputs = [step.stateSelect, step.cityInput, step.schoolNameInput]
+    for input in inputs.concat step.inputs
+        if not input.val()
+            input.focus()
+            return
+    @next.focus()
 
 stateList = [
     'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL',
@@ -70,11 +74,11 @@ step.fillInputs = (data) ->
             .keyup -> step.checkInputs()
             .change -> step.checkInputs()
 
-step.checkInputs = ->
-    whenGood = TextInputStep::checkInputs.call step
-    stateGood = checkState()
-    cityGood = checkCity()
-    schoolGood = checkSchool()
+step.checkInputs = (data) ->
+    whenGood = TextInputStep::checkInputs.call step, data
+    stateGood = checkState data
+    cityGood = checkCity data
+    schoolGood = checkSchool data
     return _.every [whenGood, stateGood, cityGood, schoolGood]
 
 oldState = {} # unique obj
@@ -85,12 +89,10 @@ checkState = ->
     oldState = state
 
     if state
-        invalidateCityAutocomplete()
-        invalidateSchoolAutocomplete()
-
-    if state
         setInputEnabled step.cityInput, yes, 'City'
         setInputEnabled step.schoolNameInput, yes, 'School'
+        invalidateCityAutocomplete()
+        invalidateSchoolAutocomplete()
         step.cityInput.focus()
     else
         setInputEnabled step.cityInput, no, 'Select a state first...'
@@ -126,7 +128,7 @@ autocomplete = (input, hound, name, onSelect) ->
         input.on event, (obj, value) -> onSelect value
 
 oldCity = {}
-checkCity = ->
+checkCity = (data) ->
     city = step.cityInput.val()
     ok = city?.length > 0
     if city isnt oldCity
@@ -159,6 +161,7 @@ checkSchool = ->
     ok = schoolName?.length > 0
     if schoolName isnt oldSchoolName
         oldSchoolName = schoolName
+        step.school = null # clear any autocompleted school
     return ok
 
 invalidateSchoolAutocomplete = ->
@@ -184,6 +187,7 @@ invalidateSchoolAutocomplete = ->
         accessor: (school) -> school.name
     
     autocomplete step.schoolNameInput, hound, 'schools', (school) ->
+        oldSchoolName = step.schoolNameInput.val()
         step.school = school
         step.cityInput.val capitalize school.city
         step.inputs[0].focus()

@@ -4,10 +4,15 @@ exports.transitionDuration = transitionDuration = 600
 
 exports.storageKey = storageKey = 'steps-data'
 
-transitionIn = (div, index, cb) ->
-    parent = div.parent()
+exports.pageTitle = "Make a Postcard"
+
+placeOnscreen = (step) ->
+    step.container.parent().css 'margin-left', "-#{(step.displayIndex)*100}%"
+
+transitionIn = (step, cb) ->
+    parent = step.container.parent()
     parent.transition
-        'margin-left': "-#{(index)*100}%"
+        'margin-left': "-#{(step.displayIndex)*100}%"
         complete: cb
         duration: transitionDuration
 
@@ -99,16 +104,16 @@ class exports.TextInputStep extends exports.Step
         @inputs = ($ "[name='#{field}']", @container for field in @fields)
 
     run: (data, onDone) ->
-        @inputs[0].focus()
+        console.log {data}
         @fillInputs data
-
-        @checkInputs()
+        @determineFocus()
+        @checkInputs data
         @setupEvents data, onDone
 
     setupEvents: (data, onDone) ->
         for input in @inputs
-            input.keyup => @checkInputs()
-                 .change => @checkInputs()
+            input.keyup => @checkInputs data
+                 .change => @checkInputs data
 
         @next.click => @tryNext data, onDone
         $(@inputs[@inputs.length-1]).keydown (event) =>
@@ -118,6 +123,13 @@ class exports.TextInputStep extends exports.Step
         for input, index in @inputs
             field = @fields[index]
             if data[field] then input.val data[field]
+
+    determineFocus: ->
+        for input in @inputs
+            if not input.val()
+                input.focus()
+                return
+        @next.focus()
 
     checkInputs: ->
         utils.setButtonEnabled @next, _.every @inputs, (input) ->
@@ -170,16 +182,13 @@ class exports.StepManager
         root.displayIndex = i for root, i in @trees
 
     start: (onDone) ->
-        #data = amplify.store(storageKey) or {}
-        data = {}
+        data = amplify.store(storageKey) or {}
 
         handleState = =>
             state = History.getState()
 
             currentIndex = History.getCurrentIndex()
             external = state.data._index isnt (currentIndex - 1)
-
-            console.log 'state changed', {url: History.getState().url, external}
 
             if external
                 if state then @goToState state, data, onDone
@@ -190,15 +199,14 @@ class exports.StepManager
 
     goToState: (state, data, onDone) ->
         missed = =>
-            console.log('missed.')
             @runLeaf @leaves[0], data, onDone
             @pushState()
         return missed() unless state?.url
 
         match = /step=([a-zA-Z0-9\-]*)/.exec state.url
         return missed() unless match
+
         path = match[1]
-        console.log {path, name: @currentLeaf?.name}
         return if path is @currentLeaf?.getPath()
 
         for leaf in @leaves
@@ -212,30 +220,26 @@ class exports.StepManager
 
     pushState: (leaf=@currentLeaf) ->
         historyData = {_index: History.getCurrentIndex()}
-        console.log 'pushing state', leaf.getPath()
-        History.pushState historyData, 'Make a Postcard', 
+        History.pushState historyData, exports.pageTitle, 
                           "?step=#{leaf.getPath()}"
 
     runLeaf: (leaf, data, onDone) ->
-        console.log 'Running leaf', {name: leaf.name, leaf}
         amplify.store storageKey, data
 
         @switchTo leaf, data, =>
-            console.log "Leaf #{leaf.name} finished."
             index = 1 + @leaves.indexOf leaf
             if index >= @leaves.length
-                amplify.store storageKey, {}
+                amplify.store storageKey, {} # clear this postcard
                 onDone data
             else
-                console.log "Running #{@leaves[index].name} now."
                 @runLeaf @leaves[index], data, onDone
                 @pushState()
 
     switchTo: (leaf, data, onNext) ->
         return if leaf is @currentLeaf
-        console.log 'switching from ', @currentLeaf?.name, 'to', leaf?.name
         oldLeaf = @currentLeaf
         @currentLeaf = leaf
+
         if oldLeaf
             ancestor = oldLeaf.nearestAncestor leaf
 
@@ -246,13 +250,18 @@ class exports.StepManager
                 currentBranch = oldLeaf.getRoot()
                 nextBranch = leaf.getRoot()
 
-            transitionIn nextBranch.container, nextBranch.displayIndex, ->
-                ancestor?.onChildSwitch? currentBranch, nextBranch
-                ### 
-                Warning: if this happens before transitionIn completes,
-                the browser will move the DOM in an unpredictable way
-                to make the focus() element visible
-                ###
+            #leaf.iterateUp (step) ->
+            #    placeOnscreen step
+            #    return step.parent is nextBranch # break just before branch
+
+            ### 
+            Warning: if this happens before transitionIn completes,
+            the browser will move the DOM in an unpredictable way
+            to make the focus() element visible
+            ###
+            ancestor?.onChildSwitch? currentBranch, nextBranch
+            transitionIn nextBranch, ->
                 leaf.run data, onNext 
         else
+            leaf.iterateDown placeOnscreen
             leaf.run data, onNext            
