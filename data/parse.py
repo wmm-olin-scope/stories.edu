@@ -6,6 +6,7 @@ import pandas as pd
 from pymongo import MongoClient
 
 from fuzzywuzzy import process
+from django.utils import encoding
 
 abbr = {'delaware': 'DE', 'north dakota': 'ND', 'washington': 'WA', 'rhode island': 'RI', 'tennessee': 'TN', 'iowa': 'IA', 'nevada': 'NV', 'maine': 'ME', 'colorado': 'CO', 'mississippi': 'MS', 'south dakota': 'SD', 'palau': 'PW', 'new jersey': 'NJ', 'oklahoma': 'OK', 'wyoming': 'WY', 'minnesota': 'MN', 'north carolina': 'NC', 'illinois': 'IL', 'new york': 'NY', 'arkansas': 'AR', 'puerto rico': 'PR', 'indiana': 'IN', 'maryland': 'MD', 'louisiana': 'LA', 'texas': 'TX', 'district of columbia': 'DC', 'arizona': 'AZ', 'wisconsin': 'WI', 'virgin islands': 'VI', 'michigan': 'MI', 'kansas': 'KS', 'utah': 'UT', 'virginia': 'VA', 'oregon': 'OR', 'connecticut': 'CT', 'montana': 'MT', 'california': 'CA', 'new mexico': 'NM', 'alaska': 'AK', 'vermont': 'VT', 'georgia': 'GA', 'marshall islands': 'MH', 'northern mariana islands': 'MP', 'pennsylvania': 'PA', 'florida': 'FL', 'hawaii': 'HI', 'kentucky': 'KY', 'missouri': 'MO', 'nebraska': 'NE', 'new hampshire': 'NH', 'idaho': 'ID', 'west virginia': 'WV', 'south carolina': 'SC', 'ohio': 'OH', 'alabama': 'AL', 'massachusetts': 'MA'}
 
@@ -72,46 +73,61 @@ def mapping(dfs, field_name, normalizer):
                 pass
     return d
 
-def augment_school(school):
+def augment_school(dfs, collection, school):
+
     global i, x, n
     i += 1
 
     try:
-        zipcode = normalize_zip(school['zip'])
-        options = [str(r[0]) for r in by_zip[zipcode]]
-        match = process.extractOne(school['name'], options)
-        if match and match[1] >= 85:
-            x += 1
-            print x, i, n, float(x)/i
-            # insert information into db
-            return
+        name = school['name'].strip().lower().decode('ascii', errors='ignore')
+        methods = [('zip', by_zip, normalize_zip), ('phone', by_phone, normalize_phone)]
+        for field, dict, normalizer in methods:
+            normalized = normalizer(school['zip'])
+            options = {str(r[0]).decode('ascii', errors='ignore'): r[1] for r in dict[normalized]}
+            match = process.extractOne(name, options.keys())
+            if match and match[1] >= 75:
+                x += 1
+                print "%i %i %f\r" % (i, n, float(x)/i),
+                sys.stdout.flush()
 
-        phone = normalize_phone(school['phone'])
-        options = [str(r[0]) for r in by_phone[zipcode]]
-        match = process.extractOne(school['name'], options)
-        if match and match[1] >= 85:
-            x += 1
-            print x, i, n, float(x)/i
-            # insert information into db
-            return
+                index = options[match[0]]
 
+                # print name, match
+
+                principal = dfs[school['state']]['principal'].values[index]
+                email = dfs[school['state']]['email'].values[index]
+
+                # insert information into db
+                collection.update({"_id": school["_id"]},  {"$set": {'principal': principal, 'email': email}});
+
+                return
+
+    # occur very rarely, but break execution
     except UnicodeDecodeError as e:
         print e
+    except UnicodeEncodeError as e:
+        print e
     except KeyError as e:
-        print e 
+        print e
+    except IndexError as e:
+        print e
         
 if __name__ == "__main__":
+    db = MongoClient()['thank-a-teacher']
+    n = db.publicschools.count() + db.privateschools.count()
+    i = 0
+    x = 0
 
     dfs = load()
-    print sum([len(dfs[state].values) for state in dfs])
     by_zip = mapping(dfs, 'zip', normalize_zip) 
     by_phone = mapping(dfs, 'phone', normalize_phone)
-    db = MongoClient()['thank-a-teacher']
+    
+    schools = list(db.privateschools.find())
+    print "Private: ", len(schools)
+    for school in schools:
+        augment_school(dfs, db.privateschools, school)
 
-
-    i = 1
-    x = 0
-    n = db.publicschools.count()
-
-    for school in db.publicschools.find():
-        augment_school(school)
+    schools = list(db.publicschools.find())
+    print "Public: ", len(schools)
+    for school in schools:
+        augment_school(dfs, db.publicschools, school)
