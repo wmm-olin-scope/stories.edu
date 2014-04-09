@@ -27,4 +27,13 @@ utils.buildTask 'css:vendor', 'Bundle vendor css', (options) ->
     minimized = minimizer.minify joinedCss
     fs.writeFileSync "#{exports.publicDir}/vendor.css", minimized
 
+localFiles = ['main', 'desktop']
+
+utils.buildTask 'css:local', 'Bundle local css', (options) ->
+  minimizer = new CleanCss
+    keepSpecialComments: 0
+  for file in localFiles
+      minimized = minimizer.minify fs.readFileSync "client/css/#{file}.css"
+      fs.writeFileSync "#{exports.publicDir}/#{file.css}", minimized
+
 

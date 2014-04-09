@@ -3,6 +3,8 @@ utils = require './build/utils'
 target = require './build/target'
 
 require './build/css'
+require './build/js'
+require './build/html'
 
 ###
 fs = require 'fs'

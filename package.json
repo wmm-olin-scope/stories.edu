@@ -24,6 +24,7 @@
     "uglify-js": "~2.4.12",
     "coffee-script": "1.7.1",
     "clean-css": "~2.1.6",
-    "aws-sdk": "~2.0.0"
+    "aws-sdk": "~2.0.0",
+    "stream-buffers": "~0.2.5"
   }
 }

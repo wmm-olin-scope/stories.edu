@@ -12,7 +12,7 @@ option '', '--target [target]', "Set the build target to one of: #{targetString}
 
 for short, long of targets
     option '', "--#{short}", "Set the target to be '#{long}'."
-    exports["is#{long[0].toUpperCase()}#{long[1...]}"] = (options) ->
+    exports["is#{long[0].toUpperCase()}#{long[1...]}"] = do (long) -> (options) ->
         exports.get(options) is long
 
 exports.get = (options) ->
