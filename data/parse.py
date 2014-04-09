@@ -6,6 +6,7 @@ import pandas as pd
 from pymongo import MongoClient
 
 from fuzzywuzzy import process
+from django.utils import encoding
 
 abbr = {'delaware': 'DE', 'north dakota': 'ND', 'washington': 'WA', 'rhode island': 'RI', 'tennessee': 'TN', 'iowa': 'IA', 'nevada': 'NV', 'maine': 'ME', 'colorado': 'CO', 'mississippi': 'MS', 'south dakota': 'SD', 'palau': 'PW', 'new jersey': 'NJ', 'oklahoma': 'OK', 'wyoming': 'WY', 'minnesota': 'MN', 'north carolina': 'NC', 'illinois': 'IL', 'new york': 'NY', 'arkansas': 'AR', 'puerto rico': 'PR', 'indiana': 'IN', 'maryland': 'MD', 'louisiana': 'LA', 'texas': 'TX', 'district of columbia': 'DC', 'arizona': 'AZ', 'wisconsin': 'WI', 'virgin islands': 'VI', 'michigan': 'MI', 'kansas': 'KS', 'utah': 'UT', 'virginia': 'VA', 'oregon': 'OR', 'connecticut': 'CT', 'montana': 'MT', 'california': 'CA', 'new mexico': 'NM', 'alaska': 'AK', 'vermont': 'VT', 'georgia': 'GA', 'marshall islands': 'MH', 'northern mariana islands': 'MP', 'pennsylvania': 'PA', 'florida': 'FL', 'hawaii': 'HI', 'kentucky': 'KY', 'missouri': 'MO', 'nebraska': 'NE', 'new hampshire': 'NH', 'idaho': 'ID', 'west virginia': 'WV', 'south carolina': 'SC', 'ohio': 'OH', 'alabama': 'AL', 'massachusetts': 'MA'}
 
@@ -72,27 +73,45 @@ def mapping(dfs, field_name, normalizer):
                 pass
     return d
 
-def augment_school(school):
-    global i, x, n
+def augment_school(collection, school):
+
+    global i, x, n, dfs
     i += 1
 
     try:
         zipcode = normalize_zip(school['zip'])
-        options = [str(r[0]) for r in by_zip[zipcode]]
-        match = process.extractOne(school['name'], options)
+        options = {str(r[0]).decode('ascii', errors='ignore'): r[1] for r in by_zip[zipcode]}
+        name = school['name'].strip().lower().decode('ascii', errors='ignore')
+        match = process.extractOne(name, options.keys())
         if match and match[1] >= 85:
             x += 1
-            print x, i, n, float(x)/i
+            print "%i %i %f\r" % (i, n, float(x)/i),
+            sys.stdout.flush()
+
+            index = options[match[0]]
+            principal = dfs[school['state']]['principal'].values[int(index)]
+            email = dfs[school['state']]['email'].values[index]
+
             # insert information into db
+            collection.update({"_id": school["_id"]},  {"$set": {'principal': principal, 'email': email}});
+
             return
 
         phone = normalize_phone(school['phone'])
-        options = [str(r[0]) for r in by_phone[zipcode]]
-        match = process.extractOne(school['name'], options)
+        options = {str(r[0]): r[1] for r in by_phone[phone]}
+        match = process.extractOne(name, options.keys())
         if match and match[1] >= 85:
             x += 1
-            print x, i, n, float(x)/i
+            print "%i %i %f\r" % (i, n, float(x)/i),
+            sys.stdout.flush()
+
+            index = options[match[0]]
+            principal = dfs[school['state']]['principal'].values[index]
+            email = dfs[school['state']]['email'].values[index]
+
             # insert information into db
+
+            collection.update({"_id": school["_id"]}, {"$set": {'principal': principal, 'email': email}});
             return
 
     except UnicodeDecodeError as e:
@@ -103,7 +122,6 @@ def augment_school(school):
 if __name__ == "__main__":
 
     dfs = load()
-    print sum([len(dfs[state].values) for state in dfs])
     by_zip = mapping(dfs, 'zip', normalize_zip) 
     by_phone = mapping(dfs, 'phone', normalize_phone)
     db = MongoClient()['thank-a-teacher']
@@ -111,7 +129,10 @@ if __name__ == "__main__":
 
     i = 1
     x = 0
-    n = db.publicschools.count()
+    n = db.publicschools.count() + db.privateschools.count()
 
     for school in db.publicschools.find():
-        augment_school(school)
+        augment_school(db.publicschools, school)
+
+    for school in db.privateschools.find():
+        augment_school(db.privateschools, school)
