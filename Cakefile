@@ -1,5 +1,11 @@
-fs = require 'fs'
+require 'coffee-script/register'
+utils = require './build/utils'
+target = require './build/target'
 
+require './build/css'
+
+###
+fs = require 'fs'
 {print} = require 'sys'
 {spawn, exec} = require 'child_process'
 uglify = require 'uglify-js'
@@ -95,3 +101,4 @@ task 'sbuild', '', buildClientModule 'make-postcard', 'postcard/make.coffee'
 
 task 'server', 'Starts the node server', ->
   execAndLog 'coffee app.coffee --nodejs'
+###
