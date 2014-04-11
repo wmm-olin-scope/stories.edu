@@ -8,7 +8,7 @@ exports.buckets = buckets =
     staging: 'thankateacherstaging'
     logging: 'thankateacherlog'
 
-exports.baseUrls =
+exports.staticUrls =
     development: 'localhost:5001'
     production: 'd1zp18hignnzt1.cloudfront.net'
     staging: 's3.amazonaws.com/thankateacherstaging'

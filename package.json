@@ -25,6 +25,7 @@
     "coffee-script": "1.7.1",
     "clean-css": "~2.1.6",
     "aws-sdk": "~2.0.0",
-    "stream-buffers": "~0.2.5"
+    "stream-buffers": "~0.2.5",
+    "process": "~0.6.0"
   }
 }

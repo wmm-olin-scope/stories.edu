@@ -14,8 +14,14 @@ renderJade = (jadeFile, outName) -> (options) ->
         pretty: target is 'development'
         compileDebug: target is 'development'
         target: target
-        baseUrl: s3.baseUrls['target']
+        baseUrl: s3.baseUrls[target]
+        static: (end) -> "//#{s3.staticUrls[target]}/#{end}"
     fs.writeFileSync "#{exports.publicDir}/#{outName}.html", html
 
 utils.buildTask 'html:index', 'Render the home page',
     renderJade 'views/index.jade', 'index'
+utils.buildTask 'html:privacy', 'Render the privacy page',
+    renderJade 'views/privacy.jade', 'privacy'
+utils.buildTask 'html:make-postcard', 'Render the make postcard page',
+    renderJade 'views/postcard/make.jade', 'make-postcard'
+

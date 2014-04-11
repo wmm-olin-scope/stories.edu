@@ -1,5 +1,6 @@
 
 $ ->
+    console.log {DEVELOPMENT, STAGING, PRODUCTION, TARGET, STATIC_URL}
     mixpanel.track 'main page viewed'
     require('../share-buttons').setup()
     require('./seed-carousel').setup()
@@ -8,4 +9,4 @@ $ ->
     if not window.matchMedia? or window.matchMedia("screen and (max-width: 768px)").matches
         $('html, body').animate({
             scrollTop: $(".central-container").offset().top
-        }, 800);
+        }, 800)
