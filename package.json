@@ -23,6 +23,12 @@
     "coffeeify": "~0.6",
     "uglify-js": "~2.4.12",
     "coffee-script": "1.7.1",
-    "clean-css": "~2.1.6"
+    "clean-css": "~2.1.6",
+    "aws-sdk": "~2.0.0",
+    "stream-buffers": "~0.2.5",
+    "process": "~0.6.0",
+    "mime": "~1.2.11",
+    "MD5": "~1.2.1",
+    "walk": "~2.3.1"
   }
 }

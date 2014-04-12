@@ -1,11 +1,11 @@
 extends ../layout
 
 block content
-    script(src='/javascripts/make-postcard.js')
-    
-    #make-postcard-container
-        #make-postcard.slide-wrapper
-            include prompt
-            include review
-               
-            
+    script(src=static('javascripts/make-postcard.js'))
+
+    .tt-postcard-creator
+        .tt-postcard-creator__strip
+            #input.tt-postcard-creator__create-panel.tt-postcard-creator__slide
+                include input
+            #review.tt-postcard-creator__review-panel.tt-postcard-creator__slide
+                include review

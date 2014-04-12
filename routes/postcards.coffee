@@ -121,9 +121,6 @@ getPostcard = (req, res) ->
     .then (postcard) -> succeed res, {postcard}
     .done utils.failOnError(res)...
 
-getMakePostCard = (req, res) ->
-    res.render 'postcard/make'
-
 starPostcard = (req, res) ->
     relevant = _.pick checks, 'postcardId', 'starred'
     [failed, values] = utils.checkBody req, res, relevant
@@ -153,7 +150,8 @@ getPostcards = (req, res) ->
 
 
 exports.create = (app) ->
-    app.get '/make-postcard', getMakePostCard
+    app.get '/make-postcard', (req, res) -> 
+        res.sendfile 'public/html/make-postcard.html'
 
     app.post '/postcards', postPostcard
     app.post '/postcards/:postcardId/starred', starPostcard # TODO: auth?
