@@ -36,11 +36,12 @@ utils.asyncBuildTask 'less:local', 'Bundle local css/less', (options, done) ->
     compiles = []
     for file in localFiles
         content = fs.readFileSync "client/css/#{file}.less", 'utf8'
-        Q.ninvoke less, 'render', content
-        .catch (error) -> console.error "Error with #{file}.less: #{error}"
-        .then (css) ->
-            if not target.isDevelopment options
-                css = minify css
-            fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
+        do (file) ->
+            Q.ninvoke less, 'render', content
+            .catch (error) -> console.error "Error with #{file}.less: #{error}"
+            .then (css) ->
+                if not target.isDevelopment options
+                    css = minify css
+                fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
     Q.all compiles
     .fin -> done?()
