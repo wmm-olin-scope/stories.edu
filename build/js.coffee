@@ -64,7 +64,7 @@ vendorLibs = [#dependency order
     'jquery',
     'bootstrap', 'jquery.transit'
     'underscore', 'amplify', 'history'
-    'bootstrap-switch.min', 'typeahead.bundle'
+    'typeahead.bundle'
 ]
 
 utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->

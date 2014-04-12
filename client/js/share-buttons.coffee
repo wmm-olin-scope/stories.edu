@@ -1,6 +1,5 @@
 
 siteUrl = 'http://www.thank-a-teacher.org'
-message = "We've all been students. Take a minute to thank a teacher who helped us become who we are today."
 
 setupFacebook = ->
     encoded = encodeURIComponent siteUrl
