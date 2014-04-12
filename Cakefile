@@ -6,4 +6,4 @@ require './build/css'
 require './build/js'
 require './build/html'
 require './build/s3'
-
+require './build/server'
