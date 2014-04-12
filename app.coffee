@@ -12,6 +12,9 @@ app = express()
 app.set 'port', process.env.PORT or 5001
 app.set 'views', __dirname + '/views'
 app.set 'view engine', 'jade'
+app.set 'target', process.env.TARGET or 'development'
+app.set 'development', app.get('target') is 'development'
+app.set 'staticUrl', process.env.STATIC_URL or "localhost:#{app.get 'port'}"
 
 auth.initialize app
 
