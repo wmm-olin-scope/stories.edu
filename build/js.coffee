@@ -12,7 +12,7 @@ processPath = require.resolve 'process/browser.js'
 
 exports.publicDir = 'public/javascripts'
 
-buildModule = (name, rootFile) -> (options) ->
+buildModule = (name, rootFile) -> (options, done) ->
     development = target.isDevelopment options
     m = browserify
         entries: ["./client/js/#{rootFile}"]
@@ -42,6 +42,7 @@ buildModule = (name, rootFile) -> (options) ->
 
     if development
         output.pipe new fs.createWriteStream path
+        done?()
     else
         buffer = new WritableStreamBuffer()
         output
@@ -49,11 +50,12 @@ buildModule = (name, rootFile) -> (options) ->
                 code = buffer.getContentsAsString 'utf8'
                 ugly = uglify.minify code, {fromString: yes}
                 fs.writeFileSync path, ugly.code
+                done?()
             .pipe buffer
 
-utils.buildTask 'js:home', 'Build the home page js',
-    buildModule 'home', 'home/index.coffee'
-utils.buildTask 'js:make-postcard', 'Build the make postcard page js',
+utils.asyncBuildTask 'js:index', 'Build the home page js',
+    buildModule 'index', 'home/index.coffee'
+utils.asyncBuildTask 'js:make-postcard', 'Build the make postcard page js',
     buildModule 'make-postcard', 'postcard/make.coffee'
 
 

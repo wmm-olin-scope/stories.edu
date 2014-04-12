@@ -9,17 +9,30 @@ exports.execAndLog = (cmd, done) ->
     process.stderr.write err.toString() if err
     done? err
 
-allBuilds = []
+builds = []
 
-exports.registerBuild = (build) ->
-    allBuilds.push build
+exports.registerBuild = ({name, func}, async=yes) ->
+    builds.push {name, func, async}
 
 exports.buildTask = (name, description, func) ->
-    exports.registerBuild {name, func}
+    exports.registerBuild {name, func}, no
+    task "build:#{name}", description, func
+
+exports.asyncBuildTask = (name, description, func) ->
+    exports.registerBuild {name, func}, yes
     task "build:#{name}", description, func
 
 task 'build', 'Runs every build:* task', (options) ->
-    for {name, func} in allBuilds
-        console.log name
-        func options
+    # TODO: we could do some parallel building if we're careful about 
+    # dependencies.
 
+    doBuild = (index) ->
+        return if index >= builds.length
+        {name, func, async} = builds[index]
+        console.log name
+        if async
+            func options, -> doBuild index+1
+        else
+            func options
+            doBuild index+1
+    doBuild 0
