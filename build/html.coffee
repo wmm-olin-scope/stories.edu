@@ -14,7 +14,7 @@ renderJade = (jadeFile, outName) -> (options) ->
         pretty: target is 'development'
         compileDebug: target is 'development'
         target: target
-        baseUrl: s3.baseUrls[target]
+        staticUrl: s3.staticUrls[target]
         static: (end) -> "//#{s3.staticUrls[target]}/#{end}"
     fs.writeFileSync "#{exports.publicDir}/#{outName}.html", html
 
