@@ -81,21 +81,12 @@ html
     body
         //- Facebook Sharing Root
         #fb-root
+        include header
+        br
+        include widgets/step
+        include widgets/how-it-works
+        include footer
 
-        header.tt-header.navbar.navbar-static-top(role="banner")
-            .container
-                .navbar-header
-                    a.navbar-brand(href='/')
-                        img(src=static("images/logo.png") height="40px")
 
-        .container.tt-container
-            block content
 
-        nav.navbar.navbar-default.navbar-fixed-bottom.tt-footer(role='navigation')
-            .container(style="text-align: center")
-                p
-                    &copy; 2014 Thank-a-Teacher.org&nbsp;&nbsp; | &nbsp;&nbsp;
-                    a(href="mailto:hello@thank-a-teacher.org" style="color: #016585") Send Us Feedback
-                    |&nbsp;&nbsp; | &nbsp;&nbsp;
-                    a(href="/privacy" style="color: #016585" target='_blank') Privacy Policy
 
