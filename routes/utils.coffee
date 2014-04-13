@@ -8,26 +8,22 @@ exports.fail = (res, error) ->
     error: error
 
 exports.failOnError = (res) -> [
-    ->, # onFulfilled
-    -> # onFulfilled
-    (err) ->
-      console.log err
-      exports.fail res, err
-  ]
+  ->, # onFulfilled
+  (err) ->
+    console.log err
+    exports.fail res, err
+]
 
 exports.succeed = (res, resultObj) ->
   resultObj = resultObj or {}
-  resultObj = {}  unless resultObj?
   resultObj.success = true
   res.json resultObj
 
-exports.optional = (defaultValue, fun) ->
-  (req, res) ->
+exports.optional = (defaultValue, fun) -> (req, res) ->
     try
       return fun(req, res)
-    catch _
+    catch
       return defaultValue
-    return
 
 exports.checkBody = (name, fun, notPresentValue) ->
   notPresentValue = notPresentValue or `undefined`
