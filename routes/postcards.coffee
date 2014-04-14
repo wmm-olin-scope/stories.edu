@@ -2,8 +2,8 @@
 {Postcard} = require '../data/postcards'
 {User} = require '../data/users'
 {stateList} = require '../data/schools'
-auth = require './auth'
 {fail, succeed} = utils = require './utils'
+rendering = require './rendering'
 _ = require 'underscore'
 Q = require 'q'
 
@@ -147,11 +147,8 @@ getPostcards = (req, res) ->
         .then (postcards) -> succeed res, {postcards}
         .done utils.failOnError(res)...
 
-
-
 exports.create = (app) ->
-    app.get '/make-postcard', (req, res) -> 
-        res.sendfile 'public/html/make-postcard.html'
+    app.get '/make-postcard', rendering.html 'make-postcard'
 
     app.post '/postcards', postPostcard
     app.post '/postcards/:postcardId/starred', starPostcard # TODO: auth?

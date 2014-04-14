@@ -1,4 +1,6 @@
 
+# GENERATED WITH JS2COFFEESCRIPT
+
 exports.check = require("validator").check
 exports.sanitize = require("validator").sanitize
 
@@ -49,7 +51,6 @@ exports.doCheck = (req, res, fun) ->
       true
       null
     ]
-  return
 
 exports.checkAll = (req, res, fields) ->
   result = {}

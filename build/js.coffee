@@ -12,6 +12,27 @@ processPath = require.resolve 'process/browser.js'
 
 exports.publicDir = 'public/javascripts'
 
+vendorDir = 'client/js/vendor'
+vendorLibs = [#dependency order
+    'jquery',
+    'bootstrap', 'jquery.transit'
+    'underscore', 'amplify', 'history'
+    'typeahead.bundle'
+]
+
+utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->
+    development = target.isDevelopment options
+    path = "#{exports.publicDir}/vendor.js"
+
+    uglifyOptions = {}
+    uglifyOptions.outSourceMap = "#{path}.map" if development
+    
+    libPaths = ("#{vendorDir}/#{lib}.js" for lib in vendorLibs)
+    ugly = uglify.minify libPaths, uglifyOptions
+
+    fs.writeFileSync path, ugly.code 
+    fs.writeFileSync "#{path}.map", ugly.map if development
+
 buildModule = (name, rootFile) -> (options, done) ->
     development = target.isDevelopment options
     m = browserify
@@ -55,27 +76,6 @@ buildModule = (name, rootFile) -> (options, done) ->
 
 utils.asyncBuildTask 'js:index', 'Build the home page js',
     buildModule 'index', 'home/index.coffee'
-utils.asyncBuildTask 'js:make-postcard', 'Build the make postcard page js',
-    buildModule 'make-postcard', 'postcard/make.coffee'
+# utils.asyncBuildTask 'js:make-postcard', 'Build the make postcard page js',
+#     buildModule 'make-postcard', 'postcard/make.coffee'
 
-
-vendorDir = 'client/js/vendor'
-vendorLibs = [#dependency order
-    'jquery',
-    'bootstrap', 'jquery.transit'
-    'underscore', 'amplify', 'history'
-    'typeahead.bundle'
-]
-
-utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->
-    development = target.isDevelopment options
-    path = "#{exports.publicDir}/vendor.js"
-
-    uglifyOptions = {}
-    uglifyOptions.outSourceMap = "#{path}.map" if development
-    
-    libPaths = ("#{vendorDir}/#{lib}.js" for lib in vendorLibs)
-    ugly = uglify.minify libPaths, uglifyOptions
-
-    fs.writeFileSync path, ugly.code 
-    fs.writeFileSync "#{path}.map", ugly.map if development

@@ -22,6 +22,6 @@ utils.buildTask 'html:index', 'Render the home page',
     renderJade 'views/index.jade', 'index'
 utils.buildTask 'html:privacy', 'Render the privacy page',
     renderJade 'views/privacy.jade', 'privacy'
-utils.buildTask 'html:make-postcard', 'Render the make postcard page',
-    renderJade 'views/postcard/make.jade', 'make-postcard'
+# utils.buildTask 'html:make-postcard', 'Render the make postcard page',
+#     renderJade 'views/postcard/make.jade', 'make-postcard'
 
