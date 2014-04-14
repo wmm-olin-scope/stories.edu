@@ -9,6 +9,8 @@
 @small-font: 12px;
 @tiny-font: 8px;
 
+// Height Variables
+@how-it-works-row-height: 50px;
 
 // Navbar Header
 .navbar-header, .navbar-brand{
@@ -39,10 +41,31 @@
 }
 
 // How-It-Works widget
-.how-it-works{
-	padding: 10px;
+.how-it-works-container{
 	background-color: @blue-color;
 	color: @white-color;
 	text-decoration: none;
 	font-size: @small-font;
+}
+
+.how-it-works-row{
+	display: table-cell;
+	vertical-align: middle;
+	height: @how-it-works-row-height;
+	width: 1%;
+	text-align: center;
+	font-size: @small-font;
+	padding: 0px;
+}
+
+.how-it-works-full-height{
+	height: @how-it-works-row-height;
+}
+
+.no-padding-div{
+	padding: 0px;
+}
+
+.top-padding-div{
+	padding-top: 10px;
 }
