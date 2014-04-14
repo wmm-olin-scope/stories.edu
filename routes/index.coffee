@@ -2,11 +2,9 @@
 rendering = require './rendering'
 
 exports.create = (app) ->
-    rendering.setup app
+    require('./rendering').setup app
 
-    app.get '/', rendering.html 'index'
-    app.get '/privacy', rendering.html 'privacy'
-
+    require('./static').create app
     require('./schools').create app
     require('./postcards').create app
  
