@@ -8,6 +8,7 @@ lib-cov
 *.map
 *.js
 
+public/html/*.html
 public/javascripts/*.js
 public/stylesheets/*.css
 public/html/*.html
