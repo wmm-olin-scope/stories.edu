@@ -1,4 +1,4 @@
-extends ../layout
+extends layout
 
 block scripts
     script(src=static('javascripts/index.js'))
@@ -6,7 +6,7 @@ block scripts
 block content
     .container
         .row
-            #step-container.col-xs-12.col-sm-7
+            #step-container.tt-step-container.col-xs-12.col-sm-7
                 #step-1.hidden
                     include ../widgets/step-1
                 #step-2
