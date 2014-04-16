@@ -1,7 +1,7 @@
 @import "main/step-number.less";
 
 .tt-step-container {
-    background-color: #fff;
+    background-color: @white-color;
     padding-bottom: 1em;
 }
 
@@ -21,7 +21,15 @@
 }
 
 .tt-btn-next {
-    background-color: #FA7046;
+    color: @white-color;
+    background-color: @orange-color;
     text-transform: uppercase;
-    color: #FFF;
+}
+
+.tt-btn-next:hover,
+.tt-btn-next:focus,
+.tt-btn-next:active,
+.tt-btn-next.active {
+    color: @white-color;
+    background-color: darken(@orange-color, 5%);
 }
