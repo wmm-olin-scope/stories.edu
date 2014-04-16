@@ -1,0 +1,13 @@
+
+@share-btn-width: 100px;
+@share-btn-spacing: 10px;
+@share-btn-num: 4;
+
+.share-btn-container {
+    .horz-center(@share-btn-width*@share-btn-num + 
+                 (@share-btn-num - 1)*@share-btn-spacing);
+}
+
+.share-btn {
+    width: @share-btn-width;
+}
