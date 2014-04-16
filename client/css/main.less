@@ -1,5 +1,6 @@
 // Color Variables
-@blue-color: #0083AD;
+@blue-color: #004BAD;
+@blue-light-color: #0083AD;
 @green-color: #8DCA84;
 @orange-color: #F3733C;
 @grey-color: #808284;
@@ -41,31 +42,110 @@
 }
 
 // How-It-Works widget
-.how-it-works-container{
-	background-color: @blue-color;
-	color: @white-color;
-	text-decoration: none;
-	font-size: @small-font;
+.how-it-works{
+    padding: 10px;
+    background-color: @blue-light-color;
+    color: @white-color;
+    text-decoration: none;
+    font-size: @small-font;
 }
 
-.how-it-works-row{
-	display: table-cell;
-	vertical-align: middle;
-	height: @how-it-works-row-height;
-	width: 1%;
-	text-align: center;
-	font-size: @small-font;
-	padding: 0px;
+@how-it-works-icon-width: 40px;
+@how-it-works-icon-height: 33px;
+.how-it-works-icon {
+    float: left;
+    width: @how-it-works-icon-width;
+    height: @how-it-works-icon-height;
 }
 
-.how-it-works-full-height{
-	height: @how-it-works-row-height;
+.how-it-works-text {
+    text-align: center;
+    margin-left: @how-it-works-icon-width+5px;
+    padding: 0;
+    .vert-center-container(@how-it-works-icon-height);
+    div {
+        .vert-center-item();
+    }
 }
 
-.no-padding-div{
-	padding: 0px;
+.how-it-works-arrow{
+   text-align: center;
 }
 
-.top-padding-div{
-	padding-top: 10px;
+.half-row-padding{
+    padding-left: 10%;   
+}
+
+.added-padding{
+    padding-left: 40px;
+}
+
+
+// Step Numbers
+@step-number-spacing: 20px;
+
+.step-number-container {
+    padding: 0;
+    margin: 0;
+}
+
+.step-number {
+    background-color: @blue-color;
+    color: @white-color; 
+    margin: 10px 0 10px 0;
+    padding: 0;
+    border-style: solid;
+    border-color: @blue-color;
+    border-width: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    p {
+        margin: 5px 0 5px 0;
+    }
+}
+
+.step-number.active {
+    background-color: @blue-light-color;
+}
+
+.step-number.left {
+    margin-right: @step-number-spacing*(2/3);
+}
+
+.step-number.right {
+    margin-left: @step-number-spacing*(2/3);
+}
+
+.step-number.middle {
+    margin-left: @step-number-spacing/3;
+    margin-right: @step-number-spacing/3;
+}
+
+// About Thank-a-Teacher
+.video-container {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+// UTILS
+
+.vert-center-container(@height) {
+    display: table;
+    height: @height;
+    overflow: hidden;
+}
+
+.vert-center-item {
+    display: table-cell;
+    vertical-align: middle;
 }

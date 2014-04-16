@@ -1,10 +1,10 @@
 
-home = (req, res) -> res.sendfile 'public/html/index.html'
+rendering = require './rendering'
 
 exports.create = (app) ->
-    app.get '/', (req, res) -> res.sendfile 'public/html/index.html'
-    app.get '/privacy', (req, res) -> res.sendfile 'public/html/privacy.html'
+    require('./rendering').setup app
+
+    require('./static').create app
     require('./schools').create app
-    require('./users').create app
     require('./postcards').create app
  

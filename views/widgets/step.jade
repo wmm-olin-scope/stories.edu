@@ -1,0 +1,25 @@
+
+mixin step-number(n)
+    .row
+        - var steps = ['Your Info', 'Teacher Info', 'Thank You Note']
+        each step, index in steps
+            - var text = (index + 1) + '. ' + step.toUpperCase()
+            - var cls = ['number-'+(index + 1)]
+            - if ((index + 1) == n) cls.push('active')
+            - if (index == 0) cls.push('left')
+            - else if (index == (steps.length - 1)) cls.push('right')
+            - else cls.push('middle')
+            .col-xs-12.col-sm-4.step-number-container
+                .step-number.text-center(class=cls): p= text
+
+mixin next-button(text)
+    .row
+        .col-xs-12
+            button.btn.btn-default.btn-next= text
+
+.row
+    .col-xs-12
+        h1.text-center.
+            Take 60 Seconds to Thank that Special Teacher, Coach or Mentor!
+block step-content
+

@@ -72,6 +72,7 @@
       ga('create', 'UA-48981443-1', 'thank-a-teacher.org');
       ga('send', 'pageview');
     </script>
+    <script src="//localhost:5001/javascripts/index.js"></script>
   </head>
   <body>
     <div id="fb-root"></div>
@@ -82,30 +83,96 @@
             <p>a project by 6 Olin College students</p></a></div>
       </div>
     </header>
-    <div class="container-fluid how-it-works-container">
-      <div class="row-fluid how-it-works-row">
-        <div class="col-md-2 no-padding-div col-md-offset-1">
-          <div class="col-md-2 no-padding-div"><i class="fa fa-3x fa-info-circle"></i></div>
-          <div class="col-md-10 no-padding-div">Complete the thank <br>you note form above</div>
+    <div class="container">
+      <div class="row">
+        <div id="step-container" class="col-xs-12 col-sm-7">
+          <div id="step-1">
+            <div class="row">
+              <div class="col-xs-12">
+                <h1 class="text-center">Take 60 Seconds to Thank that Special Teacher, Coach or Mentor!</h1>
+              </div>
+            </div>
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-4 step-number-container">
+                            <div class="step-number text-center number-1 active left">
+                              <p>1. YOUR INFO</p>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-4 step-number-container">
+                            <div class="step-number text-center number-2 middle">
+                              <p>2. TEACHER INFO</p>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-4 step-number-container">
+                            <div class="step-number text-center number-3 right">
+                              <p>3. THANK YOU NOTE</p>
+                            </div>
+                          </div>
+                        </div>
+            <p>Who do you want to thank?</p>
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <button class="btn btn-default btn-next">Next Step</button>
+                          </div>
+                        </div>
+          </div>
         </div>
-        <div class="col-md-2 no-padding-div"><i class="fa fa-3x fa-long-arrow-right"></i></div>
-        <div class="col-md-2 no-padding-div">
-          <div class="col-md-2 no-padding-div"><i class="fa fa-3x fa-info-circle"></i></div>
-          <div class="col-md-10 no-padding-div top-padding-div">We email it to your school</div>
-        </div>
-        <div class="col-md-2 no-padding-div"><i class="fa fa-3x fa-long-arrow-right"></i></div>
-        <div class="col-md-2 no-padding-div">
-          <div class="col-md-2 no-padding-div"><i class="fa fa-3x fa-info-circle"></i></div>
-          <div class="col-md-10 no-padding-div top-padding-div">Your teacher reads it</div>
+        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+          <div id="about-container">
+            <center>
+              <h1>Icon</h1>
+              <h2>About Thank-a-Teacher</h2>
+            </center>
+            <div class="video-container">
+              <iframe src="//www.youtube.com/embed/_C4eLoqXzxg?showinfo=0&amp;modestbranding=1&amp;controls=1&amp;rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur 
+              adipiscing elit. Nullam enim ante, sagittis 
+              fermentum massa nec, mattis lacinia 
+              lorem. Nulla mattis, ante ut pellentesque 
+              ullamcorper, turpis turpis tincidunt sem, 
+              vel viverra eros eros vitae lacus.
+              
+            </p><a href="/about">Learn more about the project </a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row tt-footer">
-        <div class="tt-footer-contents col-md-8 col-md-offset-2">
-          <hr>
-          <p>&copy; 2014 Thank-A-Teacher.org | Send Us Feedback | Privacy Policy</p>
+    <div class="how-it-works half-row-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="how-it-works-icon"><i class="fa fa-3x fa-square-o"></i></div>
+            <div class="how-it-works-text">
+              <div>Complete the thank you note above</div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="how-it-works-arrow"><i class="fa fa-3x fa-long-arrow-right"></i></div>
+          </div>
+          <div class="col-sm-3">
+            <div class="how-it-works-icon"><i class="fa fa-3x fa-square-o"></i></div>
+            <div class="how-it-works-text">
+              <div>We email to your school</div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div class="how-it-works-arrow"><i class="fa fa-3x fa-long-arrow-right"></i></div>
+          </div>
+          <div class="col-sm-3">
+            <div class="how-it-works-icon"><i class="fa fa-3x fa-square-o"></i></div>
+            <div class="how-it-works-text">
+              <div>Your teacher recieves it</div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="row tt-footer">
+      <div class="tt-footer-contents col-md-8 col-md-offset-2">
+        <hr>
+        <p>&copy; 2014 Thank-A-Teacher.org | Send Us Feedback | Privacy Policy</p>
       </div>
     </div>
   </body>

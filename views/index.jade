@@ -1,36 +1,22 @@
 extends layout
 
+block scripts
+    script(src=static('javascripts/index.js'))
+
 block content
     .container
-        script(src=static('javascripts/index.js'))
+        .row
+            #step-container.col-xs-12.col-sm-7
+                #step-1
+                    include widgets/step-1
+            .col-xs-12.col-sm-4.col-sm-offset-1
+                include widgets/about
+    include widgets/how-it-works
+     
+    include widgets/share-button-row
+    include widgets/sample-notes
 
-    .row.central-container
-        .col-lg-10.col-lg-offset-1.central-container__main
-            .col-lg-6
-                .row
-                    include seed-movie
-            .col-lg-5.col-lg-offset-1
-                h2.central-container__tagline
-                    strong We have all been students.
-                p.central-container__cta Let's take the time to thank the people who helped us become who we are today.
-                br
-                a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
-                    strong Send A Note To Your Teacher
-        .col-lg-10.col-lg-offset-1.share-footer
-            form.form-inline(role="form")
-                .form-group
-                    label.control-label Spread the Word
-                    .btn-group#social
-                        a.btn.btn-share.btn-twitter.share-twitter.share
-                            i.fa.fa-twitter
-                            | &nbsp; Tweet
-                        a.btn.btn-share.btn-facebook.share-facebook.share
-                            i.fa.fa-facebook
-                            | &nbsp; Post
-                        a.btn.btn-share.btn-google-plus.share-google-plus.share
-                            i.fa.fa-google-plus
-                            | &nbsp; Share
-                        a.btn.btn-share.share-email.share
-                            i.fa.fa-envelope
-                            | &nbsp; Email
-    include story-carousel
+#step-2(display='none')
+    include widgets/step-2
+#step-3(display='none')
+    include widgets/step-3
