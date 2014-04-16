@@ -1,4 +1,3 @@
-
 utils = require './utils'
 {get: getTarget} = require './target'
 fs = require 'fs'
@@ -28,4 +27,6 @@ utils.buildTask 'html:step3', 'Render the third postcard step',
     renderJade 'views/step3.jade', 'step3'
 utils.buildTask 'html:submitted', 'Render the submitted page',
     renderJade 'views/submitted.jade', 'submitted'
+utils.buildTask 'html:about', 'Render the about page',
+    renderJade 'views/about.jade', 'about'
 

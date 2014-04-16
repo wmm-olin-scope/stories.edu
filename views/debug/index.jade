@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block scripts
     script(src=static('javascripts/index.js'))
@@ -8,17 +8,18 @@ block content
         .row
             #step-container.col-xs-12.col-sm-7
                 #step-1
-                    include widgets/step-1
+                    include ../widgets/step-1
                 #step-2.hidden
-                    include widgets/step-2
+                    include ../widgets/step-2
                 #step-3.hidden
-                    include widgets/step-3
+                    include ../widgets/step-3
             .col-xs-12.col-sm-4.col-sm-offset-1
-                include widgets/about
-    include widgets/how-it-works
+                include ../widgets/about
+    include ../widgets/how-it-works
 
     .container
         #home-share-buttons.share-btn-container
-            include widgets/share-button-row
+            include ../widgets/share-button-row
 
-    include widgets/sample-notes
+    include ../widgets/sample-notes
+
