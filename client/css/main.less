@@ -1,6 +1,260 @@
 
 @import "shared.less";
 
+<<<<<<< HEAD
+// Font Variables
+@medium-font: 16px;
+@large-font: 16px;
+@small-font: 12px;
+@tiny-font: 8px;
+
+// Navbar Header
+.navbar-header, .navbar-brand{
+    width: 100%
+}
+
+.tt-header {
+    background-image: none;
+    border: none;
+    text-align: center;
+}
+
+.navbar-brand > h4 {
+    font-weight: bold;
+}
+
+.navbar-brand > p {
+    font-size: @small-font;
+}
+
+// Navbar footer
+.tt-footer {
+    text-align: center;
+    margin: 0;
+}
+
+.tt-footer-contents > p {
+    font-size: @tiny-font;
+}
+
+// Interior Page Panel
+// TODO: needs fixing
+
+.button-orange {
+    background-image: none;
+    border: medium none;
+    text-shadow: none;
+    color: @white-color;
+    font-size: @large-font;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: @orange-color;
+    font-weight: 700;
+    margin-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 90px;
+}
+
+.thank-you-panel {
+    padding: 30px;
+    background-color: @blue-light-color;
+    color: @white-color;
+	text-decoration: none;
+	font-size: @large-font;
+}
+
+// How-It-Works widget
+.how-it-works {
+    padding: 10px;
+    background-color: @blue-light-color;
+    color: @white-color;
+    text-decoration: none;
+    font-size: @small-font;
+}
+
+@how-it-works-icon-width: 40px;
+@how-it-works-icon-height: 33px;
+.how-it-works-icon {
+    float: left;
+    width: @how-it-works-icon-width;
+    height: @how-it-works-icon-height;
+}
+
+.how-it-works-text {
+    margin-left: @how-it-works-icon-width+5px;
+    padding: 0;
+    .vert-center-container(@how-it-works-icon-height);
+    div {
+        .vert-center-item();
+    }
+}
+
+.how-it-works-half-row-padding {
+    padding-left: 10%;   
+}
+
+.how-it-works-added-padding {
+    padding-left: 30px;
+}
+
+
+// Step Numbers
+
+.step-number-container {
+    padding: 0;
+    margin: 0;
+}
+
+.step-number {
+    background-color: @blue-color;
+    color: @white-color; 
+    margin: 10px 0 10px 0;
+    padding: 0;
+    border-style: solid;
+    border-color: @blue-color;
+    border-width: 3px;
+    .border-radius(5px);
+    p {
+        margin: 5px 0 5px 0;
+    }
+}
+
+.step-number.active {
+    background-color: @blue-light-color;
+}
+
+// About Thank-a-Teacher
+.video-container {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Shared Notes
+@sn-row-padding: 10%;
+
+.sn-text-center{
+    text-align: center;
+}
+
+.sn-half-row{
+    padding-left: @sn-row-padding;
+    padding-right: @sn-row-padding;
+
+}
+
+.sn-image{
+    width: 99%;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.sn-text-header{
+    font-size: @medium-font;
+}
+
+.sn-text-body{
+    font-size: @small-font;
+    padding-bottom: 20px;
+}
+
+.sn-header{
+    padding-bottom: 10px;
+}
+
+.sn-footer{
+    padding-top: 20px;
+}
+
+// Video modal
+
+.vidmodal-content{
+    border-radius: 0px;
+}
+
+.vidmodal-header{
+    border-bottom: none;
+    padding-left: none;
+    padding-right: none;
+}
+
+.vidmodal-footer{
+    border-top: none;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.vidmodal-title{
+    text-align: center;
+}
+
+.vidmodal-header-title{
+    font-size: 20px;
+}
+
+.vidmodal-close{
+    margin-top: -25px !important;
+    margin-right: -22px;
+    z-index: 1000000;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.vidmodal-close:hover{
+    color: gray;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.vidmodal-body{
+    text-align: center;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+@vidmodal-youtube-height: 400px;
+@vidmodal-youtube-width: 90%;
+.vidmodal-youtube-video{
+    width: @vidmodal-youtube-width;
+    height: @vidmodal-youtube-height;
+}
+
+.vimodal-header-body{
+    font-size: 12px;
+}
+
+// Share buttons
+
+.share-btn {
+    font-size: @small-font;
+    line-height: normal;
+    border: none;
+    color: white;
+    text-shadow: none;
+    margin: 0;
+    .border-radius(3px);
+}
+
+.share-btn.btn-email {
+    background: #8DCA84;
+}
+
+
+// INDEX
+
+#home-share-buttons {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 @import "main/navbar.less";
 @import "main/how-it-works.less";
 @import "main/step-number.less";
