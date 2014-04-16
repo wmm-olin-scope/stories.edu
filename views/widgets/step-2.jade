@@ -3,16 +3,16 @@ extends step
 block step-content
     +step-number(2)
     form(role='form')
-    p Where did this person work?
-    //- 12 wide
-    .row
-        .col-xs-4
-            select.js-state-field.form-control
-        .col-xs-8
-            input.js-city-field.form-control(type='text', name='city', placeholder='City', disabled)
-    .row
-        .col-xs-12
-            input.js-city-field.form-control(type='text', name='school', placeholder='School', disabled)
-    .row
-        .col-xs-12
-            +next-button('Next Step')
+        fieldset
+            legend Where did this person work?
+            .row
+                .col-xs-4
+                    select.js-state-field.form-control
+                .col-xs-8
+                    input.js-city-field.form-control(type='text', name='city', placeholder='City', disabled)
+            .row
+                .col-xs-12
+                    input.js-city-field.form-control(type='text', name='school', placeholder='School', disabled)
+            .row
+                .col-xs-12
+                    +next-button('Next Step')
