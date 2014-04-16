@@ -9,4 +9,6 @@ exports.create = (app) ->
     app.get '/privacy', html 'privacy'
 
     # XXX: Eliminate this before deploying!
-    app.get '/debug', html 'debug/index'
+    app.get '/debug', html 'debug/step1'
+    app.get '/debug', html 'debug/step2'
+    app.get '/debug', html 'debug/step3'
