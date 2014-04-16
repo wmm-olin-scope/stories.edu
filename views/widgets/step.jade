@@ -1,13 +1,21 @@
-extends ../layout
-block content
+
+mixin step-number(n)
+    .row
+        each step, index in ['Your Info', 'Teacher Info', 'Thank You Note']
+            - var text = (index + 1) + '. ' + step.toUpperCase()
+            if index+1 == n
+                .step-number.active.col-xs-12.col-sm-4= text
+            else
+                .step-number.col-xs-12.col-sm-4= text
+
+mixin next-button(text)
     .row
         .col-xs-12
-            block step-content
-        .col-xs-12
-            include about
-    .row
-        .col-xs-12
-            include how-it-works
-    
-    include share-button-row
-    include sample-notes
+            button.btn.btn-default.btn-next= text
+
+.row
+    .col-xs-12
+        h1.text-center.
+            Take 60 Seconds to Thank that Special Teacher, Coach or Mentor!
+block step-content
+

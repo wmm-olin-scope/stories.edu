@@ -46,3 +46,35 @@
 	text-decoration: none;
 	font-size: @small-font;
 }
+
+@how-it-works-icon-width: 40px;
+@how-it-works-icon-height: 33px;
+.how-it-works-icon {
+    float: left;
+    width: @how-it-works-icon-width;
+    height: @how-it-works-icon-height;
+}
+
+.how-it-works-text {
+    margin-left: @how-it-works-icon-width+5px;
+    padding: 0;
+    .vert-center-container(@how-it-works-icon-height);
+    div {
+        .vert-center-item();
+    }
+}
+
+
+
+// UTILS
+
+.vert-center-container(@height) {
+    display: table;
+    height: @height;
+    overflow: hidden;
+}
+
+.vert-center-item {
+    display: table-cell;
+    vertical-align: middle;
+}
