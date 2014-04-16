@@ -42,7 +42,12 @@ task 'watch:less:local', 'Bundle local css/less', (options) ->
         do (file) ->
             doCompile = ->
                 compileLocalLess file, options
-                .fin -> console.log "#{file}.less recompiled"
+                .catch (error) ->
+                    console.error "Error compile #{file}.less"
+                    console.error error?.toString()
+                .then -> console.log "#{file}.less recompiled"
+                .fin()
+
             doCompile = _.debounce doCompile, 10
             fs.watch localLessFile(file), (event) ->
                 doCompile() if event is 'change'
