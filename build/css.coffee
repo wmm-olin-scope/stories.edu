@@ -12,7 +12,6 @@ exports.publicDir = 'public/stylesheets'
 vendorDir = 'client/css/vendor'
 vendorLibs = [
     'bootstrap.min'
-    'bootstrap-spacelab.min'
     'font-awesome.min'
     'dosis-font'
     'bootstrap-switch.min'
