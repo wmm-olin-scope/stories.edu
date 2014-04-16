@@ -10,7 +10,6 @@
 @small-font: 12px;
 @tiny-font: 8px;
 
-
 // Navbar Header
 .navbar-header, .navbar-brand{
 	width: 100%
@@ -41,11 +40,11 @@
 
 // How-It-Works widget
 .how-it-works{
-	padding: 10px;
-	background-color: @blue-light-color;
-	color: @white-color;
-	text-decoration: none;
-	font-size: @small-font;
+    padding: 10px;
+    background-color: @blue-light-color;
+    color: @white-color;
+    text-decoration: none;
+    font-size: @small-font;
 }
 
 @how-it-works-icon-width: 40px;
@@ -57,12 +56,25 @@
 }
 
 .how-it-works-text {
+    text-align: center;
     margin-left: @how-it-works-icon-width+5px;
     padding: 0;
     .vert-center-container(@how-it-works-icon-height);
     div {
         .vert-center-item();
     }
+}
+
+.how-it-works-arrow{
+   text-align: center;
+}
+
+.half-row-padding{
+    padding-left: 10%;   
+}
+
+.added-padding{
+    padding-left: 40px;
 }
 
 
