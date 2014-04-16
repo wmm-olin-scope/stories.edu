@@ -1,0 +1,49 @@
+
+// Color Variables
+@blue-color: #004BAD;
+@blue-light-color: #0083AD;
+@green-color: #8DCA84;
+@orange-color: #F3733C;
+@grey-color: #808284;
+@white-color: #FFFFFF;
+
+// Font Variables
+@large-font: 16px;
+@small-font: 12px;
+@tiny-font: 8px;
+
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.vert-center-container(@height) {
+    display: table;
+    height: @height;
+    overflow: hidden;
+}
+
+.vert-center-item {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.horz-center(@width) {
+    float: none;
+    margin: 0 auto;
+    width: @width
+}
+
+.video-container {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+}
