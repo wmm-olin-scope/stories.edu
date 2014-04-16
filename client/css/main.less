@@ -66,6 +66,46 @@
 }
 
 
+// Step Numbers
+@step-number-spacing: 20px;
+
+.step-number-container {
+    padding: 0;
+    margin: 0;
+}
+
+.step-number {
+    background-color: @blue-color;
+    color: @white-color; 
+    margin: 10px 0 10px 0;
+    padding: 0;
+    border-style: solid;
+    border-color: @blue-color;
+    border-width: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    p {
+        margin: 5px 0 5px 0;
+    }
+}
+
+.step-number.active {
+    background-color: @blue-light-color;
+}
+
+.step-number.left {
+    margin-right: @step-number-spacing*(2/3);
+}
+
+.step-number.right {
+    margin-left: @step-number-spacing*(2/3);
+}
+
+.step-number.middle {
+    margin-left: @step-number-spacing/3;
+    margin-right: @step-number-spacing/3;
+}
 
 // UTILS
 

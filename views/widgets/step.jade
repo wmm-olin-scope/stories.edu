@@ -1,12 +1,16 @@
 
 mixin step-number(n)
     .row
-        each step, index in ['Your Info', 'Teacher Info', 'Thank You Note']
+        - var steps = ['Your Info', 'Teacher Info', 'Thank You Note']
+        each step, index in steps
             - var text = (index + 1) + '. ' + step.toUpperCase()
-            if index+1 == n
-                .step-number.active.col-xs-12.col-sm-4= text
-            else
-                .step-number.col-xs-12.col-sm-4= text
+            - var cls = ['number-'+(index + 1)]
+            - if ((index + 1) == n) cls.push('active')
+            - if (index == 0) cls.push('left')
+            - else if (index == (steps.length - 1)) cls.push('right')
+            - else cls.push('middle')
+            .col-xs-12.col-sm-4.step-number-container
+                .step-number.text-center(class=cls): p= text
 
 mixin next-button(text)
     .row
