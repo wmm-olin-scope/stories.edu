@@ -7,45 +7,46 @@
 @white-color: #FFFFFF;
 
 // Font Variables
+@large-font: 16px;
 @small-font: 12px;
 @tiny-font: 8px;
 
-
 // Navbar Header
 .navbar-header, .navbar-brand{
-	width: 100%
+    width: 100%
 }
 
-.tt-header{
-	background-image: none;
-	border: none;
-	text-align: center;
+.tt-header {
+    background-image: none;
+    border: none;
+    text-align: center;
 }
 
-.navbar-brand > h4{
-	font-weight: bold;
+.navbar-brand > h4 {
+    font-weight: bold;
 }
 
-.navbar-brand > p{
-	font-size: @small-font;
+.navbar-brand > p {
+    font-size: @small-font;
 }
 
 // Navbar footer
-.tt-footer{
-	text-align: center;
+.tt-footer {
+    text-align: center;
+    margin: 0;
 }
 
-.tt-footer-contents > p{
-	font-size: @tiny-font;
+.tt-footer-contents > p {
+    font-size: @tiny-font;
 }
 
 // How-It-Works widget
-.how-it-works{
-	padding: 10px;
-	background-color: @blue-light-color;
-	color: @white-color;
-	text-decoration: none;
-	font-size: @small-font;
+.how-it-works {
+    padding: 10px;
+    background-color: @blue-light-color;
+    color: @white-color;
+    text-decoration: none;
+    font-size: @small-font;
 }
 
 @how-it-works-icon-width: 40px;
@@ -65,9 +66,16 @@
     }
 }
 
+.how-it-works-half-row-padding {
+    padding-left: 10%;   
+}
+
+.how-it-works-added-padding {
+    padding-left: 30px;
+}
+
 
 // Step Numbers
-@step-number-spacing: 20px;
 
 .step-number-container {
     padding: 0;
@@ -82,9 +90,7 @@
     border-style: solid;
     border-color: @blue-color;
     border-width: 3px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    .border-radius(5px);
     p {
         margin: 5px 0 5px 0;
     }
@@ -92,19 +98,6 @@
 
 .step-number.active {
     background-color: @blue-light-color;
-}
-
-.step-number.left {
-    margin-right: @step-number-spacing*(2/3);
-}
-
-.step-number.right {
-    margin-left: @step-number-spacing*(2/3);
-}
-
-.step-number.middle {
-    margin-left: @step-number-spacing/3;
-    margin-right: @step-number-spacing/3;
 }
 
 // About Thank-a-Teacher
@@ -121,8 +114,60 @@
     height: 100%;
 }
 
+// Share buttons
+
+@share-btn-width: 100px;
+@share-btn-spacing: 10px;
+@share-btn-num: 4;
+
+.share-btn-container {
+    .horz-center(@share-btn-width*@share-btn-num + 
+                 (@share-btn-num - 1)*@share-btn-spacing);
+}
+
+.share-btn {
+    font-size: @small-font;
+    line-height: normal;
+    border: none;
+    color: white;
+    text-shadow: none;
+    margin: 0;
+    .border-radius(3px);
+    width: @share-btn-width;
+}
+
+.share-btn.left {
+    margin-right: @share-btn-spacing/2;
+}
+
+.share-btn.middle {
+    .share-btn.left();
+    .share-btn.right();
+}
+
+.share-btn.right {
+    margin-left: @share-btn-spacing/2;
+}
+
+.share-btn.btn-email {
+    background: #8DCA84;
+}
+
+
+// INDEX
+
+#home-share-buttons {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
 // UTILS
+
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
 
 .vert-center-container(@height) {
     display: table;
@@ -133,4 +178,10 @@
 .vert-center-item {
     display: table-cell;
     vertical-align: middle;
+}
+
+.horz-center(@width) {
+    float: none;
+    margin: 0 auto;
+    width: @width
 }
