@@ -1,0 +1,23 @@
+
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.vert-center-container(@height) {
+    display: table;
+    height: @height;
+    overflow: hidden;
+}
+
+.vert-center-item {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.horz-center(@width) {
+    float: none;
+    margin: 0 auto;
+    width: @width
+}
