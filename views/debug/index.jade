@@ -7,9 +7,9 @@ block content
     .container
         .row
             #step-container.col-xs-12.col-sm-7
-                #step-1.hidden
+                #step-1
                     include ../widgets/step-1
-                #step-2
+                #step-2.hidden
                     include ../widgets/step-2
                 #step-3.hidden
                     include ../widgets/step-3
@@ -17,5 +17,9 @@ block content
                 include ../widgets/about
     include ../widgets/how-it-works
 
-    include ../widgets/share-button-row
+    .container
+        #home-share-buttons.share-btn-container
+            include ../widgets/share-button-row
+
     include ../widgets/sample-notes
+
