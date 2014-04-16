@@ -1,3 +1,5 @@
+@import "utils.less";
+
 // Color Variables
 @blue-color: #004BAD;
 @blue-light-color: #0083AD;
@@ -116,15 +118,6 @@
 
 // Share buttons
 
-@share-btn-width: 100px;
-@share-btn-spacing: 10px;
-@share-btn-num: 4;
-
-.share-btn-container {
-    .horz-center(@share-btn-width*@share-btn-num + 
-                 (@share-btn-num - 1)*@share-btn-spacing);
-}
-
 .share-btn {
     font-size: @small-font;
     line-height: normal;
@@ -133,20 +126,6 @@
     text-shadow: none;
     margin: 0;
     .border-radius(3px);
-    width: @share-btn-width;
-}
-
-.share-btn.left {
-    margin-right: @share-btn-spacing/2;
-}
-
-.share-btn.middle {
-    .share-btn.left();
-    .share-btn.right();
-}
-
-.share-btn.right {
-    margin-left: @share-btn-spacing/2;
 }
 
 .share-btn.btn-email {
@@ -161,27 +140,3 @@
     margin-bottom: 50px;
 }
 
-// UTILS
-
-.border-radius(@radius) {
-    -webkit-border-radius: @radius;
-    -moz-border-radius: @radius;
-    border-radius: @radius;
-}
-
-.vert-center-container(@height) {
-    display: table;
-    height: @height;
-    overflow: hidden;
-}
-
-.vert-center-item {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.horz-center(@width) {
-    float: none;
-    margin: 0 auto;
-    width: @width
-}
