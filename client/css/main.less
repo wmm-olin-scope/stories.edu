@@ -1,11 +1,7 @@
-// Color Variables
-@blue-color: #004BAD;
-@blue-light-color: #0083AD;
-@green-color: #8DCA84;
-@orange-color: #F3733C;
-@grey-color: #808284;
-@white-color: #FFFFFF;
 
+@import "shared.less";
+
+<<<<<<< HEAD
 // Font Variables
 @medium-font: 16px;
 @large-font: 16px;
@@ -39,6 +35,34 @@
 
 .tt-footer-contents > p {
     font-size: @tiny-font;
+}
+
+// Interior Page Panel
+// TODO: needs fixing
+
+.button-orange {
+    background-image: none;
+    border: medium none;
+    text-shadow: none;
+    color: @white-color;
+    font-size: @large-font;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: @orange-color;
+    font-weight: 700;
+    margin-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 90px;
+}
+
+.thank-you-panel {
+    padding: 30px;
+    background-color: @blue-light-color;
+    color: @white-color;
+	text-decoration: none;
+	font-size: @large-font;
 }
 
 // How-It-Works widget
@@ -210,15 +234,6 @@
 
 // Share buttons
 
-@share-btn-width: 100px;
-@share-btn-spacing: 10px;
-@share-btn-num: 4;
-
-.share-btn-container {
-    .horz-center(@share-btn-width*@share-btn-num + 
-                 (@share-btn-num - 1)*@share-btn-spacing);
-}
-
 .share-btn {
     font-size: @small-font;
     line-height: normal;
@@ -227,20 +242,6 @@
     text-shadow: none;
     margin: 0;
     .border-radius(3px);
-    width: @share-btn-width;
-}
-
-.share-btn.left {
-    margin-right: @share-btn-spacing/2;
-}
-
-.share-btn.middle {
-    .share-btn.left();
-    .share-btn.right();
-}
-
-.share-btn.right {
-    margin-left: @share-btn-spacing/2;
 }
 
 .share-btn.btn-email {
@@ -254,28 +255,9 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+@import "main/navbar.less";
+@import "main/how-it-works.less";
+@import "main/step-number.less";
+@import "main/share-buttons.less";
 
-// UTILS
-
-.border-radius(@radius) {
-    -webkit-border-radius: @radius;
-    -moz-border-radius: @radius;
-    border-radius: @radius;
-}
-
-.vert-center-container(@height) {
-    display: table;
-    height: @height;
-    overflow: hidden;
-}
-
-.vert-center-item {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.horz-center(@width) {
-    float: none;
-    margin: 0 auto;
-    width: @width
-}
+@import "main/index.less";
