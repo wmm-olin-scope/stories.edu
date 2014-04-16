@@ -2,5 +2,18 @@ extends step
 
 block step-content
     +step-number(3)
-    p Who do you want to thank?
-
+    form(role='form')
+        fieldset
+            legend Your Thank You Note
+            .row
+                .col-xs-12
+                    textarea.js-city-field.form-control(rows='3', name='teacher-name', placeholder='Your Note')
+        fieldset
+            legend Have a video thank you prepared instead? Copy&amp;paste your YouTube link here.&nbsp;
+                a.js-video-help.glyphicon.glyphicon-question-sign
+            .row
+                .col-xs-12
+                    input.js-city-field.form-control(type='text', name='name', placeholder='YouTube link')
+            .row
+                .col-xs-12
+                    +next-button('Send Note')
