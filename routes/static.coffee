@@ -7,3 +7,4 @@ exports.create = (app) ->
     app.get '/step3', html 'step3'
     app.get '/submitted', html 'submitted'
     app.get '/privacy', html 'privacy'
+    app.get '/about', html 'about'
