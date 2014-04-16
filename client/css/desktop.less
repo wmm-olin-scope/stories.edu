@@ -1,19 +1,7 @@
 /* Only for Large Devices + widths (768px+ in width) */
 
-// Step numbers
+@import "shared.less";
 
-@step-number-spacing: 20px;
-
-.step-number.left {
-    margin-right: @step-number-spacing*(2/3);
-}
-
-.step-number.right {
-    margin-left: @step-number-spacing*(2/3);
-}
-
-.step-number.middle {
-    margin-left: @step-number-spacing/3;
-    margin-right: @step-number-spacing/3;
-}
+@import "desktop/step-number.less";
+@import "desktop/share-buttons.less";
 
