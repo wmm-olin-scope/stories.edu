@@ -1,35 +1,7 @@
 /* Only for Large Devices + widths (768px+ in width) */
 
-@import "utils.less";
+@import "shared.less";
 
-// Step numbers
+@import "desktop/step-number.less";
+@import "desktop/share-buttons.less";
 
-@step-number-spacing: 20px;
-
-.step-number.left {
-    margin-right: @step-number-spacing*(2/3);
-}
-
-.step-number.right {
-    margin-left: @step-number-spacing*(2/3);
-}
-
-.step-number.middle {
-    margin-left: @step-number-spacing/3;
-    margin-right: @step-number-spacing/3;
-}
-
-// Share buttons
-
-@share-btn-width: 100px;
-@share-btn-spacing: 10px;
-@share-btn-num: 4;
-
-.share-btn-container {
-    .horz-center(@share-btn-width*@share-btn-num + 
-                 (@share-btn-num - 1)*@share-btn-spacing);
-}
-
-.share-btn {
-    width: @share-btn-width;
-}
