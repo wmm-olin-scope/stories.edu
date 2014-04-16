@@ -7,6 +7,7 @@
 @white-color: #FFFFFF;
 
 // Font Variables
+@medium-font: 16px;
 @small-font: 12px;
 @tiny-font: 8px;
 
@@ -130,10 +131,89 @@
 
 
 // Shared Notes
-.text-centered{
+@sn-row-padding: 10%;
+
+.sn-text-center{
     text-align: center;
 }
 
+.sn-half-row{
+    padding-left: @sn-row-padding;
+    padding-right: @sn-row-padding;
+
+}
+
+.sn-image{
+    width: 99%;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.sn-text-header{
+    font-size: @medium-font;
+}
+
+.sn-text-body{
+    font-size: @small-font;
+    padding-bottom: 20px;
+}
+
+.sn-header{
+    padding-bottom: 10px;
+}
+
+.sn-footer{
+    padding-top: 20px;
+}
+
+// Video modal
+
+.vidmodal-content{
+    border-radius: 0px;
+}
+
+.vidmodal-header{
+    border-bottom: none;
+    padding-left: none;
+    padding-right: none;
+}
+
+.vidmodal-footer{
+    border-top: none;
+}
+
+.vidmodal-title{
+    text-align: center;
+}
+
+.vidmodal-header-title{
+    font-size: 20px;
+}
+
+.vidmodal-close{
+    margin-top: -25px !important;
+    margin-right: -22px;
+    z-index: 1000000;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.vidmodal-close:hover{
+    color: gray;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.vidmodal-body{
+    text-align: center;
+}
+
+@vidmodal-youtube-height: 400px;
+@vidmodal-youtube-width: 90%;
+.vidmodal-youtube-video{
+    width: @vidmodal-youtube-width;
+    height: @vidmodal-youtube-height;
+}
 
 // UTILS
 
