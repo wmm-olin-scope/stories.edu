@@ -1,2 +1,3 @@
 
-$ -> console.log 'Hello world!'
+$ ->
+    require('../share-buttons.coffee').setupButtons '#home-share-buttons'
