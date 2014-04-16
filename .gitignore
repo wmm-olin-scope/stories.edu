@@ -10,6 +10,7 @@ lib-cov
 
 public/javascripts/*.js
 public/stylesheets/*.css
+public/html/*.html
 
 pids
 logs
