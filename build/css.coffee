@@ -5,6 +5,7 @@ target = require './target'
 CleanCss = require 'clean-css'
 less = require 'less'
 Q = require 'q'
+_ = require 'underscore'
 
 exports.publicDir = 'public/stylesheets'
 
@@ -33,15 +34,27 @@ utils.buildTask 'css:vendor', 'Bundle vendor css', (options) ->
 localFiles = ['main', 'desktop']
 
 utils.asyncBuildTask 'less:local', 'Bundle local css/less', (options, done) ->
-    compiles = []
-    for file in localFiles
-        content = fs.readFileSync "client/css/#{file}.less", 'utf8'
-        do (file) ->
-            Q.ninvoke less, 'render', content
-            .catch (error) -> console.error "Error with #{file}.less: #{error}"
-            .then (css) ->
-                if not target.isDevelopment options
-                    css = minify css
-                fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
-    Q.all compiles
+    Q.all (compileLocalLess file, options for file in localFiles)
     .fin -> done?()
+
+task 'watch:less:local', 'Bundle local css/less', (options) ->
+    for file in localFiles
+        do (file) ->
+            doCompile = ->
+                compileLocalLess file, options
+                .fin -> console.log "#{file}.less recompiled"
+            doCompile = _.debounce doCompile, 10
+            fs.watch localLessFile(file), (event) ->
+                doCompile() if event is 'change'
+
+localLessFile = (file) -> "client/css/#{file}.less"
+
+compileLocalLess = (file, options) ->
+    content = fs.readFileSync localLessFile(file), 'utf8'
+    Q.ninvoke less, 'render', content
+    .catch (error) -> console.error "Error with #{file}.less: #{error}"
+    .then (css) ->
+        if not target.isDevelopment options
+            css = minify css
+        fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
+        Q()
