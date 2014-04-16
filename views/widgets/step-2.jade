@@ -2,5 +2,17 @@ extends step
 
 block step-content
     +step-number(2)
-    p Who do you want to thank?
-
+    form(role='form')
+    p Where did this person work?
+    //- 12 wide
+    .row
+        .col-xs-3
+            select.js-state-field.form-control
+        .col-xs-9
+            input.js-city-field.form-control(type='text', name='city', placeholder='City', disabled)
+    .row
+        .col-xs-12
+            input.js-city-field.form-control(type='text', name='school', placeholder='School', disabled)
+    .row
+        .col-xs-12
+            +next-button('Next Step')
