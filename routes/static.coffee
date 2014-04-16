@@ -7,3 +7,6 @@ exports.create = (app) ->
     app.get '/step3', html 'step3'
     app.get '/submitted', html 'submitted'
     app.get '/privacy', html 'privacy'
+
+    # XXX: Eliminate this before deploying!
+    app.get '/debug', html 'debug/index'
