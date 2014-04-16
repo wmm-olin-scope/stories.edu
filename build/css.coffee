@@ -50,11 +50,14 @@ task 'watch:less:local', 'Bundle local css/less', (options) ->
 localLessFile = (file) -> "client/css/#{file}.less"
 
 compileLocalLess = (file, options) ->
+    parser = new (less.Parser)
+        paths: ['client/css/']
+        filename: localLessFile file
     content = fs.readFileSync localLessFile(file), 'utf8'
-    Q.ninvoke less, 'render', content
+
+    Q.ninvoke parser, 'parse', content
     .catch (error) -> console.error "Error with #{file}.less: #{error}"
-    .then (css) ->
-        if not target.isDevelopment options
-            css = minify css
+    .then (tree) ->
+        css = tree.toCSS {compress: not target.isDevelopment options}
         fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
         Q()
