@@ -6,6 +6,7 @@
 @orange-color: #F3733C;
 @grey-color: #808284;
 @white-color: #FFFFFF;
+@blue-transparent-overlay: rgba(0, 131, 173, 0.5);
 
 // Font Variables
 @large-font: 15px;
@@ -48,6 +49,31 @@
     height: 100%;
 }
 
-.tt-navbar-brand{
-    margin-left: 0px !important;
+.button-orange {
+    background-image: none;
+    border: medium none;
+    text-shadow: none;
+    color: @white-color;
+    font-size: @large-font;
+    text-decoration: none;
+    padding: 10px;
+    // border-radius: 5px;
+    background-color: @orange-color;
+    font-weight: 700;
+    margin-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 90px;
+}
+
+.green-text{
+    color: @green-color;
+}
+
+.orange-text{
+    color: @orange-color;
+}
+
+.dark-blue-text{
+    color: @blue-color;
 }

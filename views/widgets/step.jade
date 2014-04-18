@@ -1,6 +1,6 @@
 
 mixin step-number(n)
-    .row
+    .row.all-steps-container
         - var steps = ['Your Info', 'Teacher Info', 'Thank You Note']
         each step, index in steps
             - var text = (index + 1) + '. ' + step.toUpperCase()
@@ -15,11 +15,11 @@ mixin step-number(n)
 mixin next-button(text)
     .row
         .col-xs-12
-            button.btn.btn-default.btn-next= text
+            button.btn.btn-default.button-orange.btn-next= text
 
 .row
     .col-xs-12
-        h1.text-center.
+        h3.text-center.step-tagline.
             Take 60 Seconds to Thank that Special Teacher, Coach or Mentor!
 block step-content
 
