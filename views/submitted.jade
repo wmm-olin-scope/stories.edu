@@ -2,4 +2,19 @@ extends layout
 block scripts
     script(src=static('javascripts/submitted.js'))
 block content
-    p Submitted!
+    .container.background-outside-container
+        .row.background-container
+            h2.text-center.white-text.
+                You're almost done!
+            h3.text-center.white-text.
+                Your thank you note has been submitted. Now tell your friends!
+
+            .container
+                .row
+                    .col-xs-12.col-md-7
+                        include widgets/full-postcard
+                        include widgets/attach-video
+                    .col-xs-12.col-md-5
+                        include widgets/share-postcard-facebook
+                        include widgets/share-postcard-tweet
+                        include widgets/share-postcard-email

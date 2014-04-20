@@ -49,6 +49,31 @@
     height: 100%;
 }
 
+.unselectable {
+    cursor: default;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+}
+
+.fixed-aspect-box(@ratio: 1) {
+	position: relative;
+    &:before {
+        content: "";
+        display: block;
+        padding-top: 100%/@ratio;
+    }
+    .fixed-aspect-content {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+    }
+}
+
+
+.fixed-1-1-aspect-box {
+    .fixed-aspect-box(1);
+}
+
 // Call to action button
 .btn-cta {
     padding: 10px;
@@ -76,4 +101,8 @@
 
 .dark-blue-text{
     color: @blue-color;
+}
+
+.white-text {
+    color: @white-color;
 }
