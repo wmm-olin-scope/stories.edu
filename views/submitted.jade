@@ -9,12 +9,11 @@ block content
             h3.text-center.white-text.
                 Your thank you note has been submitted. Now tell your friends!
 
-            .container
-                .row
-                    .col-xs-12.col-md-7
-                        include widgets/full-postcard
-                        include widgets/attach-video
-                    .col-xs-12.col-md-5
-                        include widgets/share-postcard-facebook
-                        include widgets/share-postcard-tweet
-                        include widgets/share-postcard-email
+            .row
+                .col-xs-12.col-md-7.col-md-offset-1
+                    include widgets/full-postcard
+                    include widgets/attach-video
+                .col-xs-12.col-md-4
+                    include widgets/share-postcard-facebook
+                    include widgets/share-postcard-tweet
+                    include widgets/share-postcard-email

@@ -36,6 +36,14 @@
     width: @width
 }
 
+.vert-fill {
+    height: 100%;
+}
+
+.horz-fill {
+    width: 100%;
+}
+
 .video-container {
     height: 0;
     padding-bottom: 56.25%; /* 16:9 */
@@ -69,6 +77,15 @@
     }
 }
 
+.clear-bootstrap-margins {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.clear-bootstrap-paddings {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .fixed-1-1-aspect-box {
     .fixed-aspect-box(1);
@@ -105,4 +122,14 @@
 
 .white-text {
     color: @white-color;
+}
+
+h2 {
+    .unselectable();
+    font-size: 1.5em;
+}
+
+h3 {
+    .unselectable();
+    font-size: 1.25em;
 }
