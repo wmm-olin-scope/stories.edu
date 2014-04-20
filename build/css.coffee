@@ -1,4 +1,3 @@
-
 fs = require 'fs'
 utils = require './utils'
 target = require './target'
@@ -6,6 +5,7 @@ CleanCss = require 'clean-css'
 less = require 'less'
 Q = require 'q'
 _ = require 'underscore'
+walk = require 'walk'
 
 exports.publicDir = 'public/stylesheets'
 
@@ -33,10 +33,25 @@ utils.buildTask 'css:vendor', 'Bundle vendor css', (options) ->
 localFiles = ['main', 'desktop']
 
 utils.asyncBuildTask 'less:local', 'Bundle local css/less', (options, done) ->
-    Q.all (compileLocalLess file, options for file in localFiles)
+    compileAllLocalLess options
     .fin -> done?()
 
 task 'watch:less:local', 'Bundle local css/less', (options) ->
+    doCompile = (changedFile) ->
+        console.log "#{changedFile} changed, recompiling"
+        compileAllLocalLess options
+    doCompile = _.debounce doCompile, 10
+
+    walk.walkSync 'client/css',
+        filters: ['vendor', '.git']
+        listeners:
+            file: (root, {name}, next) ->
+                end = '.less'
+                if name[0] isnt '.' and name[name.length-end.length...] is end
+                    fs.watch "#{root}/#{name}", (event) ->
+                        doCompile name if event is 'change'
+                next()
+###
     for file in localFiles
         do (file) ->
             doCompile = ->
@@ -50,8 +65,12 @@ task 'watch:less:local', 'Bundle local css/less', (options) ->
             doCompile = _.debounce doCompile, 10
             fs.watch localLessFile(file), (event) ->
                 doCompile() if event is 'change'
+###
 
 localLessFile = (file) -> "client/css/#{file}.less"
+
+compileAllLocalLess = (options) ->
+    Q.all (compileLocalLess file, options for file in localFiles)
 
 compileLocalLess = (file, options) ->
     parser = new (less.Parser)
@@ -60,8 +79,7 @@ compileLocalLess = (file, options) ->
     content = fs.readFileSync localLessFile(file), 'utf8'
 
     Q.ninvoke parser, 'parse', content
-    .catch (error) -> console.error "Error with #{file}.less: #{error}"
     .then (tree) ->
         css = tree.toCSS {compress: not target.isDevelopment options}
         fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
-        Q()
+    .catch (error) -> console.error "Error with #{file}.less: #{error}"
