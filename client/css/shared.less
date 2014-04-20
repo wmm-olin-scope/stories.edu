@@ -66,21 +66,21 @@
     .fixed-aspect-box(1);
 }
 
-.button-orange {
-    background-image: none;
-    border: medium none;
-    text-shadow: none;
-    color: @white-color;
-    font-size: @large-font;
-    text-decoration: none;
+// Call to action button
+.btn-cta {
     padding: 10px;
-    // .border-radius(5px);
+    border-radius: 0;
+    color: @white-color;
     background-color: @orange-color;
-    font-weight: 700;
-    margin-right: 15px;
-    cursor: pointer;
-    text-align: center;
-    min-width: 90px;
+    text-transform: uppercase;
+}
+
+.btn-cta:hover,
+.btn-cta:focus,
+.btn-cta:active,
+.btn-cta.active {
+    color: @white-color;
+    background-color: darken(@orange-color, 5%);
 }
 
 .green-text{
