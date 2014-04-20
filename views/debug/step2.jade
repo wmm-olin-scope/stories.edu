@@ -4,21 +4,19 @@ block scripts
     script(src=static('javascripts/index.js'))
 
 block content
-    .container
-        .row
-            #step-container.col-xs-12.col-sm-7
+    .container.background-outside-container
+        .row.background-container
+            #step-container.col-xs-12.col-sm-5.col-sm-offset-2
                 #step-1.hidden
                     include ../widgets/step-1
                 #step-2
                     include ../widgets/step-2
                 #step-3.hidden
                     include ../widgets/step-3
-            .col-xs-12.col-sm-4.col-sm-offset-1
+            .col-xs-12.col-sm-3.about-left-margin
                 include ../widgets/about
     include ../widgets/how-it-works
-
+    include ../widgets/sample-notes
     .container
         #home-share-buttons.share-btn-container
             include ../widgets/share-button-row
-
-    include ../widgets/sample-notes
