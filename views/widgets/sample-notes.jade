@@ -5,7 +5,7 @@ mixin video-story-modal(story)
                 .modal-header.vidmodal-header
                     button.close.vidmodal-close(type='button', data-dismiss='modal', aria-hidden='true')
                         i.fa.fa-2x.fa-times-circle
-                    .vidmodal-title.modal-title 
+                    .vidmodal-title.modal-title
                         .vidmodal-header-title
                             strong #{story.name}
                             | &nbsp;thanks&nbsp;
@@ -32,7 +32,9 @@ mixin video-story-modal(story)
             mixin video-story-modal(story)
             .col-sm-4
                 - var target = "#"+story.id
-                img.sn-image(src=static('images/'+story.img) data-toggle="modal" data-target=target)
+                .sn-video-container
+                    .sn-video-button(data-toggle="modal" data-target=target)
+                    img.sn-image(src=static('images/'+story.img))
                 .sn-text-header
                     strong= story.name
                     | &nbsp;thanks&nbsp;
