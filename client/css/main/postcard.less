@@ -1,5 +1,81 @@
 
 .postcard-container {
-    .fixed-aspect-box(1.8);
+    .fixed-aspect-box(2);
+    .border-radius(3px);
+    background-color: @white-color;
+    margin-bottom: 15px;
+    .handwritten-font();
 }
 
+@post-in-padding: 15px;
+@post-in-text-padding: 40px;
+@post-in-padding-diff: @post-in-text-padding - @post-in-padding;
+
+.postcard-internal-container {
+    padding: @post-in-padding;
+    height: 100%;
+}
+
+.postcard-left {
+    height: 100%;
+    padding-right: @post-in-text-padding; // specify -right to clear bootstrap
+    padding-left: @post-in-padding-diff;
+    padding-top: @post-in-padding-diff;
+    padding-bottom: @post-in-padding-diff;
+}
+
+.postcard-right {
+    position: relative;
+    border-left: 1px solid lighten(@grey-color, 30%);
+    padding-left: @post-in-text-padding;
+    padding-right: 0;
+    .vert-center-container(100%);
+}
+
+.postcard-salutation {
+    margin-bottom: 0.9em;
+}
+
+.postcard-body {
+    margin-bottom: 0;
+}
+
+.postcard-full-message-link {
+    .sans-font();
+    .orange-link();
+}
+
+.postcard-closing {
+    margin-top: 1em;
+    margin-bottom: 0.2em;
+}
+
+.postcard-signature {
+    .handwritten-bold-font();
+    font-size: @large-font;
+}
+
+.postcard-stamp {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.postcard-address {
+    .vert-center-item();
+    padding-right: @post-in-padding-diff;
+}
+
+.postcard-addressee {
+    font-size: @very-large-font;
+    .handwritten-bold-font();
+    margin-bottom: 0;
+}
+
+.postcard-school {
+    margin-bottom: 0;
+}
+
+.postcard-city-state {
+    margin-bottom: 0;
+}
