@@ -9,9 +9,29 @@
 @blue-transparent-overlay: rgba(0, 131, 173, 0.5);
 
 // Font Variables
-@large-font: 15px;
+@huge-font: 30px;
+@very-large-font: 22px;
+@large-font: 18px;
+@normal-font: 14px;
 @small-font: 12px;
+@very-small-font: 10px;
 @tiny-font: 8px;
+
+.sans-font {
+    font-family: 'Raleway', sans-serif;
+}
+
+.handwritten-font {
+    font-family: 'blokletters_balpenbalpen', sans-serif;
+}
+
+.handwritten-bold-font {
+    font-family: 'blokletters_viltstiftviltstift', sans-serif;
+}
+
+body {
+    .sans-font();
+}
 
 .border-radius(@radius) {
     -webkit-border-radius: @radius;
@@ -126,10 +146,19 @@
 
 h2 {
     .unselectable();
-    font-size: 1.5em;
+    font-size: @very-large-font;
 }
 
 h3 {
     .unselectable();
-    font-size: 1.25em;
+    font-size: @large-font;
+}
+
+.orange-link {
+    color: @orange-color;
+    cursor: pointer;
+    &:hover {
+        color: @orange-color;
+        text-decoration: none;
+    }
 }

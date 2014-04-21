@@ -11,13 +11,14 @@ exports.publicDir = 'public/stylesheets'
 
 vendorDir = 'client/css/vendor'
 vendorLibs = [
+    'blokletters-font'
+    'raleway-font'
     'bootstrap.min'
     'font-awesome.min'
     'dosis-font'
     'bootstrap-switch.min'
     'social-buttons-3'
     'typeahead'
-    'blokletters-font'
 ]
 
 minify = (css) ->
