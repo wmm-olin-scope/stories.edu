@@ -1,8 +1,19 @@
 
 .postcard-container
     .fixed-aspect-content
-        .row
-            .col-xs-6
-                p left
-            .col-xs-6
-                p right
+        .row.clear-bootstrap-margins.postcard-internal-container
+            .col-xs-6.postcard-left
+                p.postcard-salutation Dear Mr. Smith
+                p.postcard-body Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nibh nisi, tincidunt nec tempus et, congue vel nisl. Fusce in libero eu lectus blandit suscipit et vitae nisi. Phasellus pretium dolor leo, sit amet adipiscing mi placerat id...
+                a.postcard-full-message-link See Full Message
+                p.postcard-closing Sincerely,
+                p.postcard-signature John Doe
+
+            .col-xs-6.postcard-right
+                img.postcard-stamp(src='//placehold.it/130x100')
+                .postcard-address
+                    p.postcard-addressee Mr. Smith
+                    p.postcard-school George Washington High School
+                    p.postcard-city-state Denver, CO
+
+

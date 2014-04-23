@@ -15,7 +15,7 @@ mixin step-number(n)
 mixin next-button(text)
     .row
         .col-xs-12
-            button.js-btn-next.btn.btn-default.btn-cta= text
+            button.js-btn-next.btn.btn-default.btn-cta(type='button', disabled)= text
 
 .row
     .col-xs-12

@@ -11,6 +11,8 @@ exports.publicDir = 'public/stylesheets'
 
 vendorDir = 'client/css/vendor'
 vendorLibs = [
+    'blokletters-font'
+    'raleway-font'
     'bootstrap.min'
     'font-awesome.min'
     'dosis-font'
@@ -51,21 +53,6 @@ task 'watch:less:local', 'Bundle local css/less', (options) ->
                     fs.watch "#{root}/#{name}", (event) ->
                         doCompile name if event is 'change'
                 next()
-###
-    for file in localFiles
-        do (file) ->
-            doCompile = ->
-                compileLocalLess file, options
-                .catch (error) ->
-                    console.error "Error compile #{file}.less"
-                    console.error error?.toString()
-                .then -> console.log "#{file}.less recompiled"
-                .fin()
-
-            doCompile = _.debounce doCompile, 10
-            fs.watch localLessFile(file), (event) ->
-                doCompile() if event is 'change'
-###
 
 localLessFile = (file) -> "client/css/#{file}.less"
 
@@ -82,4 +69,7 @@ compileLocalLess = (file, options) ->
     .then (tree) ->
         css = tree.toCSS {compress: not target.isDevelopment options}
         fs.writeFileSync "#{exports.publicDir}/#{file}.css", css
-    .catch (error) -> console.error "Error with #{file}.less: #{error}"
+    .catch (error) ->
+        console.error "Error with #{file}.less"
+        console.error error
+
