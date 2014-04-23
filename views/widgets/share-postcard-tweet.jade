@@ -5,6 +5,7 @@
             i.fa.fa-twitter
             &nbsp; Tweet!
     .share-postcard-body
-        textarea.js-twitter-postcard-text(placeholder='Default tweet goes here.', rows=3)
+        textarea.form-control.js-twitter-postcard-text(rows=3, maxlength=140).
+            Default tweet goes here.
     .share-postcard-footer
         button.btn.btn-default.btn-cta TWEET
