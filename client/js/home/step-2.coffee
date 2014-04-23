@@ -53,7 +53,20 @@ exports.validate = (data, updateCanGoNext) ->
     for {input} in exports.inputs
         $(input).keyup -> check data, updateCanGoNext
                 .change -> check data, updateCanGoNext
+
+    # initialize
     check data, updateCanGoNext
+    cityInput().focus()
+    if data.city
+        cityInput().val oldCity = data.city
+
+        schoolInput().focus()
+        invalidateSchoolAutocomplete data
+        cityInput().val oldCity = data.city # need to reset it
+
+        if data.school
+            schoolInput().val oldSchoolName = data.school
+            updateCanGoNext yes
 
 check = (data, updateCanGoNext) ->
     updateCanGoNext _.every [checkState, checkCity, checkSchool], (func) ->
