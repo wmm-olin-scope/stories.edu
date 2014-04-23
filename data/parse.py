@@ -19,7 +19,7 @@ def augment():
         str_headers = open(path + f).readlines()[1].split(',')
         headers = tuple([s.replace('"', '').strip().lower() for s in str_headers])
         df = pd.read_csv(path + f, skiprows=1, sep=',', names=headers)
-        dfs[abbr[f.lower()]] = df
+        dfs[abbr[f.lower()[:2]]] = df
         df._state = f
     return dfs
 
@@ -73,6 +73,9 @@ def mapping(dfs, field_name, normalizer):
                 pass
     return d
 
+def insert_dummy(collection, school):
+    collection.update({"_id": school["_id"]},  {"$set": {'principal': "", 'email': ""}});
+
 def augment_school(dfs, collection, school):
 
     global i, x, n
@@ -101,6 +104,8 @@ def augment_school(dfs, collection, school):
                 collection.update({"_id": school["_id"]},  {"$set": {'principal': principal, 'email': email}});
 
                 return
+        else:
+            insert_dummy(collection, school)
 
     # occur very rarely, but break execution
     except UnicodeDecodeError as e:
@@ -110,8 +115,9 @@ def augment_school(dfs, collection, school):
     except KeyError as e:
         print e
     except IndexError as e:
+        insert_dummy(collection, school)
         print e
-        
+
 if __name__ == "__main__":
     db = MongoClient()['thank-a-teacher']
     n = db.publicschools.count() + db.privateschools.count()
