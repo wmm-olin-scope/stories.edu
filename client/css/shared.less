@@ -17,14 +17,31 @@
 @very-small-font: 10px;
 @tiny-font: 8px;
 
-.sans-font {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
+.share-font() {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700; // Open Sans Bold
 }
 
-.sans-bold-font {
+// Note: These two are currently going to be set to 400 automatically if not available
+.sans-light-font() {
     font-family: 'Raleway', sans-serif;
-    font-weight: 700;
+    font-weight: 400; // Raleway Normal/Regular
+}
+
+.sans-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500; // Raleway Medium
+}
+
+// Note: These two are currently going to be set to 800 automatically if not available
+.sans-bold-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700; // Raleway Bold
+}
+
+.sans-extra-bold-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800; // Raleway Extra Bold
 }
 
 .handwritten-font {
@@ -117,15 +134,19 @@ body {
     .fixed-aspect-box(1);
 }
 
+.text-input-format {
+    .sans-font();
+}
+
 // Call to action button
 .btn-cta {
+    .sans-extra-bold-font();
     padding: 10px;
     color: @white-color;
     background-color: @orange-color;
     text-transform: uppercase;
     border: none;
     .border-radius(2px);
-    .sans-bold-font();
 }
 
 .btn-cta:hover,
@@ -172,6 +193,7 @@ h2 {
 
 h3 {
     .unselectable();
+    .sans-bold-font();
     font-size: @large-font;
 }
 
