@@ -10,7 +10,7 @@ steps = [
 stepContainer = '#step-container'
 
 runSteps = ->
-    data = {} # amplify.store(STEPS_STORAGE_KEY) or {}
+    data = amplify.store(STEPS_STORAGE_KEY) or {}
     iter = (stepIndex) ->
         if stepIndex >= steps.length
             stepsFinished data
@@ -27,7 +27,6 @@ stepsFinished = (data) ->
 
 runStep = (step, data, done) ->
     for otherStep in steps
-        console.log step isnt otherStep
         $(otherStep.id).toggleClass 'hidden', step isnt otherStep
     
     if step.setup? then step.setup data
