@@ -10,7 +10,7 @@ steps = [
 stepContainer = '#step-container'
 
 runSteps = ->
-    data = {} # amplify.store(STEPS_STORAGE_KEY) or {}
+    data = amplify.store(STEPS_STORAGE_KEY) or {}
     iter = (stepIndex) ->
         if stepIndex >= steps.length
             stepsFinished data

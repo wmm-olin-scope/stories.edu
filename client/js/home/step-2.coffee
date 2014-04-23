@@ -7,9 +7,15 @@ exports.inputs = [
     {field: 'school', input: '.js-school-field'}
 ]
 
-stateSelect = -> $ '.js-state-field', exports.id
-cityInput = -> $ '.js-city-field', exports.id
-schoolInput = -> $ '.js-school-field', exports.id
+# memoize is actually semantic here, typeahead starts to wrap input fields,
+# so we need to make sure that we always point to the underlying input element
+# otherwise $::val() doesn't work.
+memoize = (f) ->
+    val = null
+    -> if val then val else val = f()
+stateSelect = memoize -> $ '.js-state-field', exports.id
+cityInput = memoize -> $ '.js-city-field', exports.id
+schoolInput = memoize -> $ '.js-school-field', exports.id
 
 exports.setup = (data) ->
     populateStateOption()
@@ -49,10 +55,8 @@ exports.validate = (data, updateCanGoNext) ->
                 .change -> check data, updateCanGoNext
 
 check = (data, updateCanGoNext) ->
-    stateGood = checkState data
-    cityGood = checkCity data
-    schoolGood = checkSchool data
-    updateCanGoNext _.every [stateGood, cityGood, schoolGood]
+    updateCanGoNext _.every [checkState, checkCity, checkSchool], (func) ->
+        func data
 
 oldState = {} # unique obj
 checkState = (data) ->
@@ -135,8 +139,6 @@ checkSchool = (data) ->
     return ok
 
 invalidateSchoolAutocomplete = (data) ->
-    console.log 'Invalidating school',
-    console.log {data}
     data.schoolObj = null
 
     state = stateSelect().val()
@@ -167,7 +169,7 @@ exports.writeData = (data) ->
     schoolObj = data.schoolObj
     if schoolObj?
         {name: school, mailingAddress: street, city, state, zip} = schoolObj
-        data.school = capitalize name
+        data.school = capitalize school
         data.street = capitalize street
         data.city = capitalize city
         data.state = state
