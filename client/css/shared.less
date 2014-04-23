@@ -17,6 +17,11 @@
 @very-small-font: 10px;
 @tiny-font: 8px;
 
+.share-font() {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700; // Open Sans Bold
+}
+
 .sans-light-font() {
     font-family: 'Raleway', sans-serif;
     font-weight: 400; // Raleway Normal/Regular
@@ -186,6 +191,7 @@ h2 {
 
 h3 {
     .unselectable();
+    .sans-bold-font();
     font-size: @large-font;
 }
 

@@ -12,7 +12,7 @@ exports.publicDir = 'public/stylesheets'
 vendorDir = 'client/css/vendor'
 vendorLibs = [
     'blokletters-font'
-    'raleway-font'
+    'google-fonts'
     'bootstrap.min'
     'font-awesome.min'
     'dosis-font'

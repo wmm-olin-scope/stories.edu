@@ -39,4 +39,8 @@ mixin video-story-modal(story)
                     strong= story.name
                     | &nbsp;thanks&nbsp;
                     strong= story.teacher
-                    != '&nbsp;from ' + story.school + ' in ' + story.city + ', ' + story.state
+                .sn-text-body
+                    p
+                        != story.city + ', ' + story.state
+                    p
+                        != story.school + story.city + ', ' + story.state
