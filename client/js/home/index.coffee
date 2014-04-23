@@ -75,6 +75,14 @@ defaultStepValidate = (step, data, updateCanGoNext) ->
 defaultStepWriteData = (step, data) ->
     for {field, input} in step.inputs
         data[field] = $(input).val()
+        if field is 'email'
+            mixpanel.people.set
+              $email: data[field]
+            mixpanel.alias(data[field])
+        if field is 'name'
+            mixpanel.people.set
+              $name: data[field]
+    mixpanel.track 'input', step.inputs
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'
