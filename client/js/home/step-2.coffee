@@ -135,6 +135,8 @@ checkSchool = (data) ->
     return ok
 
 invalidateSchoolAutocomplete = (data) ->
+    console.log 'Invalidating school',
+    console.log {data}
     data.schoolObj = null
 
     state = stateSelect().val()
