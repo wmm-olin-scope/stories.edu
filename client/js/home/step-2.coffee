@@ -53,6 +53,7 @@ exports.validate = (data, updateCanGoNext) ->
     for {input} in exports.inputs
         $(input).keyup -> check data, updateCanGoNext
                 .change -> check data, updateCanGoNext
+    check data, updateCanGoNext
 
 check = (data, updateCanGoNext) ->
     updateCanGoNext _.every [checkState, checkCity, checkSchool], (func) ->
