@@ -11,11 +11,10 @@ exports.publicDir = 'public/stylesheets'
 
 vendorDir = 'client/css/vendor'
 vendorLibs = [
+    'remote-fonts' # Keep this first! (@import must preceed all other rules)
     'blokletters-font'
-    'google-fonts'
     'bootstrap.min'
     'font-awesome.min'
-    'dosis-font'
     'bootstrap-switch.min'
     'social-buttons-3'
     'typeahead'
