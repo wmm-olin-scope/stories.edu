@@ -44,8 +44,8 @@ exports.send_email = (req, res) ->
                 content: ""
             },
             {
-                name: "UserName"
-                content: "A Student"
+                name: "StudentName"
+                content: "A student"
             },
             {
                 name: "City"
@@ -54,12 +54,39 @@ exports.send_email = (req, res) ->
             {
                 name: "State"
                 content: ""
+            },
+            {
+                name: "LIST:COMPANY"
+                content: "Thank a Teacher"
+            },
+            {
+                name: "CURRENT_YEAR"
+                content: (new Date()).getUTCFullYear()
+            },
+            {
+                name: "UNSUB"
+                content: "mailto:goodbye@thank-a-teacher.org"
+            },
+            {
+                name: "MC:SUBJECT"
+                content: "Someone just thanked a teacher at your school"
+            },
+            {
+                name: "FullMessageURL"
+                content: "http://thank-a-teacher.org"
             }
-
         ]
         merge_vars: [
             rcpt: req.body.SchoolEmail
             vars: [
+                {
+                    name: "FullMessageURL"
+                    content: req.body.FullMessageURL # XXX: FULL MESSAGE URL
+                },
+                {
+                    name: "MC:SUBJECT"
+                    content: req.body.EmailSubject
+                },
                 {
                     name: "SchoolName"
                     content: req.body.SchoolName
@@ -73,8 +100,8 @@ exports.send_email = (req, res) ->
                     content: req.body.Message
                 },
                 {
-                    name: "UserName"
-                    content: req.body.UserName
+                    name: "StudentName"
+                    content: req.body.StudentName
                 },
                 {
                     name: "City"
@@ -83,6 +110,10 @@ exports.send_email = (req, res) ->
                 {
                     name: "State"
                     content: req.body.State
+                },
+                {
+                    name: "UNSUB"
+                    content: req.body.Unsub
                 }
             ]
         ]
