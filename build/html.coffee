@@ -21,12 +21,10 @@ utils.buildTask 'html:index', 'Render the home page',
     renderJade 'views/index.jade', 'index'
 utils.buildTask 'html:privacy', 'Render the privacy page',
     renderJade 'views/privacy.jade', 'privacy'
-utils.buildTask 'html:step2', 'Render the second postcard step',
-    renderJade 'views/step2.jade', 'step2'
-utils.buildTask 'html:step3', 'Render the third postcard step',
-    renderJade 'views/step3.jade', 'step3'
-utils.buildTask 'html:submitted', 'Render the submitted page',
-    renderJade 'views/submitted.jade', 'submitted'
+utils.buildTask 'html:thank-you', 'Render the thank you page',
+    renderJade 'views/thank-you.jade', 'thank-you'
 utils.buildTask 'html:about', 'Render the about page',
     renderJade 'views/about.jade', 'about'
+utils.buildTask 'html:unsubscribe', 'Render the unsubscribe page',
+    renderJade 'views/unsubscribe.jade', 'unsubscribe'
 

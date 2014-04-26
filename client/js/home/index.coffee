@@ -1,6 +1,9 @@
 
 POSTCARD_URL = '/postcards'
 
+makeThankYouUrl = (postcard) ->
+    "/thank-you/#{postcard._id}"
+
 steps = [
     require('./step-1.coffee').step
     require('./step-2.coffee').step
@@ -8,39 +11,51 @@ steps = [
 ]
 
 normalizeSchoolData = (data) ->
-    return unless data.schoolObj?
+    data = _.clone data
+    return data unless data.schoolObj?
+     
     data.schoolId = data.schoolObj._id
     data.schoolType = data.schoolObj.schoolType
-
-    for field in 'schoolObj schoolName street city state zip'.split ' '
-        delete data[field]
+    return _.omit data, 'schoolObj schoolName street city state zip'.split ' '
     
 postcardFinished = (data) ->
     console.log {data}
 
     # amplify.store STEPS_STORAGE_KEY, {}
-    normalizeSchoolData data
 
-    showLoading()
-    $.post POSTCARD_URL, data
+    spinner = Ladda.create $('#send-note').get(0)
+    spinner.start()
+
+    $.post POSTCARD_URL, normalizeSchoolData data
     .done (result) ->
         if result.success then switchToThankYou result
         else showError result.error
     .fail (error) -> showError error
-    .always -> stopShowLoading()
+    .always -> spinner.stop()
 
 switchToThankYou = ({postcard, school}) ->
-    console.log {postcard, school}
+    $('#make-postcard').toggleClass 'hidden', yes
+    $('#show-postcard').toggleClass 'hidden', no
+    $('#secondary-content').toggleClass 'hidden', yes
+
+    url = makeThankYouUrl postcard
+    if window.history?.pushState
+        window.history.pushState {postcard, school}, 'Thank you!', url
+    else
+        # forces a reload, oh well, screw you for using an old browser
+        window.location.pathname = url
+
+    require('../postcard.coffee').run {postcard, school}
 
 showError = (error) ->
+    $('#step-container').append """
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" 
+                    aria-hidden="true">&times;</button>
+            <strong>Try again!</strong> #{error.message or error}
+        </div>
+    """
     console.error error
-
-showLoading = ->
-    console.log 'loading'
-
-stopShowLoading = ->
-    console.log 'loading'
-
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'
