@@ -25,4 +25,6 @@ utils.buildTask 'html:thank-you', 'Render the thank you page',
     renderJade 'views/thank-you.jade', 'thank-you'
 utils.buildTask 'html:about', 'Render the about page',
     renderJade 'views/about.jade', 'about'
+utils.buildTask 'html:unsubscribe', 'Render the unsubscribe page',
+    renderJade 'views/unsubscribe.jade', 'unsubscribe'
 
