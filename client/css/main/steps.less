@@ -10,16 +10,28 @@
 }
 
 .step-tagline {
+    .sans-bold-font();
     font-size: @very-large-font;
-    font-weight: bold;
 }
 
 legend {
+    .sans-font();
     font-size: @large-font;
-    font-weight: bold;
     border: none;
     padding: 0.5em 0 0 0;
     margin: 0;
+}
+
+legend.step-alternative {
+    .sans-bold-font();
+    font-size: @normal-font;
+}
+
+.substep-explanation {
+    .sans-font();
+    font-size: @small-font;
+    float: right;
+    padding-top: 0.5em;
 }
 
 fieldset {
