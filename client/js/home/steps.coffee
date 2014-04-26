@@ -48,6 +48,14 @@ class exports.Step
     writeData: (data) ->
         for {field, input} in @inputs
             data[field] = $(input).val()
+            if field is 'email'
+                mixpanel.people.set
+                  $email: data[field]
+                mixpanel.alias(data[field])
+            if field is 'name'
+                mixpanel.people.set
+                  $name: data[field]
+        mixpanel.track 'input', @inputs
 
 
 exports.runSteps = (steps, done) ->
