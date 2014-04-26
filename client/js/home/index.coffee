@@ -1,6 +1,9 @@
 
 POSTCARD_URL = '/postcards'
 
+makeThankYouUrl = (postcard) ->
+    "/thank-you/#{postcard._id}"
+
 steps = [
     require('./step-1.coffee').step
     require('./step-2.coffee').step
@@ -31,7 +34,16 @@ postcardFinished = (data) ->
     .always -> spinner.stop()
 
 switchToThankYou = ({postcard, school}) ->
-    console.log {postcard, school}
+    $('#make-postcard').toggleClass 'hidden', yes
+    $('#show-postcard').toggleClass 'hidden', no
+    $('#secondary-content').toggleClass 'hidden', yes
+
+    url = makeThankYouUrl postcard
+    if window.history?.pushState
+        window.history.pushState {postcard, school}, 'Thank you!', url
+    else
+        # forces a reload, oh well, screw you for using an old browser
+        window.location.pathname = url
 
 showError = (error) ->
     $('#step-container').append """
