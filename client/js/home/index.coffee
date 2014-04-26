@@ -1,5 +1,6 @@
 
 STEPS_STORAGE_KEY = 'stepsData'
+POSTCARD_URL = '/postcards'
 
 steps = [
     require './step-1.coffee'
@@ -19,11 +20,6 @@ runSteps = ->
                 amplify.store STEPS_STORAGE_KEY, data
                 iter stepIndex+1
     iter 0
-
-stepsFinished = (data) ->
-    console.log 'FINISHED!'
-    console.log {data}
-    amplify.store STEPS_STORAGE_KEY, {}
 
 runStep = (step, data, done) ->
     for otherStep in steps
@@ -75,6 +71,37 @@ defaultStepValidate = (step, data, updateCanGoNext) ->
 defaultStepWriteData = (step, data) ->
     for {field, input} in step.inputs
         data[field] = $(input).val()
+
+
+normalizeSchoolData = (data) ->
+    return unless data.schoolObj?
+    data.schoolId = data.schoolObj._id
+    data.schoolType = data.schoolObj.schoolType
+
+    for field in 'schoolObj schoolName street city state zip'.split ' '
+        delete data[field]
+    
+stepsFinished = (data) ->
+    # amplify.store STEPS_STORAGE_KEY, {}
+    normalizeSchoolData data
+    showLoading()
+    $.post POSTCARD_URL, data
+    .done (result) ->
+        if result.success then switchToThankYou result
+        else showError result.error
+    .fail (error) -> showError error
+    .always -> stopShowLoading()
+
+switchToThankYou = ({postcard, school}) ->
+    console.log {postcard, school}
+
+showError = (error) ->
+    console.error error
+
+showLoading = ->
+
+stopShowLoading = ->
+
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'

@@ -4,7 +4,7 @@ exports.id = '#step-2'
 exports.inputs = [
     {field: 'state', input: '.js-state-field'}
     {field: 'city', input: '.js-city-field'}
-    {field: 'school', input: '.js-school-field'}
+    {field: 'schoolName', input: '.js-school-field'}
 ]
 
 # memoize is actually semantic here, typeahead starts to wrap input fields,
@@ -55,6 +55,8 @@ exports.validate = (data, updateCanGoNext) ->
                 .change -> check data, updateCanGoNext
 
     # initialize
+    schoolObj = data.schoolObj # save this while we recreate hounds
+
     check data, updateCanGoNext
     cityInput().focus()
     if data.city
@@ -67,6 +69,9 @@ exports.validate = (data, updateCanGoNext) ->
         if data.school
             schoolInput().val oldSchoolName = data.school
             updateCanGoNext yes
+
+    data.schoolObj = schoolObj # saved
+
 
 check = (data, updateCanGoNext) ->
     updateCanGoNext _.every [checkState, checkCity, checkSchool], (func) ->
@@ -183,13 +188,13 @@ exports.writeData = (data) ->
     schoolObj = data.schoolObj
     if schoolObj?
         {name: school, mailingAddress: street, city, state, zip} = schoolObj
-        data.school = capitalize school
+        data.schoolName = capitalize school
         data.street = capitalize street
         data.city = capitalize city
         data.state = state
         data.zip = zip
     else
-        data.school = schoolInput().val()
+        data.schoolName = schoolInput().val()
         data.city = cityInput().val()
         data.state = stateSelect().val()
 

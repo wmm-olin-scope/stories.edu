@@ -2,38 +2,39 @@
 mongoose = require 'mongoose'
 utils = require './utils'
 Q = require 'q'
+{PublicSchool, PrivateSchool} = require './schools'
 
 exports.postcardSchema = postcardSchema = new mongoose.Schema
     created: Date
-    message: String
+    name: String
+    email: String
+    note: String
     youtubeId: String
-    starred: 
+    starred:
         type: Boolean
         default: false
-    recipient:
-        name: utils.makeName()
-        role: String
-        email: String
-    school:
-        public: utils.makeRef 'PublicSchool'
-        private: utils.makeRef 'PrivateSchool'
-    anonymous: 
-        type: Boolean
-        default: false
-    author:
-        user: utils.makeRef 'User'
-        name: utils.makeName()
-        role: String
-        email: String
+    teacher: String
+    schoolId: String # mongoose.Types.ObjectId?
+    schoolType: String
+    schoolName: String
+    city: String
+    state: String
     views:
         type: Number
         default: 0
         index: yes
 
-
-postcardSchema.virtual('recipient.name.display').get ->
-    utils.getDisplayName @recipient.name
-
+postcardSchema.methods.getSchool = ->
+    if @schoolId
+        model = switch @schoolType?.toLowerCase()
+            when 'public' then PublicSchool
+            when 'private' then PrivateSchool
+        return Q.ninvoke model, 'findById', @schoolId if model
+    Q
+        name: @schoolName
+        city: @city
+        state: @state
+        
 postcardSchema.methods.registerView = ->
     @views += 1
 

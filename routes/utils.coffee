@@ -35,7 +35,7 @@ exports.checkBody = (name, fun, notPresentValue) ->
 
 exports.makeNameCheck = (variable) ->
   exports.checkBody variable, (name) ->
-    exports.check(name).len 1, 32
+    exports.check(name).len 1, 128
     exports.sanitize(name).escape()
 
 
