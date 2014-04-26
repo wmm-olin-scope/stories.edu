@@ -88,9 +88,10 @@ getPostcard = (req, res) ->
 
     Q.ninvoke Postcard, 'findById', postcardId
     .then (postcard) ->
-        succeed res, {postcard}
         postcard.registerView()
         Q.ninvoke postcard, 'save'
+        .then -> postcard.getSchool()
+        .then (school) -> succeed res, {postcard, school}
     .done utils.failOnError(res)...
 
 starPostcard = (req, res) ->
