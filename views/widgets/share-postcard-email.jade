@@ -5,8 +5,13 @@
             i.fa.fa-envelope
             &nbsp; Email Your Friends!
     .share-postcard-body
-        input.js-email-postcard-to.form-control(placeholder='Enter email addresses, separated by commas')
-        textarea.js-email-postcard-text.form-control(rows=3).
-            Default email message goes here.
+        button.btn.btn-default.btn-cta.js-email-button 
+            | Send An Email Now &nbsp;
+            i.fa.fa-play
+        p.added-padding Or copy and paste the text below into an email:
+        textarea.form-control.fixed-textarea.js-twitter-postcard-text(rows=6, maxlength=140).
+            Subject: Join me in taking 2 min to thank a past teacher and support this student project
+
+            Hi,
+            We've all been students. Let's take a min to thank a teacher who helped us become who we are today via @ThankAMentor. Check out http://thank-a-teacher.org
     .share-postcard-footer
-        button.btn.btn-default.btn-cta SEND EMAIL
