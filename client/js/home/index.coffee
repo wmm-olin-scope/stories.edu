@@ -1,81 +1,47 @@
 
-STEPS_STORAGE_KEY = 'stepsData'
+POSTCARD_URL = '/postcards'
 
 steps = [
-    require './step-1.coffee'
-    require './step-2.coffee'
-    require './step-3.coffee'
+    require('./step-1.coffee').step
+    require('./step-2.coffee').step
+    require('./step-3.coffee').step
 ]
 
-stepContainer = '#step-container'
+normalizeSchoolData = (data) ->
+    return unless data.schoolObj?
+    data.schoolId = data.schoolObj._id
+    data.schoolType = data.schoolObj.schoolType
 
-runSteps = ->
-    data = amplify.store(STEPS_STORAGE_KEY) or {}
-    iter = (stepIndex) ->
-        if stepIndex >= steps.length
-            stepsFinished data
-        else
-            runStep steps[stepIndex], data, ->
-                amplify.store STEPS_STORAGE_KEY, data
-                iter stepIndex+1
-    iter 0
-
-stepsFinished = (data) ->
-    console.log 'FINISHED!'
-    console.log {data}
-    amplify.store STEPS_STORAGE_KEY, {}
-
-runStep = (step, data, done) ->
-    for otherStep in steps
-        $(otherStep.id).toggleClass 'hidden', step isnt otherStep
+    for field in 'schoolObj schoolName street city state zip'.split ' '
+        delete data[field]
     
-    if step.setup? then step.setup data
-    else defaultStepSetup step, data
+postcardFinished = (data) ->
+    console.log {data}
 
-    nextButton = $ '.js-btn-next', step.id
+    # amplify.store STEPS_STORAGE_KEY, {}
+    normalizeSchoolData data
 
-    canGoNext = no
-    updateCanGoNext = (_canGoNext) ->
-        canGoNext = _canGoNext
-        nextButton.attr 'disabled', not canGoNext
+    showLoading()
+    $.post POSTCARD_URL, data
+    .done (result) ->
+        if result.success then switchToThankYou result
+        else showError result.error
+    .fail (error) -> showError error
+    .always -> stopShowLoading()
 
-    tryNext = ->
-        return unless canGoNext
-        if step.writeData? then step.writeData data
-        else defaultStepWriteData step, data
-        done()
+switchToThankYou = ({postcard, school}) ->
+    console.log {postcard, school}
 
-    nextButton.click ->
-        tryNext()
-        return no # prevent form submission
-    $(step.inputs[step.inputs.length-1].input).keydown ({which}) ->
-        tryNext() if which is 13 # enter key
+showError = (error) ->
+    console.error error
 
-    if step.validate? then step.validate data, updateCanGoNext
-    else defaultStepValidate step, data, updateCanGoNext
+showLoading = ->
+    console.log 'loading'
 
-defaultStepSetup = (step, data) ->
-    foundWithoutVal = no
-    for {field, input} in step.inputs
-        $(input).val data[field]
-        if not foundWithoutVal and not data[field]
-            $(input).focus()
-            foundWithoutVal = yes
+stopShowLoading = ->
+    console.log 'loading'
 
-defaultStepValidate = (step, data, updateCanGoNext) ->
-    check = ->
-        updateCanGoNext _.every step.inputs, ({input, optional}) ->
-            optional or $(input).val()?.trim().length > 0
-    check()
-
-    for {input} in step.inputs
-        $(input).keyup check
-                .change check
-
-defaultStepWriteData = (step, data) ->
-    for {field, input} in step.inputs
-        data[field] = $(input).val()
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'
-    runSteps()
+    require('./steps').runSteps steps, postcardFinished
