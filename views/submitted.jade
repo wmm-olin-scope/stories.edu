@@ -2,6 +2,7 @@ extends layout
 block scripts
     script(src=static('javascripts/submitted.js'))
 block content
+    #fb-root
     .container.background-outside-container
         .row.background-container
             .submitted-header
@@ -10,9 +11,9 @@ block content
                 h3.text-center.white-text.
                     Your thank you note has been submitted. Now tell your friends!
             .row
-                .col-xs-12.col-md-6.col-md-offset-2
+                .col-xs-12.col-md-6.col-md-offset-1
                     include widgets/full-postcard
-                    include widgets/share-postcard-email
-                .col-xs-12.col-md-2
-                    include widgets/share-postcard-facebook
                     include widgets/share-postcard-tweet
+                .col-xs-12.col-md-4
+                    include widgets/share-postcard-email
+                    include widgets/share-postcard-facebook

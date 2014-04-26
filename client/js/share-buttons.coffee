@@ -1,8 +1,7 @@
 
-siteUrl = 'http://www.thank-a-teacher.org'
-twitterHandle = 'thankamentor'
-message = '''We've all been students. Let's take a min to thank a teacher 
-             who helped us become who we are today.'''
+siteUrl = 'http://thank-a-teacher.org'
+twitterHandle = '@ThankAMentor'
+message = "We've all been students. Let's take a min to thank a teacher who helped us become who we are today via " + twitterHandle + ". Check out " + siteUrl
 email =
     subject: 'Thank a teacher'
     body: "#{message}\n\nCheck out #{siteUrl}"
@@ -26,7 +25,7 @@ setupFacebook = (container) ->
 
 setupTwitter = (container) ->
     encoded = encodeURIComponent siteUrl
-    twitterUrl = "https://twitter.com/share?url=#{encoded}&text=#{message}&via=#{twitterHandle}"
+    twitterUrl = "https://twitter.com/share?text=#{message}"
     setupButton twitterUrl, 'twitter', $ '.js-share-twitter', container
 
 setupGooglePlus = (container) ->

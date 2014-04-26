@@ -5,7 +5,11 @@
             i.fa.fa-facebook
             &nbsp; Share on Facebook
     .share-postcard-body
-        textarea.form-control.js-facebook-postcard-text(rows=3).
-            Default post goes here.
+        .col-md-3
+            img(src="images/thank-a-teacher-thumbnail.jpg" width="70px")
+        .col-md-9
+            p Click the button below to post a link to Facebook:
     .share-postcard-footer
-        button.btn.btn-default.btn-cta POST TO WALL
+        button.btn.btn-default.btn-cta.js-facebook-button 
+            | Post to your wall 
+            i.fa.fa-play
