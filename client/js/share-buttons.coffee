@@ -16,7 +16,9 @@ exports.setupButtons = (container) ->
 
 setupButton = (url, network, button) ->
     button.click ->
-        mixpanel.track 'share', {network}
+        mixpanel.track 'share',
+          content: 'site'
+          network: {network}
         window.open url, '_blank'
 
 setupFacebook = (container) ->

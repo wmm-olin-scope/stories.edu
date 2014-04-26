@@ -31,7 +31,9 @@ FBinit = () ->
 setupButton = (url, network, button) ->
     button.click ->
         console.log 'setting up button...'
-        mixpanel.track 'share', {network}
+        mixpanel.track 'share',
+          content: 'note'
+          network: {network}
         window.open url, '_blank'
 
 setupFacebook = () ->
