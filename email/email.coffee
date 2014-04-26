@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 Q = require 'q'
-db = require './db'
+db = require '../data/db'
+{Postcard} = require '../data/postcards'
 {PublicSchool, PrivateSchool} = require '../data/schools'
 
 mandrill = require('mandrill-api')
@@ -133,8 +134,6 @@ send_email = (req, res, err) ->
 # If someone unsubscribes:
 # ?md_id=??&md_email=??
 
-content: req.body.FullMessageURL
-
 get_req_for_postcard = (postcard, email_to, template_name) ->
     {
         template_name: template_name
@@ -155,49 +154,98 @@ get_req_for_postcard = (postcard, email_to, template_name) ->
 # reject_reason       the reason for the rejection if the recipient status is "rejected"
 # _id                 the message's unique id
 
+process_postcard = (postcard) ->
+    console.log("Process Postcard")
+
+    deferred = Q.defer()
+
+    console.log("FOUND EM: #{postcard._id}")
+
+    model = switch postcard.schoolType?.toLowerCase()
+        when 'public' then PublicSchool
+        when 'private' then PrivateSchool
+
+    model.findById(postcard.schoolId, 'email', (err, school) ->
+            email = school.email
+            console.log("School Email could be: #{email}")
+            deferred.resolve()
+        )
+
+    deferred.promise
+
+test = ->
+
+    deferred = Q.defer()
+    # {'processed': null}, {'processed': false}: Order must be null, false in order to find all matches
+    stream = Postcard.find().or([{'processed': null}, {'processed': false}]).stream()
+        .on 'data', (postcard) ->
+            Q().then(-> stream.pause())
+            .then(-> process_postcard postcard)
+            .then(-> stream.resume())
+        .on 'error', (err) ->
+            console.log("Error")
+            deferred.reject err
+        .on 'close', () ->
+            console.log("Closed")
+            deferred.resolve()
+    deferred.promise
+
 exports.send_emails = ->
-    Postcard.find({processed: false}).stream()
-    .on 'data', (postcard) ->
-        stream.pause()
+    promise = Q()
+    console.log("SENDING EMAILS!")
+    promise.then(-> test)
+    promise
+    # console.log(Postcard.models)
+    # Postcard.find({processed: false},(p)->console.log("FOUND SUMMAT"))
 
-        model = switch postcard.schoolType?.toLowerCase()
-            when 'public' then PublicSchool
-            when 'private' then PrivateSchool
-        Q.ninvoke model, 'findById', postcard.schoolId if model
-        .then((school) ->
+    # Q().then(test)
+    # .then(-> console.log 'Done Sending!')
+    # .catch((err) -> console.log err)
 
-            console.log("School Email could be: #{school.email}")
+    # Postcard.find().or([{processed: false}, {processed: null}]).stream()
+    # .on 'data', (postcard) ->
+    #     console.log("Found an Email!")
+    #     stream.pause()
 
-            console.log("Postcard req is: #{get_req_for_postcard(postcard, 'julian.ceipek@gmail.com', 'Note to Principal')}")
-            # should_send  = (status) ->
-            #     not (status in ["queued", "rejected", "invalid", "sent"])
+    #     model = switch postcard.schoolType?.toLowerCase()
+    #         when 'public' then PublicSchool
+    #         when 'private' then PrivateSchool
+    #     Q.ninvoke model, 'findById', postcard.schoolId if model
+    #     .then((school) ->
 
-            # send_second_email = (res,err) ->
-            #     console.log("School Email could be: #{school.email}")
-            #     # XXX: Change to School Email somehow!!!!!
-            #     if should_send postcard.status
-            #         send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
-            #             (responses) ->
-            #                 postcard.userSendStatus = responses[0].status
-            #                 stream.resume()
-            #           , (err) ->
-            #                 if should_send postcard.status
-            #                     postcard.schoolSendStatus = responses[0].status
-            #                     postcard.processed = true
-            #                 stream.resume()
-            #                 console.error(err))
-            # send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
-            #     (responses) ->
-            #         postcard.userSendStatus = responses[0].status
-            #   , (err) ->
-            #         console.error(err))
-            )
+    #         console.log("School Email could be: #{school.email}")
 
-    Q().then(send_email)
-    .then(-> console.log 'Done!')
-    .catch((err) -> console.log err)
+    #         console.log("Postcard req is: #{get_req_for_postcard(postcard, 'julian.ceipek@gmail.com', 'Note to Principal')}")
+    #         # should_send  = (status) ->
+    #         #     not (status in ["queued", "rejected", "invalid", "sent"])
+
+    #         # send_second_email = (res,err) ->
+    #         #     console.log("School Email could be: #{school.email}")
+    #         #     # XXX: Change to School Email somehow!!!!!
+    #         #     if should_send postcard.status
+    #         #         send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
+    #         #             (responses) ->
+    #         #                 postcard.userSendStatus = responses[0].status
+    #         #                 stream.resume()
+    #         #           , (err) ->
+    #         #                 if should_send postcard.status
+    #         #                     postcard.schoolSendStatus = responses[0].status
+    #         #                     postcard.processed = true
+    #         #                 stream.resume()
+    #         #                 console.error(err))
+    #         # send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
+    #         #     (responses) ->
+    #         #         postcard.userSendStatus = responses[0].status
+    #         #   , (err) ->
+    #         #         console.error(err))
+    #         )
+
+    # Q().then(send_email)
+    # .then(-> console.log 'Done!')
+    # .catch((err) -> console.log err)
 
 if require.main is module
     db.connect()
-    .then(exports.send_emails)
+    .then(test)
+    # .then(exports.send_emails)
     .fin(-> process.exit())
