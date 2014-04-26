@@ -76,6 +76,6 @@ buildModule = (name, rootFile) -> (options, done) ->
 
 utils.asyncBuildTask 'js:index', 'Build the home page js',
     buildModule 'index', 'home/index.coffee'
-# utils.asyncBuildTask 'js:make-postcard', 'Build the make postcard page js',
-#     buildModule 'make-postcard', 'postcard/make.coffee'
+utils.asyncBuildTask 'js:submitted', 'Build the make postcard submitted page js',
+    buildModule 'submitted', 'submitted.coffee'
 
