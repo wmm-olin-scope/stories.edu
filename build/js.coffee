@@ -14,10 +14,11 @@ exports.publicDir = 'public/javascripts'
 
 vendorDir = 'client/js/vendor'
 vendorLibs = [#dependency order
-    'jquery',
+    'jquery'
     'bootstrap', 'jquery.transit'
     'underscore', 'amplify', 'history'
-    'typeahead.bundle', 'ladda.min'
+    'typeahead.bundle',
+    'spin.min', 'ladda.min'
 ]
 
 utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->

@@ -20,13 +20,15 @@ postcardFinished = (data) ->
 
     # amplify.store STEPS_STORAGE_KEY, {}
 
-    showLoading()
+    spinner = Ladda.create $('#send-note').get(0)
+    spinner.start()
+
     $.post POSTCARD_URL, normalizeSchoolData data
     .done (result) ->
         if result.success then switchToThankYou result
         else showError result.error
     .fail (error) -> showError error
-    .always -> stopShowLoading()
+    .always -> spinner.stop()
 
 switchToThankYou = ({postcard, school}) ->
     console.log {postcard, school}
@@ -40,13 +42,6 @@ showError = (error) ->
         </div>
     """
     console.error error
-
-showLoading = ->
-    console.log 'loading'
-
-stopShowLoading = ->
-    console.log 'loading'
-
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'
