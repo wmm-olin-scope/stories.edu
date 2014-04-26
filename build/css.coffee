@@ -18,6 +18,7 @@ vendorLibs = [
     'bootstrap-switch.min'
     'social-buttons-3'
     'typeahead'
+    'ladda-themeless.min'
 ]
 
 minify = (css) ->
