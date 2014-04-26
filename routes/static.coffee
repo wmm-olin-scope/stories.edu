@@ -3,7 +3,7 @@
 
 exports.create = (app) ->
     app.get '/', html 'index'
-    app.get '/thank-you/[a-zA-Z0-9\\-_]+', html 'index'
+    app.get '/thank-you/[a-zA-Z0-9\\-_]+', html 'thank-you'
     app.get '/privacy', html 'privacy'
     app.get '/about', html 'about'
 

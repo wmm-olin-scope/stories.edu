@@ -45,6 +45,8 @@ switchToThankYou = ({postcard, school}) ->
         # forces a reload, oh well, screw you for using an old browser
         window.location.pathname = url
 
+    require('../postcard.coffee').run {postcard, school}
+
 showError = (error) ->
     $('#step-container').append """
         <div class="alert alert-danger alert-dismissable">
