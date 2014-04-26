@@ -29,4 +29,6 @@ utils.buildTask 'html:submitted', 'Render the submitted page',
     renderJade 'views/submitted.jade', 'submitted'
 utils.buildTask 'html:about', 'Render the about page',
     renderJade 'views/about.jade', 'about'
+utils.buildTask 'html:unsubscribe', 'Render the unsubscribe page',
+    renderJade 'views/unsubscribe.jade', 'unsubscribe'
 

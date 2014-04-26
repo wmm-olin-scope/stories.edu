@@ -8,6 +8,7 @@ exports.create = (app) ->
     app.get '/submitted', html 'submitted'
     app.get '/privacy', html 'privacy'
     app.get '/about', html 'about'
+    app.get '/unsubscribe', html 'unsubscribe'
 
     if app.get 'development'
         app.get '/debug/step1', html 'debug/step1'
