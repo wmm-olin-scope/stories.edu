@@ -1,81 +1,62 @@
 
-STEPS_STORAGE_KEY = 'stepsData'
+POSTCARD_URL = '/postcards'
+
+makeThankYouUrl = (postcard) ->
+    "/thank-you/#{postcard._id}"
 
 steps = [
-    require './step-1.coffee'
-    require './step-2.coffee'
-    require './step-3.coffee'
+    require('./step-1.coffee').step
+    require('./step-2.coffee').step
+    require('./step-3.coffee').step
 ]
 
-stepContainer = '#step-container'
-
-runSteps = ->
-    data = amplify.store(STEPS_STORAGE_KEY) or {}
-    iter = (stepIndex) ->
-        if stepIndex >= steps.length
-            stepsFinished data
-        else
-            runStep steps[stepIndex], data, ->
-                amplify.store STEPS_STORAGE_KEY, data
-                iter stepIndex+1
-    iter 0
-
-stepsFinished = (data) ->
-    console.log 'FINISHED!'
-    console.log {data}
-    amplify.store STEPS_STORAGE_KEY, {}
-
-runStep = (step, data, done) ->
-    for otherStep in steps
-        $(otherStep.id).toggleClass 'hidden', step isnt otherStep
+normalizeSchoolData = (data) ->
+    data = _.clone data
+    return data unless data.schoolObj?
+     
+    data.schoolId = data.schoolObj._id
+    data.schoolType = data.schoolObj.schoolType
+    return _.omit data, 'schoolObj schoolName street city state zip'.split ' '
     
-    if step.setup? then step.setup data
-    else defaultStepSetup step, data
+postcardFinished = (data) ->
+    console.log {data}
 
-    nextButton = $ '.js-btn-next', step.id
+    # amplify.store STEPS_STORAGE_KEY, {}
 
-    canGoNext = no
-    updateCanGoNext = (_canGoNext) ->
-        canGoNext = _canGoNext
-        nextButton.attr 'disabled', not canGoNext
+    spinner = Ladda.create $('#send-note').get(0)
+    spinner.start()
 
-    tryNext = ->
-        return unless canGoNext
-        if step.writeData? then step.writeData data
-        else defaultStepWriteData step, data
-        done()
+    $.post POSTCARD_URL, normalizeSchoolData data
+    .done (result) ->
+        if result.success then switchToThankYou result
+        else showError result.error
+    .fail (error) -> showError error
+    .always -> spinner.stop()
 
-    nextButton.click ->
-        tryNext()
-        return no # prevent form submission
-    $(step.inputs[step.inputs.length-1].input).keydown ({which}) ->
-        tryNext() if which is 13 # enter key
+switchToThankYou = ({postcard, school}) ->
+    $('#make-postcard').toggleClass 'hidden', yes
+    $('#show-postcard').toggleClass 'hidden', no
+    $('#secondary-content').toggleClass 'hidden', yes
 
-    if step.validate? then step.validate data, updateCanGoNext
-    else defaultStepValidate step, data, updateCanGoNext
+    url = makeThankYouUrl postcard
+    if window.history?.pushState
+        window.history.pushState {postcard, school}, 'Thank you!', url
+    else
+        # forces a reload, oh well, screw you for using an old browser
+        window.location.pathname = url
 
-defaultStepSetup = (step, data) ->
-    foundWithoutVal = no
-    for {field, input} in step.inputs
-        $(input).val data[field]
-        if not foundWithoutVal and not data[field]
-            $(input).focus()
-            foundWithoutVal = yes
+    require('../postcard.coffee').run {postcard, school}
 
-defaultStepValidate = (step, data, updateCanGoNext) ->
-    check = ->
-        updateCanGoNext _.every step.inputs, ({input, optional}) ->
-            optional or $(input).val()?.trim().length > 0
-    check()
-
-    for {input} in step.inputs
-        $(input).keyup check
-                .change check
-
-defaultStepWriteData = (step, data) ->
-    for {field, input} in step.inputs
-        data[field] = $(input).val()
+showError = (error) ->
+    $('#step-container').append """
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" 
+                    aria-hidden="true">&times;</button>
+            <strong>Try again!</strong> #{error.message or error}
+        </div>
+    """
+    console.error error
 
 $ ->
     require('../share-buttons.coffee').setupButtons '#home-share-buttons'
-    runSteps()
+    require('./steps').runSteps steps, postcardFinished

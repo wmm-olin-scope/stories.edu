@@ -35,7 +35,7 @@ exports.checkBody = (name, fun, notPresentValue) ->
 
 exports.makeNameCheck = (variable) ->
   exports.checkBody variable, (name) ->
-    exports.check(name).len 1, 32
+    exports.check(name).len 1, 128
     exports.sanitize(name).escape()
 
 
@@ -46,7 +46,7 @@ exports.doCheck = (req, res, fun) ->
       fun(req, res)
     ]
   catch err
-    exports.fail res, err.message
+    exports.fail res, err
     return [
       true
       null

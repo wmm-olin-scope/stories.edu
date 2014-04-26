@@ -14,10 +14,11 @@ exports.publicDir = 'public/javascripts'
 
 vendorDir = 'client/js/vendor'
 vendorLibs = [#dependency order
-    'jquery',
+    'jquery'
     'bootstrap', 'jquery.transit'
     'underscore', 'amplify', 'history'
-    'typeahead.bundle'
+    'typeahead.bundle',
+    'spin.min', 'ladda.min'
 ]
 
 utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->
@@ -76,6 +77,8 @@ buildModule = (name, rootFile) -> (options, done) ->
 
 utils.asyncBuildTask 'js:index', 'Build the home page js',
     buildModule 'index', 'home/index.coffee'
+utils.asyncBuildTask 'js:thank-you', 'Build the thank-you page js',
+    buildModule 'thank-you', 'thank-you.coffee'
 # utils.asyncBuildTask 'js:make-postcard', 'Build the make postcard page js',
 #     buildModule 'make-postcard', 'postcard/make.coffee'
 
