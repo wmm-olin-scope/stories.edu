@@ -1,15 +1,19 @@
-mandrill = require('mandrill-api')
-mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_KEY)
+mongoose = require 'mongoose'
+Q = require 'q'
+db = require './db'
 
-exports.send_email = (req, res) ->
-    template_name = "schools-email"
+mandrill = require('mandrill-api')
+mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_APIKEY)
+
+send_email = (req, res, err) ->
+    template_name = "Note to Principal"
     template_content = []
     message =
-        subject: ""
+        subject: req.body.EmailSubject
         from_email: "hello@thank-a-teacher.org"
         from_name: "Thank A Teacher"
         to: [
-            email: req.body.SchoolEmail
+            email: req.body.DestEmail
             name: req.body.SchoolName
             type: "to"
         ]
@@ -17,15 +21,15 @@ exports.send_email = (req, res) ->
             "Reply-To": "hello@thank-a-teacher.org"
 
         important: false
-        track_opens: null
-        track_clicks: null
+        track_opens: true
+        track_clicks: true
         auto_text: null
         auto_html: null
         inline_css: null
         url_strip_qs: null
-        preserve_recipients: null
+        preserve_recipients: true
         view_content_link: null
-        bcc_address: "hello@thank-a-teacher.org"
+        bcc_address: null
         tracking_domain: null
         signing_domain: null
         return_path_domain: null
@@ -56,16 +60,8 @@ exports.send_email = (req, res) ->
                 content: ""
             },
             {
-                name: "LIST:COMPANY"
-                content: "Thank a Teacher"
-            },
-            {
                 name: "CURRENT_YEAR"
                 content: (new Date()).getUTCFullYear()
-            },
-            {
-                name: "UNSUB"
-                content: "mailto:goodbye@thank-a-teacher.org"
             },
             {
                 name: "MC:SUBJECT"
@@ -81,7 +77,7 @@ exports.send_email = (req, res) ->
             vars: [
                 {
                     name: "FullMessageURL"
-                    content: req.body.FullMessageURL # XXX: FULL MESSAGE URL
+                    content: req.body.FullMessageURL
                 },
                 {
                     name: "MC:SUBJECT"
@@ -110,10 +106,6 @@ exports.send_email = (req, res) ->
                 {
                     name: "State"
                     content: req.body.State
-                },
-                {
-                    name: "UNSUB"
-                    content: req.body.Unsub
                 }
             ]
         ]
@@ -128,9 +120,72 @@ exports.send_email = (req, res) ->
         template_content: template_content
         message: message
         async: async
-    , ((result) ->
-        console.log result
-        return
-    ), (e) ->
-        console.log "A mandrill error occurred: " + e.name + " - " + e.message
-        return
+    , res
+        # (result) ->
+        # console.log result
+        # return
+    , err
+    # (e) ->
+    #     console.log "A mandrill error occurred: " + e.name + " - " + e.message
+    #     return
+
+# If someone unsubscribes:
+# ?md_id=??&md_email=??
+
+content: req.body.FullMessageURL
+
+get_req_for_postcard = (postcard, email_to, template_name) ->
+    {
+        template_name: template_name
+        body:
+            FullMessageURL: "http://thank-a-teacher.org/thank-you/#{postcard._id}"
+            EmailSubject: "Someone just thanked a teacher at your school"
+            SchoolName: postcard.schoolName
+            TeacherName: postcard.teacher
+            Message: postcard.note
+            StudentName: postcard.name
+            City: postcard.city
+            State: postcard.state
+            DestEmail: email_to
+    }
+
+# email               the email address of the recipient
+# status              the sending status of the recipient - either "sent", "queued", "rejected", or "invalid"
+# reject_reason       the reason for the rejection if the recipient status is "rejected"
+# _id                 the message's unique id
+
+exports.send_emails = ->
+    Postcard.find({processed: false}).stream()
+    .on 'data', (postcard) ->
+        stream.pause()
+
+        should_send  = (status) ->
+            not (status in ["queued", "rejected", "invalid", "sent"])
+
+        send_second_email = (res,err) ->
+            # XXX: Change to School Email somehow!!!!!
+            if should_send postcard.status
+                send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
+                    (responses) ->
+                        postcard.userSendStatus = responses[0].status
+                        stream.resume()
+                  , (err) ->
+                        if should_send postcard.status
+                            postcard.schoolSendStatus = responses[0].status
+                            postcard.processed = true
+                        stream.resume()
+                        console.error(err))
+        send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
+            (responses) ->
+                postcard.userSendStatus = responses[0].status
+          , (err) ->
+                console.error(err))
+
+    Q().then(send_email)
+    .then(-> console.log 'Done!')
+    .catch((err) -> console.log err)
+
+if require.main is module
+    db.connect()
+    .then(exports.send_emails)
+    .fin(-> process.exit())
