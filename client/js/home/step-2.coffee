@@ -1,7 +1,5 @@
 
-exports.id = '#step-2'
-
-exports.inputs = [
+exports.step = step = new (require('./steps').Step) '#step-2', [
     {field: 'state', input: '.js-state-field'}
     {field: 'city', input: '.js-city-field'}
     {field: 'schoolName', input: '.js-school-field'}
@@ -13,15 +11,15 @@ exports.inputs = [
 memoize = (f) ->
     val = null
     -> if val then val else val = f()
-stateSelect = memoize -> $ '.js-state-field', exports.id
-cityInput = memoize -> $ '.js-city-field', exports.id
-schoolInput = memoize -> $ '.js-school-field', exports.id
+stateSelect = memoize -> $ '.js-state-field', step.id
+cityInput = memoize -> $ '.js-city-field', step.id
+schoolInput = memoize -> $ '.js-school-field', step.id
 
-exports.setup = (data) ->
+step.setup = (data) ->
     populateStateOption()
 
     fillInputs data
-    for {field, input} in exports.inputs
+    for {field, input} in @inputs
         if not $(input).val()
             $(input).focus()
             break
@@ -49,8 +47,8 @@ fillInputs = (data) ->
     cityInput().val capitalize city
     schoolInput().val capitalize school
 
-exports.validate = (data, updateCanGoNext) ->
-    for {input} in exports.inputs
+step.validate = (data, updateCanGoNext) ->
+    for {input} in @inputs
         $(input).keyup -> check data, updateCanGoNext
                 .change -> check data, updateCanGoNext
 
@@ -184,7 +182,7 @@ invalidateSchoolAutocomplete = (data) ->
         data.schoolObj = school
         cityInput().val capitalize school.city
 
-exports.writeData = (data) ->
+step.writeData = (data) ->
     schoolObj = data.schoolObj
     if schoolObj?
         {name: school, mailingAddress: street, city, state, zip} = schoolObj

@@ -46,7 +46,7 @@ exports.doCheck = (req, res, fun) ->
       fun(req, res)
     ]
   catch err
-    exports.fail res, err.message
+    exports.fail res, err
     return [
       true
       null

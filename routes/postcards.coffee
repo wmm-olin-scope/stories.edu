@@ -60,16 +60,19 @@ updatePostcardValues = (postcard, values, req) ->
     postcard
 
 postPostcard = (req, res) ->
+    console.log req.body
     relevant = _.omit checks, 'postcardId', 'starred'
     [failed, values] = utils.checkAll req, res, relevant
+    console.log {failed, values}
     return if failed
 
     postcard = updatePostcardValues new Postcard(), values, req
 
     Q.ninvoke(postcard, 'save')
     .then ([postcard]) ->
+        console.log {postcard}
         postcard.getSchool()
-        .then (school) -> succeed res, {postcard, school}
+        .then (school) -> console.log {school}; succeed res, {postcard, school}
     .done utils.failOnError(res)...
 
 updatePostcard = (req, res) ->
