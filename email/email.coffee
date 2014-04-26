@@ -117,19 +117,14 @@ send_email = (req, res, err) ->
             website: "www.thank-a-teacher.org"
     async = false
 
+    console.log("Sending template")
     mandrill_client.messages.sendTemplate
         template_name: template_name
         template_content: template_content
         message: message
         async: async
     , res
-        # (result) ->
-        # console.log result
-        # return
     , err
-    # (e) ->
-    #     console.log "A mandrill error occurred: " + e.name + " - " + e.message
-    #     return
 
 # If someone unsubscribes:
 # ?md_id=??&md_email=??
@@ -165,16 +160,41 @@ process_postcard = (postcard) ->
         when 'public' then PublicSchool
         when 'private' then PrivateSchool
 
-    model.findById(postcard.schoolId, 'email', (err, school) ->
-            email = school.email
-            console.log("School Email could be: #{email}")
-            deferred.resolve()
-        )
+
+    console.log(postcard.schoolId)
+
+    # model.findById(postcard.schoolId, 'city', (err, school) ->
+    #         email = school.city
+    #         console.log("School Email could be: #{email}")
+    #         deferred.resolve()
+    #     )
+
+    # send_second_email = (res,err) ->
+    #     console.log("School Email could be: #{school.email}")
+    #     # XXX: Change to School Email somehow!!!!!
+    #     send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
+    #         (responses) ->
+    #             postcard.userSendStatus = responses[0].status
+    #       , (err) ->
+    #             if should_send postcard.status
+    #                 postcard.schoolSendStatus = responses[0].status
+    #                 postcard.processed = true
+    #             console.error(err))
+    # # XXX: use postcard.email
+    send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to User"),
+        (responses) ->
+                  console.log "Attempted send"
+                  deferred.resolve()
+                  console.log responses
+                  console.log "Attempted send #{responses[0].status}"
+                  postcard.userSendStatus = responses[0].status
+      , (err) ->
+          deferred.reject (err)
+          console.error(err))
 
     deferred.promise
 
-test = ->
-
+exports.send_emails = ->
     deferred = Q.defer()
     # {'processed': null}, {'processed': false}: Order must be null, false in order to find all matches
     stream = Postcard.find().or([{'processed': null}, {'processed': false}]).stream()
@@ -182,6 +202,7 @@ test = ->
             Q().then(-> stream.pause())
             .then(-> process_postcard postcard)
             .then(-> stream.resume())
+            deferred.resolve() # XXX: REMOVE ME (Send single card for testing)
         .on 'error', (err) ->
             console.log("Error")
             deferred.reject err
@@ -190,62 +211,7 @@ test = ->
             deferred.resolve()
     deferred.promise
 
-exports.send_emails = ->
-    promise = Q()
-    console.log("SENDING EMAILS!")
-    promise.then(-> test)
-    promise
-    # console.log(Postcard.models)
-    # Postcard.find({processed: false},(p)->console.log("FOUND SUMMAT"))
-
-    # Q().then(test)
-    # .then(-> console.log 'Done Sending!')
-    # .catch((err) -> console.log err)
-
-    # Postcard.find().or([{processed: false}, {processed: null}]).stream()
-    # .on 'data', (postcard) ->
-    #     console.log("Found an Email!")
-    #     stream.pause()
-
-    #     model = switch postcard.schoolType?.toLowerCase()
-    #         when 'public' then PublicSchool
-    #         when 'private' then PrivateSchool
-    #     Q.ninvoke model, 'findById', postcard.schoolId if model
-    #     .then((school) ->
-
-    #         console.log("School Email could be: #{school.email}")
-
-    #         console.log("Postcard req is: #{get_req_for_postcard(postcard, 'julian.ceipek@gmail.com', 'Note to Principal')}")
-    #         # should_send  = (status) ->
-    #         #     not (status in ["queued", "rejected", "invalid", "sent"])
-
-    #         # send_second_email = (res,err) ->
-    #         #     console.log("School Email could be: #{school.email}")
-    #         #     # XXX: Change to School Email somehow!!!!!
-    #         #     if should_send postcard.status
-    #         #         send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
-    #         #             (responses) ->
-    #         #                 postcard.userSendStatus = responses[0].status
-    #         #                 stream.resume()
-    #         #           , (err) ->
-    #         #                 if should_send postcard.status
-    #         #                     postcard.schoolSendStatus = responses[0].status
-    #         #                     postcard.processed = true
-    #         #                 stream.resume()
-    #         #                 console.error(err))
-    #         # send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
-    #         #     (responses) ->
-    #         #         postcard.userSendStatus = responses[0].status
-    #         #   , (err) ->
-    #         #         console.error(err))
-    #         )
-
-    # Q().then(send_email)
-    # .then(-> console.log 'Done!')
-    # .catch((err) -> console.log err)
-
 if require.main is module
     db.connect()
-    .then(test)
-    # .then(exports.send_emails)
+    .then(exports.send_emails)
     .fin(-> process.exit())
