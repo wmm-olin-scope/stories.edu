@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 Q = require 'q'
 db = require './db'
+{PublicSchool, PrivateSchool} = require '../data/schools'
 
 mandrill = require('mandrill-api')
 mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_APIKEY)
@@ -159,27 +160,38 @@ exports.send_emails = ->
     .on 'data', (postcard) ->
         stream.pause()
 
-        should_send  = (status) ->
-            not (status in ["queued", "rejected", "invalid", "sent"])
+        model = switch postcard.schoolType?.toLowerCase()
+            when 'public' then PublicSchool
+            when 'private' then PrivateSchool
+        Q.ninvoke model, 'findById', postcard.schoolId if model
+        .then((school) ->
 
-        send_second_email = (res,err) ->
-            # XXX: Change to School Email somehow!!!!!
-            if should_send postcard.status
-                send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
-                    (responses) ->
-                        postcard.userSendStatus = responses[0].status
-                        stream.resume()
-                  , (err) ->
-                        if should_send postcard.status
-                            postcard.schoolSendStatus = responses[0].status
-                            postcard.processed = true
-                        stream.resume()
-                        console.error(err))
-        send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
-            (responses) ->
-                postcard.userSendStatus = responses[0].status
-          , (err) ->
-                console.error(err))
+            console.log("School Email could be: #{school.email}")
+
+            console.log("Postcard req is: #{get_req_for_postcard(postcard, 'julian.ceipek@gmail.com', 'Note to Principal')}")
+            # should_send  = (status) ->
+            #     not (status in ["queued", "rejected", "invalid", "sent"])
+
+            # send_second_email = (res,err) ->
+            #     console.log("School Email could be: #{school.email}")
+            #     # XXX: Change to School Email somehow!!!!!
+            #     if should_send postcard.status
+            #         send_email(get_req_for_postcard(postcard, "julian.ceipek@gmail.com", "Note to Principal"),
+            #             (responses) ->
+            #                 postcard.userSendStatus = responses[0].status
+            #                 stream.resume()
+            #           , (err) ->
+            #                 if should_send postcard.status
+            #                     postcard.schoolSendStatus = responses[0].status
+            #                     postcard.processed = true
+            #                 stream.resume()
+            #                 console.error(err))
+            # send_email(get_req_for_postcard(postcard, postcard.email, "Note to User"),
+            #     (responses) ->
+            #         postcard.userSendStatus = responses[0].status
+            #   , (err) ->
+            #         console.error(err))
+            )
 
     Q().then(send_email)
     .then(-> console.log 'Done!')
