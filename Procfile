@@ -1,2 +1,2 @@
-web: node_modules/.bin/cake --prod build server
-data: node_modules/.bin/cake --prod build data:schools
+web: node_modules/.bin/cake --staging build server
+data: node_modules/.bin/cake --staging build data:schools
