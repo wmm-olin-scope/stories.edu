@@ -1,65 +1,25 @@
-currentUrl = 'http://localhost:5001'
-siteUrl = 'http://thank-a-teacher.org'
+siteUrl = 'http://www.thank-a-teacher.org' + window.location.pathname
 twitterHandle = '@ThankAMentor'
-emailSubject = 'Join me in taking 2 min to thank a teacher and support this student project'
-emailText = "We've all been students. Let's take a min to thank a teacher who helped us become who we are today via @ThankAMentor. Check out http://thank-a-teacher.org"
-message = "We've all been students. Let's take a min to thank a teacher who helped us become who we are today via " + twitterHandle + " "
 
-email =
-    subject: 'Thank a teacher'
-    body: "#{message}\n\nCheck out #{siteUrl}"
+default_tweet = "Ever wanted to send a thank you note to a past teacher? Take a min to @ThankAMentor via this student project at http://thank-a-teacher.org"
+default_email =
+    subject: "Join me in taking 2 min to thank a teacher and support this student project"
+    body: "We've all been students. Let's take a min to thank a teacher who helped us become who we are today with this student project. Check out http://thank-a-teacher.org"
+default_fb = 
+    name: 'Thank A Teacher',
+    caption: 'Ever wanted to send a thank you note to a past teacher? Check out this student project.'
+    link: siteUrl
+    picture: "http://i62.tinypic.com/mv3nfl.jpg"
 
-FBinit =  ->
-    window.fbAsyncInit = ->
-        FB.init
-            appId: "229910487211463"
-            status: true
-            xfbml: true
-
-    fjs = document.getElementsByTagName('script')[0]
-    return if document.getElementById 'facebook-jssdk'
-    
-    js = document.createElement 'script'
-    js.id = 'facebook-jssdk'
-    js.source = '//connect.facebook.net/en_US/all.js'
-    fjs.parentNode.insertBefore js, fjs
-
-setupButton = (url, network, button) ->
-    button.click ->
-        console.log 'setting up button...'
-        mixpanel.track 'share',
-          content: 'note'
-          network: {network}
-        window.open url, '_blank'
-
-setupFacebook = () ->
-    $('.js-facebook-button').click ->
-        FB.ui
-            method: "feed"
-            name: 'Thank A Teacher',
-            caption: 'Ever wanted to send a thank you note to a past teacher? Check out this student project.'
-            link: 'https://thank-a-teacher.org'
-            picture: "http://i62.tinypic.com/mv3nfl.jpg"
-        , (response) ->
-            console.log "FB opened"
-            return
-
-setupTwitter = () ->
-    encoded = encodeURIComponent siteUrl
-    twitterUrl = "https://twitter.com/share?text=#{message}"
-    setupButton twitterUrl, 'twitter', $ '.js-twitter-button'
-
-setupEmail = () ->
-    $('.js-email-button').click ->
-        window.location = "mailto:?subject="+emailSubject+"&body="+emailText
-
-setupButtons = () ->
-    FBinit()
-    setupFacebook()
-    setupTwitter()
-    setupEmail()
-    return
-
+personalized_email =
+    subject: "Join me in taking 2 min to thank a teacher and support this student project"
+    body1: "I just sent a thank you note to one of my past teachers: " 
+    body2: " . Who impacted your life? Show them your appreciation by taking 2 min to send them a thank you at http://thank-a-teacher.org"
+personalized_fb = 
+    name: 'Thank A Teacher',
+    caption: 'Ever wanted to send a thank you note to a past teacher? Check out this student project.'
+    link: siteUrl
+    picture: "http://i62.tinypic.com/mv3nfl.jpg"
 
 getPostcardId = ->
     url = window.location.pathname
@@ -79,6 +39,52 @@ getPostcard = (postcardId, done) ->
         else done result.error
     .fail (error) -> done error
 
+FBinit = ->
+    window.fbAsyncInit = ->
+        FB.init
+            appId: "229910487211463"
+            status: true
+            xfbml: true
+        return
+    ((d, s, id) ->
+        js = undefined
+        fjs = d.getElementsByTagName(s)[0]
+        return  if d.getElementById(id)
+        js = d.createElement(s)
+        js.id = id
+        js.src = "//connect.facebook.net/en_US/all.js"
+        fjs.parentNode.insertBefore js, fjs
+        return
+    ) document, "script", "facebook-jssdk"
+
+personalized_setupFacebook = () ->
+    FBinit()
+    $('.js-facebook-button').click ->
+        FB.ui
+            method: "feed"
+            name: personalized_fb.name,
+            caption: personalized_fb.caption
+            link: 'http://www.thank-a-teacher.org' + window.location.pathname
+            picture: personalized_fb.picture
+        , (response) ->
+            console.log personalized_fb.link
+            return
+
+# The window.location.pathname is being loaded before getting to the thank-you route. Fix this.
+personalized_setupTwitter = () ->
+    personalized_tweet = "I just sent a thank you note to a past teacher: " + 'http://www.thank-a-teacher.org' + window.location.pathname + " . Send a thank you note to a teacher using @ThankaMentor"
+    $('.js-twitter-button').val(personalized_tweet)
+    $('.js-twitter-button').click ->
+        personalized_tweet = $('.js-twitter-postcard-text').val()
+        twitterMessage = "https://twitter.com/intent/tweet?text="+personalized_tweet
+        window.open twitterMessage, '_blank'
+
+
+personalized_setupEmail = () ->
+    $('.js-email-button').click ->
+        emailUrl = "mailto:?Subject=#{encodeURIComponent personalized_email.subject}&Body=" + personalized_email.body1 + 'http://www.thank-a-teacher.org' + window.location.pathname + personalized_email.body2
+        window.location = emailUrl
+
 showError = (error) ->
     console.error error
     window.open '/404', '_self'
@@ -87,8 +93,10 @@ $ ->
     postcardId = getPostcardId()
     return showError 'We couldn\'t find this thank you note.' unless postcardId
 
-    setupButtons()
-
+    personalized_setupFacebook()
+    personalized_setupTwitter()
+    personalized_setupEmail()
+    
     getPostcard postcardId, (error, result) ->
         return showError (error.message or error) if error
         require('./postcard.coffee').run result
