@@ -26,6 +26,7 @@ class exports.Step
         tryNext = =>
             return unless canGoNext
             @writeData data
+            @track data
             done()
 
         nextButton.click ->
@@ -47,20 +48,15 @@ class exports.Step
             $(input).keyup check
                     .change check
 
+    track: (data) ->
+        mixpanel.people.set {$email: data.email} if data.email
+        mixpanel.people.set {$name: data.name} if data.name
+        console.log _.clone data
+        mixpanel.track 'input', _.clone data
+
     writeData: (data) ->
-        tracking = {}
         for {field, input} in @inputs
             data[field] = $(input).val()
-            tracking[field.toString()] = data[field]
-            if field is 'email'
-                mixpanel.people.set
-                  $email: data[field]
-                mixpanel.alias(data[field])
-            if field is 'name'
-                mixpanel.people.set
-                  $name: data[field]
-        mixpanel.track 'input', tracking
-
 
 exports.runSteps = (steps, done) ->
     data = amplify.store(STEPS_STORAGE_KEY) or {}
