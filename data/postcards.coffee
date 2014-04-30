@@ -48,11 +48,13 @@ postcardSchema.methods.getSchool = ->
 postcardSchema.methods.registerView = ->
     @views += 1
 
+postcardSchema.methods.getUrl = (domain='thank-a-teacher.org') ->
+    "http://#{domain}/thank-you/#{@_id}"
+
 postcardSchema.statics.getStarred = (limit=4) ->
     query = @find {starred: yes}
         .limit limit
         .sort '-views'
     Q.ninvoke query, 'exec'
-
 
 exports.Postcard = mongoose.model 'Postcard', postcardSchema
