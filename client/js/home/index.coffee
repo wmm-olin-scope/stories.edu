@@ -44,6 +44,7 @@ switchToThankYou = ({postcard, school}) ->
         window.location.pathname = url
 
     require('../postcard.coffee').run {postcard, school}
+    require('../personalized-share').setup postcard._id
 
 showError = (error) ->
     $('#step-container').append """
@@ -56,5 +57,5 @@ showError = (error) ->
     console.error error
 
 $ ->
-    require('../share-buttons.coffee').setupButtons '#home-share-buttons'
+    require('../share-buttons.coffee').setupButtons '.js-share-buttons'
     require('./steps').runSteps steps, postcardFinished

@@ -1,17 +1,27 @@
-.row
-    .col-xs-3.col-sm-3
-        button.btn.share-btn.left.btn-twitter.js-share-twitter
+.row.js-share-buttons
+    .col-xs-3.visible-xs
+    .col-xs-3.col-sm-3.share-btn-col
+        button.btn-block.btn.share-btn.left.btn-twitter.js-share-twitter
             i.fa.fa-twitter 
-            &nbsp; Tweet
-    .col-xs-3.col-sm-3
-        button.btn.share-btn.middle.btn-facebook.js-share-facebook
+            |  Tweet
+    .col-xs-3.col-sm-3.share-btn-col
+        button.btn-block.btn.share-btn.middle.btn-facebook.js-share-facebook
             i.fa.fa-facebook
-            &nbsp; Post
-    .col-xs-3.col-sm-3
-        button.btn.share-btn.btn-google-plus.js-share-google-plus
+            |  Post
+    .col-sm-3.hidden-xs.share-btn-col
+        button.btn-block.btn.share-btn.btn-google-plus.js-share-google-plus
             i.fa.fa-google-plus 
-            &nbsp; Post
-    .col-xs-3.col-sm-3
-        button.btn.share-btn.btn-email.js-share-email
+            |  Post
+    .col-sm-3.hidden-xs.share-btn-col
+        button.btn-block.btn.share-btn.btn-email.js-share-email
             i.fa.fa-envelope
-            &nbsp; Email
+            |  Email
+.row.visible-xs
+    .col-xs-3.col-xs-offset-3.col-sm-3.share-btn-col.visible-xs
+        button.btn-block.btn.share-btn.btn-google-plus.js-share-google-plus.visible-xs
+            i.fa.fa-google-plus
+            |  Post
+    .col-xs-3.col-sm-3.share-btn-col.visible-xs
+        button.btn-block.btn.share-btn.btn-email.js-share-email.visible-xs
+            i.fa.fa-envelope
+            |  Email

@@ -199,7 +199,9 @@ step.writeData = (data) ->
         data.schoolName = schoolInput().val()
         data.city = cityInput().val()
         data.state = stateSelect().val()
-    mixpanel.track 'input', @inputs
+    mixpanel.track 'input',
+      school: data.schoolName
+
 
 capitalize = (s) ->
     return null unless s?
