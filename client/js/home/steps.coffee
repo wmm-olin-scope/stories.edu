@@ -1,4 +1,3 @@
-
 STEPS_STORAGE_KEY = 'stepsData'
 
 class exports.Step
@@ -21,7 +20,7 @@ class exports.Step
         canGoNext = no
         updateCanGoNext = (_canGoNext) ->
             canGoNext = _canGoNext
-            $('.teacher-name').text("Dear " + $('.js-teacher-field').val() + ",")
+            $('.teacher-name').text("Dear #{data.teacher or ''},")
             nextButton.attr 'disabled', not canGoNext
 
         tryNext = =>
