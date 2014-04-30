@@ -1,7 +1,7 @@
 
 mixin step-number(n)
     .row.step-list-container
-        - var steps = ['Your Info', 'Teacher Info', 'Thank You Note']
+        - var steps = ['Your Info', 'School Info', 'Thank You Note']
         each step, index in steps
             - var text = (index + 1) + '. ' + step.toUpperCase()
             - var cls = ['number-'+(index + 1)]
