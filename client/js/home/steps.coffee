@@ -3,6 +3,7 @@ STEPS_STORAGE_KEY = 'stepsData'
 
 class exports.Step
     constructor: (@id, @inputs) ->
+        @listenOnLastInputEnter = yes
 
     setup: (data) ->
         foundWithoutVal = no
@@ -30,8 +31,9 @@ class exports.Step
         nextButton.click ->
             tryNext()
             return no # prevent form submission
-        $(@inputs[@inputs.length-1].input).keydown ({which}) ->
-            tryNext() if which is 13 # enter key
+        if @listenOnLastInputEnter
+            $(@inputs[@inputs.length-1].input).keydown ({which}) ->
+                tryNext() if which is 13 # enter key
 
         @validate data, updateCanGoNext
 
@@ -65,6 +67,7 @@ exports.runSteps = (steps, done) ->
 
     iter = (stepIndex) ->
         if stepIndex >= steps.length
+            amplify.store STEPS_STORAGE_KEY, {}
             done data
         else
             step = steps[stepIndex]

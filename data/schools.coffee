@@ -52,6 +52,7 @@ privateSchoolSchema = new mongoose.Schema
     email: String
     fteTeachers: Number
     mailingAddress: String
+    name: String
     phone: String
     principal: String
     schoolLevel: String

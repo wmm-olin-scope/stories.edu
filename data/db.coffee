@@ -6,7 +6,7 @@ uri = process.env.MONGOLAB_URI or
       process.env.MONGOHQ_URL or
       'mongodb://localhost/thank-a-teacher'
 
-exports.connect = -> 
+exports.connect = ->
     console.log uri
     Q.ninvoke mongoose, 'connect', uri
 
@@ -28,3 +28,27 @@ exports.batchInsert = (model, docs, batchSize=2048) ->
             batch = docs[batchStart...(batchStart+batchSize)]
             Q.ninvoke model.collection, 'insert', batch, {w: 1}
     promise
+
+exports.batchStream = (query, batchSize, onBatch) ->
+    deferred = Q.defer()
+
+    stream = query.stream()
+    batch = []
+
+    stream
+    .on 'error', (error) -> deferred.reject error
+    .on 'close', ->
+        (if batch.length > 0 then onBatch batch else Q())
+        .then -> deferred.resolve()
+    .on 'data', (doc) ->
+        batch.push doc
+        if batch.length >= batchSize
+            stream.pause()
+            onBatch batch
+            .done ->
+                batch.length = 0
+                stream.resume()
+
+    deferred.promise
+
+

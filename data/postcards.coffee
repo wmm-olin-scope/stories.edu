@@ -23,6 +23,16 @@ exports.postcardSchema = postcardSchema = new mongoose.Schema
         type: Number
         default: 0
         index: yes
+    processed:
+        type: Boolean
+        default: false
+        index: yes
+    userSendStatus:
+        type: String
+        default: ""
+    schoolSendStatus:
+        type: String
+        default: ""
 
 postcardSchema.methods.getSchool = ->
     if @schoolId
@@ -34,9 +44,12 @@ postcardSchema.methods.getSchool = ->
         name: @schoolName
         city: @city
         state: @state
-        
+
 postcardSchema.methods.registerView = ->
     @views += 1
+
+postcardSchema.methods.getUrl = (domain='thank-a-teacher.org') ->
+    "http://#{domain}/thank-you/#{@_id}"
 
 postcardSchema.statics.getStarred = (limit=4) ->
     query = @find {starred: yes}

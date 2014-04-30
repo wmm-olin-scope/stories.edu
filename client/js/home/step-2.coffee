@@ -4,6 +4,7 @@ exports.step = step = new (require('./steps').Step) '#step-2', [
     {field: 'city', input: '.js-city-field'}
     {field: 'schoolName', input: '.js-school-field'}
 ]
+step.listenOnLastInputEnter = no
 
 # memoize is actually semantic here, typeahead starts to wrap input fields,
 # so we need to make sure that we always point to the underlying input element
@@ -40,12 +41,12 @@ populateStateOption = ->
 
 fillInputs = (data) ->
     if data.schoolObj?
-        {state, city, name: school} = data.schoolObj
+        {state, city, name: schoolName} = data.schoolObj
     else
-        {state, city, school} = data
+        {state, city, schoolName} = data
     stateSelect().val state?.toUpperCase()
     cityInput().val capitalize city
-    schoolInput().val capitalize school
+    schoolInput().val capitalize schoolName
 
 step.validate = (data, updateCanGoNext) ->
     for {input} in @inputs
@@ -64,8 +65,8 @@ step.validate = (data, updateCanGoNext) ->
         invalidateSchoolAutocomplete data
         cityInput().val oldCity = data.city # need to reset it
 
-        if data.school
-            schoolInput().val oldSchoolName = data.school
+        if data.schoolName
+            schoolInput().val oldSchoolName = data.schoolName
             updateCanGoNext yes
 
     data.schoolObj = schoolObj # saved
@@ -137,7 +138,7 @@ invalidateCityAutocomplete = (data) ->
 
     hound = makeHound
         url: "/schools/cities/#{stateSelect().val().toUpperCase()}"
-        filter: (cities) -> 
+        filter: (cities) ->
             {name: city, display: capitalize city} for city in cities
         accessor: (city) -> city.name
 
@@ -172,12 +173,15 @@ invalidateSchoolAutocomplete = (data) ->
     hound = makeHound
         url: url
         filter: (schools) ->
-            for school in schools
+            filtered = []
+            for school in schools when school.name
                 school.display = capitalize school.name
-            schools
-        accessor: (school) -> school.name
+                filtered.push school
+            filtered
+        accessor: (school) -> school.display
     
     autocomplete schoolInput(), hound, 'schools', (school) ->
+        console.log {school}
         oldSchoolName = schoolInput().val()
         data.schoolObj = school
         cityInput().val capitalize school.city
