@@ -1,13 +1,14 @@
 
 siteUrl = 'http://www.thank-a-teacher.org'
+twitterHandle = '@ThankAMentor'
 
-default_tweet = "Ever wanted to send a thank you note to a past teacher? Take a min to @ThankAMentor via this student project at http://thank-a-teacher.org"
+default_tweet = "Ever wanted to send a thank you note to a past teacher? Take a min to #{twitterHandle} via this student project: #{siteUrl}"
 default_email =
-    subject: "Join me in taking 2 min to thank a teacher and support this student project"
-    body: "We've all been students. Let's take a min to thank a teacher who helped us become who we are today with this student project. Check out http://thank-a-teacher.org"
+    subject: "Take a minute to thank a past teacher and support this student project"
+    body: "Ever wanted to send a thank you note to a past teacher? Show them your appreciation by taking a minute to send them a thank you note and support this student project at #{siteUrl}"
 default_fb = 
-    name: 'Thank A Teacher',
-    caption: 'Ever wanted to send a thank you note to a past teacher? Check out this student project.'
+    name: 'Thank A Teacher: A Student Project',
+    caption: 'Take a minute to thank a past teacher'
     link: siteUrl
     picture: "http://i62.tinypic.com/mv3nfl.jpg"
 
@@ -57,7 +58,8 @@ default_setupFacebook = (container) ->
             return
 
 default_setupTwitter = (container) ->
-    twitterUrl = "https://twitter.com/intent/tweet?text="+default_tweet
+    encoded = encodeURIComponent default_tweet
+    twitterUrl = "https://twitter.com/intent/tweet?text=#{encoded}"
     setupButton twitterUrl, 'twitter', $('.js-share-twitter', container)
 
 default_setupGooglePlus = (container) ->
@@ -66,7 +68,9 @@ default_setupGooglePlus = (container) ->
     setupButton googlePlusUrl, 'googleplus', $('.js-share-google-plus', container)
 
 default_setupEmail = (container) ->
-    emailUrl = "mailto:?Subject=#{default_email.subject}&Body=#{default_email.body}"
+    encoded_subject = encodeURIComponent default_email.subject
+    encoded_body = encodeURIComponent default_email.body
+    emailUrl = "mailto:?Subject=#{encoded_subject}&Body=#{encoded_body}"
     $('.js-share-email', container).click ->
         window.location = emailUrl
 
