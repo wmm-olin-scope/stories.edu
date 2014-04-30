@@ -46,8 +46,10 @@ class exports.Step
                     .change check
 
     writeData: (data) ->
+        tracking = {}
         for {field, input} in @inputs
             data[field] = $(input).val()
+            tracking[field.toString()] = data[field]
             if field is 'email'
                 mixpanel.people.set
                   $email: data[field]
@@ -55,7 +57,7 @@ class exports.Step
             if field is 'name'
                 mixpanel.people.set
                   $name: data[field]
-        mixpanel.track 'input', @inputs
+        mixpanel.track 'input', tracking
 
 
 exports.runSteps = (steps, done) ->
