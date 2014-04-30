@@ -21,6 +21,7 @@ class exports.Step
         canGoNext = no
         updateCanGoNext = (_canGoNext) ->
             canGoNext = _canGoNext
+            $('.teacher-name').text("Dear " + $('.js-teacher-field').val() + ",")
             nextButton.attr 'disabled', not canGoNext
 
         tryNext = =>
