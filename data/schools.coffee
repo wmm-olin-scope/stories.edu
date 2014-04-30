@@ -12,58 +12,82 @@ missing = '–'
 lowQuality = '‡'
 badValues = [notApplicable, missing, lowQuality]
 
-publicCSV = __dirname + '/raw/public-schools.csv'
-privateCSV = __dirname + '/raw/private-schools.csv'
+publicCSV = __dirname + '/raw/public-schools-processed.csv'
+privateCSV = __dirname + '/raw/private-schools-processed.csv'
 
-publicFields = 
-    'School Name': {field: 'name', type: String}
-    'State Abbr [Public School] Latest available year': {field: 'state', type: String}
-    'County Name [Public School] 2010-11': {field: 'county', type: String}
-    'Location Address [Public School] 2010-11': {field: 'address', type: String}
-    'Location City [Public School] 2010-11': {field: 'city', type: String}
-    'Location ZIP [Public School] 2010-11': {field: 'zip', type: String}
-    'Location ZIP4 [Public School] 2010-11': {field: 'zip4', type: String}
-    'Mailing Address [Public School] 2010-11': {field: 'mailingAddress', type: String}
-    'Mailing City [Public School] 2010-11': {field: 'mailingCity', type: String}
-    'Mailing State Abbr [Public School] 2010-11': {field: 'mailingState', type: String}
-    'Mailing ZIP [Public School] 2010-11': {field: 'mailingZip', type: String}
-    'Mailing ZIP4 [Public School] 2010-11': {field: 'mailingZip4', type: String}
-    'Phone Number [Public School] 2010-11': {field: 'phone', type: String}
-    'Latitude [Public School] 2010-11': {field: 'latitude', type: Number}
-    'Longitude [Public School] 2010-11': {field: 'longitude', type: Number}
-    'School Level Code [Public School] 2010-11': {field: 'schoolLevel', type: String}
-    'Total Students [Public School] 2010-11': {field: 'students', type: Number}
-    'Full-Time Equivalent (FTE) Teachers [Public School] 2010-11': {field: 'fteTeachers', type: Number}
+publicSchoolSchema = new mongoose.Schema
+    schoolType:
+        type: String
+        default: 'public'
+    address: String
+    city: String
+    county: String
+    email: String
+    fteTeachers: Number
+    latitude: Number
+    longitude: Number
+    mailingAddress: String
+    mailingCity: String
+    mailingState: String
+    mailingZip: String
+    name: String
+    phone: String
+    principal: String
+    schoolLevel: String
+    state: String
+    students: Number
+    zip: String
+    zip4: String
+publicSchoolSchema.index {state: 1}
+publicSchoolSchema.index {state: 1, city: 1}
 
-privateFields = 
-    'Private School Name': {field: 'name', type: String}
-    'State Abbr [Private School] Latest available year': {field: 'state', type: String}
-    'City [Private School] 2009-10': {field: 'city', type: String}
-    'ZIP [Private School] 2009-10': {field: 'zip', type: String}
-    'ZIP4 [Private School] 2009-10': {field: 'zip4', type: String}
-    'Mailing Address [Private School] 2009-10': {field: 'mailingAddress', type: String}
-    'Phone Number [Private School] 2009-10': {field: 'phone', type: String}
-    'School Level [Private School] 2009-10': {field: 'schoolLevel', type: String}
-    'School Type [Private School] 2009-10': {field: 'privateSchoolType', type: String}
-    'Total Students (Ungraded & PK-12) [Private School] 2009-10': {field: 'students', type: Number}
-    'Full-Time Equivalent (FTE) Teachers [Private School] 2009-10': {field: 'fteTeachers', type: Number}
+exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
+                                                     publicSchoolSchema
+
+privateSchoolSchema = new mongoose.Schema
+    schoolType:
+        type: String
+        default: 'private'
+    city: String
+    email: String
+    fteTeachers: Number
+    mailingAddress: String
+    phone: String
+    principal: String
+    schoolLevel: String
+    privateSchoolType: String
+    state: String
+    students: Number
+    zip: String
+    zip4: String
+privateSchoolSchema.index {state: 1}
+privateSchoolSchema.index {state: 1, city: 1}
+
+exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool',
+                                                       privateSchoolSchema
 
 generateDB = ->
-    Q.allSettled([generateSchools(PublicSchool, publicCSV, publicFields),
-                  generateSchools(PrivateSchool, privateCSV, privateFields)])
+    Q.allSettled([generateSchools(PublicSchool, publicCSV),
+                  generateSchools(PrivateSchool, privateCSV)])
     .then generateStates
 
+generateSchools = (model, file) ->
+    fields = {}
+    model.schema.eachPath (field, type) ->
+        return if field in ['schoolType', '_id', '__v']
+        fields[field] = {field, type}
 
-generateSchools = (model, file, fields) ->
     deferred = Q.defer()
     csv().from.stream(fs.createReadStream(file), {columns: yes})
          .transform((row) -> parseSchoolRow row, fields)
-         .to.array((rows) -> 
-            insertSchools(model, rows).then(-> deferred.resolve()))
-         .on('end', (count) -> 
-            console.log "Generated #{count} school records!")
+         .to.array((rows) ->
+             insertSchools model, rows
+             .then -> deferred.resolve())
+         .on('end', (count) ->
+             console.log "Generated #{count} school records!")
          .on('error', (error) -> deferred.reject error)
     deferred.promise
+    
 
 parseSchoolRow = (row, fields) ->
     parsed = {}
@@ -84,38 +108,15 @@ insertSchools = (model, rows) ->
     console.log "Inserting #{rows.length} #{model.modelName} schools!"
     db.batchInsert model, rows
 
-makeSchoolSchema = (fields, schoolType) -> new mongoose.Schema do ->
-    schema =
-        schoolType:
-            type: String
-            default: schoolType
-    for header, info of fields
-        schema[info.field] = info.type
-    schema
-
-publicSchoolSchema = makeSchoolSchema publicFields, 'public'
-publicSchoolSchema.index {state: 1, city: 1}
-publicSchoolSchema.index {zip: 1}
-
-exports.PublicSchool = PublicSchool = mongoose.model 'PublicSchool',
-                                                     publicSchoolSchema
-
-privateSchoolSchema = makeSchoolSchema privateFields, 'private'
-publicSchoolSchema.index {state: 1, city: 1}
-publicSchoolSchema.index {zip: 1}
-
-exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool', 
-                                                       privateSchoolSchema
-
 generateStates = ->
     promise = Q()
     for state in stateList
-        do (state) -> 
+        do (state) ->
             promise = promise.then -> findCitiesAndInsert state
     promise
 
 findCitiesAndInsert = (state) ->
-    getCities = (model) -> 
+    getCities = (model) ->
         Q.ninvoke model.find({state}), 'distinct', 'city'
 
     Q.all([getCities(PublicSchool), getCities(PrivateSchool)])
@@ -136,7 +137,7 @@ exports.stateList = stateList = [
 
 findByFields = '_id name state city zip mailingAddress schoolType'
 exports.findBy = (match, fields=findByFields) ->
-    makeQuery = (model) -> 
+    makeQuery = (model) ->
         Q.ninvoke model.find(match).select(fields), 'exec'
     Q.all([makeQuery(PublicSchool), makeQuery(PrivateSchool)])
     .then((schoolSets) -> Q _.flatten schoolSets)
@@ -190,5 +191,5 @@ exports.getAddress = (generic) ->
 
 if require.main is module
     db.connect()
-    .then(exports.setupDatabase)
-    .fin(-> process.exit())
+    .then exports.setupDatabase
+    .fin -> process.exit()
