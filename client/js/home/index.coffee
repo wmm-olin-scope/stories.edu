@@ -12,7 +12,7 @@ steps = [
 
 normalizeSchoolData = (data) ->
     data = _.clone data
-    return data unless data.schoolObj?
+    return data unless data.schoolObj?._id
      
     data.schoolId = data.schoolObj._id
     data.schoolType = data.schoolObj.schoolType
@@ -20,8 +20,6 @@ normalizeSchoolData = (data) ->
     
 postcardFinished = (data) ->
     console.log {data}
-
-    # amplify.store STEPS_STORAGE_KEY, {}
 
     spinner = Ladda.create $('#send-note').get(0)
     spinner.start()

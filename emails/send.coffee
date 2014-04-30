@@ -1,39 +1,114 @@
 mongoose = require 'mongoose'
 Q = require 'q'
-{Mandrill} = require 'mandrill-api'
+_ = require 'underscore'
+
 db = require '../data/db'
 {PublicSchool, PrivateSchool} = require '../data/schools'
+{Postcard} = require '../data/postcards'
 
+{Mandrill} = require 'mandrill-api'
 mandrill = new Mandrill process.env.MANDRILL_APIKEY
 
+DEBUG_EMAIL = 'chase.kernan@gmail.com'
 
 exports.sendAllUnprocessedPostcards = ->
-    query = Postcard.find().or [{processed: no}, {processed: null}]
-    db.batchStream query, 32, (postcards) ->
+    query = Postcard.find({processed: no})
+    db.batchStream query, 2, (postcards) ->
+        console.log "Sending #{postcards.length} postcards"
         Q.all (sendPostcard postcard for postcard in postcards)
     
-
-
 sendPostcard = (postcard) ->
-    console.log {postcard}
     postcard.getSchool()
     .then (school) ->
-        email = getSchoolEmail school
+        console.log {school}
+        schoolEmail = school?.email
         return Q() unless schoolEmail
 
         sendEmail {postcard, school, schoolEmail}
-        .then -> markSent postcard
+        .then -> markProcessed postcard
 
 sendEmail = ({postcard, school, schoolEmail}) ->
-    console.log "Sending to #{schoolEmail}"
+    Q.all [sendEmailToSchool schoolEmail, postcard, school
+           sendEmailToThanker postcard.email, postcard, school]
 
-getSchoolEmail = (school) ->
-    school.email
+sendEmailToSchool = (email, postcard, school) ->
+    console.log "Email to school: #{email}"
+    email = DEBUG_EMAIL
+    subject = 'Someone just thanked a teacher at your school'
+    fullUrl = "http://thank-a-teacher.org/thank-you/#{postcard._id}"
 
-markSent = (postcard) ->
+    sendTemplateEmail
+        template_name: 'Note to Principal'
+        message:
+            subject: subject
+            to: [
+                email: email
+                name: capitalize(school.principal or school.name) or ''
+                type: 'to'
+            ]
+            global_merge_vars: [
+                {name: 'SchoolName', content: capitalize school.name}
+                {name: 'TeacherName', content: postcard.teacher}
+                {name: 'Message', content: postcard.note}
+                {name: 'StudentName', content: postcard.name}
+                {name: 'City', content: capitalize school.city}
+                {name: 'State', content: school.state}
+                {name: 'FullMessageURL', content: fullUrl}
+                {name: 'ARCHIVE', content: fullUrl}
+            ]
+            merge_vars: [{rcpt: email, vars: []}]
+    .then (result) ->
+        console.log result
+        postcard.schoolSendStatus = result?[0]?.status or 'error'
+        console.log {postcard}
+        Q.ninvoke postcard, 'save'
+
+sendEmailToThanker = (email, postcard, school) ->
+    console.log "Email to thanker: #{email}"
+    Q()
+
+sendTemplateEmail = (template) ->
+    _.defaults template,
+        template_content: []
+        async: no
+    
+    {message} = template
+    console.log {message}
+    console.log {template}
+    _.defaults message,
+        from_email: 'hello@thank-a-teacher.org'
+        from_name: 'Thank a Teacher'
+        headers:
+            'Reply-To': 'hello@thank-a-teacher.org'
+        important: no
+        track_opens: yes
+        track_clicks: yes
+        preserve_recipients: yes
+        merge: yes
+        google_analytics_domains: ['thank-a-teacher.org']
+        google_analytics_campaign: 'hello@thank-a-teacher.org'
+        metadata:
+            website: 'www.thank-a-teacher.org'
+
+    message.global_merge_vars = message.global_merge_vars.concat [
+        {name: 'CURRENT_YEAR', content: new Date().getUTCFullYear()}
+        {name: 'MC:SUBJECT', content: message.subject}
+    ]
+
+    deferred = Q.defer()
+    onResult = (result) -> deferred.resolve result
+    onError = (error) -> deferred.reject error
+    mandrill.messages.sendTemplate template, onResult, onError
+    deferred.promise
+
+markProcessed = (postcard) ->
     postcard.processed = no #yes
     Q.ninvoke postcard, 'save'
 
+capitalize = (s) ->
+    return null unless s?
+    (w[0].toUpperCase() + w[1...].toLowerCase() for w in s.split /\s+/)
+    .join ' '
 
 ###
 send_email = (req, res, err) ->
@@ -229,6 +304,8 @@ exports.send_emails = ->
 ###
 
 if require.main is module
-    db.connect()
-    .then(exports.send_emails)
-    .fin(-> process.exit())
+    Q.longStackSupport = true
+    db.connect().then -> console.log 'Connected'
+    .then exports.sendAllUnprocessedPostcards
+    .catch (error) -> console.error error?.stack or error
+    .fin -> process.exit()
