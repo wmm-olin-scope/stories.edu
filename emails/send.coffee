@@ -1,11 +1,41 @@
 mongoose = require 'mongoose'
 Q = require 'q'
-db = require './db'
+{Mandrill} = require 'mandrill-api'
+db = require '../data/db'
 {PublicSchool, PrivateSchool} = require '../data/schools'
 
-mandrill = require('mandrill-api')
-mandrill_client = new mandrill.Mandrill(process.env.MANDRILL_APIKEY)
+mandrill = new Mandrill process.env.MANDRILL_APIKEY
 
+
+exports.sendAllUnprocessedPostcards = ->
+    query = Postcard.find().or [{processed: no}, {processed: null}]
+    db.batchStream query, 32, (postcards) ->
+        Q.all (sendPostcard postcard for postcard in postcards)
+    
+
+
+sendPostcard = (postcard) ->
+    console.log {postcard}
+    postcard.getSchool()
+    .then (school) ->
+        email = getSchoolEmail school
+        return Q() unless schoolEmail
+
+        sendEmail {postcard, school, schoolEmail}
+        .then -> markSent postcard
+
+sendEmail = ({postcard, school, schoolEmail}) ->
+    console.log "Sending to #{schoolEmail}"
+
+getSchoolEmail = (school) ->
+    school.email
+
+markSent = (postcard) ->
+    postcard.processed = no #yes
+    Q.ninvoke postcard, 'save'
+
+
+###
 send_email = (req, res, err) ->
     template_name = "Note to Principal"
     template_content = []
@@ -196,6 +226,7 @@ exports.send_emails = ->
     Q().then(send_email)
     .then(-> console.log 'Done!')
     .catch((err) -> console.log err)
+###
 
 if require.main is module
     db.connect()
