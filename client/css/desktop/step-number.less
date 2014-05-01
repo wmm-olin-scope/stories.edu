@@ -1,5 +1,5 @@
 
-@step-number-spacing: 10px;
+@step-number-spacing: 8px;
 
 .step-number.left {
     margin-right: @step-number-spacing*(2/3);
@@ -12,4 +12,9 @@
 .step-number.middle {
     margin-left: @step-number-spacing/3;
     margin-right: @step-number-spacing/3;
+}
+
+.step-number {
+    .sans-font();
+    font-size: @quite-small-font;
 }
