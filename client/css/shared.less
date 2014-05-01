@@ -64,13 +64,17 @@ body {
     border-radius: @radius;
 }
 
+.muted-border-radius() {
+    .border-radius(3px);
+}
+
 .vert-center-container(@height) {
     display: table;
     height: @height;
     overflow: hidden;
 }
 
-.vert-center-item {
+.vert-center-item() {
     display: table-cell;
     vertical-align: middle;
 }
@@ -81,11 +85,11 @@ body {
     width: @width
 }
 
-.vert-fill {
+.vert-fill() {
     height: 100%;
 }
 
-.horz-fill {
+.horz-fill() {
     width: 100%;
 }
 
