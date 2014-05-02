@@ -2,22 +2,14 @@ siteUrl = "http://thank-a-teacher.org"
 personalUrl = siteUrl + window.location.pathname
 twitterHandle = '@ThankAMentor'
 
-personalized_email =
-    subject: "Join me in taking a minute to thank a teacher and support this student project"
-    body: "I just sent a thank you note to one of my past teachers: #{personalUrl}. Who impacted your life? Show them your appreciation by taking a minute to send them a thank you at #{siteUrl}."
-
-personalized_fb = 
-    name: 'Thank A Teacher: A Student Project',
-    caption: 'I just sent a thank you note to one of my past teachers using Thank-A-Teacher.org'
-    link: siteUrl
-    picture: "http://i62.tinypic.com/mv3nfl.jpg"
-
-personalized_tweet = "I just sent a thank you note to a past teacher: #{personalUrl}. Send a thank you note to a teacher using #{twitterHandle}"
-
-exports.setup = (id) ->
-    personalized_setupFacebook()
-    personalized_setupTwitter()
-    personalized_setupEmail()
+exports.setup = ({postcard, school}) ->
+    console.log postcard
+    console.log school
+    teacherName = postcard.teacher
+    schoolName = school.name
+    personalized_setupFacebook(teacherName, schoolName)
+    personalized_setupTwitter(teacherName, schoolName)
+    personalized_setupEmail(teacherName, schoolName)
 
 FBinit = ->
     window.fbAsyncInit = ->
@@ -37,8 +29,14 @@ FBinit = ->
         return
     ) document, "script", "facebook-jssdk"
 
-personalized_setupFacebook = () ->
+personalized_setupFacebook = (teacherName, schoolName) ->
     FBinit()
+    personalized_fb = 
+        name: "Thank A Teacher at #{schoolName}"
+        caption: "I just sent a thank you note to #{teacherName} at #{schoolName} using Thank-A-Teacher.org"
+        link: siteUrl
+        picture: "http://i62.tinypic.com/mv3nfl.jpg"
+
     $('.js-facebook-button').click ->
         FB.ui
             method: "feed"
@@ -50,7 +48,9 @@ personalized_setupFacebook = () ->
             console.log personalized_fb.link
             return
 
-personalized_setupTwitter = () ->
+personalized_setupTwitter = (teacherName, schoolName) ->
+    personalized_tweet = "I just sent a thank you note to #{teacherName} at #{schoolName}: #{personalUrl}. Send a thank you to a teacher using #{twitterHandle}"
+    
     $('.js-twitter-postcard-text').val(personalized_tweet)
     $('.js-twitter-button').click ->
         personalized_tweet = encodeURIComponent $('.js-twitter-postcard-text').val()
@@ -58,7 +58,11 @@ personalized_setupTwitter = () ->
         window.open twitterMessage, '_blank'
 
 
-personalized_setupEmail = () ->
+personalized_setupEmail = (teacherName, schoolName) ->
+    personalized_email =
+        subject: "Join me in taking a minute to thank a teacher at #{schoolName} and support this student project"
+        body: "I just sent a thank you note to one of my past teachers, #{teacherName}, at #{schoolName}: #{personalUrl}. Who impacted your life? Show them your appreciation by taking a minute to send them a thank you at #{siteUrl}."
+
     $('.js-email-postcard-text').val("Subject: #{personalized_email.subject} \n\n #{personalized_email.body}")
     encoded_subject = encodeURIComponent personalized_email.subject
     encoded_body = encodeURIComponent personalized_email.body

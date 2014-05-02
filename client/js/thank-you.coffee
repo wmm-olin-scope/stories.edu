@@ -25,8 +25,6 @@ showError = (error) ->
 $ ->
     postcardId = getPostcardId()
     return showError 'We couldn\'t find this thank you note.' unless postcardId
-    
-    require('./personalized-share').setup postcardId
 
     getPostcard postcardId, (error, result) ->
         return showError (error.message or error) if error
