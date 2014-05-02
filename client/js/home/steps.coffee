@@ -17,14 +17,13 @@ class exports.Step
 
         nextButton = $ '.js-btn-next', @id
 
-        canGoNext = no
+        canGoNext = [no]
         updateCanGoNext = (_canGoNext) ->
-            canGoNext = _canGoNext
-            $('.teacher-name').text("Dear #{data.teacher or ''},")
-            nextButton.attr 'disabled', not canGoNext
+            canGoNext[0] = _canGoNext
+            nextButton.attr 'disabled', not canGoNext[0]
 
         tryNext = =>
-            return unless canGoNext
+            return unless canGoNext[0]
             @writeData data
             @track data
             done()
@@ -39,7 +38,7 @@ class exports.Step
         @validate data, updateCanGoNext
 
     validate: (data, updateCanGoNext) ->
-        check = ->
+        check = =>
             updateCanGoNext _.every @inputs, ({input, optional}) ->
                 optional or $(input).val()?.trim().length > 0
         check()

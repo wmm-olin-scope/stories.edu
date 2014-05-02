@@ -16,9 +16,9 @@ block step-content
                     legend What is your name and email address?
                         span.substep-explanation (so we can add them to your note)
             .row
-                .col-xs-6
-                    input.js-name-field.form-control.text-input-format(type='text', name='name', placeholder='Your Name')
-                .col-xs-6
+                .col-sm-6
+                    input.name-field.js-name-field.form-control.text-input-format(type='text', name='name', placeholder='Your Name')
+                .col-sm-6
                     input.js-email-field.form-control.text-input-format(type='email', name='email', placeholder='Your Email')
         fieldset
             +next-button('Next Step')
