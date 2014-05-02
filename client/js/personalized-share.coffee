@@ -3,13 +3,15 @@ personalUrl = siteUrl + window.location.pathname
 twitterHandle = '@ThankAMentor'
 
 exports.setup = ({postcard, school}) ->
-    console.log postcard
-    console.log school
     teacherName = postcard.teacher
-    schoolName = school.name
+    schoolName = school.name.toProperCase()
     personalized_setupFacebook(teacherName, schoolName)
     personalized_setupTwitter(teacherName, schoolName)
     personalized_setupEmail(teacherName, schoolName)
+
+String::toProperCase = ->
+    @replace /\w\S*/g, (txt) ->
+        txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
 
 FBinit = ->
     window.fbAsyncInit = ->
