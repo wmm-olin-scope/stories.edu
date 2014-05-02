@@ -1,19 +1,35 @@
-.postcard-container
+//- Non-Mobile
+.hidden-xs.postcard-container
     .fixed-aspect-content
         .row.clear-bootstrap-margins.postcard-internal-container
-            .col-xs-6.postcard-left
+            .col-sm-6.postcard-left
                 p.postcard-salutation
                 .postcard-ellipsis-wrapper
                     p.postcard-body
                     a.postcard-full-message-link See Full Message
                 p.postcard-closing Sincerely,
                 p.postcard-signature
-
-            .col-xs-6.postcard-right
+            .col-sm-6.postcard-right
                 img.postcard-stamp(src=static("images/stamp.png"))
                 .postcard-address
                     p.postcard-addressee
                     p.postcard-school
                     p.postcard-city-state
-
-
+//- Mobile
+.visible-xs.postcard-container-mobile
+    .row.clear-bootstrap-margins.postcard-internal-container
+        .col-xs-12
+            .postcard-top
+                img.pull-right(src=static("images/stamp.png"))
+                .postcard-address
+                    p.postcard-addressee
+                    p.postcard-school
+                    p.postcard-city-state
+        .col-xs-12
+            .postcard-bottom
+                p.postcard-salutation
+                .postcard-ellipsis-wrapper
+                    p.postcard-body
+                    a.postcard-full-message-link See Full Message
+                p.postcard-closing Sincerely,
+                p.postcard-signature
