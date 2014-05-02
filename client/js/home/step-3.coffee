@@ -5,6 +5,6 @@ exports.step = new (require('./steps').Step) '#step-3', [
 ]
 
 oldSetup = exports.step.setup
-exports.step = (data) ->
+exports.step.setup = (data) ->
     oldSetup.call this, data
     $('.teacher-name').text "Dear #{data.teacher or ''},"
