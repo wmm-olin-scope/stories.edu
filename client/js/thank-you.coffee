@@ -28,4 +28,5 @@ $ ->
 
     getPostcard postcardId, (error, result) ->
         return showError (error.message or error) if error
+        $('.postcard-title').text(result.postcard.name+" thanked "+result.postcard.teacher+" at "+ result.school.name)
         require('./postcard.coffee').run result
