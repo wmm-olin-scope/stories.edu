@@ -49,9 +49,10 @@ class exports.Step
                     .change check
 
     track: (data) ->
-        mixpanel.people.set {$email: data.email} if data.email
+        if data.email
+            mixpanel.people.set {$email: data.email}
+            mixpanel.alias data.email
         mixpanel.people.set {$name: data.name} if data.name
-        console.log _.clone data
         mixpanel.track 'input', _.clone data
 
     writeData: (data) ->
