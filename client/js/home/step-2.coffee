@@ -199,6 +199,7 @@ step.writeData = (data) ->
         data.schoolName = schoolInput().val()
         data.city = cityInput().val()
         data.state = stateSelect().val()
+        console.log {data}
 
 capitalize = (s) ->
     return null unless s?
