@@ -1,3 +1,6 @@
+String::toProperCase = ->
+    @replace /\w\S*/g, (txt) ->
+        txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
 
 getPostcardId = ->
     url = window.location.pathname
@@ -28,5 +31,5 @@ $ ->
 
     getPostcard postcardId, (error, result) ->
         return showError (error.message or error) if error
-        $('.postcard-title').text(result.postcard.name+" thanked "+result.postcard.teacher+" at "+ result.school.name)
+        $('.postcard-title').text(result.postcard.name+" thanked "+result.postcard.teacher+" at "+ result.school.name.toProperCase())
         require('./postcard.coffee').run result
