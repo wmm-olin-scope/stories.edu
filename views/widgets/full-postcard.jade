@@ -19,15 +19,17 @@
 .visible-xs.postcard-container-mobile
     .row.clear-bootstrap-margins.postcard-internal-container
         .col-xs-12
-            img.postcard-stamp(src=static("images/stamp.png"))
-            .postcard-address
-                p.postcard-addressee
-                p.postcard-school
-                p.postcard-city-state
+            .postcard-top
+                img.pull-right(src=static("images/stamp.png"))
+                .postcard-address
+                    p.postcard-addressee
+                    p.postcard-school
+                    p.postcard-city-state
         .col-xs-12
-            p.postcard-salutation
-            .postcard-ellipsis-wrapper
-                p.postcard-body
-                a.postcard-full-message-link See Full Message
-            p.postcard-closing Sincerely,
-            p.postcard-signature
+            .postcard-bottom
+                p.postcard-salutation
+                .postcard-ellipsis-wrapper
+                    p.postcard-body
+                    a.postcard-full-message-link See Full Message
+                p.postcard-closing Sincerely,
+                p.postcard-signature
