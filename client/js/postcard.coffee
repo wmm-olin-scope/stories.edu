@@ -4,7 +4,7 @@ exports.run = ({postcard, school}) ->
     console.log {postcard, school}
     fillPostcardFields postcard
     fillSchoolFields school
-    require('./personalized-share').setup()
+    require('./personalized-share').setup({postcard, school})
 
 fillPostcardFields = (postcard) ->
     $('.postcard-salutation').text "Dear #{postcard.teacher}"
