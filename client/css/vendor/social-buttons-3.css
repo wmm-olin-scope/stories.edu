@@ -1,15 +1,15 @@
 /*!
  * Social Buttons for Twitter Bootstrap v1.0.0
  *
- * Copyright 2013 Adam Neumann
+ * Copyright 2013 Adam Neumann; modified by Julian Ceipek 2014
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
 .btn-facebook {
   color: #ffffff !important;
-  background-color: #133783 !important;
-  border-color: #133783 !important;
+  background-color: #3B5999 !important;
+  border-color: #3B5999 !important;
 }
 
 .btn-facebook:hover,
@@ -43,14 +43,14 @@ fieldset[disabled] .btn-facebook:active,
 .btn-facebook.disabled.active,
 .btn-facebook[disabled].active,
 fieldset[disabled] .btn-facebook.active {
-  background-color: #133783;
-  border-color: #133783;
+  background-color: #3B5999;
+  border-color: #3B5999;
 }
 
 .btn-twitter {
   color: #ffffff !important;
-  background-color: #016585 !important;
-  border-color: #016585 !important;
+  background-color: #55ACEE !important;
+  border-color: #55ACEE !important;
 }
 
 .btn-twitter:hover,
