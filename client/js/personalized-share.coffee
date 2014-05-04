@@ -2,11 +2,13 @@ siteUrl = "http://thank-a-teacher.org"
 personalUrl = siteUrl + window.location.pathname
 twitterHandle = '@ThankAMentor'
 
+{capitalize} = require './utils.coffee'
+
 exports.setup = ({postcard, school}) ->
     console.log postcard
     console.log school
     teacherName = postcard.teacher
-    schoolName = school.name
+    schoolName = capitalize school.name
     personalized_setupFacebook(teacherName, schoolName)
     personalized_setupTwitter(teacherName, schoolName)
     personalized_setupEmail(teacherName, schoolName)
@@ -31,7 +33,7 @@ FBinit = ->
 
 personalized_setupFacebook = (teacherName, schoolName) ->
     FBinit()
-    personalized_fb = 
+    personalized_fb =
         name: "Thank A Teacher at #{schoolName}"
         caption: "I just sent a thank you note to #{teacherName} at #{schoolName} using Thank-A-Teacher.org"
         link: siteUrl

@@ -1,4 +1,6 @@
 
+{capitalize} = require '../utils.coffee'
+
 exports.step = step = new (require('./steps').Step) '#step-2', [
     {field: 'state', input: '.js-state-field'}
     {field: 'city', input: '.js-city-field'}
@@ -201,10 +203,6 @@ step.writeData = (data) ->
         data.state = stateSelect().val()
         console.log {data}
 
-capitalize = (s) ->
-    return null unless s?
-    (w[0].toUpperCase() + w[1...].toLowerCase() for w in s.split /\s+/)
-    .join ' '
 
 setInputEnabled = (input, enabled=yes, placeholder='') ->
     $ input
