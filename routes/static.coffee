@@ -3,6 +3,7 @@
 
 exports.create = (app) ->
     app.get '/', html 'index'
+    # TODO: check the database first, render server-side?
     app.get '/thank-you/[a-zA-Z0-9\\-_]+', html 'thank-you'
     app.get '/privacy', html 'privacy'
     app.get '/about', html 'about'
