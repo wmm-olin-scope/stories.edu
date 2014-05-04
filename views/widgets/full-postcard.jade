@@ -6,7 +6,7 @@
                 p.postcard-salutation
                 .postcard-ellipsis-wrapper
                     p.postcard-body
-                    a.postcard-full-message-link See Full Message
+                    a.postcard-full-message-link.readmore(data-toggle='modal', data-target='#full-message') See Full Message
                 p.postcard-closing Sincerely,
                 p.postcard-signature
             .col-sm-6.postcard-right
@@ -30,6 +30,8 @@
                 p.postcard-salutation
                 .postcard-ellipsis-wrapper
                     p.postcard-body
-                    a.postcard-full-message-link See Full Message
+                    a.postcard-full-message-link.readmore(data-toggle='modal', data-target='#full-message') See Full Message
                 p.postcard-closing Sincerely,
                 p.postcard-signature
+
+include see-full-message
