@@ -11,45 +11,75 @@ from django.utils import encoding
 abbr = {'delaware': 'DE', 'north dakota': 'ND', 'washington': 'WA', 'rhode island': 'RI', 'tennessee': 'TN', 'iowa': 'IA', 'nevada': 'NV', 'maine': 'ME', 'colorado': 'CO', 'mississippi': 'MS', 'south dakota': 'SD', 'palau': 'PW', 'new jersey': 'NJ', 'oklahoma': 'OK', 'wyoming': 'WY', 'minnesota': 'MN', 'north carolina': 'NC', 'illinois': 'IL', 'new york': 'NY', 'arkansas': 'AR', 'puerto rico': 'PR', 'indiana': 'IN', 'maryland': 'MD', 'louisiana': 'LA', 'texas': 'TX', 'district of columbia': 'DC', 'arizona': 'AZ', 'wisconsin': 'WI', 'virgin islands': 'VI', 'michigan': 'MI', 'kansas': 'KS', 'utah': 'UT', 'virginia': 'VA', 'oregon': 'OR', 'connecticut': 'CT', 'montana': 'MT', 'california': 'CA', 'new mexico': 'NM', 'alaska': 'AK', 'vermont': 'VT', 'georgia': 'GA', 'marshall islands': 'MH', 'northern mariana islands': 'MP', 'pennsylvania': 'PA', 'florida': 'FL', 'hawaii': 'HI', 'kentucky': 'KY', 'missouri': 'MO', 'nebraska': 'NE', 'new hampshire': 'NH', 'idaho': 'ID', 'west virginia': 'WV', 'south carolina': 'SC', 'ohio': 'OH', 'alabama': 'AL', 'massachusetts': 'MA'}
 
 def augment():
-    dfs = {}
+    dfs = []
     # filter out other files
-    path = 'raw/principals/'
-    files = (fd for fd in os.listdir(path) if '.' not in fd)
-    for f in files:
-        str_headers = open(path + f).readlines()[1].split(',')
-        headers = tuple([s.replace('"', '').strip().lower() for s in str_headers])
-        df = pd.read_csv(path + f, skiprows=1, sep=',', names=headers)
-        dfs[abbr[f.lower()[:2]]] = df
-        df._state = f
+    paths = {'raw/principals/': 1, 'raw/private/': 0, 'raw/charter/': 0}
+    for path, offset in paths.items():
+        files = os.listdir(path)
+        for f in files:
+            abbreviation = None
+            for state in abbr.keys():
+                if state in f.lower():
+                    abbreviation = abbr[state]
+                    break
+            str_headers = open(path + f).readlines()[offset].split(',')
+            headers = tuple([s.replace('"', '').strip().lower() for s in str_headers])
+            df = pd.read_csv(path + f, skiprows=offset, sep=',', names=headers)
+            df._state = state
+            df._f = f
+            dfs.append(df)
     return dfs
 
 def openline(f, line):
     return open(f).readlines()[line]
 
+def extend(d, k, v):
+    try:
+        d[k] += v
+    except KeyError:
+        d[k] = v
+
 def load():
     dfs = augment()
-    columns = {df._state: set(df.columns) for df in dfs.values()}
+
+    dataframes = defaultdict(dict)
 
     # field name normalization
-    fields = {'principal': ['principal name', 'principals name', 'principal', 'last', 'last name'],
-              'school': ['school name', 'schools name', 'school', 'name', "school's name"],
-              'email': ['principals email', 'principal email', 'email', 'e-mail', 'emailaddress', 'principalsemail'],
-              'zip': ['zip', 'areac', 'zipplus4', 'mail city', 'zip code'],
-              'city': ['city', 'town', 'mail zip'],
-              'phone': ['phone', 'telephone']}
+    fields = {'principal': (['last', 'last name', 'contact', 'contact name', 'contact person'], 
+                            ['principal', 'administrator', 'contact person', 'headmaster', 'psa official', 'director']),
+              'school': (['name', 'org name'], ['school']),
+              'email': ([], ['email', 'e-mail']),
+              'zip': (['zip', 'zipplus4', 'mail city', 'zip code'], ['zip']),
+              'phone': (['phone', 'telephone'], ['phone'])}
 
-    for state, cols in columns.items():
-        state = abbr[state.lower()]
+    invalid = 0
+    for df in dfs:
+        state = abbr[df._state.lower()]
         for f in fields:
-            for field_name in fields[f]:
-                if field_name in cols:
-                    try:
-                        dfs[state][f] = dfs[state][field_name]
-                    except ValueError:
-                        # key returns two columns?
-                        dfs[state][f] = dfs[state][field_name].values[:,0]
+            match = False
+            for field_name in fields[f][0]:
+                if field_name in df.columns:
+                    assert(len(df[field_name]) == len(df.values))
+                    extend(dataframes[state], f, list(df[field_name]))
+                    match = True
                     break
-    return dfs
+            if match: continue
+            for partial in fields[f][1]:
+                for c in df.columns:
+                    if partial in c:
+                        assert(len(df[c]) == len(df.values))
+
+                        extend(dataframes[state], f, list(df[c]))
+                        match = True
+                        break
+            if not match: 
+                extend(dataframes[state], f, [False]*len(df.values))
+                invalid += 1
+    print "------------------"
+    for f in fields:
+        print f, len(dataframes[state][f])
+    print "------------------"
+    return dataframes
 
 def normalize_zip(zipcode):
     if zipcode:
@@ -64,10 +94,11 @@ def normalize_phone(phone):
 def mapping(dfs, field_name, normalizer):
     d = defaultdict(set)
     for state in dfs:
-        for i in range(len(dfs[state].values)):
+        print state, len(dfs[state][field_name]), len(dfs[state]['school'])
+        for i in range(len(dfs[state]['school'])):
             try:
-                field = normalizer(dfs[state][field_name].values[i])
-                d[field].add((dfs[state]['school'].values[i], i))
+                field = normalizer(dfs[state][field_name][i])
+                d[field].add((dfs[state]['school'][i], i))
             except KeyError:
                 # no zip code
                 pass
