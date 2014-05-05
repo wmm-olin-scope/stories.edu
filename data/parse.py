@@ -86,7 +86,7 @@ def normalize_phone(phone):
     if phone:
         return "".join([c for c in str(phone) if c.isdigit()])[-7:]
     return None
-
+# 
 def mapping(dfs, field_name, normalizer):
     d = defaultdict(set)
     for state in dfs:
