@@ -75,10 +75,6 @@ def load():
             if not match: 
                 extend(dataframes[state], f, [False]*len(df.values))
                 invalid += 1
-    print "------------------"
-    for f in fields:
-        print f, len(dataframes[state][f])
-    print "------------------"
     return dataframes
 
 def normalize_zip(zipcode):
@@ -94,7 +90,6 @@ def normalize_phone(phone):
 def mapping(dfs, field_name, normalizer):
     d = defaultdict(set)
     for state in dfs:
-        print state, len(dfs[state][field_name]), len(dfs[state]['school'])
         for i in range(len(dfs[state]['school'])):
             try:
                 field = normalizer(dfs[state][field_name][i])
@@ -128,8 +123,8 @@ def augment_school(dfs, collection, school):
 
                 # print name, match
 
-                principal = dfs[school['state']]['principal'].values[index]
-                email = dfs[school['state']]['email'].values[index]
+                principal = dfs[school['state']]['principal'][index]
+                email = dfs[school['state']]['email'][index]
 
                 # insert information into db
                 collection.update({"_id": school["_id"]},  {"$set": {'principal': principal, 'email': email}});
