@@ -9,14 +9,6 @@ html(lang='en')
         meta(name='description', content='Take a minute to thank a teacher who helped you become who you are today. We\'ll send your thank you to your school.')
         meta(name='robots' content='all')
 
-        link(rel='schema.DC', href='http://purl.org/dc/elements/1.1/')
-            meta(name='DC.title', content='Thank a Teacher!')
-            meta(name='DC.identifier', content='www.thank-a-teacher.org')
-            meta(name='DC.description', content='Take a minute to thank a teacher who helped you become who you are today. We\'ll send your thank you to your school.')
-            meta(name='DC.subject', content='teacher, thank you, school, note, postcard')
-            meta(name='DC.language', scheme='ISO639-1', content='en')
-            meta(name='DC.type', scheme='DCMITYPE', content='http://purl.org/dc/dcmitype/Service')
-
         //- FB Opengraph
         meta(content='What teacher changed your life? Thank them!', property='og:title')
         meta(content='We\'ve all been students. Take a minute to thank a teacher who helped you become who you are today.', property='og:description')
@@ -42,6 +34,15 @@ html(lang='en')
         meta(content='https://www.youtube.com/embed/_C4eLoqXzxg?iv_load_policy=3&rel=0&autohide=1&showinfo=0', property='twitter:player')
         meta(content='1920', property='twitter:player:width')
         meta(content='1080', property='twitter:player:height')
+
+        //- Dawson Core Meta tags
+        link(rel='schema.DC', href='http://purl.org/dc/elements/1.1/')
+        meta(name='DC.title', content='Thank a Teacher!')
+        meta(name='DC.identifier', content='www.thank-a-teacher.org')
+        meta(name='DC.description', content='Take a minute to thank a teacher who helped you become who you are today. We\'ll send your thank you to your school.')
+        meta(name='DC.subject', content='teacher, thank you, school, note, postcard')
+        meta(name='DC.language', scheme='ISO639-1', content='en')
+        meta(name='DC.type', scheme='DCMITYPE', content='http://purl.org/dc/dcmitype/Service')
 
         link(rel='shortcut icon', href=static('images/favicon.ico'), type='image/x-icon')
 
