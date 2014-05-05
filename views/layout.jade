@@ -1,12 +1,17 @@
 doctype html
-html
+html(lang='en')
     head
         title='Thank a teacher!'
 
         meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
+        meta(name='charset', content='utf-8')
+        meta(name='description', content='Take a minute to thank a teacher who helped you become who you are today. We\'ll send your thank you to your school.')
+        meta(name='robots' content='all')
+
+        //- FB Opengraph
         meta(content='What teacher changed your life? Thank them!', property='og:title')
-        meta(content='We\'ve all been students. Take a minute to thank a teacher who helped us become who we are today.', property='og:description')
+        meta(content='We\'ve all been students. Take a minute to thank a teacher who helped you become who you are today.', property='og:description')
         meta(content='article', property='og:type')
         meta(content='http://thank-a-teacher.org/images/thank-a-teacher-thumbnail.jpg', property='og:image')
         meta(content='1200', property='og:image:width')
@@ -18,6 +23,8 @@ html
         meta(content='application/x-shockwave-flash', property='og:video:type')
         meta(content='https://www.facebook.com/thankamentor', property='article:publisher')
         meta(content='http://thank-a-teacher.org/', property='og:url')
+
+        //- Twitter
         meta(content='player', property='twitter:card')
         meta(content='@thankamentor', property='twitter:site')
         meta(content='http://thank-a-teacher.org/', property='twitter:url')
@@ -27,6 +34,15 @@ html
         meta(content='https://www.youtube.com/embed/_C4eLoqXzxg?iv_load_policy=3&rel=0&autohide=1&showinfo=0', property='twitter:player')
         meta(content='1920', property='twitter:player:width')
         meta(content='1080', property='twitter:player:height')
+
+        //- Dublin Core Meta tags
+        link(rel='schema.DC', href='http://purl.org/dc/elements/1.1/')
+        meta(name='DC.title', content='Thank a Teacher!')
+        meta(name='DC.identifier', content='www.thank-a-teacher.org')
+        meta(name='DC.description', content='Take a minute to thank a teacher who helped you become who you are today. We\'ll send your thank you to your school.')
+        meta(name='DC.subject', content='teacher, thank you, school, note, postcard')
+        meta(name='DC.language', scheme='ISO639-1', content='en')
+        meta(name='DC.type', scheme='DCMITYPE', content='http://purl.org/dc/dcmitype/Service')
 
         link(rel='shortcut icon', href=static('images/favicon.ico'), type='image/x-icon')
 
