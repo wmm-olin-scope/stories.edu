@@ -11,8 +11,10 @@ mandrill = new Mandrill process.env.MANDRILL_APIKEY
 
 DEVELOPMENT_EMAIL = 'hello@thank-a-teacher.org'
 
+CREATED_THRESHOLD = new Date 2014, 4, 3, 21 # Saturday May 3rd at 9pm
+
 exports.sendAllUnprocessedPostcards = (development=yes) ->
-    query = Postcard.find({processed: no})
+    query = Postcard.find({processed: no, created: {$gte: CREATED_THRESHOLD}})
     db.batchStream query, 16, (postcards) ->
         console.log "Sending #{postcards.length} postcards"
         Q.all (sendPostcard postcard, development for postcard in postcards)

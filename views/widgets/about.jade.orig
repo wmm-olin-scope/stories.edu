@@ -1,9 +1,18 @@
 
+<<<<<<< HEAD
+#about-container.white-text
+    center
+        .white-text
+            a(href='/about')
+                img(src=static('images/TTLightbulb.png'), alt='')
+            h4.white-text About Thank-a-Teacher
+=======
 #about-container
     .about-header
         a(href='/about')
-            img(src=static('images/TTLightbulb.png') alt='')
+            img(src=static('images/TTLightbulb.png'))
         h4 About Thank-a-Teacher
+>>>>>>> master
 
     .video-container
         iframe(src="//www.youtube.com/embed/_C4eLoqXzxg?showinfo=0&modestbranding=1&controls=0&rel=0&wmode=transparent", frameborder="0", allowfullscreen)

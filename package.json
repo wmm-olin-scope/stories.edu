@@ -32,6 +32,7 @@
     "walk": "~2.3.1",
     "less": "~1.7.0",
     "flour": "0.5.8",
-    "mandrill-api": "1.0.x"
+    "mandrill-api": "1.0.x",
+    "newrelic": "1.5.3"
   }
 }
