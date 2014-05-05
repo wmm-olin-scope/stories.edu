@@ -55,6 +55,8 @@ showError = (error) ->
     """
     console.error error
 
+
 $ ->
     require('../share-buttons.coffee').setupButtons '.js-share-buttons'
+    require('../sample-notes.coffee').setupRow '#js-sample-notes-row'
     require('./steps').runSteps steps, postcardFinished
