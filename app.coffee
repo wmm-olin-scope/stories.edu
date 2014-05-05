@@ -14,6 +14,8 @@ app.set 'target', process.env.TARGET or 'development'
 app.set 'development', app.get('target') is 'development'
 app.set 'staticUrl', process.env.STATIC_URL or "localhost:#{app.get 'port'}"
 
+require('newrelic') unless app.get 'development'
+
 middleware = [express.favicon(),
               express.logger('dev'),
               express.bodyParser(),
