@@ -9,16 +9,15 @@ block step-content
                     legend Who do you want to thank?
             .row
                 .col-xs-12
-                    input.js-teacher-field.form-control.text-input-format(type='text', name='teacher-name', placeholder='Name of K12 teacher, coach, or mentor')
+                    input.js-teacher-field.form-control.text-input-format(type='text', name='teacher-name', placeholder='Name of K-12 teacher, coach, or mentor')
         fieldset
             .row
                 .col-sm-12.no-bottom
-                    legend What is your name and email address?
-                        span.substep-explanation (so we can add them to your note)
+                    legend Who is this from?
             .row
                 .col-sm-6
-                    input.name-field.js-name-field.form-control.text-input-format(type='text', name='name', placeholder='Your Name')
+                    input.name-field.js-name-field.form-control.text-input-format(type='text', name='name', placeholder='Name')
                 .col-sm-6
-                    input.js-email-field.form-control.text-input-format(type='email', name='email', placeholder='Your Email')
+                    input.js-email-field.form-control.text-input-format(type='email', name='email', placeholder='Email')
         fieldset
             +next-button('Next Step')
