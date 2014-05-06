@@ -44,7 +44,7 @@ privateFields =
     'Mailing Address [Private School] 2009-10': {field: 'mailingAddress', type: String}
     'Phone Number [Private School] 2009-10': {field: 'phone', type: String}
     'School Level [Private School] 2009-10': {field: 'schoolLevel', type: String}
-    'School Type [Private School] 2009-10': {field: 'schoolType', type: String}
+    'School Type [Private School] 2009-10': {field: 'privateSchoolType', type: String}
     'Total Students (Ungraded & PK-12) [Private School] 2009-10': {field: 'students', type: Number}
     'Full-Time Equivalent (FTE) Teachers [Private School] 2009-10': {field: 'fteTeachers', type: Number}
 
