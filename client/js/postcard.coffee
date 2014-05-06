@@ -1,3 +1,4 @@
+_ = require 'underscore'
 
 exports.run = ({postcard, school}) ->
     fillPostcardFields postcard
@@ -6,14 +7,14 @@ exports.run = ({postcard, school}) ->
     handleDesktopEllipsis postcard
 
 fillPostcardFields = (postcard) ->
-    $('.postcard-salutation').text "Dear #{postcard.teacher}"
-    $('.postcard-body').text postcard.note
-    $('.postcard-signature').text postcard.name
-    $('.postcard-addressee').text postcard.teacher
+    $('.postcard-salutation').text "Dear #{_.unescape(postcard.teacher)}"
+    $('.postcard-body').text _.unescape(postcard.note)
+    $('.postcard-signature').text _.unescape(postcard.name)
+    $('.postcard-addressee').text _.unescape(postcard.teacher)
 
 fillSchoolFields = (school) ->
-    $('.postcard-school').text capitalize school.name
-    $('.postcard-city-state').text "#{capitalize school.city}, #{school.state}"
+    $('.postcard-school').text capitalize _.unescape(school.name)
+    $('.postcard-city-state').text "#{capitalize _.unescape(school.city)}, #{_.unescape(school.state)}"
 
 handleDesktopEllipsis = (postcard) ->
     container = '.postcard-container'
