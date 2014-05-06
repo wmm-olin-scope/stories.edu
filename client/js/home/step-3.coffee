@@ -4,3 +4,7 @@ exports.step = new (require('./steps').Step) '#step-3', [
     {field: 'video', input: '.js-video-field', optional: yes}
 ]
 
+oldSetup = exports.step.setup
+exports.step.setup = (data) ->
+    oldSetup.call this, data
+    $('.teacher-name').text "Dear #{data.teacher or ''},"

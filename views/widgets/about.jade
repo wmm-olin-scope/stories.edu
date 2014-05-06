@@ -1,20 +1,15 @@
 
-#about-container.white-text
-    center
-        .white-text
-            img(src=static('images/TTLightbulb.png'))
-        h4.white-text About Thank-a-Teacher
+#about-container
+    .about-header
+        a(href='/about')
+            img(src=static('images/TTLightbulb.png') alt='')
+        h4 About Thank-a-Teacher
 
     .video-container
         iframe(src="//www.youtube.com/embed/_C4eLoqXzxg?showinfo=0&modestbranding=1&controls=0&rel=0&wmode=transparent", frameborder="0", allowfullscreen)
 
     p.
-        We want to give students and graduates an
-        opportunity to thank the teachers who had
-        an impact on their lives. We want them to
-        think positively about their time at school.
-        We hope to help improve the national
-        conversation around education.
-        
-    a(href='/about') LEARN MORE ABOUT THE PROJECT
+        We want more people to look back and thank their teachers; they put a lot of energy into helping us get to where we are today. We are a team of 6 students. As part of our senior project, we created an app that allows anyone to send a thank you note to a past teacher. We even take care of sending it for you. Take a look around our site and fill out a thank you note!        
+    a.learn-more-text(href='/about')
+        | LEARN MORE ABOUT THE PROJECT
         i.fa.fa-angle-right

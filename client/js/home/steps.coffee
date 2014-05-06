@@ -1,4 +1,3 @@
-
 STEPS_STORAGE_KEY = 'stepsData'
 
 class exports.Step
@@ -18,14 +17,15 @@ class exports.Step
 
         nextButton = $ '.js-btn-next', @id
 
-        canGoNext = no
+        canGoNext = [no]
         updateCanGoNext = (_canGoNext) ->
-            canGoNext = _canGoNext
-            nextButton.attr 'disabled', not canGoNext
+            canGoNext[0] = _canGoNext
+            nextButton.attr 'disabled', not canGoNext[0]
 
         tryNext = =>
-            return unless canGoNext
+            return unless canGoNext[0]
             @writeData data
+            @track data
             done()
 
         nextButton.click ->
@@ -38,7 +38,7 @@ class exports.Step
         @validate data, updateCanGoNext
 
     validate: (data, updateCanGoNext) ->
-        check = ->
+        check = =>
             updateCanGoNext _.every @inputs, ({input, optional}) ->
                 optional or $(input).val()?.trim().length > 0
         check()
@@ -47,18 +47,16 @@ class exports.Step
             $(input).keyup check
                     .change check
 
+    track: (data) ->
+        if data.email
+            mixpanel.people.set {$email: data.email}
+            mixpanel.alias data.email
+        mixpanel.people.set {$name: data.name} if data.name
+        mixpanel.track 'input', _.clone data
+
     writeData: (data) ->
         for {field, input} in @inputs
             data[field] = $(input).val()
-            if field is 'email'
-                mixpanel.people.set
-                  $email: data[field]
-                mixpanel.alias(data[field])
-            if field is 'name'
-                mixpanel.people.set
-                  $name: data[field]
-        mixpanel.track 'input', @inputs
-
 
 exports.runSteps = (steps, done) ->
     data = amplify.store(STEPS_STORAGE_KEY) or {}

@@ -19,6 +19,7 @@ vendorLibs = [#dependency order
     'underscore', 'amplify', 'history'
     'typeahead.bundle',
     'spin.min', 'ladda.min'
+    'jquery.dotdotdot'
 ]
 
 utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->
@@ -31,7 +32,7 @@ utils.buildTask 'js:vendor', 'Bundle vendor js libs', (options) ->
     libPaths = ("#{vendorDir}/#{lib}.js" for lib in vendorLibs)
     ugly = uglify.minify libPaths, uglifyOptions
 
-    fs.writeFileSync path, ugly.code 
+    fs.writeFileSync path, ugly.code
     fs.writeFileSync "#{path}.map", ugly.map if development
 
 buildModule = (name, rootFile) -> (options, done) ->

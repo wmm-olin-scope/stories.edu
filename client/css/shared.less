@@ -15,6 +15,7 @@
 @large-font: 18px;
 @normal-font: 14px;
 @small-font: 12px;
+@quite-small-font: 11px;
 @very-small-font: 10px;
 @tiny-font: 8px;
 
@@ -63,13 +64,17 @@ body {
     border-radius: @radius;
 }
 
+.muted-border-radius() {
+    .border-radius(3px);
+}
+
 .vert-center-container(@height) {
     display: table;
     height: @height;
     overflow: hidden;
 }
 
-.vert-center-item {
+.vert-center-item() {
     display: table-cell;
     vertical-align: middle;
 }
@@ -80,11 +85,11 @@ body {
     width: @width
 }
 
-.vert-fill {
+.vert-fill() {
     height: 100%;
 }
 
-.horz-fill {
+.horz-fill() {
     width: 100%;
 }
 
@@ -174,10 +179,6 @@ body {
 
 .dark-blue-text{
     color: @blue-color;
-}
-
-.white-text {
-    color: @white-color;
 }
 
 h1 {

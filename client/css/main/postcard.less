@@ -1,10 +1,17 @@
 
+.postcard-container, .postcard-container-mobile {
+    background-color: @white-color;
+    .handwritten-font();
+    .muted-border-radius();
+}
+
+.postcard-container-mobile {
+
+}
+
 .postcard-container {
     .fixed-aspect-box(2);
-    .border-radius(3px);
-    background-color: @white-color;
     margin-bottom: 15px;
-    .handwritten-font();
 }
 
 @post-in-padding: 15px;
@@ -30,6 +37,17 @@
     padding-left: @post-in-text-padding;
     padding-right: 0;
     .vert-center-container(100%);
+}
+
+.postcard-top {
+    padding-top: 1.2em;
+}
+
+.postcard-bottom {
+    padding-bottom: 1.2em;
+    padding-top: 2.5em;
+    border-top: 2px solid lighten(@grey-color, 30%);
+    margin-top: 2.5em
 }
 
 .postcard-salutation {
@@ -70,7 +88,6 @@
 .postcard-addressee {
     font-size: @very-large-font;
     .handwritten-bold-font();
-    margin-bottom: 0;
 }
 
 .postcard-school {
@@ -79,4 +96,9 @@
 
 .postcard-city-state {
     margin-bottom: 0;
+}
+
+.full-message-modal-body {
+    text-align: left;
+    .handwritten-font();
 }

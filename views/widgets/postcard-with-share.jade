@@ -1,19 +1,18 @@
-
 .submitted-header
-    h1.text-center.white-text.
-        It&#8217;s on the way!
-    h3.text-center.white-text.
-        Your thank you note has been submitted. Now tell your friends.
-.row
-    .col-xs-12.col-md-6.col-md-offset-1
-        include full-postcard
-        include share-postcard-tweet
-    .col-xs-12.col-md-4
-        include share-postcard-email
-        include share-postcard-facebook
-.row
-    .col-sm-6.col-sm-offset-3.text-center.back-row
-        p
-            a.back-text(href='/')
-                strong BACK TO HOME
-                i.fa.fa-angle-right
+    h1 It&#8217;s on its way!
+    h3 Your thank you note has been sent. Now tell your friends!
+.col-xs-12
+    .row
+        .col-xs-12.col-md-6.col-md-offset-1
+            include full-postcard
+            include share-postcard-tweet
+        .col-xs-12.col-md-4
+            include share-postcard-email
+            include share-postcard-facebook
+.col-xs-12
+    .row
+        .col-sm-6.col-sm-offset-3.text-center.back-row
+            p
+                a.back-text(href='/')
+                    | Back to Home&nbsp;
+                    i.fa.fa-angle-right

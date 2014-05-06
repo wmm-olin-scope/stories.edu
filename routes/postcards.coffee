@@ -50,11 +50,9 @@ checks =
 
 updatePostcardValues = (postcard, values, req) ->
     postcard.created = Date.now() unless postcard.created?
-
-    fields = 'note youtubeId teacher name email school state city schoolType 
-              schoolId starred'.split ' '
-    console.log {fields}
-    for field in fields
+    
+    for field of checks
+        continue if field in ['postcardId', 'created']
         postcard[field] = values[field] if values[field]?
 
     postcard

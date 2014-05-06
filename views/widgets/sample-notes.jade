@@ -1,40 +1,35 @@
-mixin video-story-modal(story)
-    .modal.fade(tabindex='-1', role='dialog', aria-labelledby='videomodallabel', aria-hidden='true' id=story.id)
-        .modal-dialog.vidmodal-dialog
-            .modal-content.vidmodal-content
-                .modal-header.vidmodal-header
-                    button.close.vidmodal-close(type='button', data-dismiss='modal', aria-hidden='true')
-                        i.fa.fa-2x.fa-times-circle
-                    .vidmodal-title.modal-title
-                        .vidmodal-header-title
-                            strong #{story.name}
-                            | &nbsp;thanks&nbsp;
-                            strong #{story.teacher}
-                        .vimodal-header-body
-                            | from #{story.school} in #{story.city}, #{story.state}
-                .vidmodal-body.modal-body
-                    .video-container
-                        iframe(src=story.url, frameborder='0', allowfullscreen='allowfullscreen')
-                .modal-footer.vidmodal-footer
-                    .col-sm-8.col-sm-offset-2
-                        include share-button-row
+#sample-note-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='videomodallabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close.modal-close(type='button', data-dismiss='modal', aria-hidden='true')
+                    i.fa.fa-2x.fa-times-circle
+                .modal-title
+                    .modal-header-title
+                        strong.js-sample-note-name
+                        | &nbsp;thanks&nbsp;
+                        strong.js-sample-note-teacher
+                    .modal-header-body.js-sample-note-school-city-state
+            .modal-body
+                .video-container
+            .modal-footer
+                .col-sm-8.col-sm-offset-2.js-share-buttons
+                    include share-button-row
 
 .container
     .row
         .col-sm-6.col-sm-offset-3.sn-text-center.sn-header
             h3 Thank You Notes Shared By Others
-    .row.sn-half-row
+    #js-sample-notes-row.row.sn-half-row
         - var sampleStories = [];
         - sampleStories.push({id: 'jessica_chaves', img: 'jessica_video_thumb.jpg', name: 'Jessica Chaves', teacher: 'Mrs. Wilson', school: 'Francis J. Burke School', city: 'Medway', state: 'MA', url: 'http://www.youtube.com/embed/ajMsBQqcA_U'})
-        - sampleStories.push({id: 'yancy_mosley', img: 'yancy_video_thumb.jpg', name: 'Yancy Mosley', teacher: 'Mrs. Stewart', school: 'Greenville Tech', city: 'Somerville', state: 'SC', url: 'http://www.youtube.com/embed/qw9Pi4IlwZI'})
+        - sampleStories.push({id: 'yancy_mosley', img: 'yancy_video_thumb.jpg', name: 'Yancy Mosley', teacher: 'Dr. Stewart', school: 'Greenville Tech', city: 'Summerville', state: 'SC', url: 'http://www.youtube.com/embed/qw9Pi4IlwZI'})
         - sampleStories.push({id: 'toby_sandler', img: 'toby_video_thumb.jpg', name: 'Toby Sandler', teacher: 'Mr. Winston', school: 'George Washington Middle School', city: 'Philadelphia', state: 'PA', url: 'http://www.youtube.com/embed/SXvKxiiq1UI'})
         each story in sampleStories
-            mixin video-story-modal(story)
             .col-sm-4
-                - var target = "#"+story.id
                 .sn-video-container
-                    .sn-video-button(data-toggle="modal" data-target=target)
-                    img.sn-image(src=static('images/'+story.img))
+                    .sn-video-button(data-url=story.url data-name=story.name data-teacher=story.teacher data-city=story.city data-state=story.state data-school=story.school)
+                    img.sn-image(src=static('images/'+story.img) alt=story.name+' thanks '+story.teacher+' video')
                 .sn-text-header
                     strong= story.name
                     | &nbsp;thanks&nbsp;

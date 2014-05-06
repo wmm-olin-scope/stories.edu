@@ -1,4 +1,6 @@
 
+{capitalize} = require '../utils.coffee'
+
 exports.step = step = new (require('./steps').Step) '#step-2', [
     {field: 'state', input: '.js-state-field'}
     {field: 'city', input: '.js-city-field'}
@@ -85,7 +87,7 @@ checkState = (data) ->
 
     if state
         setInputEnabled cityInput(), yes, 'City'
-        setInputEnabled schoolInput(), yes, 'School'
+        setInputEnabled schoolInput(), yes, 'K-12 School'
         invalidateCityAutocomplete data
         invalidateSchoolAutocomplete data
         cityInput().focus()
@@ -199,12 +201,8 @@ step.writeData = (data) ->
         data.schoolName = schoolInput().val()
         data.city = cityInput().val()
         data.state = stateSelect().val()
-    mixpanel.track 'input', @inputs
+        console.log {data}
 
-capitalize = (s) ->
-    return null unless s?
-    (w[0].toUpperCase() + w[1...].toLowerCase() for w in s.split /\s+/)
-    .join ' '
 
 setInputEnabled = (input, enabled=yes, placeholder='') ->
     $ input
