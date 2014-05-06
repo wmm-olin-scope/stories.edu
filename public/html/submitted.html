@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thank a teacher!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="What teacher changed your life? Thank them!" property="og:title">
+    <meta content="We've all been students. Take a minute to thank a teacher who helped us become who we are today." property="og:description">
+    <meta content="article" property="og:type">
+    <meta content="http://thank-a-teacher.org/images/thank-a-teacher-thumbnail.jpg" property="og:image">
+    <meta content="1200" property="og:image:width">
+    <meta content="627" property="og:image:height">
+    <meta content="Thank a Teacher" property="og:site_name">
+    <meta content="https://youtube.googleapis.com/v/_C4eLoqXzxg" property="og:video">
+    <meta content="720" property="og:video:width">
+    <meta content="404" property="og:video:height">
+    <meta content="application/x-shockwave-flash" property="og:video:type">
+    <meta content="https://www.facebook.com/thankamentor" property="article:publisher">
+    <meta content="http://thank-a-teacher.org/" property="og:url">
+    <meta content="player" property="twitter:card">
+    <meta content="@thankamentor" property="twitter:site">
+    <meta content="http://thank-a-teacher.org/" property="twitter:url">
+    <meta content="Thank a Teacher" property="twitter:title">
+    <meta content="We've all been students. Let's take 5 min to thank a teacher who helped us become who we are today." property="twitter:description">
+    <meta content="http://thank-a-teacher.org/images/thank-a-teacher-thumbnail.jpg" property="twitter:image:src">
+    <meta content="https://www.youtube.com/embed/_C4eLoqXzxg?iv_load_policy=3&amp;rel=0&amp;autohide=1&amp;showinfo=0" property="twitter:player">
+    <meta content="1920" property="twitter:player:width">
+    <meta content="1080" property="twitter:player:height">
+    <link rel="shortcut icon" href="//localhost:5001/images/favicon.ico" type="image/x-icon"><!--[if lt IE 9]><script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script><![endif]-->
+    <link href="//localhost:5001/stylesheets/vendor.css" rel="stylesheet">
+    <link href="//localhost:5001/stylesheets/main.css" rel="stylesheet">
+    <link href="//localhost:5001/stylesheets/desktop.css" media="only screen and (min-width: 768px)" rel="stylesheet">
+    <script src="//localhost:5001/javascripts/vendor.js"></script>
+    <script>
+      if (document.location.hostname.search("thank-a-teacher.org") !== -1) {
+          (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+          typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+          b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+          mixpanel.init("28512af96408eb0bc5878cb520f19ffe");
+          
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      } else {
+          var track = function(serviceName) {
+              return function () {
+                  var args = Array.prototype.slice.call(arguments);
+                  var stringifiedArgs = [];
+                  for (var i = 0; i < args.length; i++) {
+                      stringifiedArgs.push(JSON.stringify(args[i]));
+                  }
+                  console.log(serviceName + " Track Event: " + stringifiedArgs.join(", "));
+              }
+          }
+          var blankfun = function(serviceName, name) {
+              return function () {
+                  var args = Array.prototype.slice.call(arguments);
+                  var stringifiedArgs = [];
+                  for (var i = 0; i < args.length; i++) {
+                      stringifiedArgs.push(JSON.stringify(args[i]));
+                  }
+                  console.log(serviceName + " " + name + "(" + stringifiedArgs.join(", ")+")");
+              }
+          }
+          window.mixpanel = { track: track('Mixpanel')
+                            , alias: blankfun('Mixpanel', 'alias')
+                            , people: { set: blankfun('Mixpanel', 'people.set') }
+                            , identify: blankfun('Mixpanel', 'identify')
+                            };
+          window.ga = track('GA');
+      }
+      ga('create', 'UA-48981443-1', 'thank-a-teacher.org');
+      ga('send', 'pageview');
+    </script>
+    <script src="//localhost:5001/javascripts/submitted.js"></script>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <header role="banner" class="tt-header navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header"><a href="/" class="navbar-brand">
+            <h4>THANK A TEACHER LOGO</h4>
+            <p>a project by 6 Olin College students</p></a></div>
+      </div>
+    </header>
+    <div class="container">
+      <p>Submitted!</p>
+    </div>
+    <div class="row tt-footer">
+      <div class="tt-footer-contents col-md-8 col-md-offset-2">
+        <hr>
+        <p>&copy; 2014 Thank-A-Teacher.org | Send Us Feedback | Privacy Policy</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,3012 @@
+[
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "HILLSIDE VIEW SCHOOL", 
+        "zipCode": "17563", 
+        "address": "1011 PRAWLS HOLLOW RD"
+    }, 
+    {
+        "city": "SUGAR GROVE", 
+        "state": "PA", 
+        "name": "FOREST AMISH SCHOOL", 
+        "zipCode": "16350", 
+        "address": "2724 FOREST SCHOOL RD"
+    }, 
+    {
+        "city": "KIRKWOOD", 
+        "state": "PA", 
+        "name": "SPROUL RD SCHOOL", 
+        "zipCode": "17536", 
+        "address": "238 SPROUL RD"
+    }, 
+    {
+        "city": "WATSONTOWN", 
+        "state": "PA", 
+        "name": "SPRING VIEW PAROCHIAL SCHOOL", 
+        "zipCode": "17777", 
+        "address": "1276 SEAGRAVE DR"
+    }, 
+    {
+        "city": "MANHEIM", 
+        "state": "PA", 
+        "name": "IRON GROVE SCHOOL", 
+        "zipCode": "17545", 
+        "address": "1353 MOUNTAIN RD"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "WITMER AMISH SCHOOL", 
+        "zipCode": "17602", 
+        "address": "422 MOUNT SIDNEY RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "STONY RIDGE PAROCHIAL SCHOOL", 
+        "zipCode": "17067", 
+        "address": "800 E MAIN AVE"
+    }, 
+    {
+        "city": "MC CLURE", 
+        "state": "PA", 
+        "name": "JACKS MOUNTAIN SCHOOL", 
+        "zipCode": "17841", 
+        "address": "162 GILBERT RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "SPOTTS VIEW SCHOOL", 
+        "zipCode": "17555", 
+        "address": "490 S CHURCHTOWN RD"
+    }, 
+    {
+        "city": "HEGINS", 
+        "state": "PA", 
+        "name": "FEARNOT SCHOOL", 
+        "zipCode": "17938", 
+        "address": "CHURCH RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "FISHERS AMISH SCHOOL", 
+        "zipCode": "17509", 
+        "address": "221 MAPLE SHADE RD"
+    }, 
+    {
+        "city": "NORCO", 
+        "state": "CA", 
+        "name": "CREATIVE TEACHING", 
+        "zipCode": "92860", 
+        "address": "2131 CORONA AVE"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "SALISBURY HEIGHTS SCHOOL", 
+        "zipCode": "17527", 
+        "address": "5599 OLD PHILADELPHIA PIKE"
+    }, 
+    {
+        "city": "NEWBURG", 
+        "state": "PA", 
+        "name": "MEADOW RUN SCHOOL", 
+        "zipCode": "17240", 
+        "address": "145 QUIGLEY RD"
+    }, 
+    {
+        "city": "GENESEE", 
+        "state": "PA", 
+        "name": "CHESTNUT RIDGE SCHOOL", 
+        "zipCode": "16923", 
+        "address": "SCHOOL HOUSE RD"
+    }, 
+    {
+        "city": "MEMPHIS", 
+        "state": "TN", 
+        "name": "HOLY NAMES OF JESUS & MARY SCHOOL", 
+        "zipCode": "38107", 
+        "address": "709 KEEL AVE"
+    }, 
+    {
+        "city": "ASHLAND", 
+        "state": "AL", 
+        "name": "MELLOW VALLEY CHRISTIAN ACADEMY", 
+        "zipCode": "36251", 
+        "address": "37993 HIGHWAY 77"
+    }, 
+    {
+        "city": "ROCHESTER", 
+        "state": "NY", 
+        "name": "PATRICIA CARTER CHILD CARE CTR AT NAZARETH COLLEGE", 
+        "zipCode": "14618", 
+        "address": "4245 EAST AVE"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "PEACH LANE SCHOOL", 
+        "zipCode": "17572", 
+        "address": "PEACH LN"
+    }, 
+    {
+        "city": "CHATHAM", 
+        "state": "VA", 
+        "name": "WOODLAWN ACADEMY", 
+        "zipCode": "24531", 
+        "address": "956 WOODLAWN ACADEMY RD"
+    }, 
+    {
+        "city": "BIRD IN HAND", 
+        "state": "PA", 
+        "name": "MUDDY RUN AMISH SCHOOL", 
+        "zipCode": "17505", 
+        "address": "2939 CHURCH RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "RYNEAR RD SCHOOL", 
+        "zipCode": "17509", 
+        "address": "113 RYNEAR RD"
+    }, 
+    {
+        "city": "REEDSVILLE", 
+        "state": "PA", 
+        "name": "BARRVILLE AMISH SCHOOL", 
+        "zipCode": "17084", 
+        "address": "820 COFFEE RUN RD"
+    }, 
+    {
+        "city": "HOWARD", 
+        "state": "PA", 
+        "name": "LITTLE NITTANY SCHOOL", 
+        "zipCode": "16841", 
+        "address": "5445 JACKSONVILLE RD"
+    }, 
+    {
+        "city": "NOTTINGHAM", 
+        "state": "PA", 
+        "name": "FORGE ROAD AMISH SCHOOL", 
+        "zipCode": "19362", 
+        "address": "221 GLEN ROY RD - EBERSOL"
+    }, 
+    {
+        "city": "LATHAM", 
+        "state": "NY", 
+        "name": "KIDZ KORNER", 
+        "zipCode": "12110", 
+        "address": "301 OLD NISKAYUNA RD"
+    }, 
+    {
+        "city": "FISHERS", 
+        "state": "IN", 
+        "name": "EMAN ELEMENTARY SCHOOL", 
+        "zipCode": "46038", 
+        "address": "12201 LANTERN RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "BARTVILLE AMISH SCHOOL", 
+        "zipCode": "17509", 
+        "address": "106 ROSEDALE RD"
+    }, 
+    {
+        "city": "MONROVIA", 
+        "state": "CA", 
+        "name": "CARDEN OF THE FOOTHILLS SCHOOL", 
+        "zipCode": "91016", 
+        "address": "429 WILDROSE AVE"
+    }, 
+    {
+        "city": "MERCER", 
+        "state": "PA", 
+        "name": "HILLTOP AMISH SCHOOL", 
+        "zipCode": "16137", 
+        "address": "SKUNK RUN RD"
+    }, 
+    {
+        "city": "DRUMORE", 
+        "state": "PA", 
+        "name": "TANGLEWOOD SCHOOL", 
+        "zipCode": "17518", 
+        "address": "SILVER SPRING RD"
+    }, 
+    {
+        "city": "DALLAS", 
+        "state": "TX", 
+        "name": "LAKEHILL PREPARATORY", 
+        "zipCode": "75214", 
+        "address": "2720 HILLSIDE DR"
+    }, 
+    {
+        "city": "ELK RIVER", 
+        "state": "MN", 
+        "name": "MONARCH MONTESSORI SCHOOL", 
+        "zipCode": "55330", 
+        "address": "19277 VERNON ST NW"
+    }, 
+    {
+        "city": "ELIZABETHTOWN", 
+        "state": "PA", 
+        "name": "BELLAIRE RIDGE SCHOOL", 
+        "zipCode": "17022", 
+        "address": "521 BELLAIRE RD"
+    }, 
+    {
+        "city": "DELTA", 
+        "state": "PA", 
+        "name": "ROLLING RIDGE SCHOOL", 
+        "zipCode": "17314", 
+        "address": "239 THOMPSON RD"
+    }, 
+    {
+        "city": "MC ALISTERVILLE", 
+        "state": "PA", 
+        "name": "SHADE MOUNTAIN SCHOOL", 
+        "zipCode": "17049", 
+        "address": "TENNIS PARK RD"
+    }, 
+    {
+        "city": "VOLANT", 
+        "state": "PA", 
+        "name": "FAYETTE SCHOOL", 
+        "zipCode": "16156", 
+        "address": "569 WAGNER RD"
+    }, 
+    {
+        "city": "MILLERSTOWN", 
+        "state": "PA", 
+        "name": "SUNSET VALLEY SCHOOL", 
+        "zipCode": "17062", 
+        "address": "1907 ARNDT RD"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "WAYNESBURG SCHOOL", 
+        "zipCode": "17004", 
+        "address": "280 WAYNESBURG RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "NORTH STAR VOCATIONAL SCHOOL", 
+        "zipCode": "17572", 
+        "address": "RR 1"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "MEADOWBROOK PAROCHIAL", 
+        "zipCode": "17572", 
+        "address": "3528 W NEWPORT RD"
+    }, 
+    {
+        "city": "MIDDLEBURG", 
+        "state": "PA", 
+        "name": "KANTZ CHURCH SCHOOL", 
+        "zipCode": "17842", 
+        "address": "415 WELLER HILL RD"
+    }, 
+    {
+        "city": "NEWBURG", 
+        "state": "PA", 
+        "name": "SUNSET AMISH SCHOOL", 
+        "zipCode": "17240", 
+        "address": "360 SHADY RD"
+    }, 
+    {
+        "city": "BURNHAM", 
+        "state": "IL", 
+        "name": "CHILD LIFE ACADEMY", 
+        "zipCode": "60633", 
+        "address": "14421 S TORRENCE AVE"
+    }, 
+    {
+        "city": "ATLANTIC", 
+        "state": "PA", 
+        "name": "BRIDGEVIEW AMISH SCHOOL", 
+        "zipCode": "16111", 
+        "address": "KENNARD RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "BEILERS SCHOOL", 
+        "zipCode": "17572", 
+        "address": "3103A W NEWPORT RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "BELMONT SPECIAL EDUCATION SCHOOL", 
+        "zipCode": "17562", 
+        "address": "RT 741 (STRASBURG RD) & S BELMONT RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "SPRINGHEAD AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "105 SPRINGHEAD RD"
+    }, 
+    {
+        "city": "LUTHERSBURG", 
+        "state": "PA", 
+        "name": "GOLDEN YOKE SCHOOL", 
+        "zipCode": "15848", 
+        "address": "791 RIMER RD"
+    }, 
+    {
+        "city": "SHIPPENSBURG", 
+        "state": "PA", 
+        "name": "OAK GROVE PAROCHIAL SCHOOL", 
+        "zipCode": "17257", 
+        "address": "100 GEPHART RD"
+    }, 
+    {
+        "city": "BIRD IN HAND", 
+        "state": "PA", 
+        "name": "STUMPTOWN SCHOOL", 
+        "zipCode": "17505", 
+        "address": "2810 STUMPTOWN RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "BART VIEW SCHOOL", 
+        "zipCode": "17509", 
+        "address": "59 LANCASTER AVE"
+    }, 
+    {
+        "city": "HERNDON", 
+        "state": "PA", 
+        "name": "SCHWABEN CREEK SCHOOL", 
+        "zipCode": "17830", 
+        "address": "539 AMISH SCHOOL RD"
+    }, 
+    {
+        "city": "LOYSVILLE", 
+        "state": "PA", 
+        "name": "SHERMAN VIEW SCHOOL", 
+        "zipCode": "17047", 
+        "address": "531 IRON BRIDGE RD"
+    }, 
+    {
+        "city": "BROOKLYN", 
+        "state": "NY", 
+        "name": "MACHON CHANA", 
+        "zipCode": "11213", 
+        "address": "556 CROWN ST"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "NOBLE OAK SCHOOL", 
+        "zipCode": "17509", 
+        "address": "720 NOBLE RD"
+    }, 
+    {
+        "city": "PUNXSUTAWNEY", 
+        "state": "PA", 
+        "name": "LONE MAPLE AMISH SCHOOL", 
+        "zipCode": "15767", 
+        "address": "3372 ROUTE 210 HWY"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "MEETING HOUSE RD AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "295 MEETINGHOUSE RD"
+    }, 
+    {
+        "city": "HOMER CITY", 
+        "state": "PA", 
+        "name": "CEDAR HOLLOW PAROCHIAL SCHOOL", 
+        "zipCode": "15748", 
+        "address": "192 REXIS RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "WOLF ROCK SCHOOL", 
+        "zipCode": "17562", 
+        "address": "1921 MINE RD"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "CREAM SCHOOL", 
+        "zipCode": "19363", 
+        "address": "276 WIDDOWSON RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "COOPERVILLE AMISH SCHOOL", 
+        "zipCode": "17509", 
+        "address": "19A LOWER VALLEY RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "HARVEST LANE SCHOOL", 
+        "zipCode": "17572", 
+        "address": "5 S HARVEST RD"
+    }, 
+    {
+        "city": "CONNEAUTVILLE", 
+        "state": "PA", 
+        "name": "RUNDELL CHRISTIAN DAY SCHOOL", 
+        "zipCode": "16406", 
+        "address": "12679 RUNDELLTOWN RD"
+    }, 
+    {
+        "city": "AIRVILLE", 
+        "state": "PA", 
+        "name": "SINGING MEADOW AMISH SCHOOL", 
+        "zipCode": "17302", 
+        "address": "124 W POSEY RD"
+    }, 
+    {
+        "city": "LOGANTON", 
+        "state": "PA", 
+        "name": "SUGAR HOLLOW PAROCHIAL SCHOOL", 
+        "zipCode": "17747", 
+        "address": "672 S MILL ST RR 447"
+    }, 
+    {
+        "city": "SARASOTA", 
+        "state": "FL", 
+        "name": "CLOSING THE GAP SCHOOL", 
+        "zipCode": "34238", 
+        "address": "5969 APPROACH RD"
+    }, 
+    {
+        "city": "NEWBURG", 
+        "state": "PA", 
+        "name": "SUNSET RUN PAROCHIAL SCHOOL", 
+        "zipCode": "17240", 
+        "address": "344 SHADY RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "MT PLEASANT VIEW AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "643 MOUNT PLEASANT RD"
+    }, 
+    {
+        "city": "SALISBURY", 
+        "state": "PA", 
+        "name": "CROSS ROAD SPECIAL SCHOOL", 
+        "zipCode": "15558", 
+        "address": "NIVERTON RD"
+    }, 
+    {
+        "city": "MILROY", 
+        "state": "PA", 
+        "name": "SUNNYVIEW SCHOOL", 
+        "zipCode": "17063", 
+        "address": "517 TREASTER VALLEY RD"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "WOOD LAWN SCHOOL", 
+        "zipCode": "16142", 
+        "address": "325 RIETHMILLER RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "COLONIAL SCHOOL", 
+        "zipCode": "17529", 
+        "address": "25 COLONIAL RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "MEADOW SPRINGS SCHOOL", 
+        "zipCode": "17527", 
+        "address": "625 AMISH RD"
+    }, 
+    {
+        "city": "ALBION", 
+        "state": "PA", 
+        "name": "BREEZEWAY AMISH SCHOOL", 
+        "zipCode": "16401", 
+        "address": "TRACY RD"
+    }, 
+    {
+        "city": "SUGAR GROVE", 
+        "state": "PA", 
+        "name": "LITTLE ASH AMISH SCHOOL", 
+        "zipCode": "16350", 
+        "address": "TURNPIKE CEMETARY RD"
+    }, 
+    {
+        "city": "BROOKVILLE", 
+        "state": "PA", 
+        "name": "MUNDERF AMISH SCHOOL", 
+        "zipCode": "15825", 
+        "address": "RICHARDSVILLE PARK (N BOX)"
+    }, 
+    {
+        "city": "BIRD IN HAND", 
+        "state": "PA", 
+        "name": "GIBBONS SCHOOL", 
+        "zipCode": "17505", 
+        "address": "524 GIBBONS RD"
+    }, 
+    {
+        "city": "MEYERSDALE", 
+        "state": "PA", 
+        "name": "MEADOWBROOK AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "15552", 
+        "address": "3045 ROCKDALE RD"
+    }, 
+    {
+        "city": "GRATZ", 
+        "state": "PA", 
+        "name": "SPECKTOWN SCHOOL", 
+        "zipCode": "17030", 
+        "address": "415 YUTS LN"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "CEDAR HILL SCHOOL", 
+        "zipCode": "17562", 
+        "address": "366A S BELMONT RD"
+    }, 
+    {
+        "city": "LYKENS", 
+        "state": "PA", 
+        "name": "WINDY KNOLL SCHOOL", 
+        "zipCode": "17048", 
+        "address": "242 PRICE LN"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "SOFT RUN SCHOOL", 
+        "zipCode": "17004", 
+        "address": "63 SOFT RUN LN"
+    }, 
+    {
+        "city": "ALLENWOOD", 
+        "state": "PA", 
+        "name": "WHITE DEER SCHOOL", 
+        "zipCode": "17810", 
+        "address": "15866 S STATE ROUTE 44"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "HAWKSVILLE AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "311 CAMARGO RD"
+    }, 
+    {
+        "city": "WYALUSING", 
+        "state": "PA", 
+        "name": "SOUTH HILL AMISH SCHOOL", 
+        "zipCode": "18853", 
+        "address": "RR 3"
+    }, 
+    {
+        "city": "STONEBORO", 
+        "state": "PA", 
+        "name": "SHADY MAPLE SCHOOL", 
+        "zipCode": "16153", 
+        "address": "220 SCHOOL RD AFTER"
+    }, 
+    {
+        "city": "CONOVER", 
+        "state": "NC", 
+        "name": "ST JOHNs LUTHERAN SCHOOL", 
+        "zipCode": "28613", 
+        "address": "2126 SAINT JOHNS CHURCH RD"
+    }, 
+    {
+        "city": "MILL HALL", 
+        "state": "PA", 
+        "name": "COYOTE RIDGE AMISH SCHOOL", 
+        "zipCode": "17751", 
+        "address": "COYOTE LN"
+    }, 
+    {
+        "city": "SPRING RUN", 
+        "state": "PA", 
+        "name": "MEADOW BROOK AMISH SCHOOL", 
+        "zipCode": "17262", 
+        "address": "17008 PATH VALLEY RD"
+    }, 
+    {
+        "city": "AIRMONT", 
+        "state": "NY", 
+        "name": "BETH ROCHEL SCHOOL", 
+        "zipCode": "10952", 
+        "address": "145 SADDLE RIVER RD"
+    }, 
+    {
+        "city": "BROOKLYN", 
+        "state": "NY", 
+        "name": "GAYLE ACADEMY FOR CHILDREN", 
+        "zipCode": "11212", 
+        "address": "440 E 96TH ST"
+    }, 
+    {
+        "city": "PUNXSUTAWNEY", 
+        "state": "PA", 
+        "name": "HIGHLAND PARK SCHOOL", 
+        "zipCode": "15767", 
+        "address": "HIGHLAND PARK RD"
+    }, 
+    {
+        "city": "MERCER", 
+        "state": "PA", 
+        "name": "ORCHARD HILL SCHOOL", 
+        "zipCode": "16137", 
+        "address": "450 ORCHARD RD"
+    }, 
+    {
+        "city": "DENVER", 
+        "state": "CO", 
+        "name": "HERZL/RMHA AT DENVER CAMPUS/JEWISH EDUCATION", 
+        "zipCode": "80231", 
+        "address": "2450 S WABASH ST"
+    }, 
+    {
+        "city": "3420 BELMONT BLVD", 
+        "state": "NASHVILLE", 
+        "name": "CHILDREN FIRST", 
+        "zipCode": "TN", 
+        "address": " A MONTESSORI COMMUNITY"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "LOOP RD SCHOOL", 
+        "zipCode": "17566", 
+        "address": "274 LOOP RD"
+    }, 
+    {
+        "city": "CAMBRIDGE SPRINGS", 
+        "state": "PA", 
+        "name": "NORTH RICHMOND", 
+        "zipCode": "16403", 
+        "address": "17796 N RICHMOND RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "WHITE HALL AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "348 KAUFFROTH RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "PLEASANT GROVE SCHOOL", 
+        "zipCode": "17529", 
+        "address": "121 LESAL RD"
+    }, 
+    {
+        "city": "ATLANTA", 
+        "state": "GA", 
+        "name": "JOHNSON'S LEARNING CENTER", 
+        "zipCode": "30316", 
+        "address": "2709 GRESHAM RD SE"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "EDISONVILLE SCHOOL", 
+        "zipCode": "17579", 
+        "address": "1441 VILLAGE RD"
+    }, 
+    {
+        "city": "CLEVELAND", 
+        "state": "OH", 
+        "name": "OUR LADY GOOD COUNSEL SCHOOL", 
+        "zipCode": "44109", 
+        "address": "4419 PEARL RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "FURNACE ROAD SCHOOL", 
+        "zipCode": "17566", 
+        "address": "600 FURNACE RD"
+    }, 
+    {
+        "city": "MADISONBURG", 
+        "state": "PA", 
+        "name": "ELK CREEK SCHOOL", 
+        "zipCode": "16852", 
+        "address": "106 SAWMILL RD"
+    }, 
+    {
+        "city": "MIAMI LAKES", 
+        "state": "FL", 
+        "name": "A LITTLE COLLEGE AT ROYAL OAKS", 
+        "zipCode": "33016", 
+        "address": ""
+    }, 
+    {
+        "city": "ALLEN", 
+        "state": "TX", 
+        "name": "CREME DE LA CR ME - ALLEN", 
+        "zipCode": "75013", 
+        "address": "1207 W MCDERMOTT DR"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "ZELTENRIECH SCHOOL", 
+        "zipCode": "17529", 
+        "address": "376 PETERS RD"
+    }, 
+    {
+        "city": "GERMANTOWN", 
+        "state": "TN", 
+        "name": "MADONNA LEARNING CENTER", 
+        "zipCode": "38138", 
+        "address": "7007 POPLAR AVE"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "MYERS SCHOOL", 
+        "zipCode": "17540", 
+        "address": "276 E EBY RD"
+    }, 
+    {
+        "city": "NEW HOLLAND", 
+        "state": "PA", 
+        "name": "EAST EARL AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17557", 
+        "address": "1182 STAUFFER RD"
+    }, 
+    {
+        "city": "HATTIESBURG", 
+        "state": "MS", 
+        "name": "THE ADEPT SCHOOL", 
+        "zipCode": "39401", 
+        "address": "1503 COUNTRY CLUB RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "STRACKS DAM SCHOOL", 
+        "zipCode": "17067", 
+        "address": "29 E STRACK DR"
+    }, 
+    {
+        "city": "MEYERSDALE", 
+        "state": "PA", 
+        "name": "OAKGROVE AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "15552", 
+        "address": "1289 MURRAY RD"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "RED ROCK SCHOOL", 
+        "zipCode": "17059", 
+        "address": "RED ROCK RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "HIGHFIELD AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "457 CHURCH RD"
+    }, 
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "CEDAR VALLEY SCHOOL", 
+        "zipCode": "17563", 
+        "address": "416 LITTLE BRITAIN RD S"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "KURTZ VALLEY SPECIAL EDUCATION AMISH SCHOOL", 
+        "zipCode": "17059", 
+        "address": "LOCUST RUN RD & FLINT RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "MILL RUN SCHOOL", 
+        "zipCode": "17555", 
+        "address": "305 MILL RD"
+    }, 
+    {
+        "city": "LOYSVILLE", 
+        "state": "PA", 
+        "name": "STONY POINT SCHOOL", 
+        "zipCode": "17047", 
+        "address": "6 RED BIRD LN"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "LIMEVILLE SCHOOL", 
+        "zipCode": "17527", 
+        "address": "MT VERNON RD"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "BRANDYWINE SPECIAL SCHOOL", 
+        "zipCode": "19344", 
+        "address": "2080 CAMBRIDGE RD"
+    }, 
+    {
+        "city": "GENESEE", 
+        "state": "PA", 
+        "name": "MUSTO HOLLOW AMISH SCHOOL", 
+        "zipCode": "16923", 
+        "address": "MUSTO HOLLOW RD"
+    }, 
+    {
+        "city": "COCHRANVILLE", 
+        "state": "PA", 
+        "name": "RATTLE SNAKE RUN SCHOOL", 
+        "zipCode": "19330", 
+        "address": "600 SAWMILL RD"
+    }, 
+    {
+        "city": "DRUMORE", 
+        "state": "PA", 
+        "name": "HARMONY RIDGE SCHOOL", 
+        "zipCode": "17518", 
+        "address": "1424 HARMONY RIDGE DR"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "ALLISON GAP SCHOOL", 
+        "zipCode": "17004", 
+        "address": "704 W BACK MOUNTAN RD"
+    }, 
+    {
+        "city": "DANVILLE", 
+        "state": "PA", 
+        "name": "BEAVER RUN AMISH PAROCHIAL", 
+        "zipCode": "17821", 
+        "address": "290 PPL RD"
+    }, 
+    {
+        "city": "REBERSBURG", 
+        "state": "PA", 
+        "name": "SPRING BANK SCHOOL", 
+        "zipCode": "16872", 
+        "address": "728 OLD PIKE RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "HONEY SUCKLE SCHOOL/MELVIN LANTZ", 
+        "zipCode": "17562", 
+        "address": "2024 SMYRNA RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "FULTON VIEW AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "FULTON VIEW RD"
+    }, 
+    {
+        "city": "TURBOTVILLE", 
+        "state": "PA", 
+        "name": "SUNNY SLOPE AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17772", 
+        "address": "1020 COMLY RD"
+    }, 
+    {
+        "city": "FRIEDENS", 
+        "state": "PA", 
+        "name": "CHERRY LANE/STONYBROOK SCHOOL", 
+        "zipCode": "15541", 
+        "address": "STONY BROOK RD"
+    }, 
+    {
+        "city": "NEWBURG", 
+        "state": "PA", 
+        "name": "HICKORY LANE SCHOOL", 
+        "zipCode": "17240", 
+        "address": "909 ROXBURY RD"
+    }, 
+    {
+        "city": "MILROY", 
+        "state": "PA", 
+        "name": "BACK MOUNTAIN SCHOOL", 
+        "zipCode": "17063", 
+        "address": "10674 BACK MOUNTAIN RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "HICKORY HOLLOW AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "245 WEASLE SLIDE DR"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "POND VIEW", 
+        "zipCode": "17566", 
+        "address": "ST CATHARINES DR"
+    }, 
+    {
+        "city": "TIONESTA", 
+        "state": "PA", 
+        "name": "ZACKRAL AMISH SCHOOL", 
+        "zipCode": "16353", 
+        "address": "LAKE LUCY RD"
+    }, 
+    {
+        "city": "CENTERVILLE", 
+        "state": "PA", 
+        "name": "PINE VALLEY SCHOOL", 
+        "zipCode": "16404", 
+        "address": "41999 BUELLS CORNERS RD"
+    }, 
+    {
+        "city": "REBERSBURG", 
+        "state": "PA", 
+        "name": "SUNSET VIEW SCHOOL", 
+        "zipCode": "16872", 
+        "address": "122 TURKEY DR"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "NORTH STAR SCHOOL", 
+        "zipCode": "17572", 
+        "address": "240 N STAR RD"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "POPLAR GROVE SCHOOL", 
+        "zipCode": "17004", 
+        "address": "WEST BACK MOUNTAIN RD"
+    }, 
+    {
+        "city": "REEDSVILLE", 
+        "state": "PA", 
+        "name": "STONY HILL SCHOOL", 
+        "zipCode": "17084", 
+        "address": "8063 E BACK MOUNTAIN RD"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "WHITE HALL SCHOOL", 
+        "zipCode": "17004", 
+        "address": "1419 W BACK MOUNTAIN RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "SHADY GLADE SCHOOL", 
+        "zipCode": "17529", 
+        "address": "227A OSCEOLA MILL RD"
+    }, 
+    {
+        "city": "VOLANT", 
+        "state": "PA", 
+        "name": "SHEPHERD SCHOOL", 
+        "zipCode": "16156", 
+        "address": "4603 STATE ROUTE 208"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "LIMEVILLE AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "MT VERNON RD"
+    }, 
+    {
+        "city": "MARTINSBURG", 
+        "state": "PA", 
+        "name": "DRY HILL PAROCHIAL SCHOOL", 
+        "zipCode": "16662", 
+        "address": "287 COTTONTAIL RD"
+    }, 
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "FORREST RIDGE SCHOOL", 
+        "zipCode": "17563", 
+        "address": "170 RIGBY RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "COMPASS AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "COMPASS RD"
+    }, 
+    {
+        "city": "SEATTLE", 
+        "state": "WA", 
+        "name": "PUGET SOUND COMMUNITY SCHOOL", 
+        "zipCode": "98134", 
+        "address": "660 S DEARBORN ST"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "CATTAIL PAROCHIAL SCHOOL", 
+        "zipCode": "17529", 
+        "address": "21 CATTAIL RD"
+    }, 
+    {
+        "city": "FRIEDENS", 
+        "state": "PA", 
+        "name": "STONYBROOK PAROCHIAL SCHOOL", 
+        "zipCode": "15541", 
+        "address": "260 STONYBROOK RD"
+    }, 
+    {
+        "city": "MIAMI", 
+        "state": "FL", 
+        "name": "MINI ME DAYCARE LEARNING CENTER II", 
+        "zipCode": "33175", 
+        "address": "11865 SW 26TH ST STE H1"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "BUNKER HILL SCHOOL", 
+        "zipCode": "17579", 
+        "address": "371 BACHMAN RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "BUCK HILL SCHOOL", 
+        "zipCode": "17535", 
+        "address": "109 BUCK HILL RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "MORRIS HILL SCHOOL", 
+        "zipCode": "17566", 
+        "address": "877 MOUNT PLEASANT RD"
+    }, 
+    {
+        "city": "NORRISTOWN", 
+        "state": "PA", 
+        "name": "KENNEDY KENRICK CATHOLIC HIGH SCHOOL", 
+        "zipCode": "19401", 
+        "address": "250 E JOHNSON HWY"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "BELL SCHOOL", 
+        "zipCode": "17509", 
+        "address": "319 BELL RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "RED HILL PAROCHIAL SCHOOL", 
+        "zipCode": "17555", 
+        "address": "599 RED HILL RD"
+    }, 
+    {
+        "city": "SAN DIEGO", 
+        "state": "CA", 
+        "name": "MIDWAY BAPTIST SCHOOL", 
+        "zipCode": "92154", 
+        "address": "2460 PALM AVE"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "WEST BRANDYWINE SCHOOL", 
+        "zipCode": "19344", 
+        "address": "2080 CAMBRIDGE RD"
+    }, 
+    {
+        "city": "BLAIN", 
+        "state": "PA", 
+        "name": "MANASSA SCHOOL", 
+        "zipCode": "17006", 
+        "address": "1313 MANASSA RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "SUNFLOWER SCHOOL", 
+        "zipCode": "17562", 
+        "address": "441 S VINTAGE RD"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "DUTCH HILL PAROCHIAL SCHOOL", 
+        "zipCode": "16434", 
+        "address": "20421 STATE HIGHWAY 89"
+    }, 
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "GREEN LANE SCHOOL", 
+        "zipCode": "17563", 
+        "address": "525 BALANCE MEETING RD"
+    }, 
+    {
+        "city": "PORT TREVORTON", 
+        "state": "PA", 
+        "name": "SHADY GROVE PAROCHIAL SCHOOL", 
+        "zipCode": "17864", 
+        "address": "5141 PRODUCE RD"
+    }, 
+    {
+        "city": "DOYLESBURG", 
+        "state": "PA", 
+        "name": "BROOK SIDE AMISH SCHOOL", 
+        "zipCode": "17219", 
+        "address": "22270 PATH VALLEY RD"
+    }, 
+    {
+        "city": "BIRD IN HAND", 
+        "state": "PA", 
+        "name": "MILL CREEK SCHOOL", 
+        "zipCode": "17505", 
+        "address": "681 MILL CREEK SCHOOL RD"
+    }, 
+    {
+        "city": "CINCINNATI", 
+        "state": "OH", 
+        "name": "OUR LADY OF THE SACRED HEART", 
+        "zipCode": "45215", 
+        "address": "170 SIEBENTHALER AVE"
+    }, 
+    {
+        "city": "NEW PROVIDENCE", 
+        "state": "PA", 
+        "name": "DEER HOLLOW AMISH SCHOOL", 
+        "zipCode": "17560", 
+        "address": "261 TRUCE RD"
+    }, 
+    {
+        "city": "DANVILLE", 
+        "state": "PA", 
+        "name": "BREEZY MEADOW", 
+        "zipCode": "17821", 
+        "address": "622 PRESERVE RD"
+    }, 
+    {
+        "city": "DRY RUN", 
+        "state": "PA", 
+        "name": "SWEETWATER RIDGE SCHOOL", 
+        "zipCode": "17220", 
+        "address": "19461 SWEET WATER RD"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "BRITTON RUN AMISH SCHOOL", 
+        "zipCode": "16404", 
+        "address": "23666 BRITTON RUN RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "ESHELMAN RUN SCHOOL", 
+        "zipCode": "17562", 
+        "address": "98 QUARRY RD"
+    }, 
+    {
+        "city": "DE KALB", 
+        "state": "MS", 
+        "name": "KEMPER ACADEMY", 
+        "zipCode": "39328", 
+        "address": "WALNUT AVE"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "LOCUST RIDGE SCHOOL", 
+        "zipCode": "17579", 
+        "address": "1 BISHOP RD"
+    }, 
+    {
+        "city": "COCHRANTON", 
+        "state": "PA", 
+        "name": "MELODY ECHOES SCHOOL", 
+        "zipCode": "16314", 
+        "address": "7300 VINCENT RD"
+    }, 
+    {
+        "city": "MEDFORD", 
+        "state": "MA", 
+        "name": "ELIOT-PEARSON CHILDREN'S SCHOOL", 
+        "zipCode": "2155", 
+        "address": "105 COLLEGE AVE"
+    }, 
+    {
+        "city": "MILL HALL", 
+        "state": "PA", 
+        "name": "ORE BANK SCHOOL", 
+        "zipCode": "17751", 
+        "address": "687 E END MOUNTAIN RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "SLAYMAKER HILL SCHOOL", 
+        "zipCode": "17535", 
+        "address": "SLAYMAKER HILL RD BY 61A"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "SPRING HOLLOW AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "19394 ROUTE 964 HWY N"
+    }, 
+    {
+        "city": "CENTRE HALL", 
+        "state": "PA", 
+        "name": "KRAMER GAP SCHOOL", 
+        "zipCode": "16828", 
+        "address": "339 DECKER RD"
+    }, 
+    {
+        "city": "SCOTTSDALE", 
+        "state": "AZ", 
+        "name": "LITTLE KINGS & QUEENS", 
+        "zipCode": "85251", 
+        "address": "4136 N 82ND ST"
+    }, 
+    {
+        "city": "SUGAR GROVE", 
+        "state": "PA", 
+        "name": "STONEY RUN AMISH SCHOOL", 
+        "zipCode": "16350", 
+        "address": "3380 STONEY RUN RD"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "LAUREL RUN SCHOOL", 
+        "zipCode": "17059", 
+        "address": "BILLEYVILLE RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "GREENTREE AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "VALLEY RD & GREENTREE RD"
+    }, 
+    {
+        "city": "LOGANTON", 
+        "state": "PA", 
+        "name": "MOUNTAIN TOP SCHOOL", 
+        "zipCode": "17747", 
+        "address": "216 PINE LOGANTON RD"
+    }, 
+    {
+        "city": "MOUNT JOY", 
+        "state": "PA", 
+        "name": "EBY CHIQUES SCHOOL", 
+        "zipCode": "17552", 
+        "address": "950 EBY CHIQUES RD"
+    }, 
+    {
+        "city": "MILLERSBURG", 
+        "state": "PA", 
+        "name": "NORTH MOUNTAIN VIEW AMISH", 
+        "zipCode": "17061", 
+        "address": "527 FULKROAD RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "SHADY LANE AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "24758 ROUTE 954 HWY N"
+    }, 
+    {
+        "city": "ATLANTIC", 
+        "state": "PA", 
+        "name": "ATLANTIC AMISH SCHOOL", 
+        "zipCode": "16111", 
+        "address": "9778 ATLANTIC RD"
+    }, 
+    {
+        "city": "OAK RIDGE", 
+        "state": "NJ", 
+        "name": "QUALITY TIME INC", 
+        "zipCode": "7438", 
+        "address": "74 OAK RIDGE RD"
+    }, 
+    {
+        "city": "DES MOINES", 
+        "state": "IA", 
+        "name": "FAIRMOUNT EDUCATION", 
+        "zipCode": "50317", 
+        "address": "4111 HUBBELL AVE"
+    }, 
+    {
+        "city": "REEDSVILLE", 
+        "state": "PA", 
+        "name": "SHADY ACRE SCHOOL", 
+        "zipCode": "17084", 
+        "address": "SHADY ACRE LN"
+    }, 
+    {
+        "city": "DAYTON", 
+        "state": "NJ", 
+        "name": "MONTESSORI ACADEMY & LEARNING CENTER", 
+        "zipCode": "8810", 
+        "address": "485 GEORGES RD STE 119"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "JR WILSON SCHOOL", 
+        "zipCode": "16142", 
+        "address": "151 POVERTY POINT RD"
+    }, 
+    {
+        "city": "EPHRATA", 
+        "state": "PA", 
+        "name": "DIAMOND ROAD PAROCHIAL SCHOOL", 
+        "zipCode": "17522", 
+        "address": "161 POOL RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "FOREST VIEW SCHOOL", 
+        "zipCode": "17562", 
+        "address": "96 MCILVAINE RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "NEWPORT SCHOOL", 
+        "zipCode": "17572", 
+        "address": "3778 E NEWPORT RD"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "GREENLAND AMISH SCHOOL", 
+        "zipCode": "17602", 
+        "address": "425 GRIDLEY RD"
+    }, 
+    {
+        "city": "STEVENS", 
+        "state": "PA", 
+        "name": "RED RUN SCHOOL", 
+        "zipCode": "17578", 
+        "address": "PIEFFER HILL RD"
+    }, 
+    {
+        "city": "PUNXSUTAWNEY", 
+        "state": "PA", 
+        "name": "BUTCHERS RUN AMISH SCHOOL", 
+        "zipCode": "15767", 
+        "address": "BUTCHERS RUN RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "BUENA VISTA AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "377 BUENA VISTA RD"
+    }, 
+    {
+        "city": "JACKSON CENTER", 
+        "state": "PA", 
+        "name": "DUTCH LANE AMISH SCHOOL", 
+        "zipCode": "16133", 
+        "address": "47 DUTCH LN"
+    }, 
+    {
+        "city": "BOSTON", 
+        "state": "MA", 
+        "name": "COOPER COMMUNITY CHILD DEVELOPMENT CENTER", 
+        "zipCode": "2118", 
+        "address": "1891 WASHINGTON ST"
+    }, 
+    {
+        "city": "MC CLURE", 
+        "state": "PA", 
+        "name": "WEST BEAVER SCHOOL", 
+        "zipCode": "17841", 
+        "address": "8581 OLD STAGE RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "CENTERVILLE AMISH SCHOOL", 
+        "zipCode": "17529", 
+        "address": "SCENIC RD CENTERVILLE"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "SPRINGVILLE SCHOOL", 
+        "zipCode": "17535", 
+        "address": "248 SPRINGVILLE RD"
+    }, 
+    {
+        "city": "CENTRE HALL", 
+        "state": "PA", 
+        "name": "WINDY POPLARS SCHOOL", 
+        "zipCode": "16828", 
+        "address": "251 DECKER RD"
+    }, 
+    {
+        "city": "NEW PROVIDENCE", 
+        "state": "PA", 
+        "name": "REFTON SCHOOL", 
+        "zipCode": "17560", 
+        "address": "180 SMITHVILLE RD"
+    }, 
+    {
+        "city": "VOLANT", 
+        "state": "PA", 
+        "name": "THORN HILL SCHOOL", 
+        "zipCode": "16156", 
+        "address": "298 FAYETTE NESHANNOCK FALLS RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "PINE KNOB SCHOOL", 
+        "zipCode": "17535", 
+        "address": "95 S KINZER RD"
+    }, 
+    {
+        "city": "ICKESBURG", 
+        "state": "PA", 
+        "name": "FARM LANE SCHOOL", 
+        "zipCode": "17037", 
+        "address": "MCMILLEN RD"
+    }, 
+    {
+        "city": "EPHRATA", 
+        "state": "PA", 
+        "name": "DURLACH PAROCHIAL SCHOOL", 
+        "zipCode": "17522", 
+        "address": "DURLACH RD"
+    }, 
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "FAIRFIELD SCHOOL", 
+        "zipCode": "17563", 
+        "address": "1360 FURNISS RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "NEW MILLTOWN AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17535", 
+        "address": "203 S NEW HOLLAND RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "STONY FLAT AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "1481 GRIFFITH RD"
+    }, 
+    {
+        "city": "CONNEAUTVILLE", 
+        "state": "PA", 
+        "name": "WESTVIEW CHRISTIAN SCHOOL (AMISH)", 
+        "zipCode": "16406", 
+        "address": "9162 TOWER RD"
+    }, 
+    {
+        "city": "ROSEMEAD", 
+        "state": "CA", 
+        "name": "DON BOSCO TECHNICAL INSTITUTE", 
+        "zipCode": "91770", 
+        "address": "1151 SAN GABRIEL BLVD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "CHESTNUT RUN SCHOOL", 
+        "zipCode": "17566", 
+        "address": "1329 RIVER RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "PARADISE LANE SCHOOL", 
+        "zipCode": "17572", 
+        "address": "131 PARADISE LN"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "SIDES MILL SCHOOL", 
+        "zipCode": "17579", 
+        "address": "127 LANTZ RD"
+    }, 
+    {
+        "city": "PARKESBURG", 
+        "state": "PA", 
+        "name": "HIDDEN ACRES SCHOOL", 
+        "zipCode": "19365", 
+        "address": "251 SKILES RD"
+    }, 
+    {
+        "city": "MILL HALL", 
+        "state": "PA", 
+        "name": "DEER HOLLOW SCHOOL", 
+        "zipCode": "17751", 
+        "address": "511 BEAGLE RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "IRISHTOWN SCHOOL", 
+        "zipCode": "17529", 
+        "address": "3103 IRISHTOWN RD"
+    }, 
+    {
+        "city": "MAYPORT", 
+        "state": "PA", 
+        "name": "DEERVIEW SCHOOL", 
+        "zipCode": "16240", 
+        "address": "922 W MARKET ST"
+    }, 
+    {
+        "city": "KELLER", 
+        "state": "TX", 
+        "name": "PREMIER ACADEMY HERITAGE", 
+        "zipCode": "76248", 
+        "address": "4040 HERITAGE TRACE PKWY"
+    }, 
+    {
+        "city": "FREDONIA", 
+        "state": "PA", 
+        "name": "PINE HOLLOW SCHOOL", 
+        "zipCode": "16124", 
+        "address": "BETWEEN SMALL RD & 178 MCCARTNEY RD"
+    }, 
+    {
+        "city": "ALLENSVILLE", 
+        "state": "PA", 
+        "name": "SHADY GROVE SCHOOL (HUEY ST)", 
+        "zipCode": "17002", 
+        "address": "67 HUEY ST"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "STONEY ACRES SCHOOL", 
+        "zipCode": "16256", 
+        "address": "583 BRINK RD"
+    }, 
+    {
+        "city": "REBERSBURG", 
+        "state": "PA", 
+        "name": "HILL SIDE SCHOOL", 
+        "zipCode": "16872", 
+        "address": "6277 BRUSH VALLEY RD"
+    }, 
+    {
+        "city": "EASTON", 
+        "state": "PA", 
+        "name": "THE CHILDRENS GARDEN EARLY ED CENTER", 
+        "zipCode": "18045", 
+        "address": "61 KUNKLE DR"
+    }, 
+    {
+        "city": "HOLTWOOD", 
+        "state": "PA", 
+        "name": "HILLDALE AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17532", 
+        "address": "HILLDALE RD"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "HOMESTEAD AMISH SCHOOL", 
+        "zipCode": "19344", 
+        "address": "501 WHITE SCHOOL RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "BYERSTOWN SCHOOL", 
+        "zipCode": "17535", 
+        "address": "5116 USNER RD"
+    }, 
+    {
+        "city": "TOPANGA", 
+        "state": "CA", 
+        "name": "MUSE ELEMENTARY & EARLY CHILDHOOD PROGRAM", 
+        "zipCode": "90290", 
+        "address": "1717 OLD TOPANGA CANYON RD"
+    }, 
+    {
+        "city": "MC CLURE", 
+        "state": "PA", 
+        "name": "BANNERVILLE SCHOOL", 
+        "zipCode": "17841", 
+        "address": "690 BANNERVILLE HILL RD"
+    }, 
+    {
+        "city": "KIRKWOOD", 
+        "state": "PA", 
+        "name": "MAPLE HILLSIDE AMISH SCHOOL", 
+        "zipCode": "17536", 
+        "address": "486 MAPLE SHADE RD"
+    }, 
+    {
+        "city": "DUBLIN", 
+        "state": "CA", 
+        "name": "VALLEY CHRISTIAN SCHOOLs", 
+        "zipCode": "94568", 
+        "address": "7500 INSPIRATION DR"
+    }, 
+    {
+        "city": "CENTERVILLE", 
+        "state": "PA", 
+        "name": "ORCHARD KNOB SCHOOL (AMISH)", 
+        "zipCode": "16404", 
+        "address": "20569 BRITTON RUN RD"
+    }, 
+    {
+        "city": "LUTHERSBURG", 
+        "state": "PA", 
+        "name": "SCENIC VIEW SCHOOL", 
+        "zipCode": "15848", 
+        "address": "396 MARSHALL RD"
+    }, 
+    {
+        "city": "WORCESTER", 
+        "state": "MA", 
+        "name": "ST MARY S JR/SR HIGH SCHOOL", 
+        "zipCode": "1610", 
+        "address": "50 RICHLAND ST"
+    }, 
+    {
+        "city": "SLIGO", 
+        "state": "PA", 
+        "name": "SHADY NOOK AMISH SCHOOL", 
+        "zipCode": "16255", 
+        "address": "729 SHADY LN"
+    }, 
+    {
+        "city": "REEDSVILLE", 
+        "state": "PA", 
+        "name": "STONEY HILL SCHOOL", 
+        "zipCode": "17084", 
+        "address": "WOODEDGE LN"
+    }, 
+    {
+        "city": "EMLENTON", 
+        "state": "PA", 
+        "name": "COAL VALLEY SCHOOL", 
+        "zipCode": "16373", 
+        "address": "253 BAILEY RD"
+    }, 
+    {
+        "city": "OCALA", 
+        "state": "FL", 
+        "name": "CHILDREN'S PALACE EAST & ACADEMY", 
+        "zipCode": "34471", 
+        "address": "3602 SE 7TH ST"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "PINE CREST AMISH SCHOOL", 
+        "zipCode": "17509", 
+        "address": "1160 GAP RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "LYNWOOD SCHOOL", 
+        "zipCode": "17572", 
+        "address": "221 LYNWOOD RD"
+    }, 
+    {
+        "city": "MARION CENTER", 
+        "state": "PA", 
+        "name": "PINE RIDGE AMISH SCHOOL", 
+        "zipCode": "15759", 
+        "address": "943 WEAVER RD"
+    }, 
+    {
+        "city": "SPRING GLEN", 
+        "state": "PA", 
+        "name": "SOUTH MOUNTAIN VIEW SCHOOL", 
+        "zipCode": "17978", 
+        "address": "SCHOOLHOUSE LN"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "PINE GROVE AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "20858 ROUTE 954 HWY N"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "CALAMUS RUN SCHOOL", 
+        "zipCode": "17572", 
+        "address": "51 ESBENSHADE RD"
+    }, 
+    {
+        "city": "TURBOTVILLE", 
+        "state": "PA", 
+        "name": "RIDGEVIEW AMISH SCHOOL", 
+        "zipCode": "17772", 
+        "address": "301 OTTAWA RD"
+    }, 
+    {
+        "city": "ALLENSVILLE", 
+        "state": "PA", 
+        "name": "COUNTY LINE SCHOOL", 
+        "zipCode": "17002", 
+        "address": "228 SHARPSBURG RD"
+    }, 
+    {
+        "city": "ENON VALLEY", 
+        "state": "PA", 
+        "name": "LITTLE BEAVER PAROCHIAL SCHOOL", 
+        "zipCode": "16120", 
+        "address": "136 GILMORE RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "MEADOW RIDGE SCHOOL", 
+        "zipCode": "17509", 
+        "address": "156 HIGHLAND RD"
+    }, 
+    {
+        "city": "NASHVILLE", 
+        "state": "TN", 
+        "name": "NASHVILLE INTERNATIONAL ACADEMY", 
+        "zipCode": "37209", 
+        "address": "7335 CHARLOTTE PIKE"
+    }, 
+    {
+        "city": "LITITZ", 
+        "state": "PA", 
+        "name": "FAIRLAND SCHOOL", 
+        "zipCode": "17543", 
+        "address": "125 FAIRLAND RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "NARVON RUN SCHOOL", 
+        "zipCode": "17555", 
+        "address": "5778 NORTHEIMER RD"
+    }, 
+    {
+        "city": "ACWORTH", 
+        "state": "GA", 
+        "name": "CORNERSTONE PREPARATORY ACADEMY", 
+        "zipCode": "30101", 
+        "address": "4310 MOON STATION LN NW"
+    }, 
+    {
+        "city": "3130 W 87TH ST", 
+        "state": "CHICAGO", 
+        "name": "LUTHER SOUTH MATH", 
+        "zipCode": "IL", 
+        "address": " SCIENCE & PERFORMING ARTS HIGH"
+    }, 
+    {
+        "city": "JACKSONVILLE", 
+        "state": "FL", 
+        "name": "SAFE HARBOR ACADEMY", 
+        "zipCode": "32226", 
+        "address": "4772 SAFE HARBOR WAY"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "MEDIA AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "19363", 
+        "address": "557 MOUNT PLEASANT RD"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "HESS SCHOOL", 
+        "zipCode": "17540", 
+        "address": "342 HESS RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "REISTVILLE SCHOOL", 
+        "zipCode": "17067", 
+        "address": "121 E REISTVILLE RD"
+    }, 
+    {
+        "city": "MARION CENTER", 
+        "state": "PA", 
+        "name": "WALNUT HOLLOW AMISH SCHOOL", 
+        "zipCode": "15759", 
+        "address": "536 KNAPKO RD"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "KISK CREEK SCHOOL", 
+        "zipCode": "17004", 
+        "address": "4220 E BACK MOUNTAIN RD"
+    }, 
+    {
+        "city": "CENTERVILLE", 
+        "state": "PA", 
+        "name": "SHIRLEY RUN AMISH SCHOOL", 
+        "zipCode": "16404", 
+        "address": "4559 MCGEETOWN RD"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "ASHVILLE SCHOOL", 
+        "zipCode": "19363", 
+        "address": "270 ASHVILLE RD"
+    }, 
+    {
+        "city": "DUARTE", 
+        "state": "CA", 
+        "name": "ANITA OAKS SCHOOL", 
+        "zipCode": "91010", 
+        "address": "822 BRADBOURNE AVE"
+    }, 
+    {
+        "city": "WILLOW HILL", 
+        "state": "PA", 
+        "name": "CONOCOCHEAGUE CREEK SCHOOL", 
+        "zipCode": "17271", 
+        "address": "STONEBRIDGE RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "SPRING RUN SCHOOL", 
+        "zipCode": "16256", 
+        "address": "245 WEASLE SLIDE DR"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "SHADY LANE AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "19363", 
+        "address": "300 TOWNSHIP RD"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "TWO LOG SCHOOL", 
+        "zipCode": "19344", 
+        "address": "2070 BEAVER DAM RD"
+    }, 
+    {
+        "city": "MEMPHIS", 
+        "state": "TN", 
+        "name": "BISHOP BYRNE MIDDLE/HIGH SCHOOL", 
+        "zipCode": "38116", 
+        "address": "1475 E SHELBY DR"
+    }, 
+    {
+        "city": "MILL HALL", 
+        "state": "PA", 
+        "name": "FISHING CREEK PAROCHIAL SCHOOL", 
+        "zipCode": "17751", 
+        "address": "1016 FISHING CREEK RD"
+    }, 
+    {
+        "city": "NEWBERG", 
+        "state": "OR", 
+        "name": "VERITAS SCHOOL", 
+        "zipCode": "97132", 
+        "address": "401 MISSION DR"
+    }, 
+    {
+        "city": "SUGAR GROVE", 
+        "state": "PA", 
+        "name": "COZY CORNERS AMISH SCHOOL", 
+        "zipCode": "16350", 
+        "address": "LANNING HILL RD"
+    }, 
+    {
+        "city": "MIAMI", 
+        "state": "FL", 
+        "name": "ST HUGH CATHOLIC SCHOOL", 
+        "zipCode": "33133", 
+        "address": "3460 ROYAL RD"
+    }, 
+    {
+        "city": "WOODWARD", 
+        "state": "PA", 
+        "name": "BOWER HOLLOW PAROCHIAL SCHOOL", 
+        "zipCode": "16882", 
+        "address": "BOWER HOLLOW RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "GAP VIEW SCHOOL", 
+        "zipCode": "17527", 
+        "address": "5621 UMBLETOWN RD"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "WEST EBY SCHOOL", 
+        "zipCode": "17540", 
+        "address": "41 W EBY RD"
+    }, 
+    {
+        "city": "LOS ANGELES", 
+        "state": "CA", 
+        "name": "CANYON OAKS SCHOOL", 
+        "zipCode": "90027", 
+        "address": "1308 L RON HUBBARD WAY"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "CHERRY LANE SCHOOL", 
+        "zipCode": "17067", 
+        "address": "111 CHERRY LANE RD"
+    }, 
+    {
+        "city": "ALLENSVILLE", 
+        "state": "PA", 
+        "name": "ORCHARD SIDE SCHOOL", 
+        "zipCode": "17002", 
+        "address": "693 FRONT MOUNTAIN RD"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "ZUVER SCHOOL NO 8", 
+        "zipCode": "16142", 
+        "address": "316 NUMBER 8 RD"
+    }, 
+    {
+        "city": "EAST EARL", 
+        "state": "PA", 
+        "name": "SPRING GROVE SCHOOL", 
+        "zipCode": "17519", 
+        "address": "IRON BRIDGE RD"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "MUSSER SCHOOL", 
+        "zipCode": "17540", 
+        "address": "591 MUSSER SCHOOL RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "NORTH STAR AMISH SCHOOL", 
+        "zipCode": "17572", 
+        "address": "NORTH STAR RD"
+    }, 
+    {
+        "city": "ROSSITER", 
+        "state": "PA", 
+        "name": "WINDY RIDGE SCHIOOL", 
+        "zipCode": "15772", 
+        "address": "2748 JOHNSONBURG RD"
+    }, 
+    {
+        "city": "AARONSBURG", 
+        "state": "PA", 
+        "name": "PENNS VALLEY AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "16820", 
+        "address": "205 AMISH SCHOOL DR"
+    }, 
+    {
+        "city": "LONG BEACH", 
+        "state": "CA", 
+        "name": "PARKRIDGE PRIVATE SCHOOL", 
+        "zipCode": "90807", 
+        "address": "3605 LONG BEACH BLVD # 304"
+    }, 
+    {
+        "city": "REBERSBURG", 
+        "state": "PA", 
+        "name": "ROCKVILLE SCHOOL", 
+        "zipCode": "16872", 
+        "address": "106 SCHOOLHOUSE LN"
+    }, 
+    {
+        "city": "ALTOONA", 
+        "state": "PA", 
+        "name": "SHADY POND SCHOOL", 
+        "zipCode": "16601", 
+        "address": "501 GOLF COURSE RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "WINDY KNOLL AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "68 LITTLE BRITAIN RD N"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "KEYSTONE AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "445 SCHOOL LANE RD"
+    }, 
+    {
+        "city": "MC CLURE", 
+        "state": "PA", 
+        "name": "DECATUR SCHOOL", 
+        "zipCode": "17841", 
+        "address": "WOLF RUN"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "SMYRNA VIEW SCHOOL", 
+        "zipCode": "17509", 
+        "address": "6573 WHITE OAK RD"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "FROG HOLLOW SCHOOL", 
+        "zipCode": "19363", 
+        "address": "133 DELP RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "STONEY LANE SCHOOL", 
+        "zipCode": "17555", 
+        "address": "BANK RD"
+    }, 
+    {
+        "city": "WAILUKU", 
+        "state": "HI", 
+        "name": "ISAIAH ACADEMY FOR EXCELLENCE", 
+        "zipCode": "96793", 
+        "address": "432 WAIEHU BEACH RD"
+    }, 
+    {
+        "city": "VENUS", 
+        "state": "PA", 
+        "name": "MEALY AMISH SCHOOL", 
+        "zipCode": "16364", 
+        "address": "495 KAPP LN"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "ROCKVALE AMISH SCHOOL", 
+        "zipCode": "17602", 
+        "address": "1890 ROCKVALE RD"
+    }, 
+    {
+        "city": "BELLEFONTE", 
+        "state": "PA", 
+        "name": "HUBLER RIDGE SCHOOL", 
+        "zipCode": "16823", 
+        "address": "1596 NITTANY VALLEY DR"
+    }, 
+    {
+        "city": "LYKENS", 
+        "state": "PA", 
+        "name": "MAHANTANGO SCHOOL", 
+        "zipCode": "17048", 
+        "address": "LUXENBURG RD"
+    }, 
+    {
+        "city": "MONSEY", 
+        "state": "NY", 
+        "name": "TEACHER MOMMY DAYCARE CENTER", 
+        "zipCode": "10952", 
+        "address": "71 ROUTE 59 STE C"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "STONY HILL AMISH", 
+        "zipCode": "17566", 
+        "address": "433 SPRINGVILLE RD"
+    }, 
+    {
+        "city": "ELIZABETHVILLE", 
+        "state": "PA", 
+        "name": "RAKERS MILL SCHOOL", 
+        "zipCode": "17023", 
+        "address": "RAKERS MILL RD"
+    }, 
+    {
+        "city": "HUNTSVILLE", 
+        "state": "AL", 
+        "name": "IN THE BEGINNING ACADEMY", 
+        "zipCode": "35810", 
+        "address": "3211 LODGE RD"
+    }, 
+    {
+        "city": "MEMPHIS", 
+        "state": "TN", 
+        "name": "LITTLE FLOWER PRIMARY SCHOOL", 
+        "zipCode": "38107", 
+        "address": "1666 JACKSON AVE"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "EAST SALEM SCHOOL", 
+        "zipCode": "17059", 
+        "address": "SAUSMAN LN OFF MOORE RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "VALLEY ROAD SCHOOL", 
+        "zipCode": "17566", 
+        "address": "957 VINTAGE RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "EAST NICKLE MINES AMISH SCHOOL", 
+        "zipCode": "17562", 
+        "address": "5495 WHITE OAK RD"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "COTTON SCHOOL", 
+        "zipCode": "16142", 
+        "address": "2980 COTTON RD"
+    }, 
+    {
+        "city": "TALALA", 
+        "state": "OK", 
+        "name": "TALALA CHRISTIAN ACADEMY", 
+        "zipCode": "74080", 
+        "address": "203 S CEDAR ST"
+    }, 
+    {
+        "city": "MEYERSDALE", 
+        "state": "PA", 
+        "name": "HIDDEN VALLEY AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "15552", 
+        "address": "127 HIDDEN VALLEY DR"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "FOGGY RIDGE AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "3574 WHITE OAK RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "SUNNY SPOT SCHOOL", 
+        "zipCode": "16256", 
+        "address": "245 WEASLE SLIDE DR"
+    }, 
+    {
+        "city": "TUBORVILLE", 
+        "state": "PA", 
+        "name": "CREEK SIDE SCHOOL", 
+        "zipCode": "17772", 
+        "address": "138 GEARHART RD"
+    }, 
+    {
+        "city": "LOGANTON", 
+        "state": "PA", 
+        "name": "LIMESTONE RIDGE SCHOOL", 
+        "zipCode": "17747", 
+        "address": "2881 W VALLEY RD"
+    }, 
+    {
+        "city": "MONTGOMERY", 
+        "state": "PA", 
+        "name": "VALLEY BELL SCHOOL", 
+        "zipCode": "17752", 
+        "address": "6280 ELIMSPORT RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "BUCK VIEW AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "1081 HOLTWOOD RD"
+    }, 
+    {
+        "city": "EPHRATA", 
+        "state": "PA", 
+        "name": "METZLERS MENNONITE SCHOOL", 
+        "zipCode": "17522", 
+        "address": "N FARMERSVILLE RD AT W METZLER RD  BOX 620"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "GEORGETOWN SCHOOL", 
+        "zipCode": "17562", 
+        "address": "1044 GEORGETOWN RD"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "NORTH JACKSON STREET SCHOOL", 
+        "zipCode": "17579", 
+        "address": "442 N JACKSON ST"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "STONY CURVE SCHOOL", 
+        "zipCode": "17509", 
+        "address": "369 CHRISTIANA PIKE"
+    }, 
+    {
+        "city": "PUNXSUTAWNEY", 
+        "state": "PA", 
+        "name": "WILLOW DRIVE SCHOOL", 
+        "zipCode": "15767", 
+        "address": "98 WILLOW DR"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "WINDY VALLEY SCHOOL", 
+        "zipCode": "17529", 
+        "address": "602 PETERS RD"
+    }, 
+    {
+        "city": "COLLEGE STATION", 
+        "state": "TX", 
+        "name": "ST THOMAS EARLY LEARNING CENTER", 
+        "zipCode": "77840", 
+        "address": "906 GEORGE BUSH DR"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "KURTZ VALLEY SCHOOL", 
+        "zipCode": "17059", 
+        "address": "CORNER OF FLINT RD & LOCUST RUN RD"
+    }, 
+    {
+        "city": "TIONESTA", 
+        "state": "PA", 
+        "name": "ALEXANDER AMISH SCHOOL", 
+        "zipCode": "16353", 
+        "address": "LAKE LUCY RD"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "LIME QUARRY SCHOOL", 
+        "zipCode": "17527", 
+        "address": "658 LIME QUARRY RD"
+    }, 
+    {
+        "city": "AIRVILLE", 
+        "state": "PA", 
+        "name": "SUNNYBURN SCHOOL", 
+        "zipCode": "17302", 
+        "address": "41 PARLETT RD"
+    }, 
+    {
+        "city": "OXFORD", 
+        "state": "PA", 
+        "name": "HIDDEN LANE SCHOOL", 
+        "zipCode": "19363", 
+        "address": "364 ST RD"
+    }, 
+    {
+        "city": "SPRING RUN", 
+        "state": "PA", 
+        "name": "WILLOW HILL AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17262", 
+        "address": "17400 SPRING RUN RD"
+    }, 
+    {
+        "city": "CHRISTIANA", 
+        "state": "PA", 
+        "name": "BRICK AMISH SCHOOL", 
+        "zipCode": "17509", 
+        "address": "1041 GEORGETOWN RD"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "GREENLAND SCHOOL", 
+        "zipCode": "17602", 
+        "address": "425 GRIDLEY RD"
+    }, 
+    {
+        "city": "KNOX", 
+        "state": "PA", 
+        "name": "BEAR RUN SCHOOL", 
+        "zipCode": "16232", 
+        "address": "KNIGHT BYPASS RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "TRIPLE SPRINGS AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17067", 
+        "address": "509 WOLEBER RD"
+    }, 
+    {
+        "city": "WINFIELD", 
+        "state": "PA", 
+        "name": "COUNTY LINE AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17889", 
+        "address": "6426 COUNTY LINE RD"
+    }, 
+    {
+        "city": "MILLERSTOWN", 
+        "state": "PA", 
+        "name": "RACCOON VALLEY AMISH SCHOOL", 
+        "zipCode": "17062", 
+        "address": "7780 RACCOON VALLEY RD"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "DEER RUN AMISH SCHOOL", 
+        "zipCode": "16142", 
+        "address": "404 S STONE BASE RD"
+    }, 
+    {
+        "city": "MIFFLINTOWN", 
+        "state": "PA", 
+        "name": "BLACK ROCK SCHOOL", 
+        "zipCode": "17059", 
+        "address": "CORNER OF MUSKRAT SPRINGS RD & WAGNER RD"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "PIN OAK SCHOOL", 
+        "zipCode": "19344", 
+        "address": "601 BEAVER DAM RD"
+    }, 
+    {
+        "city": "MEMPHIS", 
+        "state": "TN", 
+        "name": "DE LA SALLE ELEMENTARY SCHOOL", 
+        "zipCode": "38112", 
+        "address": "2540 HALE AVE"
+    }, 
+    {
+        "city": "MILLERSBURG", 
+        "state": "PA", 
+        "name": "GARDEN SPOT AMISH SCHOOL", 
+        "zipCode": "17061", 
+        "address": "3077 RIEGELS CHURCH RD"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "SPRING GARDEN PAROCHIAL SCHOOL", 
+        "zipCode": "17535", 
+        "address": "147 SNAKE LN"
+    }, 
+    {
+        "city": "ALBUQUERQUE", 
+        "state": "NM", 
+        "name": "CROSS OF HOPE LUTHERAN ELEMENTARY SCHOOL", 
+        "zipCode": "87120", 
+        "address": "6104 TAYLOR RANCH RD NW"
+    }, 
+    {
+        "city": "KIRKWOOD", 
+        "state": "PA", 
+        "name": "UNION AMISH SCHOOL", 
+        "zipCode": "17536", 
+        "address": "KIRKWOOD PIKE"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "OIL CREEK SCHOOL", 
+        "zipCode": "16434", 
+        "address": "42180 GLYNDEN RD"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "QUARRY ROAD SCHOOL", 
+        "zipCode": "17540", 
+        "address": "183 QUARRY RD"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "CHERRY RIDGE SCHOOL", 
+        "zipCode": "16434", 
+        "address": "25265 STATE HIGHWAY 89"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "INDIAN RUN SCHOOL", 
+        "zipCode": "16142", 
+        "address": "RR 2 CANNERY RD"
+    }, 
+    {
+        "city": "REEDSVILLE", 
+        "state": "PA", 
+        "name": "CHURCH LANE SCHOOL", 
+        "zipCode": "17084", 
+        "address": "CHURCH LN & LONG LN"
+    }, 
+    {
+        "city": "SAGINAW", 
+        "state": "MI", 
+        "name": "GROWING YEARS CHRISTIAN SCHOOL", 
+        "zipCode": "48603", 
+        "address": "2190 WIENEKE RD"
+    }, 
+    {
+        "city": "KIRKWOOD", 
+        "state": "PA", 
+        "name": "SALEM AMISH SCHOOL", 
+        "zipCode": "17536", 
+        "address": "11 SALEM RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "OAK SHADE SCHOOL", 
+        "zipCode": "17566", 
+        "address": "524 KING PEN RD"
+    }, 
+    {
+        "city": "DELTA", 
+        "state": "PA", 
+        "name": "BLUE BIRD MEADOW SCHOOL", 
+        "zipCode": "17314", 
+        "address": "680 LINE RD"
+    }, 
+    {
+        "city": "FORT MYERS", 
+        "state": "FL", 
+        "name": "PEACE BY PIECE INC", 
+        "zipCode": "33903", 
+        "address": "965 PONDELLA RD"
+    }, 
+    {
+        "city": "COLLIERVILLE", 
+        "state": "TN", 
+        "name": "INCARNATION CATHOLIC SCHOOL - SACC", 
+        "zipCode": "38017", 
+        "address": "360 BRAY STATION RD"
+    }, 
+    {
+        "city": "KIRKWOOD", 
+        "state": "PA", 
+        "name": "HILL ROAD SCHOOL", 
+        "zipCode": "17536", 
+        "address": "36 HILL RD"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "RED OAK SCHOOL", 
+        "zipCode": "16434", 
+        "address": "45726 BUELLS CORNERS RD"
+    }, 
+    {
+        "city": "MILLERSBURG", 
+        "state": "PA", 
+        "name": "MATTERSTOWN SCHOOL", 
+        "zipCode": "17061", 
+        "address": "428 MUNICIPAL RD"
+    }, 
+    {
+        "city": "LOGANTON", 
+        "state": "PA", 
+        "name": "MEADOW BROOK PAROCHIAL SCHOOL", 
+        "zipCode": "17747", 
+        "address": "16 SNOOK LN"
+    }, 
+    {
+        "city": "ORRSTOWN", 
+        "state": "PA", 
+        "name": "MCCLAYS MILL AMISH SCHOOL", 
+        "zipCode": "17244", 
+        "address": "10399 NEWBURG RD"
+    }, 
+    {
+        "city": "CORDOVA", 
+        "state": "TN", 
+        "name": "ST BENEDICT AT AUBURNDALE SCHOOL", 
+        "zipCode": "38016", 
+        "address": "8250 VARNAVAS DR"
+    }, 
+    {
+        "city": "ROSSITER", 
+        "state": "PA", 
+        "name": "CANOE RIDGE AMISH SCHOOL", 
+        "zipCode": "10772", 
+        "address": "CHURCH RD"
+    }, 
+    {
+        "city": "SUGAR GROVE", 
+        "state": "PA", 
+        "name": "RAILROAD SCHOOL", 
+        "zipCode": "16350", 
+        "address": "2363 LOTTSVILLE NIOBE RD"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "HARRISTOWN SCHOOL", 
+        "zipCode": "17562", 
+        "address": "398 OSCEOLA MILL RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "CARDINAL WING SCHOOL", 
+        "zipCode": "17566", 
+        "address": "683 CONOWINGO RD"
+    }, 
+    {
+        "city": "ONTARIO", 
+        "state": "CA", 
+        "name": "ONTARIO CHRISTIAN ACADEMY", 
+        "zipCode": "91764", 
+        "address": "1336 N BAKER AVE"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "JACKSONVILLE PAROCHIAL SCHOOL", 
+        "zipCode": "17067", 
+        "address": "846 KUTZTOWN RD"
+    }, 
+    {
+        "city": "BIRD IN HAND", 
+        "state": "PA", 
+        "name": "SNAKE HILL AMISH SCHOOL", 
+        "zipCode": "17505", 
+        "address": "94 SNAKE HILL RD"
+    }, 
+    {
+        "city": "SPRING MILLS", 
+        "state": "PA", 
+        "name": "WOODSIDE AMISH SCHOOL", 
+        "zipCode": "16875", 
+        "address": "124 SCHOOL LN"
+    }, 
+    {
+        "city": "JERSEY SHORE", 
+        "state": "PA", 
+        "name": "PINE WOODS SCHOOL", 
+        "zipCode": "17740", 
+        "address": "1647 QUARRY RD"
+    }, 
+    {
+        "city": "DRUMORE", 
+        "state": "PA", 
+        "name": "PARKSIDE AMISH SCHOOL", 
+        "zipCode": "17518", 
+        "address": "1728 SUSQUEHANNOCK DR"
+    }, 
+    {
+        "city": "KINZERS", 
+        "state": "PA", 
+        "name": "EBY'S CURVE SCHOOL", 
+        "zipCode": "17535", 
+        "address": "5081A STRASBURG RD"
+    }, 
+    {
+        "city": "FREDONIA", 
+        "state": "PA", 
+        "name": "GREEN MEADOW PAROCHIAL SCHOOL", 
+        "zipCode": "16124", 
+        "address": "38 BREESE RD"
+    }, 
+    {
+        "city": "WEST SPRINGFIELD", 
+        "state": "PA", 
+        "name": "CHERRY HILL AMISH SCHOOL", 
+        "zipCode": "16443", 
+        "address": "W CHERRY HILL RD"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "CAMBRIDGE PAROCHIAL SCHOOL", 
+        "zipCode": "17555", 
+        "address": "MEADVILLE RD NEAR MT ZION RD"
+    }, 
+    {
+        "city": "ALLENSVILLE", 
+        "state": "PA", 
+        "name": "HICKORY GROVE SPECIAL SCHOOL", 
+        "zipCode": "17002", 
+        "address": "61 HUEY ST"
+    }, 
+    {
+        "city": "PARADISE", 
+        "state": "PA", 
+        "name": "MOUNTAIN SIDE SCHOOL", 
+        "zipCode": "17562", 
+        "address": "227 WOLFROCK RD"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "HARTMAN STATION AMISH SCHOOL", 
+        "zipCode": "17601", 
+        "address": "660 HARTMAN STATION RD"
+    }, 
+    {
+        "city": "CHICAGO", 
+        "state": "IL", 
+        "name": "ST NICHOLAS OF TOLLENTINE SCHOOL", 
+        "zipCode": "60629", 
+        "address": "3741 W 62ND ST"
+    }, 
+    {
+        "city": "JACKSON", 
+        "state": "TN", 
+        "name": "SACRED HEART OF JESUS HIGH SCHOOL", 
+        "zipCode": "38305", 
+        "address": "185 GREENFIELD DR"
+    }, 
+    {
+        "city": "HOLTWOOD", 
+        "state": "PA", 
+        "name": "RAWLINSVILLE SCHOOL", 
+        "zipCode": "17532", 
+        "address": "112 MARTIC HEIGHTS DR"
+    }, 
+    {
+        "city": "GAP", 
+        "state": "PA", 
+        "name": "SIMMONTOWN AMISH SCHOOL", 
+        "zipCode": "17527", 
+        "address": "5605 STRASBURG RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "NACETOWN MENNONITE SCHOOL", 
+        "zipCode": "17067", 
+        "address": "11A W STRACK DR"
+    }, 
+    {
+        "city": "DORNSIFE", 
+        "state": "PA", 
+        "name": "CHERRYTOWN SCHOOL", 
+        "zipCode": "17823", 
+        "address": "1145 CHERRY TOWN RD"
+    }, 
+    {
+        "city": "DAYTON", 
+        "state": "PA", 
+        "name": "WHIPPOORWILL SCHOOL", 
+        "zipCode": "16222", 
+        "address": "209 WHIPPOORWILL RD"
+    }, 
+    {
+        "city": "ATGLEN", 
+        "state": "PA", 
+        "name": "HIGHLAND AMISH SCHOOL", 
+        "zipCode": "19310", 
+        "address": "17 UMBLE RD"
+    }, 
+    {
+        "city": "MYERSTOWN", 
+        "state": "PA", 
+        "name": "ROCKY LEDGE SCHOOL", 
+        "zipCode": "17067", 
+        "address": "200 HERGELRODE DR"
+    }, 
+    {
+        "city": "OAKLAND MILLS", 
+        "state": "PA", 
+        "name": "RIDGESIDE SCHOOL", 
+        "zipCode": "17076", 
+        "address": "LONG RD SR 2007"
+    }, 
+    {
+        "city": "RENO", 
+        "state": "NV", 
+        "name": "SIERRA NEVADA HIGH SCHOOL", 
+        "zipCode": "89506", 
+        "address": "14175 MOUNT CHARLESTON ST"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "WESTFIELD AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17529", 
+        "address": "3745 OLD PHILADELPHIA PIKE"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "DRYKNOB AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "16256", 
+        "address": "371 DRY KNOB RD"
+    }, 
+    {
+        "city": "WILLOW STREET", 
+        "state": "PA", 
+        "name": "BYERLAND SCHOOL", 
+        "zipCode": "17584", 
+        "address": "1050 BYERLAND CHURCH RD"
+    }, 
+    {
+        "city": "BELLFLOWER", 
+        "state": "CA", 
+        "name": "CREATIVE DAY PRESCHOOL & ACADEMY", 
+        "zipCode": "90706", 
+        "address": "8740 RAMONA ST"
+    }, 
+    {
+        "city": "LEOLA", 
+        "state": "PA", 
+        "name": "CREEK HILL SCHOOL", 
+        "zipCode": "17540", 
+        "address": "2728 CREEK HILL RD"
+    }, 
+    {
+        "city": "MOHNTON", 
+        "state": "PA", 
+        "name": "TROSTLE HILL SCHOOL", 
+        "zipCode": "19540", 
+        "address": "126 E BOWMANSVILLE RD"
+    }, 
+    {
+        "city": "EGG HARBOR TOWNSHIP", 
+        "state": "NJ", 
+        "name": "KIDS' CHOICE ACADEMY", 
+        "zipCode": "8234", 
+        "address": "6701 BLACK HORSE PIKE"
+    }, 
+    {
+        "city": "NEW HOLLAND", 
+        "state": "PA", 
+        "name": "WELSH MOUNTAIN AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17557", 
+        "address": "5310 HAMMOND RD"
+    }, 
+    {
+        "city": "SPARTANSBURG", 
+        "state": "PA", 
+        "name": "BRUSH RUN AMISH SCHOOL", 
+        "zipCode": "16434", 
+        "address": "45047 FARRINGTON RD"
+    }, 
+    {
+        "city": "WILLOW STREET", 
+        "state": "PA", 
+        "name": "LINESTOWN AMISH SCHOOL", 
+        "zipCode": "17584", 
+        "address": "239 LINESTOWN RD"
+    }, 
+    {
+        "city": "LANCASTER", 
+        "state": "PA", 
+        "name": "SMOKETOWN SCHOOL", 
+        "zipCode": "17602", 
+        "address": "2347 HOBSON RD"
+    }, 
+    {
+        "city": "ALTADENA", 
+        "state": "CA", 
+        "name": "JANE WARNER'S SCHOOL", 
+        "zipCode": "91001", 
+        "address": "2704 FAIR OAKS AVE"
+    }, 
+    {
+        "city": "NEW WILMINGTON", 
+        "state": "PA", 
+        "name": "LIGO SCHOOL", 
+        "zipCode": "16142", 
+        "address": "411 LEESBURG STATION RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "OWL HOLLOW AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "531 WINDOWS RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "PICADILLY RIDGE SCHOOL", 
+        "zipCode": "17566", 
+        "address": "72 STONY HILL RD"
+    }, 
+    {
+        "city": "DENVER", 
+        "state": "CO", 
+        "name": "THREE BEARS LEARNING CENTER", 
+        "zipCode": "80247", 
+        "address": "1461 S DAYTON ST"
+    }, 
+    {
+        "city": "STRASBURG", 
+        "state": "PA", 
+        "name": "BEAVER VALLEY SCHOOL", 
+        "zipCode": "17579", 
+        "address": "509 MAY POST OFFICE RD"
+    }, 
+    {
+        "city": "SAN GABRIEL", 
+        "state": "CA", 
+        "name": "SINWA EDUCATION CENTER", 
+        "zipCode": "91776", 
+        "address": "401 W LAS TUNAS DR"
+    }, 
+    {
+        "city": "MEYERSDALE", 
+        "state": "PA", 
+        "name": "SUMMIT MILLS PAROCHIAL SCHOOL", 
+        "zipCode": "15552", 
+        "address": "423 CEMETARY RD"
+    }, 
+    {
+        "city": "HONEY BROOK", 
+        "state": "PA", 
+        "name": "MT PLEASANT AMISH SCHOOL", 
+        "zipCode": "19344", 
+        "address": "490 MOUNT PLEASANT RD"
+    }, 
+    {
+        "city": "BELLEVILLE", 
+        "state": "PA", 
+        "name": "HOLLOW VIEW SCHOOL", 
+        "zipCode": "17004", 
+        "address": "400 MIDDLE RD"
+    }, 
+    {
+        "city": "QUARRYVILLE", 
+        "state": "PA", 
+        "name": "HESS VIEW AMISH SCHOOL", 
+        "zipCode": "17566", 
+        "address": "142 HESS RD"
+    }, 
+    {
+        "city": "SMICKSBURG", 
+        "state": "PA", 
+        "name": "SHADY RUN AMISH SCHOOL", 
+        "zipCode": "16256", 
+        "address": "65 SCHOOL RD"
+    }, 
+    {
+        "city": "PEACH BOTTOM", 
+        "state": "PA", 
+        "name": "NEW TEXAS AMISH PAROCHIAL SCHOOL", 
+        "zipCode": "17563", 
+        "address": "321 BLACK BARREN RD"
+    }, 
+    {
+        "city": "NEWBURG", 
+        "state": "PA", 
+        "name": "OTTERBEIN SCHOOL", 
+        "zipCode": "17240", 
+        "address": "8925 NEWBURG RD"
+    }, 
+    {
+        "city": "RONKS", 
+        "state": "PA", 
+        "name": "IVA AMISH SCHOOL", 
+        "zipCode": "17572", 
+        "address": "87 PEACH LN"
+    }, 
+    {
+        "city": "BLAIN", 
+        "state": "PA", 
+        "name": "FOWLERS HOLLOW SCHOOL", 
+        "zipCode": "17006", 
+        "address": "2811 FOWLER HOLLOW RD"
+    }, 
+    {
+        "city": "PUNXSUTAWNEY", 
+        "state": "PA", 
+        "name": "PINE VALLEY PAROCHIAL SCHOOL", 
+        "zipCode": "15767", 
+        "address": "1979 ROUTE 410"
+    }, 
+    {
+        "city": "TAMPA", 
+        "state": "FL", 
+        "name": "PRIMROSE SCHOOL OF TAMPA PALMS", 
+        "zipCode": "33647", 
+        "address": "5307 PRIMROSE LAKE CIR"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "HOLLOW AMISH SCHOOL", 
+        "zipCode": "17529", 
+        "address": "4001 RIDGE RD"
+    }, 
+    {
+        "city": "PARKESBURG", 
+        "state": "PA", 
+        "name": "BREEZEWOOD AMISH SCHOOL", 
+        "zipCode": "19365", 
+        "address": "6138 LIMEVILLE RD"
+    }, 
+    {
+        "city": "BOONTON", 
+        "state": "NJ", 
+        "name": "ALPHABETLAND/AMER ISLAMIC ACADEMY", 
+        "zipCode": "7005", 
+        "address": "110 HARRISON ST"
+    }, 
+    {
+        "city": "NARVON", 
+        "state": "PA", 
+        "name": "BEAVER DAM AMISH SCHOOL", 
+        "zipCode": "17555", 
+        "address": "206 CHURCHTOWN RD"
+    }, 
+    {
+        "city": "GORDONVILLE", 
+        "state": "PA", 
+        "name": "EAST GORDON SCHOOL", 
+        "zipCode": "17529", 
+        "address": "3298 E GORDON RD"
+    }, 
+    {
+        "city": "COATESVILLE", 
+        "state": "PA", 
+        "name": "SANDY HILL SCHOOL", 
+        "zipCode": "19320", 
+        "address": "162 ASH RD"
+    }, 
+    {
+        "city": "ALBANY", 
+        "state": "OR", 
+        "name": "CIRCLE OF FRIENDS LEARNING CENTER", 
+        "zipCode": "97321", 
+        "address": "325 PACIFIC BLVD SW"
+    }
+]
