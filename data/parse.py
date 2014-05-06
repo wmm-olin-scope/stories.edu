@@ -1,6 +1,7 @@
 import os, sys
 from collections import defaultdict
 
+import json
 from pprint import pprint
 import pandas as pd
 from pymongo import MongoClient
@@ -154,10 +155,25 @@ if __name__ == "__main__":
     by_zip = mapping(dfs, 'zip', normalize_zip) 
     by_phone = mapping(dfs, 'phone', normalize_phone)
     
+    schools = json.loads(open('raw/new_private_schools.json').read())
+    for school in schools:
+        school['zip'] = school['zipCode']
+        del school['zipCode']
+        db.privateschools.insert(school)
+        augment_school(dfs, db.privateschools, school)
+
+    schools = json.loads(open('raw/colleges.json').read())
+    for school in schools:
+        school['zip'] = school['zipCode']
+        del school['zipCode']
+        db.privateschools.insert(school)
+        augment_school(dfs, db.privateschools, school)
+
     schools = list(db.privateschools.find())
     print "Private: ", len(schools)
     for school in schools:
         augment_school(dfs, db.privateschools, school)
+
 
     schools = list(db.publicschools.find())
     print "Public: ", len(schools)
