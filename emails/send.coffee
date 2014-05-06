@@ -11,7 +11,7 @@ mandrill = new Mandrill process.env.MANDRILL_APIKEY
 
 DEVELOPMENT_EMAIL = 'hello@thank-a-teacher.org'
 
-CREATED_THRESHOLD = new Date 2014, 4, 3, 21 # Saturday May 3rd at 9pm
+CREATED_THRESHOLD = new Date 2014, 4, 4, 21 # Sunday May 4th at 9pm
 
 exports.sendAllUnprocessedPostcards = (development=yes) ->
     query = Postcard.find({processed: no, created: {$gte: CREATED_THRESHOLD}})
@@ -33,7 +33,7 @@ sendPostcard = (postcard, development=yes) ->
 
         Q.all [sendEmailToSchool schoolEmail, postcard, school
                sendEmailToThanker thankerEmail, postcard, school]
-        .then -> markProcessed postcard
+        .then -> markProcessed postcard, development
 
 sendEmailToSchool = (email, postcard, school) ->
     console.log "Email to school: #{email}"
@@ -74,11 +74,11 @@ setSendStatus = (postcard, field, result) ->
     Q.ninvoke postcard, 'save'
 
 makePostcardMergeVars = (postcard, school) -> [
-    {name: 'SchoolName', content: capitalize school.name}
-    {name: 'TeacherName', content: postcard.teacher}
-    {name: 'Message', content: postcard.note}
-    {name: 'StudentName', content: postcard.name}
-    {name: 'City', content: capitalize school.city}
+    {name: 'SchoolName', content: capitalize _.unescape school.name}
+    {name: 'TeacherName', content: _.unescape postcard.teacher}
+    {name: 'Message', content: _.unescape postcard.note}
+    {name: 'StudentName', content: _.unescape postcard.name}
+    {name: 'City', content: capitalize _.unescape school.city}
     {name: 'State', content: school.state}
     {name: 'FullMessageURL', content: postcard.getUrl()}
     {name: 'ARCHIVE', content: postcard.getUrl()}
@@ -116,7 +116,8 @@ sendTemplateEmail = (template) ->
     mandrill.messages.sendTemplate template, onResult, onError
     deferred.promise
 
-markProcessed = (postcard) ->
+markProcessed = (postcard, development=yes) ->
+    return Q() if development
     postcard.processed = yes
     Q.ninvoke postcard, 'save'
 
