@@ -12,8 +12,8 @@ missing = '–'
 lowQuality = '‡'
 badValues = [notApplicable, missing, lowQuality]
 
-publicCSV = __dirname + '/raw/public-schools-processed.csv'
-privateCSV = __dirname + '/raw/private-schools-processed.csv'
+publicCSV = __dirname + '/thank-a-teacher.publicschools.csv'
+privateCSV = __dirname + '/thank-a-teacher.privateschools.csv'
 
 publicSchoolSchema = new mongoose.Schema
     schoolType:
@@ -68,8 +68,12 @@ exports.PrivateSchool = PrivateSchool = mongoose.model 'PrivateSchool',
                                                        privateSchoolSchema
 
 generateDB = ->
-    Q.allSettled([generateSchools(PublicSchool, publicCSV),
-                  generateSchools(PrivateSchool, privateCSV)])
+    generateSchools PublicSchool, publicCSV
+    .then -> generateSchools PrivateSchool, privateCSV
+    .catch (error) ->
+        console.error 'Could not parse schools csv'
+        console.log error
+        console.log error.stack
     .then generateStates
 
 generateSchools = (model, file) ->
