@@ -1,0 +1,49 @@
+@import "main/step-number.less";
+
+#step-container {
+    .muted-border-radius();
+    background-color: @white-color;
+    padding-left: 1.7em;
+    padding-right: 1.7em;
+    margin-bottom: 30px;
+    padding-bottom: 1em;
+}
+
+.step-tagline {
+    .sans-bold-font();
+    font-size: @very-large-font;
+}
+
+legend {
+    .sans-font();
+    font-size: @large-font;
+    border: none;
+    padding: 0.5em 0 0 0;
+    margin: 0;
+}
+
+legend.step-alternative {
+    .sans-bold-font();
+    font-size: @normal-font;
+}
+
+legend.teacher-name {
+    .sans-bold-font();
+    font-size: @normal-font;
+}
+
+fieldset {
+    margin-bottom: 1em;
+}
+
+fieldset .row {
+    margin-top: 1em;
+}
+
+fieldset .row:nth-of-type(1) {
+    margin-top: 0;
+}
+
+.name-field {
+    margin-bottom: 1em;
+}

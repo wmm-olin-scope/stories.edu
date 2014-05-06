@@ -1,0 +1,209 @@
+
+// Color Variables
+// @blue-color: #004BAD;
+@blue-color: #004f68;
+@blue-light-color: #0083AD;
+@green-color: #8DCA84;
+@orange-color: #F3733C;
+@grey-color: #808284;
+@white-color: #FFFFFF;
+@blue-transparent-overlay: rgba(0, 131, 173, 0.5);
+
+// Font Variables
+@huge-font: 30px;
+@very-large-font: 22px;
+@large-font: 18px;
+@normal-font: 14px;
+@small-font: 12px;
+@quite-small-font: 11px;
+@very-small-font: 10px;
+@tiny-font: 8px;
+
+.share-font() {
+    font-family: 'Open Sans', 'sans-serif';
+    font-weight: 700; // Open Sans Bold
+}
+
+// Note: These two are currently going to be set to 400 automatically if not available
+.sans-light-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400; // Raleway Normal/Regular
+}
+
+.sans-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500; // Raleway Medium
+}
+
+// Note: These two are currently going to be set to 800 automatically if not available
+.sans-bold-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700; // Raleway Bold
+}
+
+.sans-extra-bold-font() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800; // Raleway Extra Bold
+}
+
+.handwritten-font {
+    font-family: 'blokletters_balpenbalpen', sans-serif;
+}
+
+.handwritten-bold-font {
+    font-family: 'blokletters_viltstiftviltstift', sans-serif;
+}
+
+body {
+    .sans-font();
+}
+
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.muted-border-radius() {
+    .border-radius(3px);
+}
+
+.vert-center-container(@height) {
+    display: table;
+    height: @height;
+    overflow: hidden;
+}
+
+.vert-center-item() {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.horz-center(@width) {
+    float: none;
+    margin: 0 auto;
+    width: @width
+}
+
+.vert-fill() {
+    height: 100%;
+}
+
+.horz-fill() {
+    width: 100%;
+}
+
+.video-container {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.unselectable {
+    cursor: default;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+}
+
+.fixed-aspect-box(@ratio: 1) {
+	position: relative;
+    &:before {
+        content: "";
+        display: block;
+        padding-top: 100%/@ratio;
+    }
+    .fixed-aspect-content {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+    }
+}
+
+.clear-bootstrap-margins {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.clear-bootstrap-paddings {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.fixed-1-1-aspect-box {
+    .fixed-aspect-box(1);
+}
+
+.text-input-format {
+    .sans-font();
+}
+
+// Call to action button
+.btn-cta {
+    .sans-extra-bold-font();
+    padding: 10px;
+    color: @white-color;
+    background-color: @orange-color;
+    text-transform: uppercase;
+    border: none;
+    .border-radius(2px);
+}
+
+.btn-cta:hover,
+.btn-cta:focus,
+.btn-cta:active,
+.btn-cta.active {
+    color: @white-color;
+    background-color: darken(@orange-color, 5%);
+}
+
+.btn-cta[disabled] {
+    color: @white-color;
+    background-color: lighten(@orange-color, 5%);
+    cursor: not-allowed;
+}
+
+.green-text{
+    color: @green-color;
+}
+
+.orange-text{
+    color: @orange-color;
+}
+
+.dark-blue-text{
+    color: @blue-color;
+}
+
+h1 {
+    .unselectable();
+    .sans-bold-font();
+    font-size: @huge-font;
+}
+
+h2 {
+    .unselectable();
+    .sans-bold-font();
+    font-size: @very-large-font;
+}
+
+h3 {
+    .unselectable();
+    .sans-bold-font();
+    font-size: @large-font;
+}
+
+.orange-link {
+    color: @orange-color;
+    cursor: pointer;
+    &:hover {
+        color: @orange-color;
+        text-decoration: none;
+    }
+}

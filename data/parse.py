@@ -179,3 +179,4 @@ if __name__ == "__main__":
     print "Public: ", len(schools)
     for school in schools:
         augment_school(dfs, db.publicschools, school)
+

@@ -1,11 +1,10 @@
 
-home = (req, res) -> res.render 'index'
+rendering = require './rendering'
 
 exports.create = (app) ->
-    app.get '/', home
-    app.get '/privacy', (req, res) -> res.render 'privacy'
-    require('./prompts').create app
+    require('./rendering').setup app
+
+    require('./static').create app
     require('./schools').create app
-    require('./users').create app
     require('./postcards').create app
  

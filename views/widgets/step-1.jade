@@ -1,0 +1,23 @@
+extends step
+
+block step-content
+    +step-number(1)
+    form(role='form')
+        fieldset
+            .row
+                .col-sm-12
+                    legend Who do you want to thank?
+            .row
+                .col-xs-12
+                    input.js-teacher-field.form-control.text-input-format(type='text', name='teacher-name', placeholder='Name of K-12 teacher, coach, or mentor')
+        fieldset
+            .row
+                .col-sm-12.no-bottom
+                    legend Who is this from?
+            .row
+                .col-sm-6
+                    input.name-field.js-name-field.form-control.text-input-format(type='text', name='name', placeholder='Name')
+                .col-sm-6
+                    input.js-email-field.form-control.text-input-format(type='email', name='email', placeholder='Email')
+        fieldset
+            +next-button('Next Step')

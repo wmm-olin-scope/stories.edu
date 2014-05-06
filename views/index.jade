@@ -1,36 +1,31 @@
 extends layout
 
-block content
-    .container
-        script(src='/javascripts/home.js')
+block scripts
+    script(src=static('javascripts/index.js'))
 
-    .row.movie-container
-        .col-lg-10.col-lg-offset-1#frontdisplay
-            .col-lg-6
-                .row
-                    include seed-movie
-            .col-lg-5.col-lg-offset-1
-                h2#tagline
-                    strong We have all been students.
-                h3#tagline Let's take the time to thank the people who helped us become who we are today.
-                br
-                a.btn.btn-lg(role="button" href="/make-postcard")#saythanks
-                    strong Send A Note To Your Teacher
-        .col-lg-10.col-lg-offset-1.share-footer
-            form.form-inline(role="form")
-                .form-group
-                    label.control-label Spread the Word
-                    .btn-group#social
-                        a.btn.btn-share.btn-twitter.share-twitter.share
-                            i.fa.fa-twitter
-                            | &nbsp; Tweet
-                        a.btn.btn-share.btn-facebook.share-facebook.share
-                            i.fa.fa-facebook
-                            | &nbsp; Post
-                        a.btn.btn-share.btn-google-plus.share-google-plus.share
-                            i.fa.fa-google-plus
-                            | &nbsp; Share
-                        a.btn.btn-share.share-email.share
-                            i.fa.fa-envelope
-                            | &nbsp; Email
-    include story-carousel
+block content
+    .container.background-outside-container
+        .row.background-container
+            #make-postcard
+                row
+                    .col-xs-12.col-sm-7.col-md-6.col-lg-5.col-lg-offset-1
+                        #step-container
+                            #step-1
+                                include widgets/step-1
+                            #step-2.hidden
+                                include widgets/step-2
+                            #step-3.hidden
+                                include widgets/step-3
+                    .col-xs-12.col-sm-5.col-md-6.col-lg-5.about-column
+                        include widgets/about
+                row
+                    .col-xs-12.col-sm-offset-2.col-sm-5.col-md-4.col-md-offset-3.col-lg-offset-4
+                        img(src='images/TextAndArrow.png' alt='')
+            #show-postcard.hidden
+                include widgets/postcard-with-share
+    #secondary-content
+        include widgets/how-it-works
+        include widgets/sample-notes
+        .container
+            .share-btn-container.js-share-buttons
+                include widgets/share-button-row

@@ -1,58 +1,76 @@
 
 siteUrl = 'http://www.thank-a-teacher.org'
-message = "We've all been students. Let's take 5 min to thank a teacher who helped us become who we are today."
+twitterHandle = '@ThankAMentor'
 
-setupFacebook = ->
-    encoded = encodeURIComponent siteUrl
-    facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=#{encoded}"
-    $('.share-facebook')
-        .attr 'href', facebookUrl
-        .attr 'target', '_blank'
-    $('.share-facebook').click ->
+default_tweet = "Ever wanted to send a thank you note to a past teacher? Take a min to #{twitterHandle} via this student project: #{siteUrl}"
+default_email =
+    subject: "Take a minute to thank a past teacher and support this student project"
+    body: "Ever wanted to send a thank you note to a past teacher? Show them your appreciation by taking a minute to send them a thank you note and support this student project at #{siteUrl}"
+default_fb = 
+    name: 'Thank A Teacher: A Student Project',
+    caption: 'Take a minute to thank a past teacher'
+    link: siteUrl
+    picture: "http://i62.tinypic.com/mv3nfl.jpg"
+
+FBinit = ->
+    window.fbAsyncInit = ->
+        FB.init
+            appId: "229910487211463"
+            status: true
+            xfbml: true
+        return
+    ((d, s, id) ->
+        js = undefined
+        fjs = d.getElementsByTagName(s)[0]
+        return  if d.getElementById(id)
+        js = d.createElement(s)
+        js.id = id
+        js.src = "//connect.facebook.net/en_US/all.js"
+        fjs.parentNode.insertBefore js, fjs
+        return
+    ) document, "script", "facebook-jssdk"
+
+exports.setupButtons = (container) ->
+    container = $ container
+    default_setupFacebook container
+    default_setupTwitter container
+    default_setupGooglePlus container
+    default_setupEmail container
+
+setupButton = (url, network, button) ->
+    button.click ->
         mixpanel.track 'share',
-          network: 'facebook'
+          content: 'site'
+          network: {network}
+        window.open url, '_blank'
 
-setupTwitter = ->
-    
-    encoded = encodeURIComponent siteUrl
-    twitterUrl = "https://twitter.com/share?url=#{encoded}&text=#{message}&via=thankamentor"
-    $('.share-twitter')
-        .attr 'href', twitterUrl
-        .attr 'target', '_blank'
-    $('.share-twitter').click ->
-        mixpanel.track 'share',
-          network: 'twitter'
+default_setupFacebook = (container) ->
+    FBinit()
+    $('.js-share-facebook', container).click ->
+        FB.ui
+            method: "feed"
+            name: default_fb.name,
+            caption: default_fb.caption
+            link: default_fb.link
+            picture: default_fb.picture
+        , (response) ->
+            console.log "FB opened"
+            return
 
-setupGooglePlus = ->
+default_setupTwitter = (container) ->
+    encoded = encodeURIComponent default_tweet
+    twitterUrl = "https://twitter.com/intent/tweet?text=#{encoded}"
+    setupButton twitterUrl, 'twitter', $('.js-share-twitter', container)
+
+default_setupGooglePlus = (container) ->
     encoded = encodeURIComponent siteUrl
     googlePlusUrl = "https://plus.google.com/share?url=#{encoded}"
-    $('.share-google-plus')
-        .attr 'href', googlePlusUrl
-        .attr 'target', '_blank'
-    $('.share-google-plus').click ->
-        mixpanel.track 'share',
-          network: 'googleplus'
+    setupButton googlePlusUrl, 'googleplus', $('.js-share-google-plus', container)
 
-setupEmail = ->
-    encoded = encodeURIComponent siteUrl
-    emailUrl = "mailto:?Subject=Thank%20a%20teacher%21%20&Body=#{message+' Check out: '+siteUrl}"
-    $('.share-email')
-        .attr 'href', emailUrl
-        .attr 'target', '_blank'
-    $('.share-email').click ->
-        mixpanel.track 'share',
-          network: 'email'
+default_setupEmail = (container) ->
+    encoded_subject = encodeURIComponent default_email.subject
+    encoded_body = encodeURIComponent default_email.body
+    emailUrl = "mailto:?Subject=#{encoded_subject}&Body=#{encoded_body}"
+    $('.js-share-email', container).click ->
+        window.location = emailUrl
 
-setupMakePostcardClick = ->
-    $('#saythanks').click ->
-        # might need fixing
-        mixpanel.track 'click',
-          action: 'init'
-
-exports.setup = ->
-    setupFacebook()
-    setupTwitter()
-    setupGooglePlus()
-    setupEmail()
-    setupMakePostcardClick()
-    

@@ -1,0 +1,68 @@
+// Shared Notes
+@sn-row-padding: 10%;
+
+.sn-text-center{
+    text-align: center;
+}
+
+.sn-half-row{
+    padding-left: @sn-row-padding;
+    padding-right: @sn-row-padding;
+
+}
+
+.sn-video-container {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.sn-image {
+    width: 100%;
+    height: auto;
+}
+
+.sn-video-button {
+    background-image: url('../images/video-play-icon.png');
+
+    cursor: pointer;
+    cursor: hand;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+
+.sn-video-button:hover {
+    background-image: url('../images/video-play-icon_hover.png');
+}
+
+.sn-text-body{
+    font-size: @small-font;
+    padding-bottom: 20px;
+}
+
+.sn-text-body > p {
+    margin-bottom: 0px;
+}
+
+.sn-header {
+    padding-bottom: 10px;
+    .sans-font();
+}
+
+.sn-text-header {
+    color: @orange-color;
+}
+
+.sn-text-body {
+    .sans-light-font();
+}
+
+.sn-footer{
+    padding-top: 20px;
+}
