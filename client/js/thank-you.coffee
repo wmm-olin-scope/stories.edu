@@ -30,5 +30,8 @@ $ ->
 
     getPostcard postcardId, (error, result) ->
         return showError (error.message or error) if error
-        $('.postcard-title').text "#{result.postcard.name} thanked #{result.postcard.teacher} at #{capitalize result.school.name}"
+        if result.school? and result.school.name?
+            $('.postcard-title').text "#{result.postcard.name} thanked #{result.postcard.teacher} at #{capitalize result.school.name}"
+        else
+            $('.postcard-title').text "#{result.postcard.name} thanked #{result.postcard.teacher}"
         require('./postcard.coffee').run result
