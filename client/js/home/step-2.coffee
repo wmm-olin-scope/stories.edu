@@ -87,7 +87,7 @@ checkState = (data) ->
 
     if state
         setInputEnabled cityInput(), yes, 'City'
-        setInputEnabled schoolInput(), yes, 'K-12 School'
+        setInputEnabled schoolInput(), yes, 'School'
         invalidateCityAutocomplete data
         invalidateSchoolAutocomplete data
         cityInput().focus()
