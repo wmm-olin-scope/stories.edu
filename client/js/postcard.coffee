@@ -13,8 +13,9 @@ fillPostcardFields = (postcard) ->
     $('.postcard-addressee').text _.unescape(postcard.teacher)
 
 fillSchoolFields = (school) ->
-    $('.postcard-school').text capitalize _.unescape(school.name)
-    $('.postcard-city-state').text "#{capitalize _.unescape(school.city)}, #{_.unescape(school.state)}"
+    return unless school?
+    $('.postcard-school').text capitalize _.unescape(school.name) if school.name
+    $('.postcard-city-state').text "#{capitalize _.unescape(school.city)}, #{_.unescape(school.state)}" if school.city and school.state
 
 handleDesktopEllipsis = (postcard) ->
     container = '.postcard-container'
