@@ -3,7 +3,6 @@ _ = require 'underscore'
 exports.run = ({postcard, school}) ->
     fillPostcardFields postcard
     fillSchoolFields school
-    require('./personalized-share').setup({postcard, school})
     handleDesktopEllipsis postcard
 
 fillPostcardFields = (postcard) ->
