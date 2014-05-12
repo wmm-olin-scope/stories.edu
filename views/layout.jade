@@ -54,6 +54,11 @@ html(lang='en')
 
         script(src=static('javascripts/vendor.js'))
         include widgets/tracking
+        script.
+            console = {
+                log: function () {},
+                error: function () {}
+            };
         block scripts
     body
         //- Facebook Sharing Root
