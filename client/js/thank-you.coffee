@@ -21,7 +21,6 @@ getPostcard = (postcardId, done) ->
 
 
 showError = (error) ->
-    console.error error
     window.open '/404', '_self'
 
 $ ->

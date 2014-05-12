@@ -19,7 +19,6 @@ normalizeSchoolData = (data) ->
     return _.omit data, 'schoolObj schoolName street city state zip'.split ' '
     
 postcardFinished = (data) ->
-    console.log {data}
 
     spinner = Ladda.create $('#send-note').get(0)
     spinner.start()
@@ -54,7 +53,6 @@ showError = (error) ->
             <strong>Try again!</strong> #{error.message or error}
         </div>
     """
-    console.error error
 
 
 $ ->
