@@ -5,8 +5,6 @@ twitterHandle = '@ThankAMentor'
 {capitalize} = require './utils.coffee'
 
 exports.setup = ({postcard, school}) ->
-    console.log postcard
-    console.log school
     teacherName = postcard.teacher
     schoolName = capitalize school.name
     personalized_setupFacebook(teacherName, schoolName)
@@ -47,12 +45,11 @@ personalized_setupFacebook = (teacherName, schoolName) ->
             link: personalUrl
             picture: personalized_fb.picture
         , (response) ->
-            console.log personalized_fb.link
             return
 
 personalized_setupTwitter = (teacherName, schoolName) ->
     personalized_tweet = "I just sent a thank you note to #{teacherName} at #{schoolName}: #{personalUrl}. Send a thank you to a teacher using #{twitterHandle}"
-    
+
     $('.js-twitter-postcard-text').val(personalized_tweet)
     $('.js-twitter-button').click ->
         personalized_tweet = encodeURIComponent $('.js-twitter-postcard-text').val()

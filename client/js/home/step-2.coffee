@@ -183,7 +183,6 @@ invalidateSchoolAutocomplete = (data) ->
         accessor: (school) -> school.display
     
     autocomplete schoolInput(), hound, 'schools', (school) ->
-        console.log {school}
         oldSchoolName = schoolInput().val()
         data.schoolObj = school
         cityInput().val capitalize school.city
@@ -201,7 +200,6 @@ step.writeData = (data) ->
         data.schoolName = schoolInput().val()
         data.city = cityInput().val()
         data.state = stateSelect().val()
-        console.log {data}
 
 
 setInputEnabled = (input, enabled=yes, placeholder='') ->

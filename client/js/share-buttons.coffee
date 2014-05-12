@@ -54,7 +54,6 @@ default_setupFacebook = (container) ->
             link: default_fb.link
             picture: default_fb.picture
         , (response) ->
-            console.log "FB opened"
             return
 
 default_setupTwitter = (container) ->
